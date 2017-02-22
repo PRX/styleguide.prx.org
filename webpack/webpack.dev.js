@@ -4,6 +4,8 @@ const HtmlWebpack = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const ChunkWebpack = webpack.optimize.CommonsChunkPlugin;
+const ContextReplacement = webpack.ContextReplacementPlugin;
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const rootDir = path.resolve(__dirname, '..');
 
@@ -15,11 +17,18 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     app: [path.resolve(rootDir, 'src', 'bootstrap')],
-    vendor: [path.resolve(rootDir, 'src', 'vendor')],
+    vendor: [path.resolve(rootDir, 'src', 'vendor')]
+  },
+  output: {
+    path: path.resolve(rootDir, 'dist'),
+    filename: '[name].js',
+    chunkFilename: '[id].js'
   },
   module: {
     rules: [
-      {loader: 'raw-loader', test: /\.(css|html)$/},
+      {test: '/.*src\/styles\.css$/', loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })},
+      {test: '/pikaday\/css\/(pikaday|triangle)\.css$/', loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })},
+      {test: /components\/.*\.(css|html)$/, loader: 'raw-loader'},
       {
         exclude: /node_modules/,
         test: /\.ts$/,
@@ -41,6 +50,15 @@ module.exports = {
       filename: 'index.html',
       inject: 'body',
       template: path.resolve(rootDir, 'src', 'index.html')
+    }),
+    new ContextReplacement(
+      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      rootDir
+    ),
+    new ExtractTextPlugin({
+      filename: '[name].css',
+      disable: false,
+      allChunks: true
     })
   ],
   resolve: {
