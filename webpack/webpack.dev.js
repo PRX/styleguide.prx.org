@@ -5,7 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ChunkWebpack = webpack.optimize.CommonsChunkPlugin;
 const ContextReplacement = webpack.ContextReplacementPlugin;
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const rootDir = path.resolve(__dirname, '..');
 
@@ -26,9 +26,9 @@ module.exports = {
   },
   module: {
     rules: [
-      {test: '/.*src\/styles\.css$/', loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })},
-      {test: '/pikaday\/css\/(pikaday|triangle)\.css$/', loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })},
-      {test: /components\/.*\.(css|html)$/, loader: 'raw-loader'},
+      {test: /global-styles\.css$/, use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })},
+      {test: /(pikaday|triangle)\.css$/, include: /pikaday\/css/, use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })},
+      {test: /components\/.*\.(css|html)$/, include: /components/, loader: 'raw-loader'},
       {
         exclude: /node_modules/,
         test: /\.ts$/,
@@ -51,6 +51,7 @@ module.exports = {
       inject: 'body',
       template: path.resolve(rootDir, 'src', 'index.html')
     }),
+    /* because WARNING: Critical dependency: the request of a dependency is an expression */
     new ContextReplacement(
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       rootDir

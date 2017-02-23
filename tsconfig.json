@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "commonjs",
@@ -8,7 +9,8 @@
     "suppressImplicitAnyIndexErrors": true,
     "removeComments": false,
     "sourceMap": true,
-    "target": "es5"
+    "target": "es5",
+    "outDir": "lib"
   },
   "exclude": [
     "node_modules",

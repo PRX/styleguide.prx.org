@@ -1,8 +1,8 @@
 {
   "name": "styleguide.prx.org",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Styleguide and components for PRX front end apps",
+  "main": "index.ts",
   "scripts": {
     "lint": "tslint ./src/**/*.ts",
     "start": "webpack-dev-server --config ./webpack/webpack.dev.js",
@@ -11,14 +11,16 @@
     "build": "webpack --config webpack/webpack.dev.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "PRX, Inc. <help@prx.org> (http://www.prx.org)",
+  "license": "MIT",
   "dependencies": {
     "@angular/common": "^2.4.7",
     "@angular/compiler": "^2.4.7",
     "@angular/core": "^2.4.7",
+    "@angular/forms": "^2.4.8",
     "@angular/platform-browser": "^2.4.7",
     "@angular/platform-browser-dynamic": "^2.4.7",
+    "@types/pikaday": "0.0.32",
     "es6-shim": "^0.35.3",
     "pikaday": "^1.5.1",
     "reflect-metadata": "^0.1.9",
@@ -26,7 +28,6 @@
     "zone.js": "^0.7.7"
   },
   "devDependencies": {
-    "@types/pikaday": "0.0.32",
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "^3.0.4",
     "css-loader": "^0.26.1",

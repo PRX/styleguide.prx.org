@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 require('!!style-loader!css-loader!pikaday/css/pikaday.css');
 require('!!style-loader!css-loader!pikaday/css/triangle.css');
-require('!!style-loader!css-loader!../../styles.css');
+require('!!style-loader!css-loader!./global-styles.css');
 
 @Component({
   selector: 'prx-styleguide',
