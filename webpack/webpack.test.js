@@ -18,10 +18,12 @@ module.exports = {
         test: /\.ts$/,
         loaders: [
           'awesome-typescript-loader?configFileName=' + path.resolve(rootDir, 'tsconfig.json'),
-          'angular2-template-loader?keepUrl=true'
+          'angular2-template-loader'
         ]
       },
-      {loader: 'raw-loader', test: /\.(css|html)$/},
+      {test: /\.html$/, include: path.resolve(rootDir, 'src', 'app'), loader: 'raw-loader'},
+      {test: /\.css$/, include: path.resolve(rootDir, 'src', 'app'), loaders: ['to-string-loader', 'css-loader']},
+      {test: /\.(svg)$/, loader: 'url-loader'},
       {enforce: 'pre', exclude: /node_modules/, loader: 'tslint-loader', test: /\.ts$/}
     ]
   },

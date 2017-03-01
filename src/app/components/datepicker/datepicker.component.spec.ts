@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick, async } from '@angular/core/testing';
 import { By }              from '@angular/platform-browser';
 import { DebugElement }    from '@angular/core';
 import * as Pikaday from 'pikaday';
@@ -11,18 +11,19 @@ describe('Component: DatepickerComponent', () => {
   let de: DebugElement;
   let el: HTMLElement;
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DatepickerComponent]
+    }).compileComponents().then(() => {
+
+      fix = TestBed.createComponent(DatepickerComponent);
+      comp = fix.componentInstance;
+      de = fix.debugElement;
+      el = de.nativeElement;
+
+      comp.ngAfterViewInit();
     });
-
-    fix = TestBed.createComponent(DatepickerComponent);
-    comp = fix.componentInstance;
-    de = fix.debugElement;
-    el = de.nativeElement;
-
-    comp.ngAfterViewInit();
-  });
+  }));
 
   it('should have a defined component', () => {
     expect(comp).toBeDefined();
