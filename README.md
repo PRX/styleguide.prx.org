@@ -4,8 +4,6 @@ This project is built with webpack
 
 ## Install Dependencies
 `npm install`
-`.\node_modules\.bin\typings install --save --global dt~core-js`
-`npm install webpack -g`
 
 ## Development server / Demo app
 Run `npm start` for a dev server. Navigate to `http://localhost:9000/`. The app will automatically reload if you change any of the source files.

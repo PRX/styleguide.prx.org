@@ -6,14 +6,7 @@ require('./global-styles.css');
 
 @Component({
   selector: 'prx-styleguide',
-  template: `<prx-datepicker 
-              [date]="today" (dateChange)="dateChange($event)">
-            </prx-datepicker>`
+  template: `<app-datepicker-example></app-datepicker-example>`
 })
 export class AppComponent {
-  today = new Date();
-
-  dateChange(value: Date) {
-    console.log(value + 'is an instanceof Date === ' + (value instanceof Date));
-  }
 }

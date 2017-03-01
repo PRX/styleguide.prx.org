@@ -21,22 +21,29 @@ module.exports = {
   },
   output: {
     path: path.resolve(rootDir, 'dist'),
+    publicPath: '/dist/',
     filename: '[name].js',
     chunkFilename: '[id].js'
   },
   module: {
     rules: [
+      {test: /\.html$/, include: path.resolve(rootDir, 'src', 'app'), loader: 'raw-loader'},
+      {test: /\.css$/, include: path.resolve(rootDir, 'src', 'app'), loaders: ['to-string-loader', 'css-loader']},
       {test: /global-styles\.css$/, use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })},
-      {test: /(pikaday|triangle)\.css$/, include: /pikaday\/css/, use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })},
-      {test: /components\/.*\.(css|html)$/, include: /components/, loader: 'raw-loader'},
+      {
+        test: /(pikaday|triangle)\.css$/,
+        include: path.resolve(rootDir, 'node_modules', 'pikaday', 'css'),
+        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
+      },
       {
         exclude: /node_modules/,
         test: /\.ts$/,
         loaders: [
           'awesome-typescript-loader?configFileName=' + path.resolve(rootDir, 'tsconfig.json'),
-          'angular2-template-loader?keepUrl=true'
+          'angular2-template-loader'
         ]
       },
+      {test: /\.(svg)$/, loader: 'url-loader'},
       {enforce: 'pre', exclude: /node_modules/, loader: 'tslint-loader', test: /\.ts$/}
     ]
   },

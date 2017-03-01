@@ -1,0 +1,1 @@
+export { DatepickerModule } from './datepicker';

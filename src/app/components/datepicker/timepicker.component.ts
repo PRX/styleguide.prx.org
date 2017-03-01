@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
       <option *ngFor="let o of options" [value]="o">{{o}}</option>
     </select>
   `,
-  styleUrls: ['timepicker.component.css']
+  styleUrls: ['./timepicker.component.css']
 })
 
 export class TimepickerComponent {
