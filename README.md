@@ -1,4 +1,4 @@
-# Styleguide
+# PRX Style Guide and Component Library
 
 This project is built with webpack
 
@@ -10,7 +10,7 @@ Run `npm start` for a dev server. Navigate to `http://localhost:9000/`. The app 
 
 ## Build
 
-Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests
 
