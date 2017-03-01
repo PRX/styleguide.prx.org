@@ -3,19 +3,25 @@
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "module": "commonjs",
+    "module": "es2015",
+    "lib": ["es2016", "dom"],
     "moduleResolution": "node",
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "removeComments": false,
     "sourceMap": true,
     "target": "es5",
-    "outDir": "lib"
+    "outDir": "./dist",
+    "baseUrl": "",
+    "types": []
   },
   "exclude": [
     "node_modules",
     "typings/main",
     "typings/main.d.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true
+  }
 }
 

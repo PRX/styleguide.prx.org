@@ -1,4 +1,3 @@
-/// <reference types="pikaday" />
 import { EventEmitter, AfterViewInit, ElementRef } from '@angular/core';
 import * as Pikaday from 'pikaday';
 export declare class DatepickerComponent implements AfterViewInit {

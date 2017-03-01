@@ -4,13 +4,7 @@ import * as moment from 'moment';
 
 @Component({
   selector: 'prx-datepicker',
-  template: `
-    <span class="input-group">
-      <input type="text" #datepicker [value]="formattedDate" 
-        [class.changed]="changed" [class.invalid]="invalid" (input)="setWhenValid($event.target.value)">
-      <span class="input-group-addon" (click)="datepicker.click()"><i class="icon-calendar"></i></span>
-    </span>
-  `,
+  templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.css']
 })
 

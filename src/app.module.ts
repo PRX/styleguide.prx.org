@@ -2,12 +2,16 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { DatepickerModule } from './components';
+import { DatepickerModule } from './app/components';
+
+import { exampleComponents } from './app.routing';
 
 @NgModule({
   bootstrap: [ AppComponent ],
-  declarations: [ AppComponent ],
-  imports: [ BrowserModule, DatepickerModule ],
-  exports: [ DatepickerModule ]
+  declarations: [
+    AppComponent,
+    exampleComponents
+  ],
+  imports: [ BrowserModule, DatepickerModule ]
 })
 export class AppModule {}

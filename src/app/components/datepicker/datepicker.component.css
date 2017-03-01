@@ -28,3 +28,8 @@ input.invalid {
   right: 8px;
   top: 8px;
 }
+
+i.icon-calendar {
+  background: url('../../../assets/images/icon-calendar.svg') no-repeat center center;
+  background-size: cover;
+}
