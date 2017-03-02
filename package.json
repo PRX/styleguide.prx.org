@@ -20,6 +20,7 @@
     "@angular/forms": "^2.4.8",
     "@angular/platform-browser": "^2.4.7",
     "@angular/platform-browser-dynamic": "^2.4.7",
+    "@types/pikaday": "0.0.32",
     "es6-shim": "^0.35.3",
     "pikaday": "^1.5.1",
     "reflect-metadata": "^0.1.9",
@@ -27,7 +28,6 @@
     "zone.js": "^0.7.7"
   },
   "devDependencies": {
-    "@types/pikaday": "0.0.32",
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "^3.0.4",
     "css-loader": "^0.26.1",

@@ -54330,7 +54330,7 @@ function escapeBlocks(input) {
 /**
  * @stable
  */
-var /** @type {?} */ VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* Version */]('2.4.8');
+var /** @type {?} */ VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* Version */]('2.4.9');
 //# sourceMappingURL=version.js.map
 
 /***/ }),
@@ -56366,7 +56366,7 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /**
  * @stable
  */
-var /** @type {?} */ VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* Version */]('2.4.8');
+var /** @type {?} */ VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* Version */]('2.4.9');
 //# sourceMappingURL=version.js.map
 
 /***/ }),
@@ -56697,7 +56697,7 @@ var CachedResourceLoader = (function (_super) {
 /**
  * @stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* Version */]('2.4.8');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* Version */]('2.4.9');
 //# sourceMappingURL=version.js.map
 
 /***/ }),
