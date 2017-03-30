@@ -25,7 +25,8 @@
     "pikaday": "^1.5.1",
     "reflect-metadata": "^0.1.9",
     "rxjs": "^5.1.1",
-    "zone.js": "^0.7.7"
+    "zone.js": "^0.7.7",
+    "chart.prx.org": "git@github.com:PRX/chart.prx.org.git"
   },
   "devDependencies": {
     "angular2-template-loader": "^0.6.2",

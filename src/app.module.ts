@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { DatepickerModule } from './app/components';
+import { ChartsModule } from 'chart.prx.org';
 
 import { exampleComponents } from './app.routing';
 
@@ -12,6 +13,6 @@ import { exampleComponents } from './app.routing';
     AppComponent,
     exampleComponents
   ],
-  imports: [ BrowserModule, DatepickerModule ]
+  imports: [ BrowserModule, DatepickerModule, ChartsModule ]
 })
 export class AppModule {}

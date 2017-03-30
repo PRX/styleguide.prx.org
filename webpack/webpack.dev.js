@@ -29,6 +29,7 @@ module.exports = {
     rules: [
       {test: /\.html$/, include: path.resolve(rootDir, 'src', 'app'), loader: 'raw-loader'},
       {test: /\.css$/, include: path.resolve(rootDir, 'src', 'app'), loaders: ['to-string-loader', 'css-loader']},
+      {test: /\.css/, include: path.resolve(rootDir, 'node_modules', 'chart.prx.org'), loaders: ['to-string-loader', 'css-loader']},
       {test: /global-styles\.css$/, use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })},
       {
         test: /(pikaday|triangle)\.css$/,
@@ -36,7 +37,11 @@ module.exports = {
         use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
       },
       {
-        exclude: /node_modules/,
+        test: /c3\.css$/,
+        include: path.resolve(rootDir, 'node_modules', 'c3'),
+        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
+      },
+      {
         test: /\.ts$/,
         loaders: [
           'awesome-typescript-loader?configFileName=' + path.resolve(rootDir, 'tsconfig.json'),
@@ -70,6 +75,7 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: ['.js', '.ts']
+    extensions: ['.js', '.ts'],
+    modules: [path.join(rootDir, 'node_modules')]
   }
 };
