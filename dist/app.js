@@ -75961,7 +75961,7 @@ __decorate([
 LineTimeseriesChartComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Component */])({
         selector: 'prx-line-timeseries-chart',
-        template: "\n    <div #chart class=\"chart-with-legend\"></div>\n    <prx-legend class=\"legend\" [items]=\"legendItems\" [secondaryItems]=\"secondaryItems\" (focus)=\"focusChartData($event)\" (onLabelClick)=\"onLabelClick.emit($event)\"></prx-legend>\n  ",
+        template: "\n    <div #chart [class.chart-with-legend]=\"datasets && datasets.length > 1\"></div>\n    <prx-legend *ngIf=\"datasets && datasets.length > 1\" class=\"legend\" [items]=\"legendItems\" [secondaryItems]=\"secondaryItems\" (focus)=\"focusChartData($event)\" (onLabelClick)=\"onLabelClick.emit($event)\"></prx-legend>\n  ",
         styles: [__webpack_require__(126)]
     })
 ], LineTimeseriesChartComponent);
@@ -76614,15 +76614,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var TimepickerComponent = (function () {
     function TimepickerComponent() {
-        this.onTimeChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* EventEmitter */]();
-        this.localTimezone = new Date().toString().match(/(\([A-Za-z\s].*\))/)[1];
+        this.timeChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* EventEmitter */]();
         this.options = [];
-        var day = new Date(1970, 0, 1, 0, 0, 0, 0);
-        while (day.getDate() === 1) {
-            this.options.push(this.dateToHumanTime(day));
-            day.setMinutes(day.getMinutes() + 30);
-        }
     }
+    TimepickerComponent.prototype.ngOnChanges = function () {
+        var dayGen = new Date(1970, 0, 1, 0, 0, 0, 0);
+        if (this.date) {
+            this.localTimezone = this.date.toString().match(/(\([A-Za-z\s].*\))/)[1];
+        }
+        else {
+            this.localTimezone = dayGen.toString().match(/(\([A-Za-z\s].*\))/)[1];
+        }
+        var day = dayGen.getDate();
+        while (dayGen.getDate() === day) {
+            this.options.push(this.dateToHumanTime(dayGen));
+            dayGen.setMinutes(dayGen.getMinutes() + 30);
+        }
+    };
     TimepickerComponent.prototype.roundMinutes = function (value) {
         return value > 0 && value <= 30 ? '30' : '00';
     };
@@ -76658,7 +76666,7 @@ var TimepickerComponent = (function () {
         }
         date.setHours(hours);
         date.setMinutes(+value.substr(value.indexOf(':') + 1, 2));
-        this.onTimeChange.emit(date);
+        this.timeChange.emit(date);
     };
     return TimepickerComponent;
 }());
@@ -76669,7 +76677,7 @@ __decorate([
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* Output */])(),
     __metadata("design:type", Object)
-], TimepickerComponent.prototype, "onTimeChange", void 0);
+], TimepickerComponent.prototype, "timeChange", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* Input */])(),
     __metadata("design:type", Boolean)
@@ -76679,8 +76687,7 @@ TimepickerComponent = __decorate([
         selector: 'prx-timepicker',
         template: "\n    <select [class.changed]=\"changed\"\n      [ngModel]=\"time\" (ngModelChange)=\"set($event)\">\n      <option *ngFor=\"let o of options\" [value]=\"o\">{{o}}</option>\n    </select>\n  ",
         styles: [__webpack_require__(837)]
-    }),
-    __metadata("design:paramtypes", [])
+    })
 ], TimepickerComponent);
 
 
