@@ -1,11 +1,11 @@
-import { EventEmitter } from '@angular/core';
-export declare class TimepickerComponent {
+import { EventEmitter, OnChanges } from '@angular/core';
+export declare class TimepickerComponent implements OnChanges {
     date: Date;
-    onTimeChange: EventEmitter<Date>;
+    timeChange: EventEmitter<Date>;
     changed: boolean;
     localTimezone: string;
     options: string[];
-    constructor();
+    ngOnChanges(): void;
     roundMinutes(value: number): string;
     convert24to12Hours(hours: number): number;
     amPm(hours: number): string;
