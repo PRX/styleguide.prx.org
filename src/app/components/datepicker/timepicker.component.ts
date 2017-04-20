@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'prx-timepicker',
@@ -11,19 +11,25 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./timepicker.component.css']
 })
 
-export class TimepickerComponent {
+export class TimepickerComponent implements OnChanges {
   @Input() date: Date;
-  @Output() onTimeChange = new EventEmitter<Date>();
+  @Output() timeChange = new EventEmitter<Date>();
   @Input() changed: boolean;
 
-  localTimezone = new Date().toString().match(/(\([A-Za-z\s].*\))/)[1];
+  localTimezone: string;
   options: string[] = [];
 
-  constructor() {
-    let day = new Date(1970, 0, 1, 0, 0, 0, 0);
-    while (day.getDate() === 1) {
-      this.options.push(this.dateToHumanTime(day));
-      day.setMinutes(day.getMinutes() + 30);
+  ngOnChanges() {
+    let dayGen = new Date(1970, 0, 1, 0, 0, 0, 0);
+    if (this.date) {
+      this.localTimezone = this.date.toString().match(/(\([A-Za-z\s].*\))/)[1];
+    } else {
+      this.localTimezone = dayGen.toString().match(/(\([A-Za-z\s].*\))/)[1];
+    }
+    let day = dayGen.getDate();
+    while (dayGen.getDate() === day) {
+      this.options.push(this.dateToHumanTime(dayGen));
+      dayGen.setMinutes(dayGen.getMinutes() + 30);
     }
   }
 
@@ -62,6 +68,6 @@ export class TimepickerComponent {
     }
     date.setHours(hours);
     date.setMinutes(+value.substr(value.indexOf(':') + 1, 2));
-    this.onTimeChange.emit(date);
+    this.timeChange.emit(date);
   }
 }
