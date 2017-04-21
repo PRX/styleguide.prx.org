@@ -4,9 +4,9 @@ export declare class DatepickerComponent implements AfterViewInit {
     static FORMAT: string;
     date: Date;
     dateChange: EventEmitter<Date>;
+    changed: boolean;
     input: ElementRef;
     picker: Pikaday;
-    changed: boolean;
     readonly formattedDate: string;
     readonly invalid: boolean;
     setWhenValid(value: string): void;

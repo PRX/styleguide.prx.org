@@ -76459,7 +76459,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var DatepickerComponent = DatepickerComponent_1 = (function () {
     function DatepickerComponent() {
         this.dateChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* EventEmitter */]();
-        this.changed = false;
     }
     Object.defineProperty(DatepickerComponent.prototype, "formattedDate", {
         get: function () {
@@ -76509,7 +76508,6 @@ var DatepickerComponent = DatepickerComponent_1 = (function () {
             date.setHours(new Date(this.date.valueOf()).getHours());
             date.setMinutes(new Date(this.date.valueOf()).getMinutes());
         }
-        this.changed = true;
         this.dateChange.emit(date);
     };
     return DatepickerComponent;
@@ -76523,6 +76521,10 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* Output */])(),
     __metadata("design:type", Object)
 ], DatepickerComponent.prototype, "dateChange", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* Input */])(),
+    __metadata("design:type", Boolean)
+], DatepickerComponent.prototype, "changed", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Q" /* ViewChild */])('datepicker'),
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* ElementRef */])
