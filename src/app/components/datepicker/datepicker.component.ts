@@ -13,12 +13,10 @@ export class DatepickerComponent implements AfterViewInit {
 
   @Input() date: Date;
   @Output() dateChange = new EventEmitter<Date>();
-
+  @Input() changed: boolean;
   @ViewChild('datepicker') input: ElementRef;
 
   picker: Pikaday;
-
-  changed = false;
 
   get formattedDate(): string {
     if (this.date) {
@@ -62,7 +60,6 @@ export class DatepickerComponent implements AfterViewInit {
       date.setHours(new Date(this.date.valueOf()).getHours());
       date.setMinutes(new Date(this.date.valueOf()).getMinutes());
     }
-    this.changed = true;
     this.dateChange.emit(date);
   }
 }

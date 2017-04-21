@@ -33,16 +33,18 @@ describe('Component: DatepickerComponent', () => {
     expect(comp.picker instanceof Pikaday).toBe(true);
   });
 
-  it('should have CSS class changed when date is selected', () => {
+  it('emits dateChanged event when date is selected', () => {
+    spyOn(comp.dateChange, 'emit').and.stub();
     comp.picker.setDate('02/17/2017');
     fix.detectChanges();
-    expect(de.query(By.css('input.changed'))).not.toBeNull();
+    expect(comp.dateChange.emit).toHaveBeenCalled();
   });
 
-  it('should have CSS class changed when date is entered', () => {
+  it('emits dateChanged event when date is entered', () => {
+    spyOn(comp.dateChange, 'emit').and.stub();
     comp.setWhenValid('02/17/2017');
     fix.detectChanges();
-    expect(de.query(By.css('input.changed'))).not.toBeNull();
+    expect(comp.dateChange.emit).toHaveBeenCalled();
   });
 
   it('should have CSS class invalid if entry is not valid date', fakeAsync(() => {
