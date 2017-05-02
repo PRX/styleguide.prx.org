@@ -14,7 +14,7 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "clean": "rimraf out-tsc dist && rimraf src/**/*.js src/**/*.js.map",
+    "clean": "rimraf out-tsc dist && rimraf src/lib/**/*.js src/demo/app/**/*.js.map",
     "prebuild": "npm run clean",
     "build": "node build.js",
     "build-demo": "tsc -p src/demo/",

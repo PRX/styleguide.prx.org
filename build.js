@@ -72,7 +72,7 @@ return Promise.resolve()
         '@angular/forms'
       ],
       plugins: [
-        nodeResolve({jsnext: true, main: true, ignoreGlobal: true}),
+        nodeResolve({jsnext: true, main: true}),
         commonjs(),
         sourcemaps()
       ]

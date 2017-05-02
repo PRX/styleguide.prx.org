@@ -27,13 +27,23 @@
       'rxjs': 'npm:rxjs',
 
       // 3rd party libs
-      'moment': 'npm:moment/moment.js',
-      'pikaday': 'npm:pikaday/pikaday.js',
+      'moment': 'npm:moment',
+      'pikaday': 'npm:pikaday',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
       app: {
         defaultExtension: 'js'
+      },
+      moment: {
+        main: 'moment.js',
+        defaultExtension: 'js',
+        format: 'cjs'
+      },
+      pikaday: {
+        main: 'pikaday.js',
+        defaultExtension: 'js',
+        format: 'cjs'
       },
       rxjs: {
         defaultExtension: 'js'

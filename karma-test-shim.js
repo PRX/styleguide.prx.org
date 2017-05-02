@@ -43,6 +43,8 @@ System.config({
   // Extend usual application package list with test folder
   packages: {
     rxjs: { defaultExtension: 'js' },
+    moment: { main: 'moment.js', defaultExtension: 'js', format: 'cjs' },
+    pikaday: { main: 'pikaday.js', defaultExtension: 'js', format: 'cjs' },
     '': { defaultExtension: 'js' }
   },
   // Map the angular umd bundles
@@ -66,8 +68,8 @@ System.config({
     '@angular/forms/testing': 'npm:@angular/forms/bundles/forms-testing.umd.js',
     'rxjs': 'npm:rxjs',
     // 3rd party libs
-    'moment': 'npm:moment/moment.js',
-    'pikaday': 'npm:pikaday/pikaday.js',
+    'moment': 'npm:moment',
+    'pikaday': 'npm:pikaday',
   }
 });
 
