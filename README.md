@@ -1,11 +1,13 @@
 # PRX Style Guide and Component Library
 
-This project is built with webpack
+Based on the [Angular QuickStart Lib](https://github.com/filipesilva/angular-quickstart-lib)
 
 ## Install Dependencies
+
 `npm install`
 
 ## Development server / Demo app
+
 Run `npm start` for a dev server. Navigate to `http://localhost:9000/`. The app will automatically reload if you change any of the source files.
 
 ## Build
