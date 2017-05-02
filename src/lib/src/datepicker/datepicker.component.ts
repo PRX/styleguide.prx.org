@@ -13,8 +13,8 @@ const moment = (rawMoment as any).default ? (rawMoment as any).default : rawMome
   templateUrl: './datepicker.component.html',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    // TODO: only works in dev server; not in build/test
-    '../../../../node_modules/pikaday/css/pikaday.css',
+    // TODO: using a relative url outside of this directory fails in karma
+    './pikaday.css',
     './datepicker.component.css',
   ]
 })
