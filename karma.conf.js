@@ -51,6 +51,10 @@ module.exports = function (config) {
       { pattern: 'node_modules/@angular/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false },
 
+      // 3rd party libs
+      { pattern: 'node_modules/moment/moment.js', included: false, watched: false },
+      { pattern: 'node_modules/pikaday/pikaday.js', included: false, watched: false },
+
       'karma-test-shim.js', // optionally extend SystemJS mapping e.g., with barrels
 
       // transpiled application & spec code paths loaded via module imports

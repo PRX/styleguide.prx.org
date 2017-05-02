@@ -65,6 +65,9 @@ System.config({
     '@angular/router/testing': 'npm:@angular/router/bundles/router-testing.umd.js',
     '@angular/forms/testing': 'npm:@angular/forms/bundles/forms-testing.umd.js',
     'rxjs': 'npm:rxjs',
+    // 3rd party libs
+    'moment': 'npm:moment/moment.js',
+    'pikaday': 'npm:pikaday/pikaday.js',
   }
 });
 

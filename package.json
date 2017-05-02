@@ -14,7 +14,7 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "clean": "rimraf out-tsc dist",
+    "clean": "rimraf out-tsc dist && rimraf src/**/*.js src/**/*.js.map",
     "prebuild": "npm run clean",
     "build": "node build.js",
     "build-demo": "tsc -p src/demo/",
@@ -35,17 +35,25 @@
     "lint": "tslint ./src/**/*.ts -t verbose"
   },
   "peerDependencies": {
-    "@angular/core": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0"
+    "@angular/common": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
+    "@angular/core": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
+    "@angular/forms": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0"
+  },
+  "dependencies": {
+    "moment": "^2.18.1",
+    "pikaday": "^1.5.1"
   },
   "devDependencies": {
     "@angular/common": "~4.0.0",
     "@angular/compiler": "~4.0.0",
     "@angular/compiler-cli": "~4.0.0",
     "@angular/core": "~4.0.0",
+    "@angular/forms": "~4.0.0",
     "@angular/platform-browser": "~4.0.0",
     "@angular/platform-browser-dynamic": "~4.0.0",
     "@types/jasmine": "2.5.36",
     "@types/node": "^6.0.46",
+    "@types/pikaday": "0.0.32",
     "camelcase": "^4.0.0",
     "concurrently": "3.2.0",
     "core-js": "^2.4.1",
@@ -60,6 +68,8 @@
     "lite-server": "^2.2.2",
     "rimraf": "^2.6.1",
     "rollup": "^0.41.5",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-sourcemaps": "^0.4.1",
     "rollup-plugin-uglify": "^1.0.1",
     "rxjs": "^5.0.1",
