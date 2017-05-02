@@ -14,7 +14,7 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "clean": "rimraf out-tsc dist && rimraf src/lib/**/*.js src/demo/app/**/*.js.map",
+    "clean": "rimraf out-tsc dist && rimraf 'src/lib/**/*.js?(.map)' 'src/demo/app/**/*.js?(.map)'",
     "prebuild": "npm run clean",
     "build": "node build.js",
     "build-demo": "tsc -p src/demo/",
@@ -39,10 +39,6 @@
     "@angular/core": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
     "@angular/forms": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0"
   },
-  "dependencies": {
-    "moment": "^2.18.1",
-    "pikaday": "^1.5.1"
-  },
   "devDependencies": {
     "@angular/common": "~4.0.0",
     "@angular/compiler": "~4.0.0",
@@ -66,6 +62,8 @@
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "lite-server": "^2.2.2",
+    "moment": "^2.18.1",
+    "pikaday": "^1.5.1",
     "rimraf": "^2.6.1",
     "rollup": "^0.41.5",
     "rollup-plugin-commonjs": "^8.0.2",
