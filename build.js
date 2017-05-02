@@ -22,6 +22,7 @@ const distFolder = path.join(rootFolder, 'dist');
 const tempLibFolder = path.join(compilationFolder, 'lib');
 const es5OutputFolder = path.join(compilationFolder, 'lib-es5');
 const es2015OutputFolder = path.join(compilationFolder, 'lib-es2015');
+const es2015DatePicker = path.join(es2015OutputFolder, 'src/datepicker/datepicker.component.js');
 
 return Promise.resolve()
   // Copy library to temporary folder and inline html/css.
@@ -45,6 +46,17 @@ return Promise.resolve()
     .then(() => _relativeCopy('**/*.metadata.json', es2015OutputFolder, distFolder))
     .then(() => console.log('Typings and metadata copy succeeded.'))
   )
+  // Fix ES2015 include for pikaday (TODO: whyyyyyyy????)
+  .then(() => new Promise((resolve, reject) => {
+    fs.readFile(es2015DatePicker, 'utf8', (err, data) => {
+      if (err) { return reject(err); }
+      fs.writeFile(es2015DatePicker, data.replace('pikaday/index', 'pikaday'), 'utf8', (err) => {
+        if (err) { return reject(err); }
+        console.log('Hack to fix ES2015 Pikaday succeeded.');
+        resolve();
+      });
+    });
+  }))
   // Bundle lib.
   .then(() => {
     // Base configuration.
