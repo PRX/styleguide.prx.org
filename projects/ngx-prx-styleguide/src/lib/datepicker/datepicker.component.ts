@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild,
+  ViewEncapsulation, ElementRef } from '@angular/core';
 
 import * as rawPikaday from 'pikaday';
 const Pikaday = (rawPikaday as any).default ? (rawPikaday as any).default : rawPikaday;
@@ -10,7 +11,12 @@ const moment = (rawMoment as any).default ? (rawMoment as any).default : rawMome
   moduleId: module.id,
   selector: 'prx-datepicker',
   templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.css']
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: [
+    // TODO: only works in dev server; not in build/test
+    '../../../../node_modules/pikaday/css/pikaday.css',
+    './datepicker.component.css',
+  ]
 })
 
 export class DatepickerComponent implements AfterViewInit {
@@ -32,10 +38,8 @@ export class DatepickerComponent implements AfterViewInit {
   }
 
   get invalid(): boolean {
-    // TODO: fix the value-changed-after-checked error here
-    return false;
-    // return this.input.nativeElement.value.length > 0 &&
-    //   !moment(this.input.nativeElement.value, DatepickerComponent.FORMAT, true).isValid();
+    return this.input.nativeElement.value.length > 0 &&
+      !moment(this.input.nativeElement.value, DatepickerComponent.FORMAT, true).isValid();
   }
 
   setWhenValid(value: string) {
