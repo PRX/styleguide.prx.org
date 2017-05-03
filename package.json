@@ -39,6 +39,9 @@
     "@angular/core": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
     "@angular/forms": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0"
   },
+  "dependencies": {
+    "@types/pikaday": "0.0.32"
+  },
   "devDependencies": {
     "@angular/common": "~4.0.0",
     "@angular/compiler": "~4.0.0",
@@ -49,7 +52,6 @@
     "@angular/platform-browser-dynamic": "~4.0.0",
     "@types/jasmine": "2.5.36",
     "@types/node": "^6.0.46",
-    "@types/pikaday": "0.0.32",
     "camelcase": "^4.0.0",
     "concurrently": "3.2.0",
     "core-js": "^2.4.1",
