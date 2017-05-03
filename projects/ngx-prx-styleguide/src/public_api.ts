@@ -1,3 +1,2 @@
-export { DatepickerComponent } from './src/datepicker/datepicker.component';
-export { TimepickerComponent } from './src/datepicker/timepicker.component';
-export { PrxStyleguideModule } from './src/module';
+export { ChartsModule } from './src/charts/charts.module';
+export { DatepickerModule } from './src/datepicker/datepicker.module';
