@@ -47,16 +47,10 @@ return Promise.resolve()
     .then(() => console.log('Typings and metadata copy succeeded.'))
   )
   // Fix ES2015 include for pikaday (TODO: whyyyyyyy????)
-  .then(() => new Promise((resolve, reject) => {
-    fs.readFile(es2015DatePicker, 'utf8', (err, data) => {
-      if (err) { return reject(err); }
-      fs.writeFile(es2015DatePicker, data.replace('pikaday/index', 'pikaday'), 'utf8', (err) => {
-        if (err) { return reject(err); }
-        console.log('Hack to fix ES2015 Pikaday succeeded.');
-        resolve();
-      });
-    });
-  }))
+  .then(() => Promise.resolve()
+    .then(() => _replaceText(es2015DatePicker, 'pikaday/index', 'pikaday'))
+    .then(() => console.log('Hack to fix ES2015 Pikaday succeeded.'))
+  )
   // Bundle lib.
   .then(() => {
     // Base configuration.
@@ -129,6 +123,12 @@ return Promise.resolve()
     return Promise.all(allBundles)
       .then(() => console.log('All bundles generated successfully.'))
   })
+  // Fix unneeded momentjs require (TODO: a better way)
+  .then(() => Promise.resolve()
+    .then(() => _replaceText(`${distFolder}/${libName}.js`, 'require(\'./locale', '//require(\'./locale'))
+    .then(() => _replaceText(`${distFolder}/${libName}.es5.js`, 'require(\'./locale', '//require(\'./locale'))
+    .then(() => console.log('Hack to fix moment locale require() succeeded.'))
+  )
   // Copy package files
   .then(() => Promise.resolve()
     .then(() => _relativeCopy('LICENSE', rootFolder, distFolder))
@@ -166,4 +166,24 @@ function _recursiveMkDir(dir) {
     _recursiveMkDir(path.dirname(dir));
     fs.mkdirSync(dir);
   }
+}
+
+// Replace some text in a file
+function _replaceText(file, find, replace, log) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(file, 'utf8', (err, txt) => {
+      if (err) {
+        reject(err);
+      } else {
+        fs.writeFile(file, txt.replace(find, replace), 'utf8', err => {
+          if (err) {
+            reject(err);
+          } else {
+            if (log) { console.log(log); }
+            resolve();
+          }
+        });
+      }
+    });
+  });
 }
