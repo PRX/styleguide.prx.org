@@ -22,6 +22,8 @@ const distFolder = path.join(rootFolder, 'dist');
 const tempLibFolder = path.join(compilationFolder, 'lib');
 const es5OutputFolder = path.join(compilationFolder, 'lib-es5');
 const es2015OutputFolder = path.join(compilationFolder, 'lib-es2015');
+
+const es2015Chart = name => `${es2015OutputFolder}/src/charts/${name}-chart/${name}-chart.component.js`;
 const es2015DatePicker = path.join(es2015OutputFolder, 'src/datepicker/datepicker.component.js');
 
 return Promise.resolve()
@@ -46,9 +48,14 @@ return Promise.resolve()
     .then(() => _relativeCopy('**/*.metadata.json', es2015OutputFolder, distFolder))
     .then(() => console.log('Typings and metadata copy succeeded.'))
   )
-  // Fix ES2015 include for pikaday (TODO: whyyyyyyy????)
+  // Fix ES2015 import 'thing/index' instead of just 'thing' (TODO: whyyyyyyy????)
   .then(() => Promise.resolve()
     .then(() => _replaceText(es2015DatePicker, 'pikaday/index', 'pikaday'))
+    .then(() => _replaceText(es2015Chart('line-indexed'), 'c3/index', 'c3'))
+    .then(() => _replaceText(es2015Chart('pie'), 'c3/index', 'c3'))
+    .then(() => _replaceText(es2015Chart('stacked-bar-category-rotated'), 'c3/index', 'c3'))
+    .then(() => _replaceText(es2015Chart('stacked-bar-timeseries'), 'c3/index', 'c3'))
+    .then(() => _replaceText(es2015Chart('line-timeseries'), 'c3/index', 'c3'))
     .then(() => console.log('Hack to fix ES2015 Pikaday succeeded.'))
   )
   // Bundle lib.
@@ -79,7 +86,11 @@ return Promise.resolve()
       ],
       plugins: [
         nodeResolve({jsnext: true, main: true}),
-        commonjs(),
+        commonjs({
+          namedExports: {
+            'node_modules/c3/c3.js': ['generate']
+          }
+        }),
         sourcemaps()
       ]
     };

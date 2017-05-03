@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
 
-import { DatepickerComponent } from './datepicker/datepicker.component';
-import { TimepickerComponent } from './datepicker/timepicker.component';
+import { DatepickerComponent } from './datepicker.component';
+import { TimepickerComponent } from './timepicker.component';
 
 @NgModule({
   imports: [
@@ -21,4 +21,4 @@ import { TimepickerComponent } from './datepicker/timepicker.component';
     TimepickerComponent,
   ],
 })
-export class PrxStyleguideModule { }
+export class DatepickerModule { }
