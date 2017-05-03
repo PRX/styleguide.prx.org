@@ -5,8 +5,7 @@
     "target": "es2015",
     "rootDir": "./",
     "baseUrl": "",
-    "allowSyntheticDefaultImports": true,
-    "types": []
+    "allowSyntheticDefaultImports": true
   },
   "files": [
     "./index.ts",
