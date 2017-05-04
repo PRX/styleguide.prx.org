@@ -75,22 +75,25 @@ return Promise.resolve()
         // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals for more.
         '@angular/common': 'ng.common',
         '@angular/core': 'ng.core',
-        '@angular/forms': 'ng.forms'
+        '@angular/forms': 'ng.forms',
+        'c3': 'C3'
       },
       external: [
         // List of dependencies
         // See https://github.com/rollup/rollup/wiki/JavaScript-API#external for more.
         '@angular/common',
         '@angular/core',
-        '@angular/forms'
+        '@angular/forms',
+        'c3'
       ],
       plugins: [
         nodeResolve({jsnext: true, main: true}),
-        commonjs({
-          namedExports: {
-            'node_modules/c3/c3.js': ['generate']
-          }
-        }),
+        // commonjs({
+        //   namedExports: {
+        //     'node_modules/c3/c3.js': ['generate']
+        //   }
+        // }),
+        commonjs(),
         sourcemaps()
       ]
     };

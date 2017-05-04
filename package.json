@@ -40,6 +40,7 @@
     "@angular/forms": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0"
   },
   "dependencies": {
+    "c3": "^0.4.11",
     "@types/pikaday": "0.0.32"
   },
   "devDependencies": {
@@ -48,6 +49,7 @@
     "@angular/compiler-cli": "~4.0.0",
     "@angular/core": "~4.0.0",
     "@angular/forms": "~4.0.0",
+    "@angular/http": "~4.0.0",
     "@angular/platform-browser": "~4.0.0",
     "@angular/platform-browser-dynamic": "~4.0.0",
     "@angular/router": "~4.0.0",
@@ -57,7 +59,6 @@
     "@types/c3": "^0.4.41",
     "@types/jasmine": "2.5.36",
     "@types/node": "^6.0.46",
-    "c3": "^0.4.11",
     "camelcase": "^4.0.0",
     "concurrently": "3.2.0",
     "core-js": "^2.4.1",
