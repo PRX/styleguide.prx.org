@@ -54,7 +54,7 @@ And add styles for any components you are using to your `.angular-cli.json`:
 To release to npm, *make sure* you do it from the `./dist` folder.
 
 ```
-npm version minor
+npm version patch
 npm run build
 cd dist/
 npm publish
