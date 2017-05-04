@@ -92,6 +92,8 @@ return Promise.resolve()
       ],
       plugins: [
         nodeResolve({jsnext: true, main: true}),
+        // TODO: had to move c3 to a "dependency", because d3 doesn't get
+        // bundled correctly and blows up in the parent project.
         // commonjs({
         //   namedExports: {
         //     'node_modules/c3/c3.js': ['generate']
