@@ -1,3 +1,5 @@
+@import 'node_modules/c3/c3.css';
+
 h1, h2 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
