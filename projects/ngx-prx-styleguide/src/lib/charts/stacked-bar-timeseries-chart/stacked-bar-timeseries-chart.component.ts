@@ -5,6 +5,7 @@ import { TimeseriesChartModel } from '../models/timeseries-chart.model';
 import { LegendItemModel } from '../models/legend-item.model';
 
 @Component({
+  moduleId: module.id,
   selector: 'prx-stacked-bar-timeseries-chart',
   template: `
     <div #chart class="chart-with-legend"></div>

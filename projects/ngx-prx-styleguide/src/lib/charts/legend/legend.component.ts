@@ -2,6 +2,7 @@ import { Component, Input, Output, OnChanges, EventEmitter } from '@angular/core
 import { LegendItemModel } from '../models/legend-item.model';
 
 @Component({
+  moduleId: module.id,
   selector: 'prx-legend',
   template: `
     <prx-legend-item

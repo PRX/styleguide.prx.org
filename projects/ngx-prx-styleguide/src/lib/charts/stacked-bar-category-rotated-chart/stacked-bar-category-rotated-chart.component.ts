@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, Inject, ElementRef } from '@angular/core';
 import * as C3 from 'c3';
 
 @Component({
+  moduleId: module.id,
   selector: 'prx-stacked-bar-category-rotated',
   template: ``
 })
