@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, HostListener } from '@angular/c
 import { LegendItemModel } from '../models/legend-item.model';
 
 @Component({
+  moduleId: module.id,
   selector: 'prx-legend-item',
   template: `
     <div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">

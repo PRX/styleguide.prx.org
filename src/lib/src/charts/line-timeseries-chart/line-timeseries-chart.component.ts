@@ -5,6 +5,7 @@ import { TimeseriesChartModel } from '../models/timeseries-chart.model';
 import { LegendItemModel } from '../models/legend-item.model';
 
 @Component({
+  moduleId: module.id,
   selector: 'prx-line-timeseries-chart',
   template: `
     <div #chart [class.chart-with-legend]="datasets && datasets.length > 1"></div>

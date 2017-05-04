@@ -5,6 +5,7 @@ import { IndexedChartModel } from '../models/indexed-chart.model';
 import { LegendItemModel } from '../models/legend-item.model';
 
 @Component({
+  moduleId: module.id,
   selector: 'prx-pie-chart',
   template: `
     <div #chart class="chart-with-legend"></div>
