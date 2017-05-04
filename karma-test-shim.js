@@ -43,6 +43,8 @@ System.config({
   // Extend usual application package list with test folder
   packages: {
     rxjs: { defaultExtension: 'js' },
+    c3: { main: 'c3.js', defaultExtension: 'js', format: 'cjs' },
+    d3: { main: 'd3.js', defaultExtension: 'js', format: 'cjs' },
     moment: { main: 'moment.js', defaultExtension: 'js', format: 'cjs' },
     pikaday: { main: 'pikaday.js', defaultExtension: 'js', format: 'cjs' },
     '': { defaultExtension: 'js' }
@@ -68,6 +70,8 @@ System.config({
     '@angular/forms/testing': 'npm:@angular/forms/bundles/forms-testing.umd.js',
     'rxjs': 'npm:rxjs',
     // 3rd party libs
+    'c3': 'npm:c3',
+    'd3': 'npm:d3',
     'moment': 'npm:moment',
     'pikaday': 'npm:pikaday',
   }
