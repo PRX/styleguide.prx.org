@@ -1,6 +1,6 @@
 # PRX Style Guide and Component Library
 
-Based on the [Angular QuickStart Lib](https://github.com/filipesilva/angular-quickstart-lib)
+Based on the [Angular QuickStart Lib](https://github.com/filipesilva/angular-quickstart-lib). This lib attempts to adhere to the [Angular Package Format v4.0](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/edit#heading=h.k0mh3o8u5hx).
 
 ## Install Dependencies
 
@@ -48,3 +48,22 @@ And add styles for any components you are using to your `.angular-cli.json`:
   ]
 }
 ```
+
+## Releasing
+
+To release to npm, *make sure* you do it from the `./dist` folder.
+
+```
+npm version minor
+npm run build
+cd dist/
+npm publish
+```
+
+## License
+
+The angular lib is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+## Contributing
+
+Completing a Contributor License Agreement (CLA) is required for PRs to be accepted.
