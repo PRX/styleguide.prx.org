@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "c3": "^0.4.11",
-    "@types/pikaday": "0.0.32"
+    "pikaday": "^1.5.1"
   },
   "devDependencies": {
     "@angular/common": "~4.0.0",
@@ -59,6 +59,7 @@
     "@types/c3": "^0.4.41",
     "@types/jasmine": "2.5.36",
     "@types/node": "^6.0.46",
+    "@types/pikaday": "0.0.32",
     "camelcase": "^4.0.0",
     "concurrently": "3.2.0",
     "core-js": "^2.4.1",
@@ -72,7 +73,6 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "lite-server": "^2.2.2",
     "moment": "^2.18.1",
-    "pikaday": "^1.5.1",
     "rimraf": "^2.6.1",
     "rollup": "^0.41.5",
     "rollup-plugin-commonjs": "^8.0.2",

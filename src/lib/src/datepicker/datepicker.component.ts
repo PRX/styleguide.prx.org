@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild,
-  ViewEncapsulation, ElementRef } from '@angular/core';
+  ElementRef } from '@angular/core';
 
 import * as rawPikaday from 'pikaday';
 const Pikaday = (rawPikaday as any).default ? (rawPikaday as any).default : rawPikaday;
@@ -7,16 +7,16 @@ const Pikaday = (rawPikaday as any).default ? (rawPikaday as any).default : rawP
 import * as rawMoment from 'moment';
 const moment = (rawMoment as any).default ? (rawMoment as any).default : rawMoment;
 
+/**
+ * TODO: parent project must include (in .angular-cli.json):
+ *   ../node_modules/pikaday/css/pikaday.css
+ *   ../node_modules/pikaday/css/triangle.css
+ */
 @Component({
   moduleId: module.id,
   selector: 'prx-datepicker',
   templateUrl: './datepicker.component.html',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    // TODO: using a relative url outside of this directory fails in karma
-    './pikaday.css',
-    './datepicker.component.css',
-  ]
+  styleUrls: ['./datepicker.component.css']
 })
 
 export class DatepickerComponent implements AfterViewInit {

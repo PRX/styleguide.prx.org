@@ -76,7 +76,9 @@ return Promise.resolve()
         '@angular/common': 'ng.common',
         '@angular/core': 'ng.core',
         '@angular/forms': 'ng.forms',
-        'c3': 'C3'
+        'c3': 'C3',
+        'moment': 'moment',
+        'pikaday': 'Pikaday'
       },
       external: [
         // List of dependencies
@@ -84,7 +86,9 @@ return Promise.resolve()
         '@angular/common',
         '@angular/core',
         '@angular/forms',
-        'c3'
+        'c3',
+        'moment',
+        'pikaday'
       ],
       plugins: [
         nodeResolve({jsnext: true, main: true}),
