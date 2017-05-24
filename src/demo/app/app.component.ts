@@ -3,8 +3,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'demo-app',
   template: `
+    <prx-header>
+      <prx-navitem route="/" text="PRX StyleGuide"></prx-navitem>
+      <prx-navuser></prx-navuser> 
+    </prx-header>
     <main>
-      <h1><a [routerLink]="['/']">PRX StyleGuide</a></h1>
       <article>
         <router-outlet></router-outlet>
       </article>
