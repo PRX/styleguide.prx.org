@@ -5,3 +5,5 @@ export { TimeseriesChartModel } from './src/charts/models/timeseries-chart.model
 export { TimeseriesDatumModel } from './src/charts/models/timeseries-datum.model';
 
 export { DatepickerModule } from './src/datepicker/datepicker.module';
+
+export { HeaderModule } from './src/header/header.module';
