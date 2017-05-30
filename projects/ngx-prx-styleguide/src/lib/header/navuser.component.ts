@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-//import { CmsService } from '../cms';
-//import { HalDoc } from '../../core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -25,15 +23,5 @@ import { Component } from '@angular/core';
 })
 
 export class NavUserComponent {
-
-  userName: string = 'Username';
-  //userImageDoc: HalDoc;
-
-  /*constructor(private cms: CmsService) {
-    cms.individualAccount.subscribe((doc) => {
-      this.userImageDoc = doc;
-      this.userName = doc['name'];
-    });
-  }*/
-
+  @Input() userName: string;
 }
