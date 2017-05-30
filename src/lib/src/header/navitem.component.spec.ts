@@ -1,24 +1,43 @@
-import { cit, create } from '../../../testing';
-import { NavItemComponent } from './navitem.component';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { By }              from '@angular/platform-browser';
+import { DebugElement }    from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('NavItemComponent', () => {
+import {NavItemComponent} from './navitem.component';
 
-  create(NavItemComponent);
+describe('Component: NavItemComponent', () => {
+  let comp: NavItemComponent;
+  let fix: ComponentFixture<NavItemComponent>;
+  let de: DebugElement;
+  let el: HTMLElement;
 
-  cit('renders a routed nav link', (fix, el, comp) => {
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      declarations: [NavItemComponent]
+    }).compileComponents().then(() => {
+
+      fix = TestBed.createComponent(NavItemComponent);
+      comp = fix.componentInstance;
+      de = fix.debugElement;
+      el = de.nativeElement;
+    });
+  }));
+
+  it('renders a routed nav link', () => {
     comp.text = 'Foobar';
     comp.route = '/home';
     fix.detectChanges();
-    expect(el).toQueryText('a', 'Foobar');
-    expect(el).toQueryAttr('a', 'href', '/home');
+    expect(de.query(By.css('a')).nativeElement.innerText).toEqual('Foobar');
+    expect(de.query(By.css('a')).nativeElement.getAttribute('href')).toEqual('/home');
   });
 
-  cit('renders an arbitrary url', (fix, el, comp) => {
+  it('renders an arbitrary url', () => {
     comp.text = 'Somewhere';
     comp.href = 'http://some.where';
     fix.detectChanges();
-    expect(el).toQueryText('a', 'Somewhere');
-    expect(el).toQueryAttr('a', 'href', 'http://some.where');
+    expect(de.query(By.css('a')).nativeElement.innerText).toEqual('Somewhere');
+    expect(de.query(By.css('a')).nativeElement.getAttribute('href')).toEqual('http://some.where');
   });
 
 });

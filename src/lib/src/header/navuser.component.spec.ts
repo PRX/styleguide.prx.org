@@ -1,39 +1,53 @@
-import { cit, cms, contain, findComponent } from '../../../testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { By }              from '@angular/platform-browser';
+import { Component, DebugElement }    from '@angular/core';
 import { NavUserComponent } from './navuser.component';
 
-describe('NavUserComponent', () => {
-
-  contain(NavUserComponent, {
-    template: `
-      <publish-navuser>
+@Component({
+  selector: 'test-component',
+  template: `<prx-navuser [userName]="userName">
         <h1 class="user-loading">IsLoading</h1>
         <h1 class="user-loaded">IsLoaded</h1>
-      </publish-navuser>
-    `
-  });
+      </prx-navuser>`
+})
+class TestComponent {
+  userName: string;
+}
 
-  beforeEach(() => {
-    let auth = cms.mock('prx:authorization', {});
-    auth.mockItems('prx:accounts', [
-      {name: 'TheAccountName', type: 'IndividualAccount'},
-      {name: 'DefaultName', type: 'DefaultAccount'}
-    ]);
-  });
+describe('Component: NavUserComponent', () => {
 
-  cit('displays the account name', (fix, el, comp) => {
-    expect(el).toQueryText('.name', 'TheAccountName');
-    expect(findComponent(el, 'publish-navuser').userName).toEqual('TheAccountName');
-  });
+  let comp: TestComponent;
+  let fix: ComponentFixture<TestComponent>;
+  let de: DebugElement;
+  let el: HTMLElement;
 
-  cit('displays the loaded content', (fix, el, comp) => {
-    expect(el).toContainText('IsLoaded');
-  });
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestComponent, NavUserComponent]
+    }).compileComponents().then(() => {
 
-  cit('displays loading content', (fix, el, comp) => {
-    findComponent(el, 'publish-navuser').userName = null;
+      fix = TestBed.createComponent(TestComponent);
+      comp = fix.componentInstance;
+      de = fix.debugElement;
+      el = de.nativeElement;
+    });
+  }));
+
+  it('displays the account name', () => {
+    comp.userName = 'Mary';
     fix.detectChanges();
-    expect(el).not.toContainText('TheAccountName');
-    expect(el).toContainText('IsLoading');
+    expect(de.query(By.css('.name')).nativeElement.innerText).toEqual('Mary');
+  });
+
+  it('displays the loaded content', () => {
+    comp.userName = 'Mary';
+    fix.detectChanges();
+    expect(el.innerText).toContain('IsLoaded');
+  });
+
+  it('displays loading content', () => {
+    fix.detectChanges();
+    expect(el.innerText).toContain('IsLoading');
   });
 
 });
