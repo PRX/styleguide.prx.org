@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <prx-header>
       <prx-navitem route="/" text="PRX StyleGuide"></prx-navitem>
-      <prx-navuser></prx-navuser> 
+      <prx-navuser userName="Mary"></prx-navuser> 
     </prx-header>
     <main>
       <article>
