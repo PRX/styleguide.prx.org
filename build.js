@@ -76,6 +76,7 @@ return Promise.resolve()
         '@angular/common': 'ng.common',
         '@angular/core': 'ng.core',
         '@angular/forms': 'ng.forms',
+        '@angular/router': 'ng.router',
         'c3': 'C3',
         'moment': 'moment',
         'pikaday': 'Pikaday'
@@ -86,6 +87,7 @@ return Promise.resolve()
         '@angular/common',
         '@angular/core',
         '@angular/forms',
+        '@angular/router',
         'c3',
         'moment',
         'pikaday'
