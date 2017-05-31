@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <section>
       <ul>
+        <li><a [routerLink]="['auth']"><b>Auth</b></a></li>
         <li><a [routerLink]="['charts']"><b>Charts</b></a></li>
         <li><a [routerLink]="['datepicker']"><b>DatePicker</b></a></li>
       </ul>
