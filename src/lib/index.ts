@@ -4,4 +4,7 @@ export { LegendItemModel }      from './src/charts/models/legend-item.model';
 export { TimeseriesChartModel } from './src/charts/models/timeseries-chart.model';
 export { TimeseriesDatumModel } from './src/charts/models/timeseries-datum.model';
 
+export { AuthModule } from './src/auth/auth.module';
+export { AuthService } from './src/auth/auth.service';
+
 export { DatepickerModule } from './src/datepicker/datepicker.module';
