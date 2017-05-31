@@ -76,6 +76,12 @@ return Promise.resolve()
         '@angular/common': 'ng.common',
         '@angular/core': 'ng.core',
         '@angular/forms': 'ng.forms',
+        '@angular/platform-browser': 'ng.platformBrowser',
+        'rxjs/Observable': 'Rx',
+        'rxjs/Subscription': 'Rx',
+        'rxjs/Subject': 'Rx',
+        'rxjs/ReplaySubject': 'Rx',
+        'rxjs/add/observable/skip': 'Rx.Observable',
         'c3': 'C3',
         'moment': 'moment',
         'pikaday': 'Pikaday'
@@ -86,10 +92,24 @@ return Promise.resolve()
         '@angular/common',
         '@angular/core',
         '@angular/forms',
+        '@angular/platform-browser',
+        'rxjs/Observable',
+        'rxjs/Subscription',
+        'rxjs/Subject',
+        'rxjs/ReplaySubject',
+        'rxjs/add/observable/skip',
         'c3',
         'moment',
         'pikaday'
       ],
+      onwarn: (warning) => {
+        // Suppress this error message... there are hundreds of them. Angular team says to ignore it.
+        // https://github.com/rollup/rollup/wiki/Troubleshooting#this-is-undefined
+        if (warning.code === 'THIS_IS_UNDEFINED' && warning.loc.file.match(/@angular\/http/)) {
+          return;
+        }
+        console.error(warning.message);
+      },
       plugins: [
         nodeResolve({jsnext: true, main: true}),
         // TODO: had to move c3 to a "dependency", because d3 doesn't get
