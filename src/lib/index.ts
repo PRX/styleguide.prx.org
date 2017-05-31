@@ -8,3 +8,5 @@ export { AuthModule } from './src/auth/auth.module';
 export { AuthService } from './src/auth/auth.service';
 
 export { DatepickerModule } from './src/datepicker/datepicker.module';
+
+export { HeaderModule } from './src/header/header.module';
