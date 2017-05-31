@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
           - a fixed position navigation bar that shows a home logo link and supports other navigation items with projected content</li>
         <li>NavItemComponent
           - a component that provides a router link within the application or an href link outside the application dependent 
-          on it's Inputs <code>route</code>, <code>href</code>, and <code>text</code></li>
+          on its <code>Input()</code>s: <code>route</code>, <code>href</code>, and <code>text</code></li>
         <li>NavUserComponent 
           - a component that shows the username and projected content based on selectors for <code>user-loaded</code> or <code>user-loading</code></li>
       </ul>
