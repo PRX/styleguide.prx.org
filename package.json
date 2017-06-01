@@ -70,6 +70,7 @@
     "@types/jasmine": "2.5.36",
     "@types/node": "^6.0.46",
     "@types/pikaday": "0.0.32",
+    "@types/url-template": "^2.0.27",
     "camelcase": "^4.0.0",
     "concurrently": "3.2.0",
     "core-js": "^2.4.1",
@@ -93,6 +94,7 @@
     "systemjs": "^0.19.40",
     "tslint": "^4.4.2",
     "typescript": "^2.2.1",
+    "url-template": "^2.0.8",
     "zone.js": "^0.8.4"
   }
 }
