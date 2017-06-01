@@ -10,6 +10,7 @@ const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const uglify = require('rollup-plugin-uglify');
 const sourcemaps = require('rollup-plugin-sourcemaps');
+const less = require('less');
 
 const inlineResources = require('./inline-resources');
 
@@ -178,6 +179,10 @@ return Promise.resolve()
     .then(() => _relativeCopy('README.md', rootFolder, distFolder))
     .then(() => console.log('Package files copy succeeded.'))
   )
+  // Global Styles
+  .then(() => _preprocessStyle(path.join(srcFolder, 'styles'), 'base.less', path.join(distFolder, 'styles.css'))
+    .then(() => console.log('Preprocessing succeeded.'))
+  )
   .catch(e => {
     console.error('\Build failed. See below for errors.\n');
     console.error(e);
@@ -223,6 +228,36 @@ function _replaceText(file, find, replace, log) {
           } else {
             if (log) { console.log(log); }
             resolve();
+          }
+        });
+      }
+    });
+  });
+}
+
+function _preprocessStyle(directory, basefile, outfile, log) {
+  const wd = path.resolve( "." );
+  return new Promise((resolve, reject) => {
+    process.chdir(directory);
+    fs.readFile(basefile, 'utf8', (err, txt) => {
+      if (err) {
+        reject(err);
+      } else {
+        less.render(txt, function (err, output) {
+          if (err) {
+            reject(err);
+          } else {
+            fs.writeFile(outfile, output.css, 'utf8', err => {
+              if (err) {
+                reject(err);
+              } else {
+                if (log) {
+                  console.log(log);
+                }
+                process.chdir(wd);
+                resolve();
+              }
+            });
           }
         });
       }
