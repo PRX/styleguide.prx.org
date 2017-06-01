@@ -13,7 +13,8 @@ import { Component } from '@angular/core';
           - a component that provides a router link within the application or an href link outside the application dependent
           on its <code>Input()</code>s: <code>route</code>, <code>href</code>, and <code>text</code></li>
         <li>NavUserComponent
-          - a component that shows the username and projected content based on selectors for <code>user-loaded</code> or <code>user-loading</code></li>
+          - a component that shows the username and projected content based
+          on selectors for <code>user-loaded</code> or <code>user-loading</code></li>
       </ul>
     </section>
     <hr>
@@ -28,6 +29,7 @@ import { Component } from '@angular/core';
       <h2>PRX Services</h2>
       <ul>
         <li><a [routerLink]="['auth']"><b>Auth</b></a></li>
+        <li><a [routerLink]="['hal']"><b>Hal</b></a></li>
       </ul>
     </section>
     <hr>
