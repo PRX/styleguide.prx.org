@@ -5,7 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }  from './app.component';
 import { routing, routingProviders, routingComponents } from './app.routing';
 
-import { AuthModule, ChartsModule, DatepickerModule, HeaderModule } from 'ngx-prx-styleguide';
+import {
+  AuthModule,
+  ChartsModule,
+  DatepickerModule,
+  HalModule,
+  HeaderModule
+} from 'ngx-prx-styleguide';
 
 @NgModule({
   imports: [
@@ -14,6 +20,7 @@ import { AuthModule, ChartsModule, DatepickerModule, HeaderModule } from 'ngx-pr
     AuthModule,
     ChartsModule,
     DatepickerModule,
+    HalModule,
     HeaderModule,
     routing
   ],
