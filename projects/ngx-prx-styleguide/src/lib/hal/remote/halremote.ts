@@ -1,4 +1,4 @@
-import { Http, Headers, RequestOptionsArgs, Response } from '@angular/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/first';
@@ -113,18 +113,20 @@ export class HalRemote {
 
   private getResponse(method: string, href: string, body?: string): Observable<Response> {
     let headers = new Headers();
-    headers.append('Accept', 'application/hal+json');
+    headers.set('Accept', 'application/hal+json');
     if (body) {
-      headers.append('Content-Type', 'application/hal+json');
+      headers.set('Content-Type', 'application/hal+json');
     }
 
     // wait for auth token - but not for root api paths!
-    let options: Observable<RequestOptionsArgs> = Observable.of({headers: headers});
+    let options: Observable<RequestOptions>;
     if (this.auth && !this.isRoot(href)) {
       options = this.auth.token.first().map(tokenString => {
-        headers.append('Authorization', `Bearer ${tokenString}`);
-        return {headers: headers};
+        headers.set('Authorization', `Bearer ${tokenString}`);
+        return new RequestOptions({headers: headers});
       });
+    } else {
+      options = Observable.of(new RequestOptions({headers: headers}));
     }
 
     // make request, and catch http errors
