@@ -51,7 +51,12 @@ export class AuthComponent implements OnChanges, OnDestroy {
   }
 
   checkAuth() {
-    let query = AuthParser.parseIframeQuery(this.element);
+    let query: string;
+    try {
+      query = AuthParser.parseIframeQuery(this.element);
+    } catch (e) {
+      this.authService.setError(e);
+    }
 
     // 1st load has no query, 2nd redirect-load does
     if (query) {

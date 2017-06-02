@@ -34,6 +34,10 @@ export class AuthService {
     }
   }
 
+  setError(authError: any) {
+    this.token.error(authError);
+  }
+
   // refresh and wait for a new auth token
   refreshToken(): Observable<string> {
     this.refresh.next(true);
