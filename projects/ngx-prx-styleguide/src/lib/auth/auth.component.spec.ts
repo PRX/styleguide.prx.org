@@ -12,11 +12,12 @@ describe('AuthComponent', () => {
   let de: DebugElement;
   let el: HTMLElement;
 
-  let host: string, client: string, token: string, refresh = new Subject<boolean>();
+  let host: string, client: string, token: string, error: Error, refresh = new Subject<boolean>();
   let authServiceStub = {
     config: (h: string, c: string) => { host = h; client = c; },
     url: () => 'http://localhost:9876/assets/callback.html',
     setToken: (t: string) => token = t,
+    setError: (e: Error) => error = e,
     refresh: refresh
   };
 
@@ -71,6 +72,15 @@ describe('AuthComponent', () => {
     spyOn(comp, 'generateAuthUrl').and.stub();
     refresh.next(true);
     expect(comp.generateAuthUrl).toHaveBeenCalledTimes(1);
+  });
+
+  it('catches iframe errors', () => {
+    spyOn(AuthParser, 'parseIframeQuery').and.throwError('something went wrong');
+    comp.host = 'id.prx.org';
+    comp.client = 'whatev';
+    comp.ngOnChanges(<any> {host: true, client: true});
+    fix.detectChanges();
+    expect(error.message).toEqual('something went wrong');
   });
 
 });
