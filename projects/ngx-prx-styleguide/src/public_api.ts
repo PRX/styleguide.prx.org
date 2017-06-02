@@ -14,7 +14,5 @@ export { HalService } from './src/hal/hal.service';
 export { HalBaseService } from './src/hal/hal-base.service';
 export { HalDoc } from './src/hal/doc/haldoc';
 export { HalObservable } from './src/hal/doc/halobservable';
-// TODO: better way to extend observables? perhaps on-the-fly?
-import './src/hal/doc/halobservable';
 
 export { HeaderModule } from './src/header/header.module';
