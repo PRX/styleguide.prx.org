@@ -82,7 +82,18 @@ return Promise.resolve()
         'rxjs/Subscription': 'Rx',
         'rxjs/Subject': 'Rx',
         'rxjs/ReplaySubject': 'Rx',
-        'rxjs/add/observable/skip': 'Rx.Observable',
+        'rxjs/add/observable/from': 'Rx.Observable',
+        'rxjs/add/observable/of': 'Rx.Observable',
+        'rxjs/add/observable/throw': 'Rx.Observable',
+        'rxjs/add/operator/catch': 'Rx.Observable',
+        'rxjs/add/operator/concatAll': 'Rx.Observable',
+        'rxjs/add/operator/finally': 'Rx.Observable',
+        'rxjs/add/operator/first': 'Rx.Observable',
+        'rxjs/add/operator/map': 'Rx.Observable',
+        'rxjs/add/operator/mergeMap': 'Rx.Observable',
+        'rxjs/add/operator/share': 'Rx.Observable',
+        'rxjs/add/operator/skip': 'Rx.Observable',
+        'rxjs/add/operator/toArray': 'Rx.Observable',
         'c3': 'C3',
         'moment': 'moment',
         'pikaday': 'Pikaday'
@@ -99,7 +110,18 @@ return Promise.resolve()
         'rxjs/Subscription',
         'rxjs/Subject',
         'rxjs/ReplaySubject',
-        'rxjs/add/observable/skip',
+        'rxjs/add/observable/from',
+        'rxjs/add/observable/of',
+        'rxjs/add/observable/throw',
+        'rxjs/add/operator/catch',
+        'rxjs/add/operator/concatAll',
+        'rxjs/add/operator/finally',
+        'rxjs/add/operator/first',
+        'rxjs/add/operator/map',
+        'rxjs/add/operator/mergeMap',
+        'rxjs/add/operator/share',
+        'rxjs/add/operator/skip',
+        'rxjs/add/operator/toArray',
         'c3',
         'moment',
         'pikaday'
@@ -107,9 +129,7 @@ return Promise.resolve()
       onwarn: (warning) => {
         // Suppress this error message... there are hundreds of them. Angular team says to ignore it.
         // https://github.com/rollup/rollup/wiki/Troubleshooting#this-is-undefined
-        if (warning.code === 'THIS_IS_UNDEFINED' && warning.loc.file.match(/@angular\/http/)) {
-          return;
-        }
+        if (warning.code === 'THIS_IS_UNDEFINED') return;
         console.error(warning.message);
       },
       plugins: [
