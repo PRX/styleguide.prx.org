@@ -1,11 +1,11 @@
 import { Http, Headers, RequestOptionsArgs, Response } from '@angular/http';
-import * as TemplateParser from 'url-template';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 
+import { init } from '../rfc6570-expand';
 import { AuthService } from '../../auth/auth.service';
 import { HalCache } from './halcache';
 import { HalLink, HalLinkError } from '../doc/hallink';
@@ -51,7 +51,8 @@ export class HalRemote {
     if (!link || !link.href) {
       return null;
     } else if (link.templated) {
-      return TemplateParser.parse(this.host + link.href).expand(params || {});
+      let {expand} = init(this.host + link.href);
+      return expand(params || {});
     } else if (link.href.match(/^http(s)?:\/\//)) {
       return link.href;
     } else {
