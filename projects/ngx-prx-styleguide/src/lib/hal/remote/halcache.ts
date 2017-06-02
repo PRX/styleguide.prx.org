@@ -23,11 +23,11 @@ export class HalCache {
     }
   }
 
-  set(key: string, valObservable: Observable<any>): Observable<any> {
+  set(key: string, valObservable: Observable<any>, overrideTTL?: number): Observable<any> {
     let gotValue = false;
     this.inFlight[key] = valObservable.share().map(val => {
       gotValue = true;
-      this.setItem(key, val);
+      this.setItem(key, val, overrideTTL || this.ttl);
       return val;
     }).finally(() => {
       if (gotValue) {
@@ -39,14 +39,12 @@ export class HalCache {
     return this.inFlight[key];
   }
 
-  cache(key: string, valObservable: Observable<any>) {
+  cache(key: string, valObservable: Observable<any>, overrideTTL?: number) {
     let cachedVal = this.get(key);
     if (cachedVal) {
-      console.log(`cache HIT ${key}`);
       return cachedVal;
     } else {
-      console.log(`cache MISS ${key}`);
-      return this.set(key, valObservable);
+      return this.set(key, valObservable, overrideTTL);
     }
   }
 
@@ -82,9 +80,10 @@ export class HalCache {
     return null;
   }
 
-  private setItem(key: string, val: any): boolean {
-    if (this.storageEnabled && this.ttl > 0) {
-      let expAndVal = JSON.stringify([new Date().getTime() + this.ttl, val]);
+  private setItem(key: string, val: any, ttl: number): boolean {
+    if (this.storageEnabled && ttl > 0) {
+      let exp = new Date().getTime() + (ttl * 1000);
+      let expAndVal = JSON.stringify([exp, val]);
       window.localStorage.setItem(`${this.cacheName}.${key}`, expAndVal);
       return true;
     }
