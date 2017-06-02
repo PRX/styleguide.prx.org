@@ -23,8 +23,11 @@ import { HalService, HalObservable, HalDoc } from 'ngx-prx-styleguide';
     </section>
     <section>
       <h2>HalService Demo:</h2>
+      <prx-auth *ngIf="loadAuth" [host]="authHost" [client]="authClient">
+      </prx-auth>
       <button (click)="loadCms()">CMS Root</button>
       <button (click)="loadCmsStory()">Follow CMS Story</button>
+      <button (click)="loadAuthStory()">Follow Authorized CMS Story</button>
       <pre [class.error]="error">{{code}}</pre>
     </section>
   `,
@@ -34,12 +37,11 @@ export class HalDemoComponent {
   cmsHost = 'cms-staging.prx.tech';
   code = '';
   error = false;
+  loadAuth = false;
+  authHost = 'id-staging.prx.tech';
+  authClient = 'lVN05vLI8aCADh7lzbrL0AkDvEfPNuoEPpL2umL5';
 
-  constructor(private hal: HalService) {
-    // hal.public(this.cmsHost, '/api/v1/stories/187931').subscribe((doc: any) => {
-    //   this.code = doc.toJSON(true);
-    // });
-  }
+  constructor(private hal: HalService) {}
 
   loadCms() {
     this.show(this.hal.public(this.cmsHost));
@@ -47,6 +49,11 @@ export class HalDemoComponent {
 
   loadCmsStory() {
     this.show(this.hal.public(this.cmsHost).follow('prx:story', {id: 187931}));
+  }
+
+  loadAuthStory() {
+    this.loadAuth = true;
+    this.show(this.hal.authorized(this.cmsHost).follow('prx:story', {id: 187931}));
   }
 
   show(obs: HalObservable<HalDoc>) {
