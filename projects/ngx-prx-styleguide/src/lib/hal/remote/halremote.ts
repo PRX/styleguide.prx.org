@@ -5,7 +5,7 @@ import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 
-import { init } from '../rfc6570-expand';
+import { expand } from '../rfc6570-expand/expand';
 import { AuthService } from '../../auth/auth.service';
 import { HalCache } from './halcache';
 import { HalLink, HalLinkError } from '../doc/hallink';
@@ -26,7 +26,7 @@ export class HalRemote {
   rootTTL = 300;
 
   constructor(
-    private host: string,
+    public host: string,
     private http: Http,
     private auth?: AuthService,
     private ttl?: number
@@ -51,8 +51,7 @@ export class HalRemote {
     if (!link || !link.href) {
       return null;
     } else if (link.templated) {
-      let {expand} = init(this.host + link.href);
-      return expand(params || {});
+      return expand(this.host + link.href, params || {});
     } else if (link.href.match(/^http(s)?:\/\//)) {
       return link.href;
     } else {
@@ -89,6 +88,10 @@ export class HalRemote {
     let href = this.expand(link, params);
     this.cache.del(href);
     return this.httpRequest('delete', href);
+  }
+
+  clear() {
+    this.cache.clear();
   }
 
   private httpRequest(method: string, href: string, body?: string, allowRetry = true): Observable<Response> {
