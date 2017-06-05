@@ -23,11 +23,11 @@ export class HalCache {
     }
   }
 
-  set(key: string, valObservable: Observable<any>, overrideTTL?: number): Observable<any> {
+  set(key: string, valObservable: Observable<any>, ttl: number = this.ttl): Observable<any> {
     let gotValue = false;
     this.inFlight[key] = valObservable.share().map(val => {
       gotValue = true;
-      this.setItem(key, val, overrideTTL || this.ttl);
+      this.setItem(key, val, ttl);
       return val;
     }).finally(() => {
       if (gotValue) {
@@ -58,7 +58,7 @@ export class HalCache {
     if (this.storageEnabled) {
       for (let i = 0, len = localStorage.length; i < len; ++i) {
         let key = localStorage.key(i);
-        if (key.startsWith(`${this.cacheName}.`)) {
+        if (key && key.startsWith(`${this.cacheName}.`)) {
           window.localStorage.removeItem(key);
         }
       }
