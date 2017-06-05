@@ -31,7 +31,6 @@
       'd3': 'npm:d3',
       'moment': 'npm:moment',
       'pikaday': 'npm:pikaday',
-      'url-template': 'npm:url-template',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -60,11 +59,6 @@
       },
       rxjs: {
         defaultExtension: 'js'
-      },
-      'url-template': {
-        main: 'lib/url-template.js',
-        defaultExtension: 'js',
-        format: 'cjs'
       },
       'ngx-prx-styleguide': {
         main: 'index.js',
