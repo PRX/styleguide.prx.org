@@ -85,6 +85,10 @@ module.exports = function (config) {
     preprocessors: {},
     reporters: ['spec', 'kjhtml'],
 
+    specReporter: {
+      suppressSkipped: true
+    },
+
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
