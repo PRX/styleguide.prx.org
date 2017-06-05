@@ -50,19 +50,13 @@ describe('HalCache', () => {
     expect(cache.get('foo')).toBeNull();
   });
 
-  it('expires caches', (done: Function) => {
-    cache.set('foo', Observable.of('bar')).subscribe((val: any) => {
-      expect(val).toEqual('bar');
-    });
-    setTimeout(
-      () => {
-        let theFuture = new Date('2099-01-01');
-        spyOn(window, 'Date').and.returnValue(theFuture);
-        expect(cache.get('foo')).toBeNull();
-        done();
-      },
-      1
-    );
+  it('expires caches', () => {
+    cache.set('foo', Observable.of('bar')).subscribe();
+    expect(cache.get('foo') instanceof Observable).toBeTruthy();
+    spyOn(cache, 'checkExpired').and.returnValue(true);
+    spyOn(cache, 'del').and.stub();
+    expect(cache.get('foo')).toBeNull();
+    expect(cache.del).toHaveBeenCalled();
   });
 
 });

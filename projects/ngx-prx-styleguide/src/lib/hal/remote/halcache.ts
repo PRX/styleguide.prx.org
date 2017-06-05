@@ -12,6 +12,9 @@ export class HalCache {
   // in-flight requests
   private inFlight: { [key: string]: Observable<any>; } = {};
 
+  // in-memory cache
+  private memcache: { [key: string]: any; } = {};
+
   constructor(public cacheName: string, public ttl = 0) {}
 
   get(key: string): Observable<any> {
@@ -62,29 +65,42 @@ export class HalCache {
           window.localStorage.removeItem(key);
         }
       }
+    } else {
+      this.memcache = {};
     }
   }
 
   private getItem(key: string): any {
+    let exp: number, val: any;
+
     if (this.storageEnabled) {
       let raw = window.localStorage.getItem(`${this.cacheName}.${key}`);
       if (raw) {
-        let [exp, val] = JSON.parse(raw);
-        if (exp && exp > new Date().getTime()) {
-          return val;
-        } else {
-          this.delItem(key);
-        }
+        [exp, val] = JSON.parse(raw);
       }
+    } else if (this.memcache[key]) {
+      [exp, val] = this.memcache[key];
     }
-    return null;
+
+    if (this.checkExpired(exp)) {
+      this.del(key);
+      return null;
+    } else if (val) {
+      return val;
+    } else {
+      return null;
+    }
   }
 
   private setItem(key: string, val: any, ttl: number): boolean {
-    if (this.storageEnabled && ttl > 0) {
+    if (ttl > 0) {
       let exp = new Date().getTime() + (ttl * 1000);
-      let expAndVal = JSON.stringify([exp, val]);
-      window.localStorage.setItem(`${this.cacheName}.${key}`, expAndVal);
+      if (this.storageEnabled) {
+        let expAndVal = JSON.stringify([exp, val]);
+        window.localStorage.setItem(`${this.cacheName}.${key}`, expAndVal);
+      } else {
+        this.memcache[key] = [exp, val];
+      }
       return true;
     }
     return false;
@@ -95,13 +111,20 @@ export class HalCache {
     if (this.storageEnabled && window.localStorage.getItem(key)) {
       window.localStorage.removeItem(`${this.cacheName}.${key}`);
       return true;
+    } else if (this.memcache[key]) {
+      delete this.memcache[key];
+      return true;
     } else {
       return false;
     }
   }
 
+  private checkExpired(exp: number) {
+    return !(exp && exp > new Date().getTime());
+  }
+
   private get storageEnabled(): boolean {
-    return !!(window && window.localStorage);
+    return false; // TODO: do we ever actually want localstorage?
   }
 
 }
