@@ -19,7 +19,37 @@ import { HalService, HalObservable, HalDoc } from 'ngx-prx-styleguide';
   template: `
     <h1>HalModule</h1>
     <section>
-      <h2>HalService Usage:</h2>
+      <h2>Setup:</h2>
+      <ul>
+        <li>
+          Generally, instead of using the HalService directly, you'll want to
+          declare your own service extending the abstract HalBaseService. This
+          gives you a standard config/helper setup to build on. Just implement
+          the <code>host()</code>, <code>path()</code> and <code>ttl()</code>
+          getters.
+        </li>
+        <li>
+          To make authorized requests, you just need to have the
+          <code>prx-auth</code> component setup somewhere in your app, and the
+          HalService will automagically find it.
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>Usage:</h2>
+      <ul>
+        <li>
+          Get yourself the root HalDoc for your api host, via your
+          <code>myHalService.root</code> observable.
+        </li>
+        <li>
+          Navigate the API via the 3 HalObservable methods: follow, followList,
+          and followItems.
+        </li>
+        <li>
+          Chain observables: <code>cms.root.follow('prx:story', {{ '{' }}id: 123}))</code>
+        </li>
+      </ul>
     </section>
     <section>
       <h2>HalService Demo:</h2>
@@ -60,8 +90,8 @@ export class HalDemoComponent {
     this.code = 'loading...';
     this.error = false;
     obs.subscribe(
-      doc => this.code = doc.toJSON(true),
-      err => {
+      (doc: any) => this.code = doc.toJSON(true),
+      (err: any) => {
         this.code = err;
         this.error = true;
       }
