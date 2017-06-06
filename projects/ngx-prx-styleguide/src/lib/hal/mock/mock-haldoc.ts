@@ -30,7 +30,7 @@ export class MockHalDoc extends HalDoc {
 
   constructor(data: any = {}, profile?: string) {
     super(data, <any> {
-      expand: (link: any) => link.href
+      expand: (link: any) => link ? link.href : null
     });
     this.profile = profile;
   }
@@ -146,16 +146,20 @@ export class MockHalDoc extends HalDoc {
   }
 
   expand(rel: string, params: any = {}): string {
-    let link;
-    if (this.MOCKS) {
-      link = this.MOCKS[rel];
+    if (rel === 'profile') {
+      return this.profile;
     }
+
+    let link;
     if (this['_links']) {
       link = this['_links'][rel];
+    } else if (this.MOCKS) {
+      link = this.MOCKS[rel];
     }
     if (link && link instanceof Array) {
       link = link[0];
     }
+
     return this.remote.expand(link, params);
   }
 
