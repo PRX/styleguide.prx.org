@@ -9,7 +9,8 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter')
+      require('karma-jasmine-html-reporter'),
+      require('karma-spec-reporter')
     ],
 
     client: {
@@ -66,6 +67,7 @@ module.exports = function (config) {
       // (these paths need to be rewritten, see proxies section)
       { pattern: libBase + '**/*.html', included: false, watched: true },
       { pattern: libBase + '**/*.css', included: false, watched: true },
+      { pattern: 'src/demo/callback.html', included: false, watched: false },
 
       // Paths for debugging with source maps in dev tools
       { pattern: libBase + '**/*.ts', included: false, watched: false },
@@ -74,13 +76,18 @@ module.exports = function (config) {
 
     // Proxied base paths for loading assets
     proxies: {
+      '/assets/callback.html': '/base/src/demo/callback.html',
       // required for modules fetched by SystemJS
       '/base/src/lib/node_modules/': '/base/node_modules/'
     },
 
     exclude: [],
     preprocessors: {},
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['spec', 'kjhtml'],
+
+    specReporter: {
+      suppressSkipped: true
+    },
 
     port: 9876,
     colors: true,
