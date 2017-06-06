@@ -14,5 +14,7 @@ export { HalService } from './src/hal/hal.service';
 export { HalBaseService } from './src/hal/hal-base.service';
 export { HalDoc } from './src/hal/doc/haldoc';
 export { HalObservable } from './src/hal/doc/halobservable';
+export { MockHalService } from './src/hal/mock/mock-hal.service';
+export { MockHalDoc } from './src/hal/mock/mock-haldoc';
 
 export { HeaderModule } from './src/header/header.module';
