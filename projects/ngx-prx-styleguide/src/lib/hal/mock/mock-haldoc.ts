@@ -52,8 +52,12 @@ export class MockHalDoc extends HalDoc {
     });
   }
 
-  mockError(rel: string, msg: string) {
-    this.ERRORS[rel] = msg;
+  mockError(rel: string, msg: string | Error) {
+    if (typeof(msg) === 'string') {
+      this.ERRORS[rel] = new Error(msg);
+    } else {
+      this.ERRORS[rel] = msg;
+    }
   }
 
   update(data: any): HalObservable<MockHalDoc> {
@@ -114,7 +118,7 @@ export class MockHalDoc extends HalDoc {
   follow(rel: string, params: {} = null): HalObservable<MockHalDoc> {
     return Observable.create((obs: Observer<any>) => {
       if (this.ERRORS[rel]) {
-        obs.error(new Error(this.ERRORS[rel]));
+        obs.error(this.ERRORS[rel]);
       } else if (this.MOCKS[rel] && this.MOCKS[rel] instanceof Array) {
         obs.error(new Error(`Expected mocked object at ${rel} - got array`));
       } else if (this.MOCKS[rel]) {
@@ -129,7 +133,7 @@ export class MockHalDoc extends HalDoc {
   followList(rel: string, params: {} = null): HalObservable<MockHalDoc[]> {
     return Observable.create((obs: Observer<any>) => {
       if (this.ERRORS[rel]) {
-        obs.error(new Error(this.ERRORS[rel]));
+        obs.error(this.ERRORS[rel]);
       } else if (this.MOCKS[rel] && this.MOCKS[rel] instanceof Array) {
         obs.next(this.MOCKS[rel]);
         obs.complete();
