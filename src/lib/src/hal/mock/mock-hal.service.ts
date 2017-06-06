@@ -25,6 +25,10 @@ export class MockHalService {
     return this.root.mockItems(rel, datas);
   }
 
+  mockError(rel: string, msg: string | Error) {
+    this.root.mockError(rel, msg);
+  }
+
   public(host: string, path: string, ttl?: number): HalObservable<MockHalDoc> {
     return <HalObservable<MockHalDoc>> Observable.of(this.root);
   }
