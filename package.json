@@ -1,6 +1,6 @@
 {
   "name": "ngx-prx-styleguide",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "PRX Angular 2 style guide library",
   "keywords": [
     "PRX",
@@ -50,6 +50,7 @@
     "@angular/common": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
     "@angular/core": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
     "@angular/forms": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
+    "@angular/http": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
     "@angular/platform-browser": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0"
   },
   "dependencies": {
@@ -81,6 +82,7 @@
     "karma-html-reporter": "^0.2.7",
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-spec-reporter": "0.0.31",
     "less": "^2.7.2",
     "lite-server": "^2.2.2",
     "moment": "^2.18.1",
