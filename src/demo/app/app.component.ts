@@ -11,7 +11,9 @@ import { Component } from '@angular/core';
     </prx-header>
     <main>
       <article>
-        <router-outlet></router-outlet>
+        <section class="main">
+          <router-outlet></router-outlet>
+        </section>
       </article>
     </main>
   `,

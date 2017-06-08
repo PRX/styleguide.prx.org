@@ -2,41 +2,54 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'table-of-contents',
-  template: `
+  template: `    
     <section>
-      <h2>Navigation</h2>
-      <p>In the header above you see the following components in use</p>
+      <h1>Navigation</h1>
       <ul>
-        <li>HeaderComponent
-          - a fixed position navigation bar that shows a home logo link and supports other navigation items with projected content</li>
-        <li>NavItemComponent
-          - a component that provides a router link within the application or an href link outside the application dependent
-          on its <code>Input()</code>s: <code>route</code>, <code>href</code>, and <code>text</code></li>
-        <li>NavUserComponent
-          - a component that shows the username and projected content based
-          on selectors for <code>user-loaded</code> or <code>user-loading</code></li>
+        <li>
+          <a [routerLink]="['header']">HeaderComponent</a> - a fixed position navigation bar that shows 
+          a home logo link and supports other navigation items with projected content
+        </li>
+        <li>
+          <a [routerLink]="['navitem']">NavItemComponent</a> - provides a router link within the application 
+          or an href link outside the application
+        </li>
+        <li>
+          <a [routerLink]="['navuser']">NavUserComponent</a> - shows the username and selector based projected content
+        </li>
       </ul>
     </section>
     <hr>
     <section>
-      <h2>Data Visualization</h2>
+        <h1>Global CSS</h1>
+        <ul>
+          <li>
+            <a [routerLink]="['reset']">Reset</a> - resets the styling of HTML elements to a consistent baseline 
+            to reset the browser's 'user agent' stylesheet
+          </li>
+          <li><a [routerLink]="['layout']">Layout</a></li>
+        </ul>
+    </section>
+    <hr>
+    <section>
+      <h1>Data Visualization</h1>
       <ul>
-        <li><a [routerLink]="['charts']"><b>Charts</b></a></li>
+        <li><a [routerLink]="['charts']">Charts</a> - C3 chart components</li>
       </ul>
     </section>
     <hr>
     <section>
-      <h2>PRX Services</h2>
+      <h1>PRX Services</h1>
       <ul>
-        <li><a [routerLink]="['auth']"><b>Auth</b></a></li>
-        <li><a [routerLink]="['hal']"><b>Hal</b></a></li>
+        <li><a [routerLink]="['auth']">Auth</a> - authentication via id.prx.org</li>
+        <li><a [routerLink]="['hal']">Hal</a> - base classes for using PRX hal-based services</li>
       </ul>
     </section>
     <hr>
     <section>
-      <h2>Form Controls</h2>
+      <h1>Form Controls</h1>
       <ul>
-        <li><a [routerLink]="['datepicker']"><b>DatePicker</b></a></li>
+        <li><a [routerLink]="['datepicker']">DatePicker</a> - Pikaday datepicker component</li>
       </ul>
     </section>
   `,
