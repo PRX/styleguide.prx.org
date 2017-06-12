@@ -1,7 +1,7 @@
 @import './variables.less';
 
 html {
-  line-height: 1.5em;
+  line-height: 1.5em;/* TODO: why em when we're not specifying font-size yet? */
   height: 100%;
   background-color: @charcoal;
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%229%22%20height%3D%2218%22%20viewBox%3D%220%200%205%2010%22%3E%3Crect%20width%3D%22110%25%22%20x%3D%22-5%25%22%20y%3D%22-5%25%22%20height%3D%22110%25%22%20fill%3D%22none%22%2F%3E%3Cpath%20stroke%3D%22%23000%22%20stroke-width%3D%22.62%22%20d%3D%22M-2%201l9%209M-2%206l9%209M-2-4l9%209%22%2F%3E%3C%2Fsvg%3E");
@@ -14,7 +14,7 @@ body {
   margin-right: auto;
   margin-left: auto;
   font-family: 'Open Sans', sans-serif;
-  line-height: 1.5rem;
+  line-height: 1.5rem;/* TODO: why is this rem when there is no font-size for body? */
   font-size: 14px;
   color: @grey;
 }
@@ -23,12 +23,64 @@ main {
   min-height: 200px;
   background: @white-smoke;
   padding-top: 50px;
-  padding-bottom: 10px;
+  padding-bottom: @padding-base;
   position: relative;
 }
 @media screen and (min-width: 768px) {
   main {
     min-height: 400px;
     padding-top: 73px;
+  }
+}
+
+article .hero > section,
+article .hero div > section,
+article .main > section {
+  max-width: 1060px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+@media screen and (min-width: 768px) {
+  article .hero > section,
+  article .hero div > section,
+  article .main > section {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+article .main > section {
+  position: relative;
+}
+
+/* Looks like this should be in a .content container with display: flex but Publish is not using */
+@media screen and (min-width: 768px) {
+  article .main {
+    -webkit-box-ordinal-group: 2;
+    -moz-box-ordinal-group: 2;
+    -o-box-ordinal-group: 2;
+    -ms-flex-order: 2;
+    -webkit-order: 2;
+    order: 2;
+    -webkit-align-self: stretch;
+    align-self: stretch;
+    -ms-flex-item-align: stretch;
+    -ms-flex-line-pack: start;
+    -webkit-align-content: flex-start;
+    align-content: flex-start;
+    -webkit-box-flex: 5;
+    -moz-box-flex: 5;
+    -o-box-flex: 5;
+    -ms-box-flex: 5;
+    box-flex: 5;
+    -webkit-flex-grow: 5;
+    flex-grow: 5;
+    -webkit-flex-shrink: 5;
+    flex-shrink: 5;
+    flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    -webkit-flex-basis: auto;
   }
 }
