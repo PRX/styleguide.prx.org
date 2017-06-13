@@ -1,6 +1,7 @@
 @import 'node_modules/c3/c3.css';
 @import 'node_modules/pikaday/css/pikaday.css';
 @import 'node_modules/pikaday/css/triangle.css';
+@import 'ngx-prx-styleguide/styles/variables.less';
 
 h1 {
   font-size: 2em;
@@ -10,21 +11,25 @@ h2 {
   font-size: 1.5em;
   margin: 0.83em 0;
 }
-ul {
+ul.doc {
   list-style: disc;
   margin: 1em 0;
   padding-left: 40px;
-}
-li {
-  list-style: disc;
-  > aside {
-    margin: 10px 20px;
+  li {
+    list-style: disc;
   }
 }
 section {
   margin: 1em;
 }
-pre {
+p.desc {
+  margin-bottom: @margin-base;
+}
+aside.example {
+  background: @white;
+  padding: 10px 20px;
+}
+pre.code {
   white-space: pre;
 }
 svg {
