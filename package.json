@@ -1,6 +1,6 @@
 {
   "name": "ngx-prx-styleguide",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "PRX Angular 2 style guide library",
   "keywords": [
     "PRX",
@@ -83,6 +83,7 @@
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-spec-reporter": "0.0.31",
+    "less": "^2.7.2",
     "lite-server": "^2.2.2",
     "moment": "^2.18.1",
     "rimraf": "^2.6.1",
