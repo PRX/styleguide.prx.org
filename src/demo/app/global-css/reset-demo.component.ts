@@ -43,8 +43,8 @@ import {Component} from '@angular/core';
       <li>
         Allows unbreakable words to be broken and white space preserved on <code>pre</code> elements
         <aside class="example">
+          Example:
           <pre>
-            EXAMPLE:
             I have line breaks.
             My cat's breath smells like cat food.
           </pre>
