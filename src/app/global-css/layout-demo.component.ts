@@ -4,8 +4,8 @@ import {Component} from '@angular/core';
   selector: 'reset-demo',
   template: `
     <h2>CSS layout</h2>
-    <p>A style sheet used to create a global layout</p>
-    <ul>
+    <p class="desc">A style sheet used to create a global layout</p>
+    <ul class="doc">
       <li>Charcoal background color and stripes image on <code>html</code></li>
       <li>White background on <code>body</code></li>
       <li>Grey color on <code>body</code></li>
@@ -19,6 +19,7 @@ import {Component} from '@angular/core';
       <li>1060px max-width on the <code>.main section</code> with additional horizontal margin and padding</li>
     </ul>
     <p>Example layout structure:</p>
+    <!-- exported from Sketch file that lives on PRX Drive -->
     <svg width="1440px" height="1024px" viewBox="0 0 1440 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" 
          xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #252525;">
       <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->

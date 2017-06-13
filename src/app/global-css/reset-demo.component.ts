@@ -4,8 +4,8 @@ import {Component} from '@angular/core';
   selector: 'reset-demo',
   template: `
     <h2>CSS reset</h2>
-    <p>A style sheet designed to strip initial styles from browsers to help keep designs consistent</p>
-    <ul>
+    <p class="desc">A style sheet designed to strip initial styles from browsers to help keep designs consistent</p>
+    <ul class="doc">
       <li><code>display: block</code> on HTML5 block level elements</li>
       <li>Default border, margin, and padding of zero</li>
       <li><code>vertical-align: baseline</code> is the consistent default</li>
@@ -17,7 +17,7 @@ import {Component} from '@angular/core';
       <li><code>list-style: none</code> on <code>ul</code> elements</li>
       <li>
         Remove quotes from <code>blockquote</code> and <code>q</code>
-        <aside>Examples: <q>This is an inline <code>q</code>.</q>
+        <aside class="example">Examples: <q>This is an inline <code>q</code>.</q>
           <blockquote>
             Hello, I am a blockquote. My browser provided margin has been zeroed due to this reset.
           </blockquote>
@@ -30,7 +30,7 @@ import {Component} from '@angular/core';
       <li>
         A default <dfn title="dfn example">dotted underline border</dfn> and <abbr title="abbr example">help cursor</abbr> for 
         <code>abbr</code> and <code>dfn</code> elements with <code>title</code> help text
-        <aside>
+        <aside class="example">
           <code>
             &lt;abbr title="help text"&gt;<abbr 
               title="abbr should include title attribute for help text">How to</abbr>&lt;/abbr&gt;
@@ -42,7 +42,7 @@ import {Component} from '@angular/core';
       </li>
       <li>
         Allows unbreakable words to be broken and white space preserved on <code>pre</code> elements
-        <aside>
+        <aside class="example">
           <pre>
             EXAMPLE:
             I have line breaks.
@@ -54,7 +54,7 @@ import {Component} from '@angular/core';
       <li><code>font-weight: <strong>700</strong></code> on <code>strong</code></li>
       <li>
         Defaults for <code>table</code>, <code>th</code>, and <code>td</code>
-        <aside>
+        <aside class="example">
           Example:
           <table>
             <tr><th>things</th><th>stuff</th></tr>
@@ -64,7 +64,7 @@ import {Component} from '@angular/core';
       </li>
       <li>
         Consistent font-size and top and bottom placement for <code>sup</code> and <code>sub</code> elements
-        <aside>
+        <aside class="example">
           Examples:
           <blockquote>
             superscript: Everything's comin' up Milhouse!<sup><a href="http://simpsons.wikia.com/wiki/Milhouse_Van_Houten">[src]</a></sup>
