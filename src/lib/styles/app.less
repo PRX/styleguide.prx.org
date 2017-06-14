@@ -7,7 +7,7 @@ h1,
 h2,
 h3 {
   color: @grey-dark;
-  font-weight: 100;
+  font-weight: 100;/* We don't have 100, so 300 is what is being rendered. */
 }
 a {
   color: @blue;
@@ -19,39 +19,14 @@ a:focus, a:hover {
 a:active {
   color: @blue-emphasis;
 }
-a.current:hover {
+a.current:hover {// Don't see this used
   text-decoration: none;
 }
 strong {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 ::selection {
-  background: #f59f51;
-  color: #fff;
-}
-
-/*
- * Buttons, probably either belongs in forms or a separate buttons.less
- */
-button, .button {
-  display: inline-block;
-  position: relative;
+  background: @orange;
   color: @white;
-  text-align: center;
-  cursor: pointer;
-}
-button, .button {
-  background-color: @blue;
-}
-button:hover, .button:hover {
-  background-color: @blue-emphasis;
-}
-/* I am bothered that there are <a> and <label> with class="button" */
-a.button {
-  line-height: 17px;
-  color: #fff;
-}
-a.button:hover, a.button:active, a.button:focus {
-  color: #fff;
 }
