@@ -54,7 +54,7 @@ label[disabled=disabled] {
   color: @grey-silver;
 }
 
-button, input, select, textarea {
+button, input, select, textarea {/* TODO: move this button */
   margin: 0;
 }
 input, select {
@@ -69,6 +69,9 @@ input, textarea {
 input:focus, textarea:focus {
   color: @black;
 }
+input {
+  border: 1px solid @white-fog;
+}
 select {
   border-color: @grey-suva;
   color: @grey-dark;
@@ -79,22 +82,17 @@ select:focus {
 input, select, textarea {
   font-family: sans-serif;
 }
-textarea {
-  font-size: 100%;
+input, textarea {
+  font-size: 99%;
 }
 select {
   font-size: 16px;
 }
-input,
-button,
-.button {
-  font-size: 100%;
+input{
   outline: none;
   padding: @padding-base;
 }
-input {
-  border: 1px solid @white-fog;
-}
+
 input {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
@@ -106,134 +104,6 @@ input {
   flex-basis: 215px;
   -ms-flex-preferred-size: 215px;
   -webkit-flex-basis: 215px;
-}
-
-/****************************
- * Publish uses:
- *  <a class="button"> to open external link
- *  <label class="button"> as button like labels on image upload
- *  Non buttons with class="button" is otherwise discouraged for accessibility
-*/
-.clickable, button, .button, input[type=button], input[type=file], input[type=submit], label {
-  cursor: pointer
-}
-button, input[type=button] {
-  width: auto;
-  overflow: visible
-}
-button, .button {
-  border: 1px solid transparent;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 0.5 1 auto;
-  -ms-flex: 0.5 1 auto;
-  flex: 0.5 1 auto;
-  flex-basis: auto;
-  -ms-flex-preferred-size: auto;
-  -webkit-flex-basis: auto;
-}
-button[disabled], .button[disabled] {
-  -webkit-transition: background-color 0.2s, color 0.2s;
-  -moz-transition: background-color 0.2s, color 0.2s;
-  -o-transition: background-color 0.2s, color 0.2s;
-  -ms-transition: background-color 0.2s, color 0.2s;
-  transition: background-color 0.2s, color 0.2s;
-  background-color: @blue-emphasis;
-  color: @blue-muted;
-}
-button, .button {
-  display: inline-block;
-  position: relative;
-  color: @white;
-  text-align: center;
-}
-button, .button {
-  background-color: @blue;
-}
-button:hover, .button:hover {
-  background-color: @blue-emphasis;
-}
-a.button {
-  line-height: 17px;
-  color: @white;
-}
-a.button:hover, a.button:active, a.button:focus {
-  color: @white;
-}
-button.btn-link {
-  color: @blue;
-  vertical-align: baseline;
-  padding: 0;
-  border: 0;
-  background: 0 0 transparent;
-}
-button.btn-link:hover, button.btn-link:focus {
-  color: @blue-emphasis;
-}
-button.btn-link[disabled] {
-  color: @grey-silver;
-}
-button.btn-link.active {
-  color: @blue-emphasis;
-}
-
-button.btn-icon {
-  color: @blue;
-  background: none;
-  font-size: 22px;
-  padding: 0;
-  margin: @margin-base;
-}
-button.btn-icon::before {
-  margin-left: 0;
-  margin-right: 0;
-}
-button.btn-icon:hover, button.btn-icon:focus, button.btn-icon:active {
-  color: @blue-emphasis;
-}
-button.btn-icon[disabled] {
-  color: @grey-silver;
-}
-
-button.delete {
-  color: @white;
-  background-color: @red;
-}
-button.delete:hover, button.delete:focus {
-  background-color: @red-emphasis;
-}
-
-/********
- * an updown-toggle is used as an asc/desc triangle
- */
-input[type=checkbox].updown-toggle {
-  display: none;
-}
-
-input[type=checkbox].updown-toggle + label {
-  float: right;
-  margin: 8px 0 8px 4px;
-}
-
-input[type=checkbox].updown-toggle:checked + label {
-  color: @orange;
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid @blue;
-  border-bottom: 0px;
-}
-
-input[type=checkbox].updown-toggle + label {
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid @blue;
-  border-top: 0px;
 }
 
 [disabled] {
@@ -249,41 +119,4 @@ select[disabled] {
 input[readonly], input[disabled], textarea[readonly], textarea[disabled] {
   background-color: @white-smoke;
   border: 1px solid @grey-silver;
-}
-
-/* Seems like we maybe could use this modal stuff for projected content in the modal but we're not right now. Should I keep it? */
-.modal form h2,
-.modal form h3,
-.modal form h4,
-.modal form h5,
-.modal form h6 {
-  color: @white;
-}
-.modal form fieldset {
-  padding-bottom: @padding-base;
-  border-bottom: 1px solid @grey-silver;
-}
-.modal form fieldset:last-child {
-  border-bottom-color: transparent;
-}
-.modal form label {
-  display: block;
-}
-.modal form label:not(.light) {
-  font-weight: 700;
-}
-.modal form input[type=checkbox] {
-  margin-bottom: @margin-base;
-}
-.modal form textarea {
-  width: 100%;
-  height: 70px;
-  border: 1px solid @black;
-  padding: 5px;
-  background-color: @grey-dark;
-  color: @white;
-}
-.modal form fieldset.pricing label {
-  display: inline-block;
-  margin-right: @margin-base;
 }
