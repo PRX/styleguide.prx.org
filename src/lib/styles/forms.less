@@ -50,11 +50,12 @@ label {
   background: 0 0;
   outline: none;
 }
-label[disabled=disabled] {
-  color: @grey-silver;
+
+label + textarea {
+  vertical-align: top;
 }
 
-button, input, select, textarea {/* TODO: move this button */
+input, select, textarea {
   margin: 0;
 }
 input, select {
@@ -106,8 +107,16 @@ input {
   -webkit-flex-basis: 215px;
 }
 
+::placeholder {
+  color: @grey-northernsky;
+}
+
 [disabled] {
   cursor: default;
+}
+
+label[disabled=disabled] {
+  color: @grey-silver;
 }
 
 select[disabled] {
