@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'table-of-contents',
   template: `
     <section>
-      <h2>Navigation</h2>
+      <h2 class="demo">Navigation</h2>
       <ul class="doc">
         <li>
           <a [routerLink]="['header']">HeaderComponent</a> - a fixed position navigation bar that shows 
@@ -21,25 +21,28 @@ import { Component } from '@angular/core';
     </section>
     <hr>
     <section>
-        <h2>Global CSS</h2>
-        <ul class="doc">
-          <li>
-            <a [routerLink]="['reset']">Reset</a> - resets the styling of HTML elements to a consistent baseline 
-            to reset the browser's 'user agent' stylesheet
-          </li>
-          <li><a [routerLink]="['layout']">Layout</a> - base page layout structure</li>
-        </ul>
+      <h2 class="demo">Global CSS</h2>
+      <ul class="doc">
+        <li>
+          <a [routerLink]="['global/reset']">Reset</a> - resets the styling of HTML elements to a consistent baseline 
+          to reset the browser's 'user agent' stylesheet
+        </li>
+        <li><a [routerLink]="['global/app']">App</a> - overall app consistent look and feel</li>
+        <li><a [routerLink]="['global/layout']">Layout</a> - base page layout structure</li>
+        <li><a [routerLink]="['global/form']">Form</a> - form element styling</li>
+        <li><a [routerLink]="['global/button']">Button</a> - button styling</li>
+      </ul>
     </section>
     <hr>
     <section>
-      <h2>Data Visualization</h2>
+      <h2 class="demo">Data Visualization</h2>
       <ul class="doc">
         <li><a [routerLink]="['charts']">Charts</a> - C3 chart components</li>
       </ul>
     </section>
     <hr>
     <section>
-      <h2>PRX Services</h2>
+      <h2 class="demo">PRX Services</h2>
       <ul class="doc">
         <li><a [routerLink]="['auth']">Auth</a> - authentication via id.prx.org</li>
         <li><a [routerLink]="['hal']">Hal</a> - base classes for using PRX hal-based services</li>
@@ -47,7 +50,7 @@ import { Component } from '@angular/core';
     </section>
     <hr>
     <section>
-      <h2>Form Controls</h2>
+      <h2 class="demo">Form Controls</h2>
       <ul class="doc">
         <li><a [routerLink]="['datepicker']">DatePicker</a> - Pikaday datepicker component</li>
       </ul>
