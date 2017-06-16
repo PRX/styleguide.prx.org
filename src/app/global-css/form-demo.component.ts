@@ -3,24 +3,27 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'form-demo',
   template: `
-    <h1 class="demo">Forms</h1>
-    <p class="desc">A style sheet designed to strip initial styles from browsers to help keep designs consistent</p>
+    <h1>Forms</h1>
+    <p>A style sheet for form element look and feel</p>
 
-    <h2 class="demo">Form</h2>
-    <ul class="doc">
-      <li><code>display: flex</code> with the following flex properties</li>
-      <li><code>box-orient: horizontal</code> to lay out items horizontally</li>
-      <li><code>box-lines: multiple</code> to allow items to lay out in multiple rows</li>
-      <li><code>flex-flow: row wrap</code> to lay out items left to right with wrapping</li>
-      <li>
-        <code>justify-content: flex-start</code>, <code>box-pack: start</code>, and <code>align-content: start</code> 
-        to pack items at the start
-      </li>
-      <li><code>align-items: baseline</code> to lay out items such that their baselines align</li>
-    </ul>
+    <section>
+      <h2>Form</h2>
+      <ul>
+        <li><code>display: flex</code> with the following flex properties</li>
+        <li><code>box-orient: horizontal</code> to lay out items horizontally</li>
+        <li><code>box-lines: multiple</code> to allow items to lay out in multiple rows</li>
+        <li><code>flex-flow: row wrap</code> to lay out items left to right with wrapping</li>
+        <li>
+          <code>justify-content: flex-start</code>, <code>box-pack: start</code>, and <code>align-content: start</code> 
+          to pack items at the start
+        </li>
+        <li><code>align-items: baseline</code> to lay out items such that their baselines align</li>
+      </ul>
+    </section>
 
-    <h2 class="demo">Label</h2>
-      <ul class="doc">
+    <section>
+      <h2>Label</h2>
+      <ul>
         <li><code>flex-grow: 0</code>, <code>flex-shrink: 1</code>, and <code>flex-basis: 100%</code></li>
         <li>Border and padding of zero</li>
         <li><code>margin-bottom:3px</code>, other margins are zero</li>
@@ -30,43 +33,51 @@ import {Component} from '@angular/core';
         <li>No outline</li>
         <li><code>cursor: pointer</code></li>
       </ul>
+    </section>
 
-    <h2 class="demo">Input</h2>
-    <ul class="doc">
-      <li><code>flex-grow: 1</code>, <code>flex-shrink: 1</code>, and <code>flex-basis: 215px</code></li>
-      <li><code>margin: 0</code></li>
-      <li><code>vertical-align: middle</code></li>
-      <li><code>background-color: @white</code></li>
-      <li><code>color: @grey-suva</code> with <code>color: @black</code> on <code>:focus</code></li>
-      <li><code>color: @grey-northernsky</code> for <code>::placeholder</code> text</li>
-      <li><code>border: 1px solid @white-fog</code></li>
-      <li><code>font-family: sans-serif</code></li>
-      <li><code>font-size: 99%</code> (99% of 14px inherited from <code>body</code>)</li>
-      <!-- TODO: #30 .invalid/.changed -->
-      <li>Base <code>outline: none</code> that can be modified with <code>.invalid</code> and <code>.changed</code> classes</li>
-      <li>Base <code>padding: @padding-base</code> of 10px</li>
-    </ul>
+    <section>
+      <h2>Input</h2>
+      <ul>
+        <li><code>flex-grow: 1</code>, <code>flex-shrink: 1</code>, and <code>flex-basis: 215px</code></li>
+        <li><code>margin: 0</code></li>
+        <li><code>vertical-align: middle</code></li>
+        <li><code>background-color: @white</code></li>
+        <li><code>color: @grey-suva</code> with <code>color: @black</code> on <code>:focus</code></li>
+        <li><code>color: @grey-northernsky</code> for <code>::placeholder</code> text</li>
+        <li><code>border: 1px solid @white-fog</code></li>
+        <li><code>font-family: sans-serif</code></li>
+        <li><code>font-size: 99%</code> (99% of 14px inherited from <code>body</code>)</li>
+        <!-- TODO: #30 .invalid/.changed -->
+        <li>Base <code>outline: none</code> that can be modified with <code>.invalid</code> and <code>.changed</code> classes</li>
+        <li>Base <code>padding: @padding-base</code> of 10px</li>
+      </ul>
+    </section>
 
-    <h2 class="demo">Textarea</h2>
-    <ul class="doc">
-      <li><code>margin: 0</code></li>
-      <li><code>background-color: @white</code></li>
-      <li><code>color: @grey-suva</code> with <code>color: @black</code> on <code>:focus</code></li>
-      <li><code>font-family: sans-serif</code></li>
-      <li><code>font-size: 99%</code> (99% of 14px inherited from <code>body</code>)</li>
-    </ul>
+    <section>
+      <h2>Textarea</h2>
+      <ul>
+        <li><code>margin: 0</code></li>
+        <li><code>background-color: @white</code></li>
+        <li><code>color: @grey-suva</code> with <code>color: @black</code> on <code>:focus</code></li>
+        <li><code>font-family: sans-serif</code></li>
+        <li><code>font-size: 99%</code> (99% of 14px inherited from <code>body</code>)</li>
+      </ul>
+    </section>
 
-    <h2 class="demo">Select</h2>
-    <ul class="doc">
-      <li><code>margin: 0</code></li>
-      <li><code>vertical-align: middle</code></li>
-      <li><code>background-color: @white</code></li>
-      <li><code>color: @grey-dark</code> with <code>color: @black</code> on <code>:focus</code></li>
-      <li><code>border-color: @grey-suva</code></li>
-      <li><code>font-family: sans-serif</code></li>
-      <li><code>font-size: 16px</code></li>
-    </ul>
-    <aside class="example">
+    <section>
+      <h2>Select</h2>
+      <ul>
+        <li><code>margin: 0</code></li>
+        <li><code>vertical-align: middle</code></li>
+        <li><code>background-color: @white</code></li>
+        <li><code>color: @grey-dark</code> with <code>color: @black</code> on <code>:focus</code></li>
+        <li><code>border-color: @grey-suva</code></li>
+        <li><code>font-family: sans-serif</code></li>
+        <li><code>font-size: 16px</code></li>
+      </ul>
+    </section>
+    
+    <aside>
       Example:
       <form>
         <p class="form-group">
@@ -130,8 +141,10 @@ import {Component} from '@angular/core';
         </p>
       </form>
     </aside>
-    <h2 class="demo">Disabled and Readonly fields</h2>
-    <ul class="doc">
+
+    <section>
+    <h2>Disabled and Readonly fields</h2>
+    <ul>
       <li>
         Elements with the <code>disabled</code> attribute have <code>cursor: default</code>
         to remove where we are otherwise setting a pointer cursor
@@ -151,7 +164,9 @@ import {Component} from '@angular/core';
         attribute have <code>background-color: @white-smoke</code> and <code>border: 1px solid @grey-silver</code>
       </li>
     </ul>
-    <aside class="example">
+    </section>
+    
+    <aside>
       Example:
       <form>
         <p class="form-group">
