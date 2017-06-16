@@ -14,7 +14,7 @@ button,
   outline: none;
   padding: @padding-base;
 }
-.clickable, button, .button, input[type=button], input[type=file], input[type=submit], label {
+button, .button, input[type=button], input[type=file], input[type=submit] {
   cursor: pointer
 }
 button, input[type=button] {
@@ -34,15 +34,6 @@ button, .button {
   -ms-flex-preferred-size: auto;
   -webkit-flex-basis: auto;
 }
-button[disabled], .button[disabled] {
-  -webkit-transition: background-color 0.2s, color 0.2s;
-  -moz-transition: background-color 0.2s, color 0.2s;
-  -o-transition: background-color 0.2s, color 0.2s;
-  -ms-transition: background-color 0.2s, color 0.2s;
-  transition: background-color 0.2s, color 0.2s;
-  background-color: @blue-emphasis;
-  color: @blue-muted;
-}
 button, .button {
   display: inline-block;
   position: relative;
@@ -54,6 +45,15 @@ button, .button {
 }
 button:hover, .button:hover {
   background-color: @blue-emphasis;
+}
+button[disabled], .button[disabled] {
+  -webkit-transition: background-color 0.2s, color 0.2s;
+  -moz-transition: background-color 0.2s, color 0.2s;
+  -o-transition: background-color 0.2s, color 0.2s;
+  -ms-transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
+  background-color: @blue-emphasis;
+  color: @blue-muted;
 }
 a.button {
   line-height: 17px;
@@ -118,13 +118,12 @@ input[type=checkbox].updown-toggle + label {
 }
 
 input[type=checkbox].updown-toggle:checked + label {
-  color: @orange;
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
   border-top: 8px solid @blue;
-  border-bottom: 0px;
+  border-bottom: 0;
 }
 
 input[type=checkbox].updown-toggle + label {
@@ -133,5 +132,5 @@ input[type=checkbox].updown-toggle + label {
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
   border-bottom: 8px solid @blue;
-  border-top: 0px;
+  border-top: 0;
 }

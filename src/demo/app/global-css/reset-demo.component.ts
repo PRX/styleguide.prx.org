@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'reset-demo',
   template: `
-    <h2>CSS reset</h2>
+    <h1 class="demo">CSS reset</h1>
     <p class="desc">A style sheet designed to strip initial styles from browsers to help keep designs consistent</p>
     <ul class="doc">
       <li><code>display: block</code> on HTML5 block level elements</li>

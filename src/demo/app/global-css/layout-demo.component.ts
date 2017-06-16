@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'reset-demo',
   template: `
-    <h2>CSS layout</h2>
+    <h1 class="demo">CSS layout</h1>
     <p class="desc">A style sheet used to create a global layout</p>
     <ul class="doc">
       <li>Charcoal background color and stripes image on <code>html</code></li>

@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'nav-demo',
   template: `
-    <h2>Nav Item</h2>
+    <h1 class="demo">Nav Item</h1>
     <p class="desc">
       The Nav Item Component provides a router link within the application or an href link outside the application dependent
       on its <code>Input()</code>s: <code>route</code>, <code>href</code>, and <code>text</code>

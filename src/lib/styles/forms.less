@@ -49,6 +49,7 @@ label {
   vertical-align: baseline;
   background: 0 0;
   outline: none;
+  cursor: pointer;
 }
 
 label + textarea {
@@ -128,4 +129,8 @@ select[disabled] {
 input[readonly], input[disabled], textarea[readonly], textarea[disabled] {
   background-color: @white-smoke;
   border: 1px solid @grey-silver;
+}
+
+input[disabled][type=checkbox], input[disabled][type=radio] {
+  cursor: not-allowed;
 }

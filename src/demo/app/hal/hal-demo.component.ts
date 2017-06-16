@@ -17,9 +17,9 @@ import { HalService, HalObservable, HalDoc } from 'ngx-prx-styleguide';
     }
   `],
   template: `
-    <h1>HalModule</h1>
+    <h1 class="demo">HalModule</h1>
     <section>
-      <h2>Setup:</h2>
+      <h2 class="demo">Setup:</h2>
       <ul>
         <li>
           Generally, instead of using the HalService directly, you'll want to
@@ -36,7 +36,7 @@ import { HalService, HalObservable, HalDoc } from 'ngx-prx-styleguide';
       </ul>
     </section>
     <section>
-      <h2>Usage:</h2>
+      <h2 class="demo">Usage:</h2>
       <ul>
         <li>
           Get yourself the root HalDoc for your api host, via your
@@ -52,7 +52,7 @@ import { HalService, HalObservable, HalDoc } from 'ngx-prx-styleguide';
       </ul>
     </section>
     <section>
-      <h2>HalService Demo:</h2>
+      <h2 class="demo">HalService Demo:</h2>
       <prx-auth *ngIf="loadAuth" [host]="authHost" [client]="authClient">
       </prx-auth>
       <button (click)="loadCms()">CMS Root</button>

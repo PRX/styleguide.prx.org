@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'nav-demo',
   template: `
-    <h2>Nav User</h2>
+    <h2 class="demo">Nav User</h2>
     <p class="desc">
       The Nav Item Component shows the username and projected content based
       on selectors for <code>user-loaded</code> or <code>user-loading</code>
