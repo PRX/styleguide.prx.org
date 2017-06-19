@@ -1,0 +1,86 @@
+@import './variables.less';
+
+html {
+  line-height: 1.5em;/* TODO: why em when we're not specifying font-size yet? */
+  height: 100%;
+  background-color: @charcoal;
+  background-image: data-uri('image/svg+xml;charset=UTF-8', '../images/tl_diag_stripes.svg');
+}
+
+body {
+  background: @white;
+  max-width: 1200px;
+  min-height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5rem;/* TODO: why is this rem when there is no font-size for html? */
+  font-size: 14px;
+  color: @grey-dove;
+}
+main {
+  display: block;/* IE 11 gives auto/no height to main */
+  min-height: 200px;
+  background: @white-smoke;
+  padding-top: 50px;
+  padding-bottom: @padding-base;
+  position: relative;
+}
+@media screen and (min-width: 768px) {
+  main {
+    min-height: 400px;
+    padding-top: 73px;
+  }
+}
+
+article .hero > section,
+article .hero div > section,
+article .main > section {
+  max-width: 1060px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+@media screen and (min-width: 768px) {
+  article .hero > section,
+  article .hero div > section,
+  article .main > section {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+article .main > section {
+  position: relative;
+}
+
+/* Looks like this should be in a .content container with display: flex but Publish is not using */
+@media screen and (min-width: 768px) {
+  article .main {
+    -webkit-box-ordinal-group: 2;
+    -moz-box-ordinal-group: 2;
+    -o-box-ordinal-group: 2;
+    -ms-flex-order: 2;
+    -webkit-order: 2;
+    order: 2;
+    -webkit-align-self: stretch;
+    align-self: stretch;
+    -ms-flex-item-align: stretch;
+    -ms-flex-line-pack: start;
+    -webkit-align-content: flex-start;
+    align-content: flex-start;
+    -webkit-box-flex: 5;
+    -moz-box-flex: 5;
+    -o-box-flex: 5;
+    -ms-box-flex: 5;
+    box-flex: 5;
+    -webkit-flex-grow: 5;
+    flex-grow: 5;
+    -webkit-flex-shrink: 5;
+    flex-shrink: 5;
+    flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    -webkit-flex-basis: auto;
+  }
+}

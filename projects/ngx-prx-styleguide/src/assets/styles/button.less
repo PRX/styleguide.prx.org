@@ -1,0 +1,136 @@
+/***********************************
+ * A note on .button - Publish uses:
+ *  <a class="button"> to open external link
+ *  <label class="button"> as button like labels on image upload
+ *  Non buttons with class="button" is otherwise discouraged for accessibility
+*/
+button, .button {
+  margin: 0;
+}
+
+button,
+.button {
+  font-size: 100%;
+  outline: none;
+  padding: @padding-base;
+}
+button, .button, input[type=button], input[type=file], input[type=submit] {
+  cursor: pointer
+}
+button, input[type=button] {
+  width: auto;
+  overflow: visible
+}
+button, .button {
+  border: 1px solid transparent;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 0.5 1 auto;
+  -ms-flex: 0.5 1 auto;
+  flex: 0.5 1 auto;
+  flex-basis: auto;
+  -ms-flex-preferred-size: auto;
+  -webkit-flex-basis: auto;
+}
+button, .button {
+  display: inline-block;
+  position: relative;
+  color: @white;
+  text-align: center;
+}
+button, .button {
+  background-color: @blue;
+}
+button:hover, .button:hover {
+  background-color: @blue-emphasis;
+}
+button[disabled], .button[disabled] {
+  -webkit-transition: background-color 0.2s, color 0.2s;
+  -moz-transition: background-color 0.2s, color 0.2s;
+  -o-transition: background-color 0.2s, color 0.2s;
+  -ms-transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
+  background-color: @blue-emphasis;
+  color: @blue-muted;
+}
+a.button {
+  line-height: 17px;
+  color: @white;
+}
+a.button:hover, a.button:active, a.button:focus {
+  color: @white;
+}
+button.btn-link {
+  color: @blue;
+  vertical-align: baseline;
+  padding: 0;
+  border: 0;
+  background: 0 0 transparent;
+}
+button.btn-link:hover, button.btn-link:focus {
+  color: @blue-emphasis;
+}
+button.btn-link[disabled] {
+  color: @grey-silver;
+}
+button.btn-link.active {
+  color: @blue-emphasis;
+}
+
+button.btn-icon {
+  color: @blue;
+  background: none;
+  font-size: 22px;
+  padding: 0;
+  margin: @margin-base;
+}
+button.btn-icon::before {
+  margin-left: 0;
+  margin-right: 0;
+}
+button.btn-icon:hover, button.btn-icon:focus, button.btn-icon:active {
+  color: @blue-emphasis;
+}
+button.btn-icon[disabled] {
+  color: @grey-silver;
+}
+
+button.delete {
+  color: @white;
+  background-color: @red;
+}
+button.delete:hover, button.delete:focus {
+  background-color: @red-emphasis;
+}
+
+/********
+ * an updown-toggle is a triangle-shaped type of button used as an asc/desc toggle
+ */
+input[type=checkbox].updown-toggle {
+  display: none;
+}
+
+input[type=checkbox].updown-toggle + label {
+  float: right;
+  margin: 8px 0 8px 4px;
+}
+
+input[type=checkbox].updown-toggle:checked + label {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid @blue;
+  border-bottom: 0;
+}
+
+input[type=checkbox].updown-toggle + label {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid @blue;
+  border-top: 0;
+}
