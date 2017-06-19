@@ -202,7 +202,7 @@ return Promise.resolve()
     .then(() => console.log('Package files copy succeeded.'))
   )
   // Global Styles
-  .then(() => _preprocessStyle(path.join(srcFolder, 'styles'), 'base.less', path.join(distFolder, 'styles.css'))
+  .then(() => _preprocessStyle(path.join(srcFolder, 'assets', 'styles'), 'base.less', path.join(distFolder, 'styles.css'))
     .then(() => console.log('Preprocessing succeeded.'))
   )
   .catch(e => {
