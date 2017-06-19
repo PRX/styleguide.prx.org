@@ -4,11 +4,11 @@ import {Component} from '@angular/core';
   selector: 'nav-demo',
   template: `
     <h2>Nav User</h2>
-    <p class="desc">
+    <p>
       The Nav Item Component shows the username and projected content based
       on selectors for <code>user-loaded</code> or <code>user-loading</code>
     </p>
-    <aside class="example">
+    <aside>
       Usage:
       <pre class="code">
         &lt;prx-navuser userName="Mary"&gt;
