@@ -4,7 +4,7 @@ Based on the [Angular QuickStart Lib](https://github.com/filipesilva/angular-qui
 
 ## Install Dependencies
 
-`npm install`
+Get [Yarn](https://yarnpkg.com/en/docs/install) and then `yarn install`.
 
 ## Development server / Demo app
 
