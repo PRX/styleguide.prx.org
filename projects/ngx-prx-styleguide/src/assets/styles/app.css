@@ -6,20 +6,20 @@
 h1,
 h2,
 h3 {
-  color: @grey-dark;
+  color: var(--grey-dark);
   font-weight: 100;/* We don't have 100, so 300 is what is being rendered. */
 }
 a {
-  color: @blue;
+  color: var(--blue);
   text-decoration: none;
 }
 a:focus, a:hover {
-  color: @blue-emphasis;
+  color: var(--blue-emphasis);
 }
 a:active {
-  color: @blue-emphasis;
+  color: var(--blue-emphasis);
 }
-a.current:hover {// Don't see this used
+a.current:hover {/* Don't see this used */
   text-decoration: none;
 }
 strong {
@@ -27,6 +27,6 @@ strong {
 }
 
 ::selection {
-  background: @orange;
-  color: @white;
+  background: var(--orange);
+  color: var(--white);
 }
