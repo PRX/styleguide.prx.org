@@ -10,7 +10,10 @@ const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const uglify = require('rollup-plugin-uglify');
 const sourcemaps = require('rollup-plugin-sourcemaps');
-const less = require('less');
+const postcss = require('postcss');
+const postcssImport = require('postcss-import');
+const postcssUrl = require('postcss-url');
+const postcssCustomProperties = require('postcss-custom-properties');
 
 const inlineResources = require('./inline-resources');
 
@@ -202,8 +205,8 @@ return Promise.resolve()
     .then(() => console.log('Package files copy succeeded.'))
   )
   // Global Styles
-  .then(() => _preprocessStyle(path.join(srcFolder, 'assets', 'styles'), 'base.less', path.join(distFolder, 'styles.css'))
-    .then(() => console.log('Preprocessing succeeded.'))
+  .then(() => _processStyle(path.join(srcFolder, 'assets', 'styles', 'base.css'), path.join(distFolder, 'styles.css'))
+    .then(() => console.log('Style processing succeeded.'))
   )
   .catch(e => {
     console.error('\Build failed. See below for errors.\n');
@@ -257,30 +260,40 @@ function _replaceText(file, find, replace, log) {
   });
 }
 
-function _preprocessStyle(directory, basefile, outfile, log) {
-  const wd = path.resolve( "." );
+function _processStyle(basefile, outfile, log) {
   return new Promise((resolve, reject) => {
-    process.chdir(directory);
     fs.readFile(basefile, 'utf8', (err, txt) => {
       if (err) {
         reject(err);
       } else {
-        less.render(txt, function (err, output) {
-          if (err) {
-            reject(err);
-          } else {
-            fs.writeFile(outfile, output.css, 'utf8', err => {
-              if (err) {
-                reject(err);
-              } else {
-                if (log) {
-                  console.log(log);
-                }
-                process.chdir(wd);
-                resolve();
-              }
-            });
+        const urlOpts = [
+          {
+            filter: '**/fonts/*',
+            url: 'copy',
+            useHash: true,
+            basePath: '/Users/sandibarr/code/prx/styleguide.prx.org/src/lib/assets/font/',
+            assetsPath: 'fonts'
+          },
+          {
+            filter: '**/assets/images/*',
+            url: 'inline'
           }
+        ];
+        postcss()
+          .use(postcssImport())
+          .use(postcssUrl(urlOpts))
+          .use(postcssCustomProperties())
+          .process(txt, {from: basefile, to: outfile}).then(result => {
+          fs.writeFile(outfile, result.css, 'utf8', err => {
+            if (err) {
+              reject(err);
+            } else {
+              if (log) {
+                console.log(log);
+              }
+              resolve();
+            }
+          });
         });
       }
     });

@@ -1,0 +1,55 @@
+@import 'node_modules/c3/c3.css';
+@import 'node_modules/pikaday/css/pikaday.css';
+@import 'node_modules/pikaday/css/triangle.css';
+@import 'ngx-prx-styleguide/assets/styles/variables.css';
+
+section {
+  margin: 1em;
+}
+.demo h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+.demo h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0;
+}
+.demo ul {
+  list-style: disc;
+  margin: 1em 0;
+  padding-left: 40px;
+}
+.demo ul > li {
+  list-style: disc;
+}
+.demo p {
+  margin-bottom: var(--margin-base);
+}
+.demo aside {
+  background: var(--white);
+  padding: 10px 20px;
+}
+.demo pre.code {
+  white-space: pre;
+}
+.demo .form-group {
+  margin: 10px 0;
+  flex-basis: calc(100% / 3);
+}
+.demo svg {
+  max-width: 100%;
+  height: 100%;
+}
+.demo prx-datepicker {
+  display: inline-block;
+  border: 1px solid #bbb;
+  margin-left: 20px;
+}
+.demo prx-timepicker {
+  display: inline-block;
+  margin-left: 20px;
+}
+.demo .changed {
+  padding-left: 20px;
+  font-style: italic;
+}

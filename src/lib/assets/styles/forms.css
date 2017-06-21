@@ -1,3 +1,5 @@
+@import 'variables.css';
+
 form {
   display: -webkit-box;
   display: -moz-box;
@@ -63,23 +65,23 @@ input, select {
   vertical-align: middle;
 }
 input, textarea, select {
-  background-color: @white;
+  background-color: var(--white);
 }
 input, textarea {
-  color: @grey-suva;
+  color: var(--grey-suva);
 }
 input:focus, textarea:focus {
-  color: @black;
+  color: var(--black);
 }
 input {
-  border: 1px solid @white-fog;
+  border: 1px solid var(--white-fog);
 }
 select {
-  border-color: @grey-suva;
-  color: @grey-dark;
+  border-color: var(--grey-suva);
+  color: var(--grey-dark);
 }
 select:focus {
-  color: @black;
+  color: var(--black);
 }
 input, select, textarea {
   font-family: sans-serif;
@@ -92,7 +94,7 @@ select {
 }
 input{
   outline: none;
-  padding: @padding-base;
+  padding: var(--padding-base);
 }
 
 input {
@@ -109,7 +111,7 @@ input {
 }
 
 ::placeholder {
-  color: @grey-northernsky;
+  color: var(--grey-northernsky);
 }
 
 [disabled] {
@@ -117,18 +119,18 @@ input {
 }
 
 label[disabled=disabled] {
-  color: @grey-silver;
+  color: var(--grey-silver);
 }
 
 select[disabled] {
-  border-color: @grey-northernsky;
-  color: @grey-northernsky;
-  background: @white-smoke;
+  border-color: var(--grey-northernsky);
+  color: var(--grey-northernsky);
+  background: var(--white-smoke);
 }
 
 input[readonly], input[disabled], textarea[readonly], textarea[disabled] {
-  background-color: @white-smoke;
-  border: 1px solid @grey-silver;
+  background-color: var(--white-smoke);
+  border: 1px solid var(--grey-silver);
 }
 
 input[disabled][type=checkbox], input[disabled][type=radio] {

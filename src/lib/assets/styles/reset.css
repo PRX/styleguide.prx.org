@@ -1,4 +1,4 @@
-@import './variables.less';
+@import 'variables.css';
 
 /**
  * CSS that must be loaded outside of angular, as it impacts the top-level
@@ -81,7 +81,7 @@ del {
 }
 
 abbr[title], dfn[title] {
-  border-bottom: 1px dotted @black;
+  border-bottom: 1px dotted var(--black);
   cursor: help;
 }
 
@@ -89,7 +89,7 @@ hr {
   padding: 0;
   height: 1px;
   border: 0;
-  border-top: 1px solid @grey-silver;
+  border-top: 1px solid var(--grey-silver);
   margin: 1em 0;
 }
 

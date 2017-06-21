@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const postcss = require('postcss');
-const url = require('postcss-url');
+const postcssUrl = require('postcss-url');
 
 
 /**
@@ -106,11 +106,13 @@ function inlineStyle(content, urlResolver) {
             return asset.url.replace('ngx-prx-styleguide', 'src/lib');
           }
         };
-        // postcss custom filter has a multi option, but can't seem to get it to apply, so just running it twice
+        // postcss-url custom filter has a multi option, but can't seem to get it to apply, so just running postcssUrl twice
         // first to replace 'ngx-prx-styleguide' with 'src/lib' then to inline those assets
-        const pathReplace = postcss().use(url(urlOpts)).process(styleContent);
-        const inlineResult = postcss().use(url({url: 'inline'})).process(pathReplace.css);
-        const shortenedStyle = inlineResult.css
+        const pathReplace = postcss().use(postcssUrl(urlOpts)).process(styleContent);
+        const postcssResult = postcss()
+          .use(postcssUrl({url: 'inline'}))
+          .process(pathReplace.css);
+        const shortenedStyle = postcssResult.css
           .replace(/([\n\r]\s*)+/gm, ' ')
           .replace(/"/g, '\\"');
         return `"${shortenedStyle}"`;
