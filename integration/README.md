@@ -18,9 +18,9 @@ npm run build
 # clean the integration app
 npm run preintegration
 cd integration
-npm install
+yarn install
 ```
 
-Now the library is installed in your integration app. 
+Now the library is installed in your integration app.
 
 You can use `npm start` to start a live reload server running the app in JIT mode, or `npm run build && npm run serve:aot` to run a static server in AOT mode.
