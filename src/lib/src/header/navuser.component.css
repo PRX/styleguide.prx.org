@@ -7,7 +7,7 @@
 .name {
   display: none;
 }
-.nav-holder >>> publish-image {
+.nav-holder >>> prx-image {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -19,7 +19,7 @@
   .name {
     display: inline-block;
   }
-  .nav-holder >>> publish-image {
+  .nav-holder >>> prx-image {
     border-width: 2px;
     width: 40px;
     height: 40px;

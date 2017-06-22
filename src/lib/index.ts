@@ -18,3 +18,5 @@ export { MockHalService } from './src/hal/mock/mock-hal.service';
 export { MockHalDoc } from './src/hal/mock/mock-haldoc';
 
 export { HeaderModule } from './src/header/header.module';
+
+export { ImageModule } from './src/image/image.module';
