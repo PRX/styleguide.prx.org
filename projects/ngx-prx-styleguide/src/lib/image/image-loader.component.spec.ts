@@ -24,7 +24,7 @@ describe('ImageLoaderComponent', () => {
     });
   }));
 
-  const waitFor = (comp: Component, event: any, callback: any) => {
+  const waitFor = (event: any, callback: any) => {
     let originalFn = comp[event];
     spyOn(comp, event).and.callFake(function() {
       originalFn.apply(comp, arguments);
@@ -54,7 +54,7 @@ describe('ImageLoaderComponent', () => {
 
     it('renders the image src', (done: any) => {
       comp.src = 'http://fillmurray.com/10/10';
-      waitFor(comp, 'onLoad', () => {
+      waitFor('onLoad', () => {
         let imageEl = de.query(By.css('img'));
         expect(de.query(By.css('img')).nativeElement.getAttribute('src')).toEqual('http://fillmurray.com/10/10');
         expect(getBackground(de)).toEqual('http://fillmurray.com/10/10');
@@ -71,7 +71,7 @@ describe('ImageLoaderComponent', () => {
 
     it('renders an error for bad src', (done: any) => {
       comp.src = 'http://foo.bar/this/is/fake.jpg';
-      waitFor(comp, 'onError', () => {
+      waitFor('onError', () => {
         expect(de.query(By.css('img')).nativeElement.getAttribute('src')).toEqual('http://foo.bar/this/is/fake.jpg');
         expect(getClasslist(de).contains('placeholder-error')).toBeTruthy();
         done();
@@ -85,7 +85,7 @@ describe('ImageLoaderComponent', () => {
 
     it('follows the prx:image', (done: any) => {
       comp.imageDoc = mockDoc('http://fillmurray.com/10/10');
-      waitFor(comp, 'onLoad', () => {
+      waitFor('onLoad', () => {
         expect(de.query(By.css('img')).nativeElement.getAttribute('src')).toEqual('http://fillmurray.com/10/10');
         expect(getBackground(de)).toEqual('http://fillmurray.com/10/10');
         done();
@@ -105,7 +105,7 @@ describe('ImageLoaderComponent', () => {
 
     it('shows an error for bad enclosure href', (done: any) => {
       comp.imageDoc = mockDoc('http://foo.bar/this/is/fake.jpg');
-      waitFor(comp, 'onError', () => {
+      waitFor('onError', () => {
         expect(de.query(By.css('img')).nativeElement.getAttribute('src')).toEqual('http://foo.bar/this/is/fake.jpg');
         expect(getClasslist(de).contains('placeholder-error')).toBeTruthy();
         done();
