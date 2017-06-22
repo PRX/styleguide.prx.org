@@ -268,13 +268,6 @@ function _processStyle(basefile, outfile, log) {
       } else {
         const urlOpts = [
           {
-            filter: '**/fonts/*',
-            url: 'copy',
-            useHash: true,
-            basePath: '/Users/sandibarr/code/prx/styleguide.prx.org/src/lib/assets/font/',
-            assetsPath: 'fonts'
-          },
-          {
             filter: '**/assets/images/*',
             url: 'inline'
           }
