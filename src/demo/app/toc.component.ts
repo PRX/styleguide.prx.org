@@ -55,6 +55,7 @@ import { Component } from '@angular/core';
         <li><a [routerLink]="['datepicker']">DatePicker</a> - Pikaday datepicker component</li>
       </ul>
     </section>
+    <hr>
     <section>
       <h2>Images</h2>
       <ul>
