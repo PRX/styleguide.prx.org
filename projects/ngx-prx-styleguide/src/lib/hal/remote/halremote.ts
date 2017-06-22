@@ -134,10 +134,16 @@ export class HalRemote {
 
     // make request, and catch http errors
     return options.mergeMap(opts => {
-      if (method === 'put' || method === 'post') {
-        return this.http[method](href, body, opts);
+      if (method === 'put') {
+        return this.http.put(href, body, opts);
+      } else if (method === 'post') {
+        return this.http.post(href, body, opts);
+      } else if (method === 'get') {
+        return this.http.get(href, opts);
+      } else if (method === 'delete') {
+        return this.http.delete(href, opts);
       } else {
-        return this.http[method](href, opts);
+        throw new Error(`Unknown method ${method}`);
       }
     }).catch(err => {
       if (err instanceof Response) {
