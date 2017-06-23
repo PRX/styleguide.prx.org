@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="angry" transform="translate(53, 25)">
+            <path d="M195.037468,8.6844313 C197.778199,3.88815233 202.220415,3.8857262 204.962532,8.6844313 L395.037468,341.315569 C397.778199,346.111848 395.524963,350 390.000002,350 L9.99999843,350 C4.4771518,350 2.22041497,346.114274 4.96253217,341.315569 L195.037468,8.6844313 Z" id="Triangle" fill="#FF0000"></path>
+            <text id="!" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="288" font-weight="normal" fill="#FFFFFF">
+                <tspan x="152.046875" y="311">!</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
