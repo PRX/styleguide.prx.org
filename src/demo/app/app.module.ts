@@ -12,7 +12,8 @@ import {
   DatepickerModule,
   HalModule,
   HeaderModule,
-  ImageModule
+  ImageModule,
+  SpinnerModule
 } from 'ngx-prx-styleguide';
 
 @NgModule({
@@ -26,6 +27,7 @@ import {
     HalModule,
     HeaderModule,
     ImageModule,
+    SpinnerModule,
     routing
   ],
   declarations: [ AppComponent, routingComponents ],

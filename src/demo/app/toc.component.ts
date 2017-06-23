@@ -65,6 +65,15 @@ import { Component } from '@angular/core';
         </li>
       </ul>
     </section>
+    <hr>
+    <section>
+      <h2>Utilities</h2>
+      <ul>
+        <li>
+          <a [routerLink]="['util/spinner']">Spinner</a> - a component that shows a spinning animation to indicate loading status.
+        </li>
+      </ul>
+    </section>
   `,
 })
 export class TocComponent { }
