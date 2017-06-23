@@ -1,3 +1,5 @@
+@import 'variables.css';
+
 /***********************************
  * A note on .button - Publish uses:
  *  <a class="button"> to open external link
@@ -12,7 +14,7 @@ button,
 .button {
   font-size: 100%;
   outline: none;
-  padding: @padding-base;
+  padding: var(--padding-base);
 }
 button, .button, input[type=button], input[type=file], input[type=submit] {
   cursor: pointer
@@ -37,14 +39,14 @@ button, .button {
 button, .button {
   display: inline-block;
   position: relative;
-  color: @white;
+  color: var(--white);
   text-align: center;
 }
 button, .button {
-  background-color: @blue;
+  background-color: var(--blue);
 }
 button:hover, .button:hover {
-  background-color: @blue-emphasis;
+  background-color: var(--blue-emphasis);
 }
 button[disabled], .button[disabled] {
   -webkit-transition: background-color 0.2s, color 0.2s;
@@ -52,57 +54,57 @@ button[disabled], .button[disabled] {
   -o-transition: background-color 0.2s, color 0.2s;
   -ms-transition: background-color 0.2s, color 0.2s;
   transition: background-color 0.2s, color 0.2s;
-  background-color: @blue-emphasis;
-  color: @blue-muted;
+  background-color: var(--blue-emphasis);
+  color: var(--blue-muted);
 }
 a.button {
   line-height: 17px;
-  color: @white;
+  color: var(--white);
 }
 a.button:hover, a.button:active, a.button:focus {
-  color: @white;
+  color: var(--white);
 }
 button.btn-link {
-  color: @blue;
+  color: var(--blue);
   vertical-align: baseline;
   padding: 0;
   border: 0;
   background: 0 0 transparent;
 }
 button.btn-link:hover, button.btn-link:focus {
-  color: @blue-emphasis;
+  color: var(--blue-emphasis);
 }
 button.btn-link[disabled] {
-  color: @grey-silver;
+  color: var(--grey-silver);
 }
 button.btn-link.active {
-  color: @blue-emphasis;
+  color: var(--blue-emphasis);
 }
 
 button.btn-icon {
-  color: @blue;
+  color: var(--blue);
   background: none;
   font-size: 22px;
   padding: 0;
-  margin: @margin-base;
+  margin: var(--margin-base);
 }
 button.btn-icon::before {
   margin-left: 0;
   margin-right: 0;
 }
 button.btn-icon:hover, button.btn-icon:focus, button.btn-icon:active {
-  color: @blue-emphasis;
+  color: var(--blue-emphasis);
 }
 button.btn-icon[disabled] {
-  color: @grey-silver;
+  color: var(--grey-silver);
 }
 
 button.delete {
-  color: @white;
-  background-color: @red;
+  color: var(--white);
+  background-color: var(--red);
 }
 button.delete:hover, button.delete:focus {
-  background-color: @red-emphasis;
+  background-color: var(--red-emphasis);
 }
 
 /********
@@ -122,7 +124,7 @@ input[type=checkbox].updown-toggle:checked + label {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 8px solid @blue;
+  border-top: 8px solid var(--blue);
   border-bottom: 0;
 }
 
@@ -131,6 +133,6 @@ input[type=checkbox].updown-toggle + label {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 8px solid @blue;
+  border-bottom: 8px solid var(--blue);
   border-top: 0;
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService, HalService, HalDoc } from 'ngx-prx-styleguide';
 
 @Component({
   selector: 'demo-app',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
       <prx-navitem route="/" text="PRX StyleGuide"></prx-navitem>
       <prx-navuser userName="Mary">
         <div class="user-loaded profile-image-placeholder"></div>
-      </prx-navuser> 
+      </prx-navuser>
     </prx-header>
     <main>
       <article>
@@ -18,7 +19,6 @@ import { Component } from '@angular/core';
     </main>
   `,
   styles: [`
-    /* this placeholder should go away once we have the ImageLoaderComponent moved over and use it in this example */
     .profile-image-placeholder {
       width: 30px;
       height: 30px;

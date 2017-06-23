@@ -14,21 +14,23 @@ import { ButtonDemoComponent } from './global-css/button-demo.component';
 import { FormDemoComponent } from './global-css/form-demo.component';
 import { LayoutDemoComponent } from './global-css/layout-demo.component';
 import { ResetDemoComponent } from './global-css/reset-demo.component';
+import { ImageLoaderDemoComponent } from './image/image-loader-demo.component';
 
 export const routes: Routes = [
-  { path: '',               component: TocComponent },
-  { path: 'auth',           component: AuthDemoComponent },
-  { path: 'charts',         component: ChartsDemoComponent },
-  { path: 'datepicker',     component: DatepickerDemoComponent },
-  { path: 'global/app',     component: AppDemoComponent },
-  { path: 'global/button',  component: ButtonDemoComponent },
-  { path: 'global/form',    component: FormDemoComponent },
-  { path: 'global/layout',  component: LayoutDemoComponent },
-  { path: 'global/reset',   component: ResetDemoComponent },
-  { path: 'hal',            component: HalDemoComponent },
-  { path: 'header',         component: HeaderDemoComponent },
-  { path: 'navitem',        component: NavItemDemoComponent },
-  { path: 'navuser',        component: NavUserDemoComponent },
+  { path: '',                 component: TocComponent },
+  { path: 'auth',             component: AuthDemoComponent },
+  { path: 'charts',           component: ChartsDemoComponent },
+  { path: 'datepicker',       component: DatepickerDemoComponent },
+  { path: 'global/app',       component: AppDemoComponent },
+  { path: 'global/button',    component: ButtonDemoComponent },
+  { path: 'global/form',      component: FormDemoComponent },
+  { path: 'global/layout',    component: LayoutDemoComponent },
+  { path: 'global/reset',     component: ResetDemoComponent },
+  { path: 'hal',              component: HalDemoComponent },
+  { path: 'header',           component: HeaderDemoComponent },
+  { path: 'header/navitem',   component: NavItemDemoComponent },
+  { path: 'header/navuser',   component: NavUserDemoComponent },
+  { path: 'image/imageloader',component: ImageLoaderDemoComponent }
 ];
 
 export const routingComponents: any[] = [
@@ -43,6 +45,7 @@ export const routingComponents: any[] = [
   ResetDemoComponent,
   HalDemoComponent,
   HeaderDemoComponent,
+  ImageLoaderDemoComponent,
   NavItemDemoComponent,
   NavUserDemoComponent
 ];

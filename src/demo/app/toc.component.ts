@@ -11,11 +11,11 @@ import { Component } from '@angular/core';
           a home logo link and supports other navigation items using projected content
         </li>
         <li>
-          <a [routerLink]="['navitem']">NavItemComponent</a> - provides a router link within the application 
+          <a [routerLink]="['header/navitem']">NavItemComponent</a> - provides a router link within the application 
           or an href link outside the application
         </li>
         <li>
-          <a [routerLink]="['navuser']">NavUserComponent</a> - shows the username and selector based projected content
+          <a [routerLink]="['header/navuser']">NavUserComponent</a> - shows the username and selector based projected content
         </li>
       </ul>
     </section>
@@ -53,6 +53,16 @@ import { Component } from '@angular/core';
       <h2>Form Controls</h2>
       <ul>
         <li><a [routerLink]="['datepicker']">DatePicker</a> - Pikaday datepicker component</li>
+      </ul>
+    </section>
+    <hr>
+    <section>
+      <h2>Images</h2>
+      <ul>
+        <li>
+          <a [routerLink]="['image/imageloader']">ImageLoader</a> - a component that attempts to load 
+          images and will show a placeholder if it doesn't exist or an error image if an error occurs.
+        </li>
       </ul>
     </section>
   `,
