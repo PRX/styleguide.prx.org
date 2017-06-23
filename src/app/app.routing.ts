@@ -9,6 +9,7 @@ import { HalDemoComponent } from './hal/hal-demo.component';
 import { HeaderDemoComponent } from './header/header-demo.component';
 import { NavItemDemoComponent } from './header/navitem-demo.component';
 import { NavUserDemoComponent } from './header/navuser-demo.component';
+import { HeroDemoComponent } from './hero/hero-demo.component';
 import { AppDemoComponent } from './global-css/app-demo.component';
 import { ButtonDemoComponent } from './global-css/button-demo.component';
 import { FormDemoComponent } from './global-css/form-demo.component';
@@ -31,6 +32,7 @@ export const routes: Routes = [
   { path: 'header',             component: HeaderDemoComponent },
   { path: 'header/navitem',     component: NavItemDemoComponent },
   { path: 'header/navuser',     component: NavUserDemoComponent },
+  { path: 'hero',               component: HeroDemoComponent },
   { path: 'image/imageloader',  component: ImageLoaderDemoComponent },
   { path: 'util/spinner',       component: SpinnerDemoComponent }
 ];
@@ -47,6 +49,7 @@ export const routingComponents: any[] = [
   ResetDemoComponent,
   HalDemoComponent,
   HeaderDemoComponent,
+  HeroDemoComponent,
   ImageLoaderDemoComponent,
   NavItemDemoComponent,
   NavUserDemoComponent,

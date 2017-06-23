@@ -12,9 +12,7 @@ import { AuthService, HalService, HalDoc } from 'ngx-prx-styleguide';
     </prx-header>
     <main>
       <article>
-        <section class="main demo">
-          <router-outlet></router-outlet>
-        </section>
+        <router-outlet></router-outlet>
       </article>
     </main>
   `,
