@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ImageLoaderComponent } from './image-loader.component';
+import { SpinnerModule } from '../spinner/spinner.module';
+import { HeroComponent } from './hero.component';
 
 @NgModule({
   declarations: [
-    ImageLoaderComponent
+    HeroComponent
   ],
   exports: [
-    ImageLoaderComponent
+    HeroComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SpinnerModule
   ],
   providers: []
 })
 
-export class ImageModule { }
+export class HeroModule { }

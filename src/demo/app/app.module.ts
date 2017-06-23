@@ -12,6 +12,7 @@ import {
   DatepickerModule,
   HalModule,
   HeaderModule,
+  HeroModule,
   ImageModule,
   SpinnerModule
 } from 'ngx-prx-styleguide';
@@ -26,6 +27,7 @@ import {
     FormsModule,
     HalModule,
     HeaderModule,
+    HeroModule,
     ImageModule,
     SpinnerModule,
     routing

@@ -1,0 +1,40 @@
+.container {
+  height: 400px;
+  overflow-y: scroll;
+}
+
+prx-hero >>> section {
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
+.hero-title {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.hero-title h1 {
+  flex-grow: 1;
+}
+.campaign h3 {
+  color: var(--white);
+  font-size: 16px;
+  line-height: 50px;
+  font-weight: 400;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: right;
+}
+.campaign prx-image {
+  width: 108px;
+  height: 50px;
+  margin-right: 10px;
+  background-color: var(--white);
+  display: block;
+  float: left;
+}

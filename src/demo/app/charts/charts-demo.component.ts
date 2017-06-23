@@ -4,14 +4,16 @@ import { IndexedChartModel } from 'ngx-prx-styleguide';
 @Component({
   selector: 'charts-demo',
   template: `
-    <h1>Charts Module</h1>
-    <section>
-      <h2>Indexed Chart</h2>
-      <ul>
-        <li>whatev</li>
-      </ul>
-      <prx-line-indexed-chart [datasets]="datasets" [secondaryDatasets]="secondaryDatasets"
-        (toggleDataSet)="onToggleDataSet($event)" (onLabelClick)="singleLine($event)"></prx-line-indexed-chart>
+    <section class="main demo">
+      <h1>Charts Module</h1>
+      <section>
+        <h2>Indexed Chart</h2>
+        <ul>
+          <li>whatev</li>
+        </ul>
+        <prx-line-indexed-chart [datasets]="datasets" [secondaryDatasets]="secondaryDatasets"
+          (toggleDataSet)="onToggleDataSet($event)" (onLabelClick)="singleLine($event)"></prx-line-indexed-chart>
+      </section>
     </section>
   `,
 })
