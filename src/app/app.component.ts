@@ -4,8 +4,6 @@ import { AuthService, HalService, HalDoc } from 'ngx-prx-styleguide';
 @Component({
   selector: 'demo-app',
   template: `
-    <prx-auth [host]="authHost" [client]="authClient">
-    </prx-auth>
     <prx-header>
       <prx-navitem route="/" text="PRX StyleGuide"></prx-navitem>
       <prx-navuser userName="Mary">
@@ -14,7 +12,7 @@ import { AuthService, HalService, HalDoc } from 'ngx-prx-styleguide';
     </prx-header>
     <main>
       <article>
-        <section class="main">
+        <section class="main demo">
           <router-outlet></router-outlet>
         </section>
       </article>
