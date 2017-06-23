@@ -22,8 +22,8 @@ img {
   display: none;
 }
 :host.placeholder {
-  background-image: url("ngx-prx-styleguide/assets/images/placeholder.png");
+  background-image: url("ngx-prx-styleguide/assets/images/placeholder.svg");
 }
 :host.placeholder-error {
-  background-image: url("ngx-prx-styleguide/assets/images/placeholder_error.png");
+  background-image: url("ngx-prx-styleguide/assets/images/placeholder_error.svg");
 }

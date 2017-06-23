@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="120" height="120"></rect>
+            <rect id="Rectangle" fill="#FFFFFF" x="5" y="5" width="110" height="90"></rect>
+            <polygon id="Triangle-2" fill="#D8D8D8" points="87.7054687 35.9742187 105 87.3 60 87.3"></polygon>
+            <polygon id="Triangle-3" fill="#D8D8D8" points="27.3738281 60.2882812 55.1777344 87.3 15 87.3"></polygon>
+            <circle id="Oval" fill="#D8D8D8" cx="28.2" cy="30.6" r="9"></circle>
+            <polygon id="Triangle-4" fill="#D8D8D8" points="55.8 48.0539062 91.0839844 87.3 32.1 87.3"></polygon>
+        </g>
+    </g>
+</svg>
