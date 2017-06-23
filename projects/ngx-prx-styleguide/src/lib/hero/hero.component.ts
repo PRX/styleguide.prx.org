@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'publish-hero',
+  moduleId: module.id,
+  selector: 'prx-hero',
   styleUrls: ['hero.component.css'],
   template: `
     <div #refHero class="hero banner" [class.orange]="orange" [class.blue]="blue">
@@ -17,12 +18,11 @@ import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
       </section>
     </div>
     <div class="spacer" [class.affix]="affixed"></div>
-    `
+  `
 })
 
 export class HeroComponent implements OnInit {
 
-  @Input() loading = false;
   @Input() orange = false;
   @Input() blue = false;
 
