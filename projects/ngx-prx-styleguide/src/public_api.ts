@@ -20,3 +20,5 @@ export { MockHalDoc } from './src/hal/mock/mock-haldoc';
 export { HeaderModule } from './src/header/header.module';
 
 export { ImageModule } from './src/image/image.module';
+
+export { SpinnerModule } from './src/spinner/spinner.module';
