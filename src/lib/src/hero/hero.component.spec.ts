@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By }              from '@angular/platform-browser';
-import { Component, DebugElement }    from '@angular/core';
+import { Component, DebugElement, ElementRef, ViewChild }    from '@angular/core';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { HeroComponent } from './hero.component';
 
 @Component({
   selector: 'test-component',
-  template: `<prx-hero>
+  template: `<prx-hero #hero>
     <h1 class="hero-title">The Title</h1>
     <h2 class="hero-info" *ngIf="showInfo">The Infos</h2>
     <h3 class="hero-actions">The Actions</h3>
@@ -15,6 +15,7 @@ import { HeroComponent } from './hero.component';
 })
 class TestComponent {
   showInfo = false;
+  @ViewChild('hero') hero: ElementRef;
 }
 
 describe('HeroComponent', () => {
@@ -34,6 +35,8 @@ describe('HeroComponent', () => {
       comp = fix.componentInstance;
       de = fix.debugElement;
       el = de.nativeElement;
+
+      comp.hero['ngOnInit']();
     });
   }));
 
@@ -52,10 +55,10 @@ describe('HeroComponent', () => {
     expect(de.query(By.css('h1')).nativeElement.innerText).toContain('The Title');
   });
 
-  // TODO: this test jacks up the whole test suite
+  // TODO: the spinner isnt there
   xit('shows a spinner when info is missing', () => {
-    expect(de.query(By.css('h1'))).toBeNull();
-    expect(de.query(By.css('prx-spinner'))).not.toBeNull();
+    expect(de.query(By.css('h2'))).toBeNull();
+    // expect(de.query(By.css('prx-spinner'))).not.toBeNull();
     comp.showInfo = true;
     fix.detectChanges();
     expect(de.query(By.css('h2')).nativeElement.innerText).toContain('The Infos');
@@ -66,13 +69,12 @@ describe('HeroComponent', () => {
     expect(de.query(By.css('h3')).nativeElement.innerText).toContain('The Actions');
   });
 
-  // TODO: this test doesn't pass
-  xit('affixes when scrolled', () => {
+  it('affixes when scrolled', () => {
     expect(de.query(By.css('.affix'))).toBeNull();
     fakeScrollY = 999;
     triggerScroll();
     fix.detectChanges();
-    expect(de.query(By.css('.affix'))).not.toBeNull();// Error: Expected null not to be null.
+    expect(de.query(By.css('.affix'))).not.toBeNull();
   });
 
 });
