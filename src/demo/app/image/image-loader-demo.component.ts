@@ -5,33 +5,35 @@ import { HalService, HalDoc } from 'ngx-prx-styleguide';
   moduleId: module.id,
   selector: 'image-loader-demo',
   template: `
-    <h1>ImageLoader</h1>
-    <p>
-      The Image Loader Component loads an image from a url or a haldoc. To load from url, use the <code>Input() src</code>,
-      and to load from a HalDoc containing a <code>prx-image</code>, use the <code>Input() imageDoc</code>. If <code>src</code>
-      is not given and <code>imageDoc</code> has no <code>prx-image</code>, a placeholder image is shown. If an error occurs
-      loading <code>src</code> or the <code>prx-image</code>, a placeholder error image is shown.
-    </p>
-    <p>
-      Because it uses <code>background-image</code> for display, the <code>prx-image</code> element should be given a width 
-      and a height. It defaults to <code>display: inline-block</code> but can be overridden to <code>display: block</code>.
-    </p>
-    <aside>
-      Usage <code>src</code>:
-      <pre class="code">
-        &lt;prx-image src="http://fake.url/doesnotexist.png"&gt;&lt;/prx-image&gt;
-      </pre>
-      Example:
-      <prx-image src="http://fake.url/doesnotexist.png"></prx-image>
-    </aside>
-    <aside>
-      Usage <code>imageDoc</code>:
-      <pre class="code">
-        &lt;prx-image [imageDoc]="storyDoc"&gt;&lt;/prx-image&gt;
-      </pre>
-      Example:
-      <prx-image *ngIf="storyDoc" [imageDoc]="storyDoc"></prx-image>
-    </aside>
+    <section class="main demo">
+      <h1>ImageLoader</h1>
+      <p>
+        The Image Loader Component loads an image from a url or a haldoc. To load from url, use the <code>Input() src</code>,
+        and to load from a HalDoc containing a <code>prx-image</code>, use the <code>Input() imageDoc</code>. If <code>src</code>
+        is not given and <code>imageDoc</code> has no <code>prx-image</code>, a placeholder image is shown. If an error occurs
+        loading <code>src</code> or the <code>prx-image</code>, a placeholder error image is shown.
+      </p>
+      <p>
+        Because it uses <code>background-image</code> for display, the <code>prx-image</code> element should be given a width 
+        and a height. It defaults to <code>display: inline-block</code> but can be overridden to <code>display: block</code>.
+      </p>
+      <aside>
+        Usage <code>src</code>:
+        <pre class="code">
+          &lt;prx-image src="http://fake.url/doesnotexist.png"&gt;&lt;/prx-image&gt;
+        </pre>
+        Example:
+        <prx-image src="http://fake.url/doesnotexist.png"></prx-image>
+      </aside>
+      <aside>
+        Usage <code>imageDoc</code>:
+        <pre class="code">
+          &lt;prx-image [imageDoc]="storyDoc"&gt;&lt;/prx-image&gt;
+        </pre>
+        Example:
+        <prx-image *ngIf="storyDoc" [imageDoc]="storyDoc"></prx-image>
+      </aside>
+    </section>
   `,
   styleUrls: ['./image-loader-demo.component.css']
 })

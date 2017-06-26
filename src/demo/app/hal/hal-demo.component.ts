@@ -17,48 +17,50 @@ import { HalService, HalObservable, HalDoc } from 'ngx-prx-styleguide';
     }
   `],
   template: `
-    <h1>HalModule</h1>
-    <section>
-      <h2>Setup:</h2>
-      <ul>
-        <li>
-          Generally, instead of using the HalService directly, you'll want to
-          declare your own service extending the abstract HalBaseService. This
-          gives you a standard config/helper setup to build on. Just implement
-          the <code>host()</code>, <code>path()</code> and <code>ttl()</code>
-          getters.
-        </li>
-        <li>
-          To make authorized requests, you just need to have the
-          <code>prx-auth</code> component setup somewhere in your app, and the
-          HalService will automagically find it.
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h2>Usage:</h2>
-      <ul>
-        <li>
-          Get yourself the root HalDoc for your api host, via your
-          <code>myHalService.root</code> observable.
-        </li>
-        <li>
-          Navigate the API via the 3 HalObservable methods: follow, followList,
-          and followItems.
-        </li>
-        <li>
-          Chain observables: <code>cms.root.follow('prx:story', {{ '{' }}id: 123}))</code>
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h2>HalService Demo:</h2>
-      <prx-auth *ngIf="loadAuth" [host]="authHost" [client]="authClient">
-      </prx-auth>
-      <button (click)="loadCms()">CMS Root</button>
-      <button (click)="loadCmsStory()">Follow CMS Story</button>
-      <button (click)="loadAuthStory()">Follow Authorized CMS Story</button>
-      <pre [class.error]="error">{{code}}</pre>
+    <section class="main demo">
+      <h1>HalModule</h1>
+      <section>
+        <h2>Setup:</h2>
+        <ul>
+          <li>
+            Generally, instead of using the HalService directly, you'll want to
+            declare your own service extending the abstract HalBaseService. This
+            gives you a standard config/helper setup to build on. Just implement
+            the <code>host()</code>, <code>path()</code> and <code>ttl()</code>
+            getters.
+          </li>
+          <li>
+            To make authorized requests, you just need to have the
+            <code>prx-auth</code> component setup somewhere in your app, and the
+            HalService will automagically find it.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Usage:</h2>
+        <ul>
+          <li>
+            Get yourself the root HalDoc for your api host, via your
+            <code>myHalService.root</code> observable.
+          </li>
+          <li>
+            Navigate the API via the 3 HalObservable methods: follow, followList,
+            and followItems.
+          </li>
+          <li>
+            Chain observables: <code>cms.root.follow('prx:story', {{ '{' }}id: 123}))</code>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>HalService Demo:</h2>
+        <prx-auth *ngIf="loadAuth" [host]="authHost" [client]="authClient">
+        </prx-auth>
+        <button (click)="loadCms()">CMS Root</button>
+        <button (click)="loadCmsStory()">Follow CMS Story</button>
+        <button (click)="loadAuthStory()">Follow Authorized CMS Story</button>
+        <pre [class.error]="error">{{code}}</pre>
+      </section>
     </section>
   `,
 })
