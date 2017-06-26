@@ -125,7 +125,7 @@
  */
 .toolbar.affix {
   position: fixed;
-  top: 73px;
+  top: 50px;
   right: 0;
   left: 0;
   width: 100%;
@@ -143,4 +143,10 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 768px) {
+  .toolbar.affix {
+    top: 73px;
+  }
 }
