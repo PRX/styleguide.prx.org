@@ -13,8 +13,8 @@ import { HalDoc } from '../hal/doc/haldoc';
 import { BaseInvalid } from './base.invalid';
 import { BaseStorage } from './base.storage';
 
-interface ValidatorMap  { [key: string]: BaseInvalid[]; }
-interface RelatedMap    { [key: string]: Observable<any>; }
+export interface ValidatorMap  { [key: string]: BaseInvalid[]; }
+export interface RelatedMap    { [key: string]: Observable<any>; }
 interface RelatedLoader { [key: string]: Observable<BaseModel | BaseModel[]>; }
 
 /**

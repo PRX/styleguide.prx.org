@@ -7,7 +7,13 @@ export { TimeseriesDatumModel } from './src/charts/models/timeseries-datum.model
 export { AuthModule } from './src/auth/auth.module';
 export { AuthService } from './src/auth/auth.service';
 
+export { BaseModel } from './src/model/base.model';
+export { BaseInvalid, UNLESS_NEW, REQUIRED, LENGTH, IN, FALSEY, TOKENY, URL } from './src/model/base.invalid';
+export { BaseStorage } from './src/model/base.storage';
+
 export { DatepickerModule } from './src/datepicker/datepicker.module';
+
+export { FancyFormModule } from './src/fancy-form/fancy-form.module';
 
 export { HalModule } from './src/hal/hal.module';
 export { HalService } from './src/hal/hal.service';
@@ -22,5 +28,8 @@ export { HeaderModule } from './src/header/header.module';
 export { HeroModule } from './src/hero/hero.module';
 
 export { ImageModule } from './src/image/image.module';
+
+export { ModalModule } from './src/modal/modal.module';
+export { ModalService } from './src/modal/modal.service';
 
 export { SpinnerModule } from './src/spinner/spinner.module';
