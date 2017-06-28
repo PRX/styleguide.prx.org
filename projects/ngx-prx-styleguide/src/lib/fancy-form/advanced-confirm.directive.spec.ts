@@ -33,7 +33,6 @@ describe('AdvancedConfirmDirective', () => {
           provide: ModalService,
           useValue: {
             confirm: (title: string, message: string, callback: Function) => {
-              console.log('call confirm', message);
               modalAlertMessage = message;
             }
           }
