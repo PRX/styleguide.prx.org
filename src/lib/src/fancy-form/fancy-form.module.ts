@@ -7,18 +7,24 @@ import { ModalModule } from '../modal/modal.module';
 
 import { AdvancedConfirmDirective } from './advanced-confirm.directive';
 import { CapitalizePipe } from './capitalize.pipe';
+import { FancyDurationComponent } from './fancy-duration.component';
 import { FancyFieldComponent } from './fancy-field.component';
+import { PadZeroPipe } from './padzero.pipe';
 
 @NgModule({
   declarations: [
     AdvancedConfirmDirective,
     CapitalizePipe,
-    FancyFieldComponent
+    FancyDurationComponent,
+    FancyFieldComponent,
+    PadZeroPipe
   ],
   exports: [
     AdvancedConfirmDirective,
     CapitalizePipe,
-    FancyFieldComponent
+    FancyDurationComponent,
+    FancyFieldComponent,
+    PadZeroPipe
   ],
   imports: [
     CommonModule,
