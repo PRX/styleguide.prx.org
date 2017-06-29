@@ -50,13 +50,32 @@ import { Component } from '@angular/core';
         <ul>
           <li><a [routerLink]="['auth']">Auth</a> - authentication via id.prx.org</li>
           <li><a [routerLink]="['hal']">Hal</a> - base classes for using PRX hal-based services</li>
+          <li><a [routerLink]="['modal']">Modal</a> - service and corresponding component for displaying modals</li>
+        </ul>
+      </section>
+      <hr>
+      <section>
+        <h2>PRX Models</h2>
+        <ul>
+          <li><a [routerLink]="['model']">BaseModel</a> - abstract class for data models</li>
         </ul>
       </section>
       <hr>
       <section>
         <h2>Form Controls</h2>
         <ul>
-          <li><a [routerLink]="['datepicker']">DatePicker</a> - Pikaday datepicker component</li>
+          <li><a [routerLink]="['form/datepicker']">DatePicker</a> - Pikaday datepicker component</li>
+          <li>
+            <a [routerLink]="['form/fancy-field']">FancyField</a>
+            - form field component designed to work with BaseModel's changed, discard, and validatation features
+          </li>
+          <li><a [routerLink]="['form/fancy-duration']">FancyDurationField</a> - a form field component for HH:MM:SS duration</li>
+          <li>
+            <a [routerLink]="['form/advancedconfirm']">AdvancedConfirm</a>
+            - a directive that prompts the user to confirm changes to "advanced" fields
+          </li>
+          <li><a [routerLink]="['form/capitalize']">Capitalize</a> - a pipe used to capitalize field names and validation messages</li>
+          <li><a [routerLink]="['form/padzero']">PadZero</a> - a pipe that left pads numbers with zeroes</li>
         </ul>
       </section>
       <hr>

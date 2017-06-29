@@ -13,7 +13,10 @@ import {
   HalModule,
   HeaderModule,
   HeroModule,
+  FancyFormModule,
   ImageModule,
+  ModalModule,
+  ModalService,
   SpinnerModule
 } from 'ngx-prx-styleguide';
 
@@ -24,16 +27,18 @@ import {
     AuthModule,
     ChartsModule,
     DatepickerModule,
+    FancyFormModule,
     FormsModule,
     HalModule,
     HeaderModule,
     HeroModule,
     ImageModule,
+    ModalModule,
     SpinnerModule,
     routing
   ],
   declarations: [ AppComponent, routingComponents ],
-  providers:    [ routingProviders ],
+  providers:    [ routingProviders, ModalService ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

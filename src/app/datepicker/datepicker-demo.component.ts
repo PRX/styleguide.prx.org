@@ -33,6 +33,7 @@ import { Component } from '@angular/core';
       </section>
     </section>
   `,
+  styles: ['.changed { padding-left: 20px; font-style: italic;}']
 })
 export class DatepickerDemoComponent {
 

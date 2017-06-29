@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService, HalService, HalDoc } from 'ngx-prx-styleguide';
+import { ModalService } from 'ngx-prx-styleguide';
 
 @Component({
   selector: 'demo-app',
@@ -10,6 +10,7 @@ import { AuthService, HalService, HalDoc } from 'ngx-prx-styleguide';
         <div class="user-loaded profile-image-placeholder"></div>
       </prx-navuser>
     </prx-header>
+    <prx-modal></prx-modal>
     <main>
       <article>
         <router-outlet></router-outlet>
@@ -36,4 +37,6 @@ import { AuthService, HalService, HalDoc } from 'ngx-prx-styleguide';
      }
   `]
 })
-export class AppComponent { }
+export class AppComponent {
+  constructor(modal: ModalService) {}
+}
