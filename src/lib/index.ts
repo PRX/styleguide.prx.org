@@ -7,7 +7,7 @@ export { TimeseriesDatumModel } from './src/charts/models/timeseries-datum.model
 export { AuthModule } from './src/auth/auth.module';
 export { AuthService } from './src/auth/auth.service';
 
-export { BaseModel } from './src/model/base.model';
+export { BaseModel, RelatedMap, ValidatorMap } from './src/model/base.model';
 export { BaseInvalid, UNLESS_NEW, REQUIRED, LENGTH, IN, FALSEY, TOKENY, URL } from './src/model/base.invalid';
 export { BaseStorage } from './src/model/base.storage';
 

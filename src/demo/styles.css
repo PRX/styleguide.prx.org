@@ -28,6 +28,7 @@ section {
 .demo aside {
   background: var(--white);
   padding: 10px 20px;
+  margin-bottom: 10px;
 }
 .demo pre.code {
   white-space: pre;
@@ -49,7 +50,4 @@ section {
   display: inline-block;
   margin-left: 20px;
 }
-.demo .changed {
-  padding-left: 20px;
-  font-style: italic;
-}
+
