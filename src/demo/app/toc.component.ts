@@ -88,6 +88,7 @@ import { Component } from '@angular/core';
                 <a [routerLink]="['form/advancedconfirm']">AdvancedConfirm</a>
                 - a directive that prompts the user to confirm changes to "advanced" fields
               </li>
+              <li><a [routerLink]="['form/button']">Button</a> - button for fancy forms</li>
               <li><a [routerLink]="['form/capitalize']">Capitalize</a> - a pipe used to capitalize field names and validation messages</li>
               <li><a [routerLink]="['form/padzero']">PadZero</a> - a pipe that left pads numbers with zeroes</li>
             </ul>
