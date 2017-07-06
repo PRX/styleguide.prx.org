@@ -29,7 +29,7 @@ export class ModalService {
   alert(title: string, body?: string, callback?: Function) {
     body = body ? `<p>${body}</p>` : undefined;
     if (callback) {
-      this.emit({title: title, body: body, buttons: ['Okay'], buttonCallback: callback});
+      this.emit({title: title, body: body, primaryButton: 'Okay', buttonCallback: callback});
     } else {
       this.emit({title: title, body: body});
     }
