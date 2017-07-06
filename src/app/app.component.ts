@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ModalService } from 'ngx-prx-styleguide';
 
 @Component({
   selector: 'demo-app',
@@ -37,6 +36,4 @@ import { ModalService } from 'ngx-prx-styleguide';
      }
   `]
 })
-export class AppComponent {
-  constructor(modal: ModalService) {}
-}
+export class AppComponent {}
