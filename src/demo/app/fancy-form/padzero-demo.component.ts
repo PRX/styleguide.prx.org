@@ -9,6 +9,10 @@ import { Component } from '@angular/core';
       <p>
         The Pad Zero Pipe is a pipe that transforms values to be left zero padded to the given length.
       </p>
+      <dl>
+        <dt>module</dt><dd><code>FancyFormModule</code></dd>
+        <dt>name</dt><dd><code>padzero</code></dd>
+      </dl>
       <aside>
         Usage:
         <pre class="code">

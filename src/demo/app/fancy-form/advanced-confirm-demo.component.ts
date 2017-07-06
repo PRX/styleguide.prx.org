@@ -14,6 +14,10 @@ import { HalDoc } from 'ngx-prx-styleguide';
         previous value. Advanced fields are those that may potentially cause issues or unexpected behavior that once set
         should only be changed for specific reasons that we need to ensure the user is aware of.
       </p>
+      <dl>
+        <dt>module</dt><dd><code>FancyFormModule</code></dd>
+        <dt>selector</dt><dd><code>[prxAdvancedConfirm]</code></dd>
+      </dl>
       <ul>
         <li>
           <code>@Input() prxAdvancedConfirm: string;</code>

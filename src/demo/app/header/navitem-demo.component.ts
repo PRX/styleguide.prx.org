@@ -6,9 +6,17 @@ import {Component} from '@angular/core';
     <section class="main demo">
       <h1>Nav Item</h1>
       <p>
-        The Nav Item Component provides a router link within the application or an href link outside the application dependent
-        on its <code>Input()</code>s: <code>route</code>, <code>href</code>, and <code>text</code>
+        The Nav Item Component provides a router link within the application or an href link outside the application.
       </p>
+      <dl>
+        <dt>module</dt><dd><code>HeaderModule</code></dd>
+        <dt>selector</dt><dd><code>prx-navitem</code></dd>
+      </dl>
+      <ul>
+        <li><code>@Input() route: string</code> - a route within the application</li>
+        <li><code>@Input() href: string</code> - an external link</li>
+        <li><code>@Input() text: string</code> - linked text</li>
+      </ul> 
       <aside>
         Router Link Usage:
         <pre class="code">

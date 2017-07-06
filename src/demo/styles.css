@@ -51,3 +51,15 @@ section {
   margin-left: 20px;
 }
 
+.demo dl {
+  background: var(--white);
+  padding: var(--padding-base);
+  margin-bottom: 10px;
+}
+.demo dt {
+  font-weight: 700;
+}
+.demo dd {
+  padding-left: var(--padding-base);
+}
+

@@ -14,6 +14,10 @@ import { HalDoc } from 'ngx-prx-styleguide';
         component is intended to work with models extended from BaseModel, but it will also create disabled form fields
         without a model. When working with BaseModel, any validation errors that occur will be shown within the fancy field.
       </p>
+      <dl>
+        <dt>module</dt><dd><code>FancyFormModule</code></dd>
+        <dt>selector</dt><dd><code>prx-fancy-field</code></dd>
+      </dl>
       <ul>
         <li>
           <code>@Input() model: BaseModel</code>
