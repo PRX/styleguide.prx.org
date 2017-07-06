@@ -12,6 +12,10 @@ import { HalDoc } from 'ngx-prx-styleguide';
         The Fancy Duration component is used to create forms fields for audio duration. If a field is entered out of range
         for seconds or minutes, the time will auto adjust accordingly.
       </p>
+      <dl>
+        <dt>module</dt><dd><code>FancyFormModule</code></dd>
+        <dt>selector</dt><dd><code>prx-fancy-duration</code></dd>
+      </dl>
       <ul>
         <li>
           <code>@Input() model: BaseModel</code>

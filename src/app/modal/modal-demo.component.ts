@@ -5,25 +5,20 @@ import { ModalService } from 'ngx-prx-styleguide';
   selector: 'modal-demo',
   template: `
     <section class="main demo">
-      <h1>ModalService and ModalComponent</h1>
+      <h1>Modal</h1>
       <p>
-        The Modal Service and Component are for displaying modals within the application. The Modal Component should be
-        included in the application at the top level of the app component as it is in this demo app. The Modal Service is
-        injected into components that show modals.
+        The Modal Service and Component are for displaying modals within the application. The <code>&lt;prx-modal&gt;</code> 
+        should be included in the application at the top level of the app component as it is in this demo app. 
+        ModalService is injected into components that show modals.
       </p>
+      <dl>
+        <dt>module</dt><dd><code>ModalModule</code></dd>
+        <dt>selector</dt><dd><code>prx-modal</code></dd>
+        <dt>service</dt><dd><code>ModalService</code></dd>
+      </dl>
       <aside>
         <h2>Usage:</h2>
         <ul>
-          <li>
-            Classes inheriting from BaseModel should call init() in their constructors to set the parent, decode the underlying
-            HalDoc, isNew, original values, and RELATIONS
-          </li>
-          <li>
-            Fields that can be modified are to be included in the SETABLE array
-          </li>
-          <li>
-            Validation rules for fields can be set in VALIDATORS
-          </li>
           <li>
             <code>alert(title: string, body?: string, callback?: Function)</code> opens an alert modal and if provided,
             calls the callback function when the user clicks the primary button
