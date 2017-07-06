@@ -4,8 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ModalModule } from '../modal/modal.module';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 import { AdvancedConfirmDirective } from './advanced-confirm.directive';
+import { ButtonComponent } from './button.component';
 import { CapitalizePipe } from './capitalize.pipe';
 import { FancyDurationComponent } from './fancy-duration.component';
 import { FancyFieldComponent } from './fancy-field.component';
@@ -14,6 +16,7 @@ import { PadZeroPipe } from './padzero.pipe';
 @NgModule({
   declarations: [
     AdvancedConfirmDirective,
+    ButtonComponent,
     CapitalizePipe,
     FancyDurationComponent,
     FancyFieldComponent,
@@ -21,6 +24,7 @@ import { PadZeroPipe } from './padzero.pipe';
   ],
   exports: [
     AdvancedConfirmDirective,
+    ButtonComponent,
     CapitalizePipe,
     FancyDurationComponent,
     FancyFieldComponent,
@@ -30,7 +34,8 @@ import { PadZeroPipe } from './padzero.pipe';
     CommonModule,
     FormsModule,
     RouterModule,
-    ModalModule
+    ModalModule,
+    SpinnerModule
   ],
   providers: []
 })
