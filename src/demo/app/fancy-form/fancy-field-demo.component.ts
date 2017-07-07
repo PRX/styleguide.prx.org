@@ -57,7 +57,7 @@ import { HalDoc } from 'ngx-prx-styleguide';
         </li>
         <li>
           <code>@Input() strict: boolean</code>
-           - whether or not validation is strict
+           - whether or not validation is strict; if true, will prevent saving the model if is invalid
         </li>
         <li>
           <code>@Input() prompt: string</code>
@@ -154,7 +154,10 @@ import { HalDoc } from 'ngx-prx-styleguide';
       
       <aside>
         <h2><code>.nested</code></h2>
-        <p>Use content projection with the <code>.nested</code> selector to include anything in a fancy-field. Maybe a date picker?</p>
+        <p>
+          Use content projection to include anything in a fancy-field. Maybe a date picker? 
+          Projected content will be shown in a div with class <code>.nested</code>.
+        </p>
         Usage:
         <pre class="code">
           &lt;prx-fancy-field label="Arrival"&gt;
@@ -182,7 +185,7 @@ import { HalDoc } from 'ngx-prx-styleguide';
         <pre class="code">
           &lt;prx-fancy-field textinput name="nada" label="Nope"&gt;
             &lt;div class="fancy-hint"&gt;This field is disabled because there is no model.&lt;/div&gt;
-          &lt;/prx-fancy-field&lt;
+          &lt;/prx-fancy-field&gt;
         </pre>
         Example:
         <prx-fancy-field textinput name="nada" label="Nope">
@@ -240,7 +243,9 @@ import { HalDoc } from 'ngx-prx-styleguide';
         <p>Use content projection with the <code>.fancy-hint</code> selector to show a field hint. Hints typically end with punctuation.</p>
         Usage:
         <pre class="code">
-          &lt;div class="fancy-hint"&gt;Hint text&lt;/div&gt;
+          &lt;prx-fancy-field textinput name="showhint" label="Hint"&gt;
+            &lt;div class="fancy-hint"&gt;Hint text&lt;/div&gt;
+          &lt;/prx-fancy-field&gt;
         </pre>
         Example:
         <prx-fancy-field textinput name="showhint" label="Hint">
@@ -260,7 +265,6 @@ export class FancyFieldDemoComponent {
       color: 'yellow',
       script: 'Visit blue apron dot com slash exciting show name to get your first three deliveries free.',
       arrival: new Date(),
-      feedId: '196',
       mustProvide: 'delete this text'
     }, null));
 
