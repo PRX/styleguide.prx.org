@@ -15,6 +15,7 @@ import { AuthService, HalService, HalDoc } from 'ngx-prx-styleguide';
         <router-outlet></router-outlet>
       </article>
     </main>
+    <prx-footer></prx-footer>
   `,
   styles: [`
     .profile-image-placeholder {

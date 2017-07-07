@@ -9,6 +9,8 @@ export { AuthService } from './src/auth/auth.service';
 
 export { DatepickerModule } from './src/datepicker/datepicker.module';
 
+export { FooterModule } from './src/footer/footer.module';
+
 export { HalModule } from './src/hal/hal.module';
 export { HalService } from './src/hal/hal.service';
 export { HalBaseService } from './src/hal/hal-base.service';

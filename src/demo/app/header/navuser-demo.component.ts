@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'nav-demo',
+  selector: 'navuser-demo',
   template: `
     <section class="main demo">
       <h2>Nav User</h2>
