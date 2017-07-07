@@ -21,6 +21,9 @@ import { Component } from '@angular/core';
           <li>
             <a [routerLink]="['hero']">HeroComponent</a> - shows a banner image, title, status text and navigation elements
           </li>
+          <li>
+            <a [routerLink]="['footer']">FooterComponent</a> -  HTML5 footer element containing various PRX links
+          </li>
         </ul>
       </section>
       <hr>

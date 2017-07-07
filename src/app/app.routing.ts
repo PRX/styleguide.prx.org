@@ -5,6 +5,7 @@ import { TocComponent } from './toc.component';
 import { AuthDemoComponent } from './auth/auth-demo.component';
 import { ChartsDemoComponent } from './charts/charts-demo.component';
 import { DatepickerDemoComponent } from './datepicker/datepicker-demo.component';
+import { FooterDemoComponent } from './footer/footer-demo.component';
 import { HalDemoComponent } from './hal/hal-demo.component';
 import { HeaderDemoComponent } from './header/header-demo.component';
 import { NavItemDemoComponent } from './header/navitem-demo.component';
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'auth',               component: AuthDemoComponent },
   { path: 'charts',             component: ChartsDemoComponent },
   { path: 'datepicker',         component: DatepickerDemoComponent },
+  { path: 'footer',             component: FooterDemoComponent },
   { path: 'global/app',         component: AppDemoComponent },
   { path: 'global/button',      component: ButtonDemoComponent },
   { path: 'global/form',        component: FormDemoComponent },
@@ -44,6 +46,7 @@ export const routingComponents: any[] = [
   DatepickerDemoComponent,
   AppDemoComponent,
   ButtonDemoComponent,
+  FooterDemoComponent,
   FormDemoComponent,
   LayoutDemoComponent,
   ResetDemoComponent,
