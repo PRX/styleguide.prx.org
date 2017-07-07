@@ -53,6 +53,7 @@ import { Component } from '@angular/core';
         <ul>
           <li><a [routerLink]="['auth']">Auth</a> - authentication via id.prx.org</li>
           <li><a [routerLink]="['hal']">Hal</a> - base classes for using PRX hal-based services</li>
+          <li><a [routerLink]="['toastr']">Toastr</a> - displays toast notifications</li>
         </ul>
       </section>
       <hr>
