@@ -15,7 +15,9 @@ import {
   HeaderModule,
   HeroModule,
   ImageModule,
-  SpinnerModule
+  SpinnerModule,
+  ToastrModule,
+  ToastrService
 } from 'ngx-prx-styleguide';
 
 @NgModule({
@@ -32,10 +34,11 @@ import {
     HeroModule,
     ImageModule,
     SpinnerModule,
+    ToastrModule,
     routing
   ],
   declarations: [ AppComponent, routingComponents ],
-  providers:    [ routingProviders ],
+  providers:    [ routingProviders, ToastrService ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

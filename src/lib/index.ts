@@ -26,3 +26,6 @@ export { HeroModule } from './src/hero/hero.module';
 export { ImageModule } from './src/image/image.module';
 
 export { SpinnerModule } from './src/spinner/spinner.module';
+
+export { ToastrModule } from './src/toastr/toastr.module';
+export { ToastrService } from './src/toastr/toastr.service';

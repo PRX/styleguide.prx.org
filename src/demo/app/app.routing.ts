@@ -18,6 +18,7 @@ import { LayoutDemoComponent } from './global-css/layout-demo.component';
 import { ResetDemoComponent } from './global-css/reset-demo.component';
 import { ImageLoaderDemoComponent } from './image/image-loader-demo.component';
 import { SpinnerDemoComponent } from './spinner/spinner-demo.component';
+import { ToastrDemoComponent } from './toastr/toastr-demo.component';
 
 export const routes: Routes = [
   { path: '',                   component: TocComponent },
@@ -36,6 +37,7 @@ export const routes: Routes = [
   { path: 'header/navuser',     component: NavUserDemoComponent },
   { path: 'hero',               component: HeroDemoComponent },
   { path: 'image/imageloader',  component: ImageLoaderDemoComponent },
+  { path: 'toastr',             component: ToastrDemoComponent },
   { path: 'util/spinner',       component: SpinnerDemoComponent }
 ];
 
@@ -56,7 +58,8 @@ export const routingComponents: any[] = [
   ImageLoaderDemoComponent,
   NavItemDemoComponent,
   NavUserDemoComponent,
-  SpinnerDemoComponent
+  SpinnerDemoComponent,
+  ToastrDemoComponent
 ];
 
 export const routingProviders: any[] = [];
