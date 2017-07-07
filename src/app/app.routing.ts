@@ -3,12 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TocComponent } from './toc.component';
 import { AdvancedConfirmDemoComponent } from './fancy-form/advanced-confirm-demo.component';
-import { ButtonDemoComponent } from './fancy-form/button-demo.component';
 import { AuthDemoComponent } from './auth/auth-demo.component';
 import { BaseModelDemoComponent } from './model/base-model-demo.component';
 import { CapitalizeDemoComponent } from './fancy-form/capitalize-demo.component';
 import { ChartsDemoComponent } from './charts/charts-demo.component';
 import { DatepickerDemoComponent } from './datepicker/datepicker-demo.component';
+import { FancyButtonDemoComponent } from './fancy-form/button-demo.component';
 import { FancyDurationDemoComponent } from './fancy-form/fancy-duration-demo.component';
 import { FancyFieldDemoComponent } from './fancy-form/fancy-field-demo.component';
 import { PadZeroDemoComponent } from './fancy-form/padzero-demo.component';
@@ -31,7 +31,7 @@ export const routes: Routes = [
   { path: 'auth',                 component: AuthDemoComponent },
   { path: 'charts',               component: ChartsDemoComponent },
   { path: 'form/advancedconfirm', component: AdvancedConfirmDemoComponent},
-  { path: 'form/button',          component: ButtonDemoComponent },
+  { path: 'form/button',          component: FancyButtonDemoComponent },
   { path: 'form/datepicker',      component: DatepickerDemoComponent },
   { path: 'form/capitalize',      component: CapitalizeDemoComponent },
   { path: 'form/fancy-duration',  component: FancyDurationDemoComponent },
@@ -63,7 +63,7 @@ export const routingComponents: any[] = [
   ChartsDemoComponent,
   DatepickerDemoComponent,
   AppDemoComponent,
-  ButtonDemoComponent,
+  FancyButtonDemoComponent,
   FancyDurationDemoComponent,
   FancyFieldDemoComponent,
   FormDemoComponent,
