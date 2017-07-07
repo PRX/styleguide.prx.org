@@ -4,12 +4,13 @@ import { HalDoc } from 'ngx-prx-styleguide';
 
 @Component({
   moduleId: module.id,
-  selector: 'button-demo',
+  selector: 'fancy-button-demo',
   template: `
     <section class="main demo">
-      <h1>Button</h1>
+      <h1>Fancy Button</h1>
       <p>
-        The Button Component is a button used with PRX Models in Fancy Forms. Use one of the style options, orange, plain, red, or green.
+        The Button Component is a button used with PRX Models in Fancy Forms. Use one of the style options, orange,
+        plain, red, or green.
       </p>
       <dl>
         <dt>module</dt><dd><code>FancyFormModule</code></dd>
@@ -130,6 +131,6 @@ import { HalDoc } from 'ngx-prx-styleguide';
   `
 })
 
-export class ButtonDemoComponent {
+export class FancyButtonDemoComponent {
   model = new DemoModel(null, new HalDoc({}, null));
 }
