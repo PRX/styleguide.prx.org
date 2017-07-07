@@ -42,10 +42,13 @@ import { HalDoc } from 'ngx-prx-styleguide';
           &lt;input
               prxAdvancedConfirm="That's a risky move" 
               [prxModel]="model" 
-              prxName="foo" (change)="model.set('foo', $event)"&gt;
+              prxName="foo" 
+              (ngModelChange)="model.set('foo', $event)"
+              [ngModel]="model.foo"&gt;
         </pre>
         Example:
-        <input prxAdvancedConfirm="That's a risky move" [prxModel]="model" prxName="foo" (change)="model.set('foo', $event)">
+        <input prxAdvancedConfirm="That's a risky move" [prxModel]="model" prxName="foo" 
+               (ngModelChange)="model.set('foo', $event)" [ngModel]="model.foo">
       </aside>
     </section>
   `
