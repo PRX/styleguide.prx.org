@@ -8,11 +8,10 @@ export class DemoModel extends BaseModel {
   public color: string;
   public script: string;
   public arrival: Date;
-  public feedId: string;
   public mustProvide: string;
   public duration: number;
 
-  SETABLE = ['foo', 'complete', 'count', 'color', 'script', 'arrival', 'feedId', 'mustProvide', 'duration'];
+  SETABLE = ['foo', 'complete', 'count', 'color', 'script', 'arrival', 'mustProvide', 'duration'];
 
   VALIDATORS = {
     mustProvide: [REQUIRED(true)]
@@ -32,7 +31,6 @@ export class DemoModel extends BaseModel {
     this.color = this.doc['color'];
     this.script = this.doc['script'];
     this.arrival = this.doc['arrival'];
-    this.feedId = this.doc['feedId'];
     this.mustProvide = this.doc['mustProvide'];
     this.duration = this.doc['duration'];
   };
