@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import { HalService, HalDoc } from 'ngx-prx-styleguide';
 
 @Component({
   moduleId: module.id,
@@ -9,13 +8,20 @@ import { HalService, HalDoc } from 'ngx-prx-styleguide';
       <h1>Spinner</h1>
       <p>
         The Spinner Component shows a loading indicator. Typically the spinner is displayed with <code>*ngIf</code> until
-        a resource has finished loading. There is a public interface to toggle the animation with the <code>Input() spinning</code>.
-        The optional <code>Input() delay</code> defaults to 300 seconds. The optional <code>Input() inverse</code> defaults
-        to false but when true will show a grey background color.
+        a resource has finished loading.
       </p>
       <p>
         The animation uses <code>position: absolute</code>, so it should be inside a <code>position: relative</code> container. 
       </p>
+      <dl>
+        <dt>module</dt><dd><code>SpinnerModule</code></dd>
+        <dt>selector</dt><dd><code>prx-spinner</code></dd>
+      </dl>
+      <ul>
+        <li><code>@Input() set spinning(value: boolean)</code> - toggles the animation</li>
+        <li><code>@Input() delay: number</code> - defaults to 300 seconds</li>
+        <li><code>@Input() inverse: boolean</code> - defaults to false but when true will show a grey background color</li>
+      </ul>
       <aside>
         Usage:
         <pre class="code">

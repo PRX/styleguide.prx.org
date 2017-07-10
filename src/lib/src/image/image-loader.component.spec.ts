@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MockHalService } from '../hal/mock/mock-hal.service';
 import { DebugElement } from '@angular/core';
