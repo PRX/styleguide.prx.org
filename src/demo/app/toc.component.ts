@@ -7,22 +7,34 @@ import { Component } from '@angular/core';
       <section>
         <h2>Navigation</h2>
         <ul>
-          <li>
-            <a [routerLink]="['header']">HeaderComponent</a> - a fixed position navigation bar that shows 
-            a home logo link and supports other navigation items using projected content
+          <li><h3>HeaderModule</h3>
+            <ul>
+              <li>
+                <a [routerLink]="['header']">HeaderComponent</a> - a fixed position navigation bar that shows 
+                a home logo link and supports other navigation items using projected content
+              </li>
+              <li>
+                <a [routerLink]="['header/navitem']">NavItemComponent</a> - provides a router link within the application 
+                or an href link outside the application
+              </li>
+              <li>
+                <a [routerLink]="['header/navuser']">NavUserComponent</a> - shows the username and selector based projected content
+              </li>
+            </ul>
           </li>
-          <li>
-            <a [routerLink]="['header/navitem']">NavItemComponent</a> - provides a router link within the application 
-            or an href link outside the application
+          <li><h3>HeroModule</h3>
+            <ul>
+              <li>
+                <a [routerLink]="['hero']">HeroComponent</a> - shows a banner image, title, status text and navigation elements
+              </li>
+            </ul>
           </li>
-          <li>
-            <a [routerLink]="['header/navuser']">NavUserComponent</a> - shows the username and selector based projected content
-          </li>
-          <li>
-            <a [routerLink]="['hero']">HeroComponent</a> - shows a banner image, title, status text and navigation elements
-          </li>
-          <li>
-            <a [routerLink]="['footer']">FooterComponent</a> -  HTML5 footer element containing various PRX links
+          <li><h3>FooterModule</h3>
+            <ul>
+              <li>
+                <a [routerLink]="['footer']">FooterComponent</a> -  HTML5 footer element containing various PRX links
+              </li>
+            </ul>
           </li>
         </ul>
       </section>
@@ -44,7 +56,7 @@ import { Component } from '@angular/core';
       <section>
         <h2>Data Visualization</h2>
         <ul>
-          <li><a [routerLink]="['charts']">Charts</a> - C3 chart components</li>
+          <li><a [routerLink]="['charts']">ChartsModule</a> - C3 chart components</li>
         </ul>
       </section>
       <hr>
@@ -53,14 +65,42 @@ import { Component } from '@angular/core';
         <ul>
           <li><a [routerLink]="['auth']">Auth</a> - authentication via id.prx.org</li>
           <li><a [routerLink]="['hal']">Hal</a> - base classes for using PRX hal-based services</li>
+          <li><a [routerLink]="['modal']">Modal</a> - service and corresponding component for displaying modals</li>
           <li><a [routerLink]="['toastr']">Toastr</a> - displays toast notifications</li>
+        </ul>
+      </section>
+      <hr>
+      <section>
+        <h2>PRX Models</h2>
+        <ul>
+          <li><a [routerLink]="['model']">BaseModel</a> - abstract class for data models</li>
         </ul>
       </section>
       <hr>
       <section>
         <h2>Form Controls</h2>
         <ul>
-          <li><a [routerLink]="['datepicker']">DatePicker</a> - Pikaday datepicker component</li>
+          <li><h3>DatepickerModule</h3>
+            <ul>
+              <li><a [routerLink]="['form/datepicker']">DatePicker</a> - Pikaday datepicker component</li>
+            </ul>         
+          </li>
+          <li><h3>FancyFormModule</h3>
+            <ul>
+              <li>
+                <a [routerLink]="['form/fancy-field']">FancyField</a>
+                - form field component designed to work with BaseModel's changed, discard, and validatation features
+              </li>
+              <li><a [routerLink]="['form/fancy-duration']">FancyDurationField</a> - a form field component for HH:MM:SS duration</li>
+              <li>
+                <a [routerLink]="['form/advancedconfirm']">AdvancedConfirm</a>
+                - a directive that prompts the user to confirm changes to "advanced" fields
+              </li>
+              <li><a [routerLink]="['form/button']">Fancy Button</a> - button for fancy forms</li>
+              <li><a [routerLink]="['form/capitalize']">Capitalize</a> - a pipe used to capitalize field names and validation messages</li>
+              <li><a [routerLink]="['form/padzero']">PadZero</a> - a pipe that left pads numbers with zeroes</li>
+            </ul>
+          </li>
         </ul>
       </section>
       <hr>

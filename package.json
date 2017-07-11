@@ -1,6 +1,6 @@
 {
   "name": "ngx-prx-styleguide",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "PRX Angular 2 style guide library",
   "keywords": [
     "PRX",
@@ -95,7 +95,7 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-sourcemaps": "^0.4.1",
     "rollup-plugin-uglify": "^1.0.1",
-    "rxjs": "^5.0.1",
+    "rxjs": "^5.1.0",
     "systemjs": "^0.19.40",
     "tslint": "^4.4.2",
     "typescript": "^2.2.1",
