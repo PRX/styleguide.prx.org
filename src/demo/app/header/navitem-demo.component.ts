@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'nav-demo',
+  selector: 'navitem-demo',
   template: `
     <section class="main demo">
       <h1>Nav Item</h1>

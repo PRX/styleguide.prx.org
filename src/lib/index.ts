@@ -13,6 +13,8 @@ export { BaseStorage } from './src/model/base.storage';
 
 export { DatepickerModule } from './src/datepicker/datepicker.module';
 
+export { FooterModule } from './src/footer/footer.module';
+
 export { FancyFormModule } from './src/fancy-form/fancy-form.module';
 
 export { HalModule } from './src/hal/hal.module';
@@ -33,3 +35,6 @@ export { ModalModule } from './src/modal/modal.module';
 export { ModalService } from './src/modal/modal.service';
 
 export { SpinnerModule } from './src/spinner/spinner.module';
+
+export { ToastrModule } from './src/toastr/toastr.module';
+export { ToastrService } from './src/toastr/toastr.service';

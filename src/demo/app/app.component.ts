@@ -15,6 +15,8 @@ import { Component } from '@angular/core';
         <router-outlet></router-outlet>
       </article>
     </main>
+    <prx-footer></prx-footer>
+    <prx-toastr></prx-toastr>
   `,
   styles: [`
     .profile-image-placeholder {

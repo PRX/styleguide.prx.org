@@ -12,6 +12,7 @@ import { FancyButtonDemoComponent } from './fancy-form/button-demo.component';
 import { FancyDurationDemoComponent } from './fancy-form/fancy-duration-demo.component';
 import { FancyFieldDemoComponent } from './fancy-form/fancy-field-demo.component';
 import { PadZeroDemoComponent } from './fancy-form/padzero-demo.component';
+import { FooterDemoComponent } from './footer/footer-demo.component';
 import { HalDemoComponent } from './hal/hal-demo.component';
 import { HeaderDemoComponent } from './header/header-demo.component';
 import { NavItemDemoComponent } from './header/navitem-demo.component';
@@ -25,11 +26,13 @@ import { ResetDemoComponent } from './global-css/reset-demo.component';
 import { ImageLoaderDemoComponent } from './image/image-loader-demo.component';
 import { ModalDemoComponent } from './modal/modal-demo.component';
 import { SpinnerDemoComponent } from './spinner/spinner-demo.component';
+import { ToastrDemoComponent } from './toastr/toastr-demo.component';
 
 export const routes: Routes = [
   { path: '',                     component: TocComponent },
   { path: 'auth',                 component: AuthDemoComponent },
   { path: 'charts',               component: ChartsDemoComponent },
+  { path: 'footer',               component: FooterDemoComponent },
   { path: 'form/advancedconfirm', component: AdvancedConfirmDemoComponent},
   { path: 'form/button',          component: FancyButtonDemoComponent },
   { path: 'form/datepicker',      component: DatepickerDemoComponent },
@@ -50,6 +53,7 @@ export const routes: Routes = [
   { path: 'image/imageloader',    component: ImageLoaderDemoComponent },
   { path: 'modal',                component: ModalDemoComponent },
   { path: 'model',                component: BaseModelDemoComponent },
+  { path: 'toastr',               component: ToastrDemoComponent },
   { path: 'util/spinner',         component: SpinnerDemoComponent }
 ];
 
@@ -63,9 +67,11 @@ export const routingComponents: any[] = [
   ChartsDemoComponent,
   DatepickerDemoComponent,
   AppDemoComponent,
+  ButtonDemoComponent,
   FancyButtonDemoComponent,
   FancyDurationDemoComponent,
   FancyFieldDemoComponent,
+  FooterDemoComponent,
   FormDemoComponent,
   LayoutDemoComponent,
   ModalDemoComponent,
@@ -77,7 +83,8 @@ export const routingComponents: any[] = [
   NavItemDemoComponent,
   NavUserDemoComponent,
   PadZeroDemoComponent,
-  SpinnerDemoComponent
+  SpinnerDemoComponent,
+  ToastrDemoComponent
 ];
 
 export const routingProviders: any[] = [];

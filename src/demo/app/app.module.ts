@@ -10,6 +10,7 @@ import {
   AuthModule,
   ChartsModule,
   DatepickerModule,
+  FooterModule,
   HalModule,
   HeaderModule,
   HeroModule,
@@ -17,28 +18,32 @@ import {
   ImageModule,
   ModalModule,
   ModalService,
-  SpinnerModule
+  SpinnerModule,
+  ToastrModule,
+  ToastrService
 } from 'ngx-prx-styleguide';
 
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     HttpModule,
     AuthModule,
     ChartsModule,
     DatepickerModule,
+    FooterModule,
     FancyFormModule,
-    FormsModule,
     HalModule,
     HeaderModule,
     HeroModule,
     ImageModule,
     ModalModule,
     SpinnerModule,
+    ToastrModule,
     routing
   ],
   declarations: [ AppComponent, routingComponents ],
-  providers:    [ routingProviders, ModalService ],
+  providers:    [ routingProviders, ModalService, ToastrService ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
