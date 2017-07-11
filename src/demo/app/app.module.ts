@@ -26,8 +26,8 @@ import {
 @NgModule({
   imports: [
     BrowserModule,
-    HttpModule,
     FormsModule,
+    HttpModule,
     AuthModule,
     ChartsModule,
     DatepickerModule,
