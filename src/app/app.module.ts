@@ -14,7 +14,10 @@ import {
   HalModule,
   HeaderModule,
   HeroModule,
+  FancyFormModule,
   ImageModule,
+  ModalModule,
+  ModalService,
   SpinnerModule,
   ToastrModule,
   ToastrService
@@ -24,21 +27,23 @@ import {
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     AuthModule,
     ChartsModule,
     DatepickerModule,
     FooterModule,
-    FormsModule,
+    FancyFormModule,
     HalModule,
     HeaderModule,
     HeroModule,
     ImageModule,
+    ModalModule,
     SpinnerModule,
     ToastrModule,
     routing
   ],
   declarations: [ AppComponent, routingComponents ],
-  providers:    [ routingProviders, ToastrService ],
+  providers:    [ routingProviders, ModalService, ToastrService ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

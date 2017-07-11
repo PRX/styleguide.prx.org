@@ -25,15 +25,22 @@ import { HalService, HalDoc } from 'ngx-prx-styleguide';
       <h1>Hero</h1>
       <p>
         The Hero Component shows a banner image, title, status text and navigation elements on individual resource pages
-        (for example: a page to take action an individual episode.) On scroll, the hero banner will scroll away but the 
+        (for example: a page to take action an individual episode.) On scroll, the hero banner will scroll away but the
         toolbar will be fixed. An example is shown above.
       </p>
       <p>
         Content projection is used to display information and action buttons within the hero.
-        The <code>.hero-title</code> selector shows title content, the <code>.hero-info</code> selector
-        shows status text, and the <code>.hero-actions</code> selector shows action buttons.
-        The parent component should expect to provide styles for the projected content.
+        Some deep style selectors are provided, but the parent component should also expect to provide styles for the projected content.
       </p>
+      <dl>
+        <dt>module</dt><dd><code>HeroModule</code></dd>
+        <dt>selector</dt><dd><code>prx-hero</code></dd>
+      </dl>
+      <ul>
+        <li><code>hero-title</code> selector shows title content</li>
+        <li><code>hero-info</code> selector shows status text</li>
+        <li><code>hero-actions</code> selector shows action buttons</li>
+      </ul>
       <aside>
         Usage <code>src</code>:
         <pre class="code">
