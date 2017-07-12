@@ -150,15 +150,6 @@ ul.social a {
   font-size: 20px;
   margin: 0 10px;
 }
-ul.social a[href*="newsletters"] {
-  color: #777;
-}
-ul.social a[href*="twitter"] {
-  color: #55acee;
-}
-ul.social a[href*="facebook"] {
-  color: #4c66a4;
-}
 @media screen and (min-width: 768px) {
   ul.social {
     padding-top: 30px;

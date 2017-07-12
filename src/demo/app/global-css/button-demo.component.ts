@@ -89,24 +89,26 @@ import {Component} from '@angular/core';
           <li>The button has <code>margin: @margin-base</code> of 10px but the pseudo <code>::before</code> element has no margins</li>
           <li>The font icon has <code>color: @blue</code> and on <code>:hover color: @blue-emphasis</code></li>
           <li>When disabled, the button has <code>color: @grey-silver</code></li>
-          <li>TODO: Show all the available icon examples. We do not yet have icon font support here.</li>
+          <li>For accessibility, the icon should be given alternative text for screen readers with <code>aria-label</code></li>
+          <li>See <a [routerLink]="['/global/icons']">icon reference</a> for available icons</li>
         </ul>
         <aside>
           Example:
-          <pre class="code">&lt;button class="btn-icon icon-cancel"&gt;Click Me&lt;/button&gt;</pre>
-          <button class="btn-icon" aria-hidden="true"><!-- TODO: need icon font support --></button>
+          <pre class="code">&lt;button class="btn-icon icon-cancel"&gt;&lt;/button&gt;</pre>
+          <button class="btn-icon icon-cancel" aria-label="Cancel"></button>
+          <pre class="code">&lt;button disabled class="btn-icon icon-cancel"&gt;&lt;/button&gt;</pre>
+          <button class="btn-icon icon-cancel" disabled aria-label="Cancel"></button>
         </aside>
-        <ul>
-          <li>Icon fonts can have several drawbacks. For this reason, SVG vector icons are typically recommended instead.</li>
-          <li>Icons are read by screen readers. Using the pseudo element limits use of <code>aria-hidden="true"</code></li>
-          <li>
-            If the font file doesn't load or the browser doesn't support <code>@font-face</code>, font icons will not appear correctly.
-            In this case, font icons may either appear as the default glyph or in some cases a different emoji because
-            some operating system default fonts define their own characters in the Unicode Private Use Areas used by font icons.
-          </li>
-          <li>Icon font solutions often rely on the Flash of Invisible Text to hide these fallbacks while the 
-            <code>@font-face</code> request is in flight</li>
-        </ul>
+        <h3>Button with Icon and Text</h3>
+        <p>
+          If you want to make a button with an icon and text. Use a <code>span</code> with the icon class inside the button.
+          The icon itself should be given <code>aria-hidden="true"</code> for screen reader accesibility.
+        </p>
+        <aside>
+          Example:
+          <pre class="code">&lt;button&gt;&lt;span class="icon-plus white" aria-hidden="true" &gt; New Series&lt;/button&gt;</pre>
+          <button><span class="icon-plus white" aria-hidden="true"></span> New Series</button>
+        </aside>
       </section>
   
       <section>

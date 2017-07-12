@@ -40,10 +40,10 @@ import { Component } from '@angular/core';
         </section>
       </div>
       <ul class="social">
-        <li><a href="//www.prx.org/newsletters" class="icon-mail-alt"></a></li>
-        <li><a href="https://www.twitter.com/prx" class="icon-twitter"></a></li>
+        <li><a href="//www.prx.org/newsletters" class="icon-mail-alt" title="Newsletter"></a></li>
+        <li><a href="https://www.twitter.com/prx" class="icon-twitter" title="Twitter"></a></li>
         <li>
-          <a href="https://www.facebook.com/publicradioexchange" class="icon-facebook-official"></a>
+          <a href="https://www.facebook.com/publicradioexchange" class="icon-facebook-official" title="Facebook"></a>
         </li>
       </ul>
     </footer>

@@ -21,6 +21,7 @@ import { HeroDemoComponent } from './hero/hero-demo.component';
 import { AppDemoComponent } from './global-css/app-demo.component';
 import { ButtonDemoComponent } from './global-css/button-demo.component';
 import { FormDemoComponent } from './global-css/form-demo.component';
+import { IconDemoComponent } from './global-css/icon-demo.component';
 import { LayoutDemoComponent } from './global-css/layout-demo.component';
 import { ResetDemoComponent } from './global-css/reset-demo.component';
 import { ImageLoaderDemoComponent } from './image/image-loader-demo.component';
@@ -42,6 +43,7 @@ export const routes: Routes = [
   { path: 'form/padzero',         component: PadZeroDemoComponent },
   { path: 'global/app',           component: AppDemoComponent },
   { path: 'global/button',        component: ButtonDemoComponent },
+  { path: 'global/icons',         component: IconDemoComponent },
   { path: 'global/form',          component: FormDemoComponent },
   { path: 'global/layout',        component: LayoutDemoComponent },
   { path: 'global/reset',         component: ResetDemoComponent },
@@ -79,6 +81,7 @@ export const routingComponents: any[] = [
   HalDemoComponent,
   HeaderDemoComponent,
   HeroDemoComponent,
+  IconDemoComponent,
   ImageLoaderDemoComponent,
   NavItemDemoComponent,
   NavUserDemoComponent,

@@ -50,6 +50,7 @@ import { Component } from '@angular/core';
           <li><a [routerLink]="['global/layout']">Layout</a> - base page layout structure</li>
           <li><a [routerLink]="['global/form']">Form</a> - form element styling</li>
           <li><a [routerLink]="['global/button']">Button</a> - global button styling</li>
+          <li><a [routerLink]="['global/icons']">Icons</a> - provided icon set</li>
         </ul>
       </section>
       <hr>
