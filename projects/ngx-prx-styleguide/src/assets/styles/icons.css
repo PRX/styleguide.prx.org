@@ -166,7 +166,9 @@ a:focus .icon-play, button:focus .icon-play, .icon-play:focus,
   background-image: url('../images/icons/ic_play_blue-emphasis.svg');
 }
 
-.icon-play.white {
+.icon-play.white, .icon-play.white:hover, .icon-play.white:focus
+a:hover .icon-play.white, button:hover .icon-play.white,
+a:focus .icon-play.white, button:focus .icon-play.white {
   background-image: url('../images/icons/ic_play_white.svg');
 }
 
@@ -184,7 +186,9 @@ a:focus .icon-plus, button:focus .icon-plus, .icon-plus:focus,
   background-image: url('../images/icons/ic_plus_blue-emphasis.svg');
 }
 
-.icon-plus.white {
+.icon-plus.white, .icon-plus.white:hover, .icon-plus.white:focus,
+a:hover .icon-plus.white, button:hover .icon-plus.white,
+a:focus .icon-plus.white, button:focus .icon-plus.white {
   background-image: url('../images/icons/ic_plus_white.svg');
 }
 
