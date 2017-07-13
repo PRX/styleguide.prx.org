@@ -36,5 +36,7 @@ export { ModalService } from './src/modal/modal.service';
 
 export { SpinnerModule } from './src/spinner/spinner.module';
 
+export { TabModule } from './src/tab/tab.module';
+
 export { ToastrModule } from './src/toastr/toastr.module';
 export { ToastrService } from './src/toastr/toastr.service';
