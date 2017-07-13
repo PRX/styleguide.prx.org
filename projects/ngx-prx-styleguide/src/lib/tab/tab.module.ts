@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { RouterModule } from '@angular/router';
+import { SpinnerModule } from '../spinner/spinner.module';
 import { TabComponent } from './tab.component';
 import { TabService } from './tab.service';
 
@@ -12,7 +13,9 @@ import { TabService } from './tab.service';
     TabComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    SpinnerModule
   ],
   providers: [TabService]
 })
