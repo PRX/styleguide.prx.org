@@ -268,7 +268,7 @@ function _processStyle(basefile, outfile, log) {
       } else {
         const urlOpts = [
           {
-            filter: '**/assets/images/*',
+            filter: '**/assets/images/**/*',
             url: 'inline'
           }
         ];
