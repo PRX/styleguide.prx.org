@@ -40,6 +40,7 @@ import { ModalService } from 'ngx-prx-styleguide';
         <button (click)="alert()">Alert</button>
         <button (click)="confirm()">Confirm</button>
         <button (click)="show()">Show</button>
+        <button (click)="closeButton()">Close Button</button>
       </aside>
     </section>
   `,
@@ -61,6 +62,14 @@ export class ModalDemoComponent {
       body: 'Detailed information goes here',
       primaryButton: 'We Cool',
       secondaryButton: 'Nope',
+      buttonCallback: () => {}
+    });
+  }
+
+  closeButton() {
+    this.modal.show({
+      title: 'Descriptive Title',
+      body: 'Detailed information goes here',
       buttonCallback: () => {}
     });
   }

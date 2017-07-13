@@ -82,8 +82,6 @@ button.btn-link.active {
 }
 
 button.btn-icon {
-  color: var(--blue);
-  background: none;
   font-size: 22px;
   padding: 0;
   margin: var(--margin-base);
@@ -92,11 +90,8 @@ button.btn-icon::before {
   margin-left: 0;
   margin-right: 0;
 }
-button.btn-icon:hover, button.btn-icon:focus, button.btn-icon:active {
-  color: var(--blue-emphasis);
-}
 button.btn-icon[disabled] {
-  color: var(--grey-silver);
+  background-color: transparent;
 }
 
 button.delete {
