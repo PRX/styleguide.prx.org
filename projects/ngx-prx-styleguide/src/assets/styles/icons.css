@@ -52,7 +52,9 @@ i.icon-up-dir, span.icon-up-dir {
   background-image: url('../images/icons/ic_calendar_blue.svg');
 }
 
-.icon-calendar:hover, .icon-calendar:focus, .icon-calendar.active {
+a:hover .icon-calendar, button:hover .icon-calendar, .icon-calendar:hover,
+a:focus .icon-calendar, button:focus .icon-calendar, .icon-calendar:focus,
+.icon-calendar.active {
   background-image: url('../images/icons/ic_calendar_blue-emphasis.svg');
 }
 
@@ -60,7 +62,9 @@ i.icon-up-dir, span.icon-up-dir {
   background-image: url('../images/icons/ic_calendar_grey-dove.svg');
 }
 
-.icon-calendar.charcoal, .icon-calendar.grey-dove:hover, .icon-calendar.grey-dove:focus {
+.icon-calendar.charcoal,
+a:hover .icon-calendar.grey-dove, button:hover .icon-calendar.grey-dove, .icon-calendar.grey-dove:hover,
+a:focus .icon-calendar.grey-dove, button:focus .icon-calendar.grey-dove, .icon-calendar.grey-dove:focus {
   background-image: url('../images/icons/ic_calendar_charcoal.svg');
 }
 
@@ -72,7 +76,9 @@ i.icon-up-dir, span.icon-up-dir {
   background-image: url('../images/icons/ic_cancel_blue.svg');
 }
 
-.icon-cancel:hover, .icon-cancel:focus, .icon-cancel.active {
+a:hover .icon-cancel, button:hover .icon-cancel, .icon-cancel:hover,
+a:focus .icon-cancel, button:focus .icon-cancel, .icon-cancel:focus,
+.icon-cancel.active {
   background-image: url('../images/icons/ic_cancel_blue-emphasis.svg');
 }
 
@@ -80,7 +86,9 @@ i.icon-up-dir, span.icon-up-dir {
   background-image: url('../images/icons/ic_cancel_grey-dove.svg');
 }
 
-.icon-cancel.charcoal, .icon-cancel.grey-dove:hover, .icon-cancel.grey-dove:focus {
+.icon-cancel.charcoal,
+a:hover .icon-cancel.grey-dove, button:hover .icon-cancel.grey-dove, .icon-cancel.grey-dove:hover,
+a:focus .icon-cancel.grey-dove, button:focus .icon-cancel.grey-dove, .icon-cancel.grey-dove:focus {
   background-image: url('../images/icons/ic_cancel_charcoal.svg');
 }
 
@@ -92,7 +100,9 @@ i.icon-up-dir, span.icon-up-dir {
   background-image: url('../images/icons/ic_cw_blue.svg');
 }
 
-.icon-cw:hover, .icon-cw:focus, .icon-cw.active {
+a:hover .icon-cw, button:hover .icon-cw, .icon-cw:hover,
+a:focus .icon-cw, button:focus .icon-cw, .icon-cw:focus,
+.icon-cw.active {
   background-image: url('../images/icons/ic_cw_blue-emphasis.svg');
 }
 
@@ -104,7 +114,9 @@ i.icon-up-dir, span.icon-up-dir {
   background-image: url('../images/icons/ic_down-dir_blue.svg');
 }
 
-.icon-down-dir:hover, .icon-down-dir:focus, .icon-down-dir.active {
+a:hover .icon-down-dir, button:hover .icon-down-dir, .icon-down-dir:hover,
+a:focus .icon-down-dir, button:focus .icon-down-dir, .icon-down-dir:focus,
+.icon-down-dir.active {
   background-image: url('../images/icons/ic_down-dir_blue-emphasis.svg');
 }
 
@@ -124,7 +136,9 @@ i.icon-up-dir, span.icon-up-dir {
   background-image: url('../images/icons/ic_menu_blue.svg');
 }
 
-.icon-menu:hover, .icon-menu:focus, .icon-menu.active {
+a:hover .icon-menu, button:hover .icon-menu, .icon-menu:hover,
+a:focus .icon-menu, button:focus .icon-menu, .icon-menu:focus,
+.icon-menu.active {
   background-image: url('../images/icons/ic_menu_blue-emphasis.svg');
 }
 
@@ -132,7 +146,9 @@ i.icon-up-dir, span.icon-up-dir {
   background-image: url('../images/icons/ic_menu_grey-dove.svg');
 }
 
-.icon-menu.charcoal, .icon-menu.grey-dove:hover, .icon-menu.grey-dove:focus {
+.icon-menu.charcoal,
+a:hover .icon-menu.grey-dove, button:hover .icon-menu.grey-dove, .icon-menu.grey-dove:hover,
+a:focus .icon-menu.grey-dove, button:focus .icon-menu.grey-dove, .icon-menu.grey-dove:focus {
   background-image: url('../images/icons/ic_menu_charcoal.svg');
 }
 
@@ -144,7 +160,9 @@ i.icon-up-dir, span.icon-up-dir {
   background-image: url('../images/icons/ic_play_blue.svg');
 }
 
-.icon-play:hover, .icon-play:focus, .icon-play.active {
+a:hover .icon-play, button:hover .icon-play, .icon-play:hover,
+a:focus .icon-play, button:focus .icon-play, .icon-play:focus,
+.icon-play.active {
   background-image: url('../images/icons/ic_play_blue-emphasis.svg');
 }
 
@@ -160,7 +178,9 @@ i.icon-up-dir, span.icon-up-dir {
   background-image: url('../images/icons/ic_plus_blue.svg');
 }
 
-.icon-plus:hover, .icon-plus:focus, .icon-plus.active {
+a:hover .icon-plus, button:hover .icon-plus, .icon-plus:hover,
+a:focus .icon-plus, button:focus .icon-plus, .icon-plus:focus,
+.icon-plus.active {
   background-image: url('../images/icons/ic_plus_blue-emphasis.svg');
 }
 
@@ -176,7 +196,9 @@ i.icon-up-dir, span.icon-up-dir {
   background-image: url('../images/icons/ic_right-dir_blue.svg');
 }
 
-.icon-right-dir:hover, .icon-right-dir:focus, .icon-right-dir.active {
+a:hover .icon-right-dir, button:hover .icon-right-dir, .icon-right-dir:hover,
+a:focus .icon-right-dir, button:focus .icon-right-dir, .icon-right-dir:focus,
+.icon-right-dir.active {
   background-image: url('../images/icons/ic_right-dir_blue-emphasis.svg');
 }
 
@@ -192,7 +214,9 @@ i.icon-up-dir, span.icon-up-dir {
   background-image: url('../images/icons/ic_up-dir_blue.svg');
 }
 
-.icon-up-dir:hover, .icon-up-dir:focus, .icon-up-dir.active {
+a:hover .icon-up-dir, button:hover .icon-up-dir, .icon-up-dir:hover,
+a:hover .icon-up-dir, button:hover .icon-up-dir, .icon-up-dir:focus,
+.icon-up-dir.active {
   background-image: url('../images/icons/ic_up-dir_blue-emphasis.svg');
 }
 
