@@ -10,7 +10,9 @@ import { ModalService, ModalState } from './modal.service';
     <div *ngIf="shown" class="modal"
       [style.height.px]="state.height" [style.marginTop.px]="-state.height / 2"
       [style.width.px]="state.width" [style.marginLeft.px]="-state.width / 2">
-      <button *ngIf="!state.primaryButton && !state.secondaryButton" class="close icon-cancel" (click)="close()"></button>
+      <button *ngIf="!state.primaryButton && !state.secondaryButton" 
+              class="close icon-cancel" (click)="close()" aria-label="Close">
+      </button>
       <header *ngIf="state.title">
         <h1>{{state.title}}</h1>
       </header>

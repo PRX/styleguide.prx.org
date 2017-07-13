@@ -1,5 +1,5 @@
 <span class="prx-datepicker">
   <input type="text" #datepicker [value]="formattedDate"
          [class.changed]="changed" [class.invalid]="invalid" (input)="setWhenValid($event.target.value)">
-  <span class="prx-datepicker-addon" (click)="datepicker.click()"><i class="icon-calendar"></i></span>
+  <span class="prx-datepicker-addon" (click)="datepicker.click()"><i class="icon-calendar grey-dove" aria-hidden="true"></i></span>
 </span>

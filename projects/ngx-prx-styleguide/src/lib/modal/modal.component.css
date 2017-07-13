@@ -34,15 +34,9 @@ button.close {
   position: absolute;
   top: 8px;
   right: 6px;
-  background: none;
-  color: #368aa2;
   font-size: 32px;
   margin: 0;
   padding: 0;
-}
-button.close:hover {
-  background: none;
-  color: #2b7187;
 }
 h1 {
   font-size: 24px;
