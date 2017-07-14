@@ -11,9 +11,9 @@ export const tabDemoRoutes: Routes = [
     path: 'tab',
     component: TabDemoComponent,
     children: [
-      { path: '',          component: TabContentFirstDemoComponent },
+      { path: '',       component: TabContentFirstDemoComponent },
       { path: 'second', component: TabContentSecondDemoComponent },
-      { path: 'third',   component: TabContentThirdDemoComponent }
+      { path: 'third',  component: TabContentThirdDemoComponent }
     ]
   }
 ];

@@ -10,12 +10,13 @@ import { SpinnerModule } from '../spinner/spinner.module';
   selector: 'test-component',
   template: `
     <prx-tabs [model]="testModel">
-    <nav>
-      <a [routerLink]="['foo']">Foo</a>
-      <a [routerLink]="['bar']">Bar</a>
-    </nav>
-    <h1>Extra stuff here</h1>
-  </prx-tabs>`
+      <nav>
+        <a [routerLink]="['foo']">Foo</a>
+        <a [routerLink]="['bar']">Bar</a>
+      </nav>
+      <h1>Extra stuff here</h1>
+    </prx-tabs>
+  `
 })
 class TestComponent {
   testModel: any;

@@ -55,6 +55,26 @@ import { DemoModel } from '../model/demo.model';
         </pre>
       </aside>
       <aside>
+        Routing Usage:
+        <p>
+          The tabs are typically child routes of the parent route. In this example, the parent route is 'tab', and the
+          child routes are '', 'second', and 'third'. The <code>routerLink</code> on the empty route as shown above points
+          back to the parent route. The non empty <code>routerLink</code>s can point just to the child since we're already
+          on the relative path or can use an array of the parent base route as the first element and the child route as the second. 
+        </p>
+        <pre class="code">
+          &#123;
+            path: 'tab',
+            component: ParentThatHasPrxTabsComponent,
+            children: [
+              &#123; path: '',        component: TabContentSubscribesToTabServiceComponent &#125;,
+              &#123; path: 'second',  component: TabContentSecondComponent &#125;,
+              &#123; path: 'third',   component: TabContentThirdComponent &#125;
+            ]
+          &#125;
+        </pre>
+      </aside>
+      <aside>
         Tab Service Usage:
         <p>
           The routed tab content component subscribes to the model from the service.
