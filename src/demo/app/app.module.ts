@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent }  from './app.component';
 import { routing, routingProviders, routingComponents } from './app.routing';
+import { tabDemoRouting, tabDemoComponents } from './tab/tab.routing';
 
 import {
   AuthModule,
@@ -19,6 +20,8 @@ import {
   ModalModule,
   ModalService,
   SpinnerModule,
+  TabModule,
+  TabService,
   ToastrModule,
   ToastrService
 } from 'ngx-prx-styleguide';
@@ -39,11 +42,13 @@ import {
     ImageModule,
     ModalModule,
     SpinnerModule,
+    TabModule,
     ToastrModule,
-    routing
+    routing,
+    tabDemoRouting
   ],
-  declarations: [ AppComponent, routingComponents ],
-  providers:    [ routingProviders, ModalService, ToastrService ],
+  declarations: [ AppComponent, routingComponents, tabDemoComponents ],
+  providers:    [ routingProviders, ModalService, TabService, ToastrService ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
