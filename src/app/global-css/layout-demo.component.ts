@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'reset-demo',
+  selector: 'layout-demo',
   template: `
     <section class="main demo">
       <h1>CSS layout</h1>
