@@ -29,6 +29,13 @@ import { Component } from '@angular/core';
               </li>
             </ul>
           </li>
+          <li><h3>TabModule</h3>
+            <ul>
+              <li>
+                <a [routerLink]="['tab']">TabComponent</a> - provides tabs for side navigation
+              </li>
+            </ul>
+          </li>
           <li><h3>FooterModule</h3>
             <ul>
               <li>
