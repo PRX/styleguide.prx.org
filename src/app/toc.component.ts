@@ -72,6 +72,7 @@ import { Component } from '@angular/core';
         <h2>PRX Services</h2>
         <ul>
           <li><a [routerLink]="['auth']">Auth</a> - authentication via id.prx.org</li>
+          <li><a [routerLink]="['guard']">Guard</a> - services to guard protected routes</li>
           <li><a [routerLink]="['hal']">Hal</a> - base classes for using PRX hal-based services</li>
           <li><a [routerLink]="['modal']">Modal</a> - service and corresponding component for displaying modals</li>
           <li><a [routerLink]="['toastr']">Toastr</a> - displays toast notifications</li>

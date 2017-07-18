@@ -18,6 +18,9 @@ import { HeaderDemoComponent } from './header/header-demo.component';
 import { NavItemDemoComponent } from './header/navitem-demo.component';
 import { NavUserDemoComponent } from './header/navuser-demo.component';
 import { HeroDemoComponent } from './hero/hero-demo.component';
+import { GuardDemoComponent } from './guard/guard-demo.component';
+import { GuardedRouteDemoComponent } from './guard/guarded-route-demo.component';
+import { LoginDemoComponent } from './guard/login-demo.component';
 import { AppDemoComponent } from './global-css/app-demo.component';
 import { ButtonDemoComponent } from './global-css/button-demo.component';
 import { FormDemoComponent } from './global-css/form-demo.component';
@@ -28,6 +31,8 @@ import { ImageLoaderDemoComponent } from './image/image-loader-demo.component';
 import { ModalDemoComponent } from './modal/modal-demo.component';
 import { SpinnerDemoComponent } from './spinner/spinner-demo.component';
 import { ToastrDemoComponent } from './toastr/toastr-demo.component';
+
+import { AuthGuard, DeactivateGuard, UnauthGuard } from 'ngx-prx-styleguide';
 
 export const routes: Routes = [
   { path: '',                     component: TocComponent },
@@ -41,6 +46,8 @@ export const routes: Routes = [
   { path: 'form/fancy-duration',  component: FancyDurationDemoComponent },
   { path: 'form/fancy-field',     component: FancyFieldDemoComponent },
   { path: 'form/padzero',         component: PadZeroDemoComponent },
+  { path: 'guard/guarded',        component: GuardedRouteDemoComponent, canActivate: [AuthGuard], canDeactivate: [DeactivateGuard] },
+  { path: 'guard',                component: GuardDemoComponent },
   { path: 'global/app',           component: AppDemoComponent },
   { path: 'global/button',        component: ButtonDemoComponent },
   { path: 'global/icons',         component: IconDemoComponent },
@@ -53,6 +60,7 @@ export const routes: Routes = [
   { path: 'header/navuser',       component: NavUserDemoComponent },
   { path: 'hero',                 component: HeroDemoComponent },
   { path: 'image/imageloader',    component: ImageLoaderDemoComponent },
+  { path: 'login',                component: LoginDemoComponent, canActivate: [UnauthGuard] },
   { path: 'modal',                component: ModalDemoComponent },
   { path: 'model',                component: BaseModelDemoComponent },
   { path: 'toastr',               component: ToastrDemoComponent },
@@ -75,7 +83,10 @@ export const routingComponents: any[] = [
   FancyFieldDemoComponent,
   FooterDemoComponent,
   FormDemoComponent,
+  GuardDemoComponent,
+  GuardedRouteDemoComponent,
   LayoutDemoComponent,
+  LoginDemoComponent,
   ModalDemoComponent,
   ResetDemoComponent,
   HalDemoComponent,
