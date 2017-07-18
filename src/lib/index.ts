@@ -17,6 +17,10 @@ export { FooterModule } from './src/footer/footer.module';
 
 export { FancyFormModule } from './src/fancy-form/fancy-form.module';
 
+export { AuthGuard } from './src/guard/auth.guard';
+export { DeactivateGuard } from './src/guard/deactivate.guard';
+export { UnauthGuard } from './src/guard/unauth.guard';
+
 export { HalModule } from './src/hal/hal.module';
 export { HalService } from './src/hal/hal.service';
 export { HalBaseService } from './src/hal/hal-base.service';
