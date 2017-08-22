@@ -5,11 +5,11 @@ import { TimeseriesChartModel } from '../models/timeseries-chart.model';
 
 @Component({
   moduleId: module.id,
-  selector: 'prx-stacked-bar-timeseries-chart',
+  selector: 'prx-stacked-area-timeseries-chart',
   template: `<div #chart></div>`,
   styleUrls: ['../chart.css']
 })
-export class StackedBarTimeseriesChartComponent implements OnChanges {
+export class StackedAreaTimeseriesChartComponent implements OnChanges {
   @Input() datasets: TimeseriesChartModel[];
   @Input() dateFormat: string;
 
@@ -22,6 +22,11 @@ export class StackedBarTimeseriesChartComponent implements OnChanges {
   groups: string[];
   colors: string[];
 
+  /* TODO:
+  So to get rid of those ugly ass huge points,
+   Array.from(document.getElementsByClassName('c3-circle')).map(function(circle) { circle.setAttribute('r','1.5')})
+   However, they come back on hover...
+   */
   ngOnChanges() {
     if (this.datasets) {
       this.xDateKeys = {};
@@ -42,7 +47,7 @@ export class StackedBarTimeseriesChartComponent implements OnChanges {
 
       let config = {
         data: {
-          type: 'bar',
+          type: 'area',
           xs: this.xDateKeys,
           xFormat: this.dateFormat ? this.dateFormat : '%Y-%m-%d',
           columns: [...this.xDates , ...this.columnData],
@@ -53,7 +58,7 @@ export class StackedBarTimeseriesChartComponent implements OnChanges {
           x: {
             type: 'timeseries',
             tick: {
-              format: this.dateFormat ? this.dateFormat : '%Y-%m-%d', // TODO playback dateFormat '%H:%M:%S',
+              format: this.dateFormat ? this.dateFormat : '%Y-%m-%d',
             }
           }
         },
