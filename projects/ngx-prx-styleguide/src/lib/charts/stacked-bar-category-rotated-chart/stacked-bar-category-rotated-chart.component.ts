@@ -1,10 +1,11 @@
-import { Component, Input, OnChanges, Inject, ElementRef } from '@angular/core';
+import { Component, Input, OnChanges, ElementRef, ViewChild } from '@angular/core';
 import * as C3 from 'c3';
 
 @Component({
   moduleId: module.id,
   selector: 'prx-stacked-bar-category-rotated',
-  template: ``
+  template: `<div #chart></div>`,
+  styleUrls: ['../chart.css']
 })
 export class StackedBarCategoryRotatedChartComponent implements OnChanges {
   @Input() groups: string[];
@@ -13,11 +14,7 @@ export class StackedBarCategoryRotatedChartComponent implements OnChanges {
   @Input() percent: boolean;
 
   chart: any;
-  el: ElementRef;
-
-  constructor(@Inject(ElementRef) elementRef: ElementRef) {
-    this.el = elementRef;
-  }
+  @ViewChild('chart') el: ElementRef;
 
   ngOnChanges() {
     if (this.data && this.groups && this.categories) {
