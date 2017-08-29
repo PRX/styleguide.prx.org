@@ -1,7 +1,5 @@
-export class IndexedChartModel {
-  constructor(
-    public data: number[],
-    public label: string,
-    public color: string,
-  ) {  }
+export interface IndexedChartModel {
+  data: number[];
+  label: string;
+  color: string;
 }

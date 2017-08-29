@@ -1,17 +1,23 @@
 import { Component, Input, OnChanges, ElementRef, ViewChild } from '@angular/core';
 import * as C3 from 'c3';
 
-import { TimeseriesChartModel } from '../models/timeseries-chart.model';
+import { TimeseriesChartModel } from './models/timeseries-chart.model';
+import { ChartType } from './models/chart-type.type';
+import { ChartOrder } from './models/chart-order.type';
 
 @Component({
   moduleId: module.id,
-  selector: 'prx-stacked-bar-timeseries-chart',
+  selector: 'prx-timeseries-chart',
   template: `<div #chart></div>`,
-  styleUrls: ['../chart.css']
+  styleUrls: ['./chart.css']
 })
-export class StackedBarTimeseriesChartComponent implements OnChanges {
+
+export class TimeseriesChartComponent implements OnChanges {
+  @Input() type: ChartType = 'line';
+  @Input() order: ChartOrder = null;
+  @Input() stacked = false;
   @Input() datasets: TimeseriesChartModel[];
-  @Input() dateFormat: string;
+  @Input() formatX: Function | string;
 
   chart: any;
   @ViewChild('chart') el: ElementRef;
@@ -23,7 +29,7 @@ export class StackedBarTimeseriesChartComponent implements OnChanges {
   colors: string[];
 
   ngOnChanges() {
-    if (this.datasets) {
+    if (this.datasets && this.datasets.length > 0) {
       this.xDateKeys = {};
       this.xDates = [];
       this.columnData = [];
@@ -36,26 +42,19 @@ export class StackedBarTimeseriesChartComponent implements OnChanges {
           ...(dataset.data.map(datum => datum.date))
         ]);
         this.columnData.push([dataset.label, ...(dataset.data.map(datum => datum.value))]);
-        this.groups.push(dataset.label);
         this.colors.push(dataset.color);
+
+        if (this.stacked) {
+          this.groups.push(dataset.label);
+        }
       });
 
       let config = {
         data: {
-          type: 'bar',
+          type: this.type,
           xs: this.xDateKeys,
-          xFormat: this.dateFormat ? this.dateFormat : '%Y-%m-%d',
           columns: [...this.xDates , ...this.columnData],
-          groups: [this.groups],
-          order: <string> null
-        },
-        axis: {
-          x: {
-            type: 'timeseries',
-            tick: {
-              format: this.dateFormat ? this.dateFormat : '%Y-%m-%d', // TODO playback dateFormat '%H:%M:%S',
-            }
-          }
+          order: <string> this.order
         },
         legend: {
           show: false
@@ -65,6 +64,22 @@ export class StackedBarTimeseriesChartComponent implements OnChanges {
         },
         bindto: this.el.nativeElement
       };
+
+      if (this.stacked) {
+        config.data['groups'] = [this.groups];
+      }
+
+      if (this.formatX) {
+        config.data['xFormat'] = this.formatX;
+        config['axis'] = {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: this.formatX,
+            }
+          }
+        };
+      }
 
       this.chart = C3.generate(config);
     }

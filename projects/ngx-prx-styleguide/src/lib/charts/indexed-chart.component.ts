@@ -1,14 +1,18 @@
 import { Component, Input, OnChanges, ElementRef, ViewChild } from '@angular/core';
 import * as C3 from 'c3';
-import { IndexedChartModel } from '../models/indexed-chart.model';
+import { IndexedChartModel } from './models/indexed-chart.model';
+import { ChartType } from './models/chart-type.type';
 
 @Component({
   moduleId: module.id,
-  selector: 'prx-line-indexed-chart',
+  selector: 'prx-indexed-chart',
   template: `<div #chart></div>`,
-  styleUrls: ['../chart.css']
+  styleUrls: ['./chart.css']
 })
-export class LineIndexedChartComponent implements OnChanges {
+
+export class IndexedChartComponent implements OnChanges {
+  @Input() type: ChartType = 'line';
+  @Input() formatX: Function;
   @Input() datasets: IndexedChartModel[];
 
   chart: any;
@@ -18,7 +22,7 @@ export class LineIndexedChartComponent implements OnChanges {
   colors: string[];
 
   ngOnChanges() {
-    if (this.datasets) {
+    if (this.datasets && this.datasets.length > 0) {
       this.columnData = [];
       this.colors = [];
 
@@ -29,18 +33,8 @@ export class LineIndexedChartComponent implements OnChanges {
 
       let config = {
         data: {
-          type: 'line',
-          columns: this.columnData,
-          order: <string> null
-        },
-        // TODO: format should be an Input()
-        axis: {
-          x: {
-            type: 'category',
-            tick: {
-              format: (s: any) => `day ${s}`
-            }
-          }
+          type: this.type,
+          columns: this.columnData
         },
         legend: {
           show: false
@@ -50,6 +44,17 @@ export class LineIndexedChartComponent implements OnChanges {
         },
         bindto: this.el.nativeElement
       };
+
+      if (this.formatX) {
+        config['axis'] = {
+          x: {
+            type: 'category',
+            tick: {
+              format: this.formatX
+            }
+          }
+        };
+      }
 
       this.chart = C3.generate(config);
     }
