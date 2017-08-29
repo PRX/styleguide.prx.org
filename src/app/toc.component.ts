@@ -64,7 +64,16 @@ import { Component } from '@angular/core';
       <section>
         <h2>Data Visualization</h2>
         <ul>
-          <li><a [routerLink]="['charts']">ChartsModule</a> - C3 chart components</li>
+          <li><h3>ChartsModule  - C3 chart components</h3>
+            <ul>
+              <li>
+                <a [routerLink]="['charts/indexed']">IndexedChartComponent</a> - charts categorized by their array indices
+              </li>
+              <li>
+                <a [routerLink]="['charts/timeseries']">TimeseriesChartComponent</a> - charts categorized by a consecutive timeseries
+              </li>
+            </ul>
+          </li>
         </ul>
       </section>
       <hr>
