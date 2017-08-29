@@ -18,16 +18,16 @@ export class TimepickerComponent implements OnChanges {
   @Input() changed: boolean;
 
   localTimezone: string;
-  options: string[] = [];
+  options: string[];
 
   ngOnChanges() {
     let dayGen = new Date(1970, 0, 1, 0, 0, 0, 0);
-    if (this.date) {
-      this.localTimezone = this.date.toString().match(/(\([A-Za-z\s].*\))/)[1];
-    } else {
-      this.localTimezone = dayGen.toString().match(/(\([A-Za-z\s].*\))/)[1];
+    let match = this.date ? this.date.toString().match(/(\([A-Za-z\s].*\))/) : dayGen.toString().match(/(\([A-Za-z\s].*\))/);
+    if (match && match.length > 0) {
+      this.localTimezone = match[1];
     }
     let day = dayGen.getDate();
+    this.options = [];
     while (dayGen.getDate() === day) {
       this.options.push(this.dateToHumanTime(dayGen));
       dayGen.setMinutes(dayGen.getMinutes() + 30);
