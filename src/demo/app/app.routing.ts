@@ -6,7 +6,8 @@ import { AdvancedConfirmDemoComponent } from './fancy-form/advanced-confirm-demo
 import { AuthDemoComponent } from './auth/auth-demo.component';
 import { BaseModelDemoComponent } from './model/base-model-demo.component';
 import { CapitalizeDemoComponent } from './fancy-form/capitalize-demo.component';
-import { ChartsDemoComponent } from './charts/charts-demo.component';
+import { ChartsIndexedDemoComponent } from './charts/charts-indexed-demo.component';
+import { ChartsTimeseriesDemoComponent } from './charts/charts-timeseries-demo.component';
 import { DatepickerDemoComponent } from './datepicker/datepicker-demo.component';
 import { FancyButtonDemoComponent } from './fancy-form/button-demo.component';
 import { FancyDurationDemoComponent } from './fancy-form/fancy-duration-demo.component';
@@ -37,7 +38,8 @@ import { AuthGuard, DeactivateGuard, UnauthGuard } from 'ngx-prx-styleguide';
 export const routes: Routes = [
   { path: '',                     component: TocComponent },
   { path: 'auth',                 component: AuthDemoComponent },
-  { path: 'charts',               component: ChartsDemoComponent },
+  { path: 'charts/indexed',       component: ChartsIndexedDemoComponent },
+  { path: 'charts/timeseries',    component: ChartsTimeseriesDemoComponent },
   { path: 'footer',               component: FooterDemoComponent },
   { path: 'form/advancedconfirm', component: AdvancedConfirmDemoComponent},
   { path: 'form/button',          component: FancyButtonDemoComponent },
@@ -74,7 +76,8 @@ export const routingComponents: any[] = [
   BaseModelDemoComponent,
   ButtonDemoComponent,
   CapitalizeDemoComponent,
-  ChartsDemoComponent,
+  ChartsIndexedDemoComponent,
+  ChartsTimeseriesDemoComponent,
   DatepickerDemoComponent,
   AppDemoComponent,
   ButtonDemoComponent,

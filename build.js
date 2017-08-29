@@ -27,7 +27,7 @@ const tempLibFolder = path.join(compilationFolder, 'lib');
 const es5OutputFolder = path.join(compilationFolder, 'lib-es5');
 const es2015OutputFolder = path.join(compilationFolder, 'lib-es2015');
 
-const es2015Chart = name => `${es2015OutputFolder}/src/charts/${name}-chart/${name}-chart.component.js`;
+const es2015Chart = name => `${es2015OutputFolder}/src/charts/${name}-chart.component.js`;
 const es2015DatePicker = path.join(es2015OutputFolder, 'src/datepicker/datepicker.component.js');
 
 return Promise.resolve()
@@ -55,11 +55,8 @@ return Promise.resolve()
   // Fix ES2015 import 'thing/index' instead of just 'thing' (TODO: whyyyyyyy????)
   .then(() => Promise.resolve()
     .then(() => _replaceText(es2015DatePicker, 'pikaday/index', 'pikaday'))
-    .then(() => _replaceText(es2015Chart('line-indexed'), 'c3/index', 'c3'))
-    .then(() => _replaceText(es2015Chart('pie'), 'c3/index', 'c3'))
-    .then(() => _replaceText(es2015Chart('stacked-bar-category-rotated'), 'c3/index', 'c3'))
-    .then(() => _replaceText(es2015Chart('stacked-bar-timeseries'), 'c3/index', 'c3'))
-    .then(() => _replaceText(es2015Chart('line-timeseries'), 'c3/index', 'c3'))
+    .then(() => _replaceText(es2015Chart('indexed'), 'c3/index', 'c3'))
+    .then(() => _replaceText(es2015Chart('timeseries'), 'c3/index', 'c3'))
     .then(() => console.log('Hack to fix ES2015 Pikaday succeeded.'))
   )
   // Bundle lib.
