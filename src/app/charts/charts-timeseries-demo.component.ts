@@ -49,7 +49,8 @@ import * as moment from 'moment';
       <aside>
         <h2>Bar Chart</h2>
         <p>
-
+          A Bar Chart is used to show comparisons among categories along a timeseries. Order on an indexed bar chart will be shown in the
+          order of the arrays given in <code>datasets</code>. Datasets can be sparsely populated in an unstacked time series bar chart.
         </p>
         Usage:
         <pre class="code">
@@ -69,7 +70,9 @@ import * as moment from 'moment';
       <aside>
         <h2>Stacked Bar Chart</h2>
         <p>
-
+          A stacked bar chart is a chart that uses bars to show comparisons between categories of data along a timeseries
+          with the ability to break down and compare parts of a whole. Each bar in the chart represents a whole, and segments
+          in the bar represent different parts or categories of that whole.
         </p>
         Usage:
         <pre class="code">
@@ -84,7 +87,8 @@ import * as moment from 'moment';
       <aside>
         <h2>Stacked Area Chart</h2>
         <p>
-
+          Area charts are used to convey an overall trend rather than emphasize individual data points. Stacked Area Charts
+          represent part-to-whole relationships and are useful for comparing multiple variables changing over an interval.
         </p>
         Usage:
         <pre class="code">
@@ -99,7 +103,7 @@ import * as moment from 'moment';
       <aside>
         <h2>Line Chart</h2>
         <p>
-
+          A Line Chart is often used to visualize a trend in data. Datasets can be sparsely populated in a time series line chart.
         </p>
         Usage:
         <pre class="code">
