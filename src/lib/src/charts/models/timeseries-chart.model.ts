@@ -1,9 +1,10 @@
-import { TimeseriesDatumModel } from './timeseries-datum.model';
+export interface TimeseriesDatumModel {
+  value: number;
+  date: number;
+}
 
-export class TimeseriesChartModel {
-  constructor(
-    public data: TimeseriesDatumModel[],
-    public label: string,
-    public color: string,
-  ) {  }
+export interface TimeseriesChartModel {
+  data: TimeseriesDatumModel[];
+  label: string;
+  color: string;
 }

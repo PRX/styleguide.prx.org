@@ -1,20 +1,7 @@
-:host {
-  display: flex;
+:host > div {
+  background-color: var(--white);
 }
 
-.chart-with-legend {
-  flex: 4;
-  height: 320px;
-}
-
-.legend {
-  flex: 1;
-  max-width: 20%;
-  height: 320px;
-}
-
-.legend-options {
-  max-width: 100%;
-  margin-right: 5px;
-  margin-bottom: 10px;
+:host >>> .c3-area {
+  opacity: 1;
 }

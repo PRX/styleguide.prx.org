@@ -1,8 +1,8 @@
-export { ChartsModule }         from './src/charts/charts.module';
-export { IndexedChartModel }    from './src/charts/models/indexed-chart.model';
-export { LegendItemModel }      from './src/charts/models/legend-item.model';
-export { TimeseriesChartModel } from './src/charts/models/timeseries-chart.model';
-export { TimeseriesDatumModel } from './src/charts/models/timeseries-datum.model';
+export { ChartsModule } from './src/charts/charts.module';
+export { ChartOrder } from './src/charts/models/chart-order.type';
+export { ChartType } from './src/charts/models/chart-type.type';
+export { IndexedChartModel } from './src/charts/models/indexed-chart.model';
+export { TimeseriesChartModel, TimeseriesDatumModel } from './src/charts/models/timeseries-chart.model';
 
 export { AuthModule } from './src/auth/auth.module';
 export { AuthService } from './src/auth/auth.service';
