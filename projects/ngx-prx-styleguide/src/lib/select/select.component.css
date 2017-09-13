@@ -23,27 +23,27 @@ ss-multiselect-dropdown >>> button.dropdown-toggle {
   width: 100%;
   text-align: left;
   outline: none;
-  padding: var(--padding-base);
+  padding: 10px;
   font-size: 99%;
   font-family: sans-serif;
-  border: 1px solid var(--white-fog);
-  color: var(--grey-suva);
-  background-color: var(--white);
+  border: 1px solid #e6e6e6;
+  color: #939393;
+  background-color: #fff;
   vertical-align: middle;
   margin: 0 10px 0 0;
 }
 ss-multiselect-dropdown >>> .open button.dropdown-toggle {
-  color: var(--black);
+  color: #000;
 }
 ss-multiselect-dropdown >>> .dropdown button.placeholder {
-  color: var(--grey-northernsky);
+  color: #bebebe;
 }
 ss-multiselect-dropdown >>> .open .dropdown-toggle::before, ss-multiselect-dropdown >>> .open .dropdown-toggle::after {
-  color: var(--black);
+  color: #000;
 }
 ss-multiselect-dropdown >>> .dropdown-toggle::before, ss-multiselect-dropdown >>> .dropdown-toggle::after {
   position: absolute;
-  right: var(--padding-base);
+  right: 10px;
   top: 50%;
   margin-top: -5px;
   width: 0;
