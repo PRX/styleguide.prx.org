@@ -71,6 +71,7 @@
     "@types/jasmine": "2.5.36",
     "@types/node": "^6.0.46",
     "@types/pikaday": "0.0.32",
+    "angular-2-dropdown-multiselect": "^1.5.4",
     "camelcase": "^4.0.0",
     "concurrently": "3.2.0",
     "core-js": "^2.4.1",
