@@ -39,6 +39,8 @@ export class FancyFieldComponent {
   set select(opts: any) { this.type = 'select'; this.setOptions(opts); }
   get select() { return this._select; }
   @Input()
+  set multiselect(opts: any) { this.type = 'multiselect'; this.setOptions(opts); }
+  @Input()
   set checkbox(any: any) { this.type = 'checkbox'; }
 
   // Field attributes
@@ -102,6 +104,14 @@ export class FancyFieldComponent {
       this.model.set(this.name, value);
     }
     this.onChange.emit(value);
+  }
+
+  get isSelect(): boolean {
+    return this.type === 'select' || this.type === 'multiselect';
+  }
+
+  get isSingleSelect(): boolean {
+    return this.type === 'select';
   }
 
   // options can either be ['val1'] or [['display1', 'val1']]

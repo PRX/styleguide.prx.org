@@ -76,13 +76,21 @@ describe('SelectComponent', () => {
     comp.testOutput = undefined;
     comp.testSelected = ['hello'];
     fix.detectChanges();
-    select.onSelectChange();
+    select.msSelectChanged();
     expect(comp.testOutput).toEqual(['hello']);
     comp.testOutput = undefined;
     comp.testSingle = true;
     fix.detectChanges();
-    select.onSelectChange();
+    select.msSelectChanged();
     expect(comp.testOutput).toEqual('hello');
+  });
+
+  it('always orders selections by options', () => {
+    comp.testOptions = [['one', 1], 2, ['three', 3], ['four', 4], 5];
+    comp.testSelected = [5, 2, 3];
+    fix.detectChanges();
+    select.msSelectChanged();
+    expect(comp.testOutput).toEqual([2, 3, 5]);
   });
 
 });

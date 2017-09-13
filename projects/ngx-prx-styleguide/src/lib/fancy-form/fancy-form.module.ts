@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ModalModule } from '../modal/modal.module';
+import { SelectModule } from '../select/select.module';
 import { SpinnerModule } from '../spinner/spinner.module';
 
 import { AdvancedConfirmDirective } from './advanced-confirm.directive';
@@ -35,6 +36,7 @@ import { PadZeroPipe } from './padzero.pipe';
     FormsModule,
     RouterModule,
     ModalModule,
+    SelectModule,
     SpinnerModule
   ],
   providers: []

@@ -13,7 +13,7 @@ const isset = (val: any): boolean => val !== false && val !== undefined;
       [texts]="msTexts"
       [settings]="msSettings"
       [(ngModel)]="selected"
-      (ngModelChange)="onSelectChange($event)"
+      (ngModelChange)="msSelectChanged()"
       [disabled]="disabled"
       >
     </ss-multiselect-dropdown>
@@ -30,7 +30,7 @@ export class SelectComponent {
   // translate selected to array
   _selected: any[] = [];
   @Input()
-  set selected(val: any | any[]) { this._selected = (val instanceof Array) ? val : [val]; }
+  set selected(val: any | any[]) { this._selected = (val instanceof Array) ? val.slice() : [val]; this.orderSelected(); }
   get selected() { return this._selected; }
 
   // boolean inputs, i.e. "<prx-select single>"
@@ -59,10 +59,10 @@ export class SelectComponent {
 
   get msOptions(): IMultiSelectOption[] {
     return this.options.map(opt => {
-      if (typeof opt === 'string') {
-        return {name: opt, id: opt};
-      } else {
+      if (opt instanceof Array) {
         return {name: opt[0], id: opt[1]};
+      } else {
+        return {name: opt, id: opt};
       }
     });
   }
@@ -100,12 +100,20 @@ export class SelectComponent {
     };
   }
 
-  onSelectChange() {
+  msSelectChanged() {
+    this.orderSelected();
     if (this.single) {
       this.onSelect.emit(this.selected[0]);
     } else {
       this.onSelect.emit(this.selected);
     }
+  }
+
+  private orderSelected() {
+    let ids = this.msOptions.map(o => o.id);
+    this._selected = this._selected.sort((a, b) => {
+      return ids.indexOf(a) - ids.indexOf(b);
+    });
   }
 
 }
