@@ -27,6 +27,7 @@
       'rxjs': 'npm:rxjs',
 
       // 3rd party libs
+      'angular-2-dropdown-multiselect': 'npm:angular-2-dropdown-multiselect/bundles/dropdown.umd.js',
       'c3': 'npm:c3',
       'd3': 'npm:d3',
       'moment': 'npm:moment',

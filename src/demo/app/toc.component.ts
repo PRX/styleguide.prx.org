@@ -10,11 +10,11 @@ import { Component } from '@angular/core';
           <li><h3>HeaderModule</h3>
             <ul>
               <li>
-                <a [routerLink]="['header']">HeaderComponent</a> - a fixed position navigation bar that shows 
+                <a [routerLink]="['header']">HeaderComponent</a> - a fixed position navigation bar that shows
                 a home logo link and supports other navigation items using projected content
               </li>
               <li>
-                <a [routerLink]="['header/navitem']">NavItemComponent</a> - provides a router link within the application 
+                <a [routerLink]="['header/navitem']">NavItemComponent</a> - provides a router link within the application
                 or an href link outside the application
               </li>
               <li>
@@ -50,7 +50,7 @@ import { Component } from '@angular/core';
         <h2>Global CSS</h2>
         <ul>
           <li>
-            <a [routerLink]="['global/reset']">Reset</a> - resets the styling of HTML elements to a consistent baseline 
+            <a [routerLink]="['global/reset']">Reset</a> - resets the styling of HTML elements to a consistent baseline
             to reset the browser's 'user agent' stylesheet
           </li>
           <li><a [routerLink]="['global/app']">App</a> - overall app consistent look and feel</li>
@@ -101,7 +101,7 @@ import { Component } from '@angular/core';
           <li><h3>DatepickerModule</h3>
             <ul>
               <li><a [routerLink]="['form/datepicker']">DatePicker</a> - Pikaday datepicker component</li>
-            </ul>         
+            </ul>
           </li>
           <li><h3>FancyFormModule</h3>
             <ul>
@@ -119,6 +119,11 @@ import { Component } from '@angular/core';
               <li><a [routerLink]="['form/padzero']">PadZero</a> - a pipe that left pads numbers with zeroes</li>
             </ul>
           </li>
+          <li><h3>SelectModule</h3>
+            <ul>
+              <li><a [routerLink]="['form/select']">Select</a> - styled single/multi selector</li>
+            </ul>
+          </li>
         </ul>
       </section>
       <hr>
@@ -126,7 +131,7 @@ import { Component } from '@angular/core';
         <h2>Images</h2>
         <ul>
           <li>
-            <a [routerLink]="['image/imageloader']">ImageLoader</a> - a component that attempts to load 
+            <a [routerLink]="['image/imageloader']">ImageLoader</a> - a component that attempts to load
             images and will show a placeholder if it doesn't exist or an error image if an error occurs.
           </li>
         </ul>
