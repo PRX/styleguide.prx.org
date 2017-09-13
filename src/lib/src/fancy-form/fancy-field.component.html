@@ -29,8 +29,8 @@
     <textarea *ngIf="type == 'textarea'" [id]="name"
       [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model"
       [(ngModel)]="model[name]" (ngModelChange)="doOnChange($event)"></textarea>
-    <prx-select *ngIf="isSelect" [single]="isSingleSelect" [selected]="model[name]"
-      [options]="select" (onSelect)="doOnChange($event)"
+    <prx-select *ngIf="isSelect" [single]="isSingleSelect" [id]="name"
+      [selected]="model[name]" [options]="select" (onSelect)="doOnChange($event)"
       [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model" prxEvent="change">
     </prx-select>
   </ng-container>
