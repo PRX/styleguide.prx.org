@@ -1,0 +1,157 @@
+:host {
+  display: inline-block;
+  min-width: 168px;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 1 215px;
+  -ms-flex: 1 1 215px;
+  flex: 1 1 215px;
+  flex-basis: 215px;
+  -ms-flex-preferred-size: 215px;
+  -webkit-flex-basis: 215px;
+}
+ss-multiselect-dropdown {
+  display: block;
+}
+ss-multiselect-dropdown >>> .dropdown, ss-multiselect-dropdown >>> .dropup {
+  width: 100%;
+  position: relative;
+}
+ss-multiselect-dropdown >>> button.dropdown-toggle {
+  width: 100%;
+  text-align: left;
+  outline: none;
+  padding: var(--padding-base);
+  font-size: 99%;
+  font-family: sans-serif;
+  border: 1px solid var(--white-fog);
+  color: var(--grey-suva);
+  background-color: var(--white);
+  vertical-align: middle;
+  margin: 0 10px 0 0;
+}
+ss-multiselect-dropdown >>> .open button.dropdown-toggle {
+  color: var(--black);
+}
+ss-multiselect-dropdown >>> .dropdown button.placeholder {
+  color: var(--grey-northernsky);
+}
+ss-multiselect-dropdown >>> .open .dropdown-toggle::before, ss-multiselect-dropdown >>> .open .dropdown-toggle::after {
+  color: var(--black);
+}
+ss-multiselect-dropdown >>> .dropdown-toggle::before, ss-multiselect-dropdown >>> .dropdown-toggle::after {
+  position: absolute;
+  right: var(--padding-base);
+  top: 50%;
+  margin-top: -5px;
+  width: 0;
+  height: 0;
+  margin-left: 3.4px;
+  vertical-align: 3.4px;
+  content: "";
+  border-bottom: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+ss-multiselect-dropdown >>> .dropdown-toggle::after {
+  margin-top: 1px;
+  border-bottom: 0 none;
+  border-top: 4px solid;
+}
+ss-multiselect-dropdown >>> .dropdown-toggle:empty::before, ss-multiselect-dropdown >>> .dropdown-toggle:empty::after {
+  margin-left: 0;
+}
+ss-multiselect-dropdown >>> .dropup .dropdown-menu {
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+ss-multiselect-dropdown >>> .dropup .dropdown-toggle::after {
+  border-top: 0;
+  border-bottom: 4px solid;
+}
+ss-multiselect-dropdown >>> .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 100px;
+  padding: 10px 0;
+  margin: 4px 0 0;
+  font-size: 99%;
+  font-family: sans-serif;
+  color: #000;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.175);
+}
+ss-multiselect-dropdown >>> .dropdown-divider {
+  height: 0;
+  margin: 5px 0;
+  overflow: hidden;
+  border-top: 1px solid #e9ecef;
+}
+ss-multiselect-dropdown >>> .dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 4px 10px;
+  clear: both;
+  font-weight: normal;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background: none;
+  border: 0;
+}
+ss-multiselect-dropdown >>> .dropdown-item:not(.check-control) a {
+  color: #212529;
+}
+ss-multiselect-dropdown >>> .dropdown-item:not(.check-control) a input[type=checkbox] {
+  z-index: 10;
+}
+ss-multiselect-dropdown >>> .dropdown-item:not(.check-control) a span {
+  z-index: 11;
+  padding-left: 20px;
+  margin-left: -18px;
+  cursor: pointer;
+}
+ss-multiselect-dropdown >>> .dropdown-item:focus, ss-multiselect-dropdown >>> .dropdown-item:hover {
+  color: #16181b;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+ss-multiselect-dropdown >>> .dropdown-item.active, ss-multiselect-dropdown >>> .dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+ss-multiselect-dropdown >>> .dropdown-item.disabled, ss-multiselect-dropdown >>> .dropdown-item:disabled {
+  color: #868e96;
+  background-color: transparent;
+  background-image: none;
+}
+ss-multiselect-dropdown >>> .dropdown-item.search .input-group-btn {
+  display: none;
+}
+ss-multiselect-dropdown >>> .show > a {
+  outline: 0;
+}
+ss-multiselect-dropdown >>> .dropdown-menu.show {
+  display: block;
+}
+ss-multiselect-dropdown >>> .dropdown-header {
+  display: block;
+  padding: 3px 10px;
+  margin-bottom: 0;
+  font-size: 99%;
+  font-family: sans-serif;
+  color: #868e96;
+  white-space: nowrap;
+}

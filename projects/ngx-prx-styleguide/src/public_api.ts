@@ -38,6 +38,8 @@ export { ImageModule } from './src/image/image.module';
 export { ModalModule } from './src/modal/modal.module';
 export { ModalService } from './src/modal/modal.service';
 
+export { SelectModule } from './src/select/select.module';
+
 export { SpinnerModule } from './src/spinner/spinner.module';
 
 export { TabModule } from './src/tab/tab.module';
