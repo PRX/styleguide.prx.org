@@ -6,12 +6,13 @@ export class DemoModel extends BaseModel {
   public complete: boolean;
   public count: number;
   public color: string;
+  public colors: string[];
   public script: string;
   public arrival: Date;
   public mustProvide: string;
   public duration: number;
 
-  SETABLE = ['foo', 'complete', 'count', 'color', 'script', 'arrival', 'mustProvide', 'duration'];
+  SETABLE = ['foo', 'complete', 'count', 'color', 'colors', 'script', 'arrival', 'mustProvide', 'duration'];
 
   VALIDATORS = {
     mustProvide: [REQUIRED(true)]
@@ -29,6 +30,7 @@ export class DemoModel extends BaseModel {
     this.complete = this.doc['complete'];
     this.count = +this.doc['count'];
     this.color = this.doc['color'];
+    this.colors = this.doc['colors'];
     this.script = this.doc['script'];
     this.arrival = this.doc['arrival'];
     this.mustProvide = this.doc['mustProvide'];
