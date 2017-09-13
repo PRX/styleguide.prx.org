@@ -223,6 +223,9 @@ export abstract class BaseModel {
     return this.setableFields(field, includeRelations).some(f => {
       if (this.RELATIONS.indexOf(f) > -1) {
         return this.getRelated(f).some(m => m.changed());
+      } else if (this.original[f] instanceof Array && this[f] instanceof Array) {
+        let a1 = this.original[f], a2 = this[f];
+        return a1.length !== a2.length || a1.some((val: any, idx: number) => val !== a2[idx]);
       } else {
         return this.original[f] !== this[f];
       }
