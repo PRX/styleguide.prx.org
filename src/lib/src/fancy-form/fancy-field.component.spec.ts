@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AdvancedConfirmDirective } from './advanced-confirm.directive';
 import { ModalService } from '../modal/modal.service';
@@ -103,7 +103,8 @@ describe('FancyFieldComponent', () => {
       declarations: [TestComponent, TestTextComponent, TestNumberComponent, TestTextareaComponent, TestSelectComponent,
         AdvancedConfirmDirective, CapitalizePipe, FancyFieldComponent],
       imports: [FormsModule],
-      providers: [{provide: ModalService}]
+      providers: [{provide: ModalService}],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents().then(() => {
 
       fix = TestBed.createComponent(TestComponent);
@@ -204,13 +205,11 @@ describe('FancyFieldComponent', () => {
     expect(deTextarea.query(By.css('textarea')).nativeElement.getAttribute('ng-reflect-model')).toEqual('some textarea value');
   });
 
-  it('can have a select with options', () => {
+  it('can have a select', () => {
     compSelect.model = {foobar: 'theselected', changed: () => false, invalid: () => false};
     compSelect.name = 'foobar';
-    compSelect.select = ['foo', 'bar', 'theselected'];
     fixSelect.detectChanges();
-    expect(deSelect.query(By.css('select')).nativeElement.getAttribute('id')).toEqual('foobar');
-    expect(deSelect.queryAll(By.css('option')).length).toEqual(3);
+    expect(deSelect.query(By.css('prx-select')).nativeElement.getAttribute('id')).toEqual('foobar');
   });
 
   it('indicates changed fields', () => {

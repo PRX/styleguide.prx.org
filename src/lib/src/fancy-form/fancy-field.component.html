@@ -29,18 +29,19 @@
     <textarea *ngIf="type == 'textarea'" [id]="name"
       [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model"
       [(ngModel)]="model[name]" (ngModelChange)="doOnChange($event)"></textarea>
-    <select *ngIf="type == 'select'" [id]="name"
-      [(ngModel)]="model[name]" (ngModelChange)="doOnChange($event)"
+    <prx-select *ngIf="isSelect" [single]="isSingleSelect" [id]="name"
+      [selected]="model[name]" [options]="select" (onSelect)="doOnChange($event)"
+      [searchable]="searchable" [selectall]="searchable && !isSingleSelect"
+      [selectnone]="searchable && !isSingleSelect"
       [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model" prxEvent="change">
-      <option *ngFor="let opt of select" [value]="opt[1]">{{opt[0]}}</option>
-    </select>
+    </prx-select>
   </ng-container>
 
   <ng-container *ngIf="!model">
     <input *ngIf="type == 'textinput'" [id]="name" type="text" disabled=true/>
     <input *ngIf="type == 'checkbox'" [id]="name" type="checkbox" disabled=true/>
     <textarea *ngIf="type == 'textarea'" [id]="name" disabled=true></textarea>
-    <select *ngIf="type == 'select'" [id]="name" disabled=true></select>
+    <prx-select *ngIf="isSelect" [id]="name" disabled=true></prx-select>
   </ng-container>
 
   <p *ngIf="formattedInvalid" class="error">{{formattedInvalid | capitalize}}</p>

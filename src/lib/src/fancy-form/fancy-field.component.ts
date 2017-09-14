@@ -39,12 +39,15 @@ export class FancyFieldComponent {
   set select(opts: any) { this.type = 'select'; this.setOptions(opts); }
   get select() { return this._select; }
   @Input()
+  set multiselect(opts: any) { this.type = 'multiselect'; this.setOptions(opts); }
+  @Input()
   set checkbox(any: any) { this.type = 'checkbox'; }
 
   // Field attributes
   _small = false;
   _inline = false;
   _required: boolean = null;
+  _searchable = false;
   @Input()
   set small(small: boolean) { this._small = isset(small); }
   get small() { return this._small; }
@@ -54,6 +57,9 @@ export class FancyFieldComponent {
   @Input()
   set required(required: boolean) { this._required = isset(required) ? true : null; }
   get required() { return this._required; }
+  @Input()
+  set searchable(searchable: boolean) { this._searchable = isset(searchable) ? true : null; }
+  get searchable() { return this._searchable; }
 
   get changedFieldName(): string {
     return (this.changed === undefined) ? this.name : this.changed;
@@ -102,6 +108,14 @@ export class FancyFieldComponent {
       this.model.set(this.name, value);
     }
     this.onChange.emit(value);
+  }
+
+  get isSelect(): boolean {
+    return this.type === 'select' || this.type === 'multiselect';
+  }
+
+  get isSingleSelect(): boolean {
+    return this.type === 'select';
   }
 
   // options can either be ['val1'] or [['display1', 'val1']]

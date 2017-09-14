@@ -303,6 +303,15 @@ describe('BaseModel', () => {
       expect(base.changed()).toBeTruthy();
     });
 
+    it('can compare array fields', () => {
+      base.SETABLE = ['one'];
+      base.original = {one: ['foo', 'bar']};
+      base.set('one', ['foo']);
+      expect(base.changed('one')).toBeTruthy();
+      base.set('one', ['foo', 'bar']);
+      expect(base.changed('one')).toBeFalsy();
+    });
+
     it('cascades to child relations', () => {
       base.RELATIONS = ['foo'];
       expect(base.changed('foo')).toBeFalsy();

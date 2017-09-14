@@ -30,6 +30,7 @@ import { LayoutDemoComponent } from './global-css/layout-demo.component';
 import { ResetDemoComponent } from './global-css/reset-demo.component';
 import { ImageLoaderDemoComponent } from './image/image-loader-demo.component';
 import { ModalDemoComponent } from './modal/modal-demo.component';
+import { SelectDemoComponent } from './select/select-demo.component';
 import { SpinnerDemoComponent } from './spinner/spinner-demo.component';
 import { ToastrDemoComponent } from './toastr/toastr-demo.component';
 
@@ -48,6 +49,7 @@ export const routes: Routes = [
   { path: 'form/fancy-duration',  component: FancyDurationDemoComponent },
   { path: 'form/fancy-field',     component: FancyFieldDemoComponent },
   { path: 'form/padzero',         component: PadZeroDemoComponent },
+  { path: 'form/select',          component: SelectDemoComponent },
   { path: 'guard/guarded',        component: GuardedRouteDemoComponent, canActivate: [AuthGuard], canDeactivate: [DeactivateGuard] },
   { path: 'guard',                component: GuardDemoComponent },
   { path: 'global/app',           component: AppDemoComponent },
@@ -100,6 +102,7 @@ export const routingComponents: any[] = [
   NavItemDemoComponent,
   NavUserDemoComponent,
   PadZeroDemoComponent,
+  SelectDemoComponent,
   SpinnerDemoComponent,
   ToastrDemoComponent
 ];
