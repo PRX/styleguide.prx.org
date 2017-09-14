@@ -30,7 +30,13 @@ ss-multiselect-dropdown >>> button.dropdown-toggle {
   color: #939393;
   background-color: #fff;
   vertical-align: middle;
-  margin: 0 10px 0 0;
+  margin: 0 12px 0 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 ss-multiselect-dropdown >>> .open button.dropdown-toggle {
   color: #000;
@@ -45,20 +51,16 @@ ss-multiselect-dropdown >>> .dropdown-toggle::before, ss-multiselect-dropdown >>
   position: absolute;
   right: 10px;
   top: 50%;
-  margin-top: -5px;
-  width: 0;
-  height: 0;
-  margin-left: 3.4px;
-  vertical-align: 3.4px;
+  margin-top: -6px;
   content: "";
-  border-bottom: 4px solid;
-  border-right: 4px solid transparent;
-  border-left: 4px solid transparent;
+  border-bottom: 5px solid;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
 }
 ss-multiselect-dropdown >>> .dropdown-toggle::after {
-  margin-top: 1px;
+  margin-top: 2px;
   border-bottom: 0 none;
-  border-top: 4px solid;
+  border-top: 5px solid;
 }
 ss-multiselect-dropdown >>> .dropdown-toggle:empty::before, ss-multiselect-dropdown >>> .dropdown-toggle:empty::after {
   margin-left: 0;
@@ -74,11 +76,11 @@ ss-multiselect-dropdown >>> .dropup .dropdown-toggle::after {
 ss-multiselect-dropdown >>> .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 4px;
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 100px;
+  min-width: 164px;
   padding: 10px 0;
   margin: 4px 0 0;
   font-size: 99%;
@@ -142,6 +144,9 @@ ss-multiselect-dropdown >>> .dropdown-item.disabled, ss-multiselect-dropdown >>>
   color: #868e96;
   background-color: transparent;
   background-image: none;
+}
+ss-multiselect-dropdown >>> .dropdown-item.search input {
+  width: 100%;
 }
 ss-multiselect-dropdown >>> .dropdown-item.search .input-group-btn {
   display: none;
