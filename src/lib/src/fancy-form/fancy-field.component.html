@@ -31,6 +31,8 @@
       [(ngModel)]="model[name]" (ngModelChange)="doOnChange($event)"></textarea>
     <prx-select *ngIf="isSelect" [single]="isSingleSelect" [id]="name"
       [selected]="model[name]" [options]="select" (onSelect)="doOnChange($event)"
+      [searchable]="searchable" [selectall]="searchable && !isSingleSelect"
+      [selectnone]="searchable && !isSingleSelect"
       [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model" prxEvent="change">
     </prx-select>
   </ng-container>
