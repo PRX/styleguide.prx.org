@@ -49,6 +49,10 @@ import { Component } from '@angular/core';
         Disabled Example:
         <div class="container blue">
           <prx-select disabled placeholder="Is disabled" [options]="options3"></prx-select>
+        </div><br/>
+        Huge number of options example:
+        <div class="container blue">
+          <prx-select searchable [options]="options4"></prx-select>
         </div>
       </aside>
     </section>
@@ -62,6 +66,7 @@ export class SelectDemoComponent {
   options2 = [['Display 1', 'val1'], ['Display 2', 'val2'], ['Display 3', 'val3']];
   options3 = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten',
     'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen', 'Twenty'];
+  options4 = Array.apply(null, Array(200)).map((x: any, i: number) => `Item #${i}`);
 
   selected1 = '';
   selected2 = '';
