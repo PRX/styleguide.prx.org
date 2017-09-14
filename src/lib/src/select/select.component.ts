@@ -77,7 +77,7 @@ export class SelectComponent {
       defaultTitle: this.placeholder,
       allSelected: 'All selected',
       searchEmptyResult: 'Nothing found...',
-      searchNoRenderText: 'Type in search box to see results...'
+      searchNoRenderText: 'Start typing to see results...'
     };
   }
 
@@ -96,7 +96,10 @@ export class SelectComponent {
       dynamicTitleMaxItems: this.titlemax,
       maxHeight: `${this.maxheight}px`,
       displayAllSelectedText: false,
-      closeOnClickOutside: true
+      closeOnClickOutside: true,
+      searchRenderLimit: this.searchable ? 25 : undefined,
+      searchRenderAfter: this.searchable ? 1 : undefined,
+      searchMaxLimit: this.searchable ? 25 : undefined
     };
   }
 
