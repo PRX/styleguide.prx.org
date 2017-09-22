@@ -55,4 +55,17 @@ describe('Component: DatepickerComponent', () => {
     fix.detectChanges();
     expect(de.query(By.css('input.invalid'))).not.toBeNull();
   }));
+
+  it('should update date picker to reflect changes to @Input() date', () => {
+    comp.date = new Date();
+    comp.date.setHours(0);
+    comp.date.setMinutes(0);
+    comp.date.setSeconds(0);
+    comp.date.setMilliseconds(0);
+    fix.detectChanges();
+    expect(comp.picker.getDate().valueOf()).toEqual(comp.date.valueOf());
+    comp.date = new Date(comp.date.valueOf() - 24 * 60 * 60 * 1000);
+    fix.detectChanges();
+    expect(comp.picker.getDate().valueOf()).toEqual(comp.date.valueOf());
+  });
 });
