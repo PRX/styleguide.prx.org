@@ -80,11 +80,14 @@ export class DatepickerComponent implements AfterViewInit {
   }
 
   setDate(date: Date) {
+    let newValue = new Date(date.valueOf());
     if (this._date) {
-      date.setHours(new Date(this._date.valueOf()).getHours());
-      date.setMinutes(new Date(this._date.valueOf()).getMinutes());
+      newValue.setHours(this._date.getHours());
+      newValue.setMinutes(this._date.getMinutes());
+      newValue.setSeconds(this._date.getSeconds());
+      newValue.setMilliseconds(this._date.getMilliseconds());
     }
-    this._date = new Date(date.valueOf());
-    this.dateChange.emit(date);
+    this._date = newValue;
+    this.dateChange.emit(newValue);
   }
 }
