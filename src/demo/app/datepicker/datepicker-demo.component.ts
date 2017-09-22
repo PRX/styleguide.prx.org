@@ -67,7 +67,7 @@ export class DatepickerDemoComponent {
     this.dateChanged = value.toString();
   }
 
-  timeTravel(howMuch: number, period: string) {
+  timeTravel(howMuch: any, period: any) {
     this.today = moment(this.today).add(howMuch, period).toDate();
   }
 
