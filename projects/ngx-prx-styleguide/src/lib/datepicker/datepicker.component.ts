@@ -22,7 +22,17 @@ const moment = (rawMoment as any).default ? (rawMoment as any).default : rawMome
 export class DatepickerComponent implements AfterViewInit {
   public static FORMAT = 'MM/DD/YYYY';
 
-  @Input() date: Date;
+  _date: Date;
+  @Input()
+  set date(value: Date) {
+    if (!this._date || (value && this._date.valueOf() !== value.valueOf())) {
+      this._date = new Date(value.valueOf());
+      if (this.picker) {
+        this.picker.setDate(this._date);
+      }
+    }
+  }
+  get date() { return this._date; }
   @Output() dateChange = new EventEmitter<Date>();
   @Input() changed: boolean;
   @ViewChild('datepicker') input: ElementRef;
@@ -30,8 +40,8 @@ export class DatepickerComponent implements AfterViewInit {
   picker: Pikaday;
 
   get formattedDate(): string {
-    if (this.date) {
-      return moment(this.date.valueOf()).format(DatepickerComponent.FORMAT);
+    if (this._date) {
+      return moment(this._date.valueOf()).format(DatepickerComponent.FORMAT);
     } else {
       return '';
     }
@@ -43,7 +53,8 @@ export class DatepickerComponent implements AfterViewInit {
   }
 
   setWhenValid(value: string) {
-    if (moment(value, DatepickerComponent.FORMAT, true).isValid()) {
+    if (moment(value, DatepickerComponent.FORMAT, true).isValid() &&
+      (!this._date || this.picker.getDate().valueOf() !== this._date.valueOf())) {
       let date = new Date(value);
       this.picker.setDate(date);
       this.setDate(date);
@@ -56,21 +67,24 @@ export class DatepickerComponent implements AfterViewInit {
       format: DatepickerComponent.FORMAT,
       theme: 'triangle-theme',
       onSelect: () => {
-        this.setDate(this.picker.getDate());
+        if (!this._date || this._date.valueOf() !== this.picker.getDate().valueOf()) {
+          this.setDate(this.picker.getDate());
+        }
       }
     };
-    if (this.date) {
-      options['defaultDate'] = new Date(this.date.valueOf());
+    if (this._date) {
+      options['defaultDate'] = new Date(this._date.valueOf());
       options['setDefaultDate'] = true;
     }
     this.picker = new Pikaday(options);
   }
 
   setDate(date: Date) {
-    if (this.date) {
-      date.setHours(new Date(this.date.valueOf()).getHours());
-      date.setMinutes(new Date(this.date.valueOf()).getMinutes());
+    if (this._date) {
+      date.setHours(new Date(this._date.valueOf()).getHours());
+      date.setMinutes(new Date(this._date.valueOf()).getMinutes());
     }
+    this._date = new Date(date.valueOf());
     this.dateChange.emit(date);
   }
 }
