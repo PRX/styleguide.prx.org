@@ -6,11 +6,12 @@ import { TimepickerComponent } from './timepicker.component';
 
 @Component({
   selector: 'test-component',
-  template: `<prx-timepicker #timepicker [date]="date" (timeChange)="timeChange($event)"></prx-timepicker>`
+  template: `<prx-timepicker #timepicker [date]="date" [UTC]="UTC" (timeChange)="timeChange($event)"></prx-timepicker>`
 })
 class TestComponent {
   @ViewChild('timepicker') timepicker: TimepickerComponent;
   date: Date;
+  UTC = false;
   timeChange(date: Date) {
     this.date = date;
   }
@@ -66,5 +67,12 @@ describe('Component: TimepickerComponent', () => {
     let localTimezone = comp.date.toString().match(/(\([A-Za-z\s].*\))/)[1];
     fix.detectChanges();
     expect(comp.timepicker.options[0].indexOf(localTimezone)).toBeGreaterThan(-1);
+  });
+
+  it('should show UTC time when picker is in UTC format', () => {
+    comp.date = new Date('Sun Jan 01 2017 00:00:00 GMT');
+    comp.UTC = true;
+    fix.detectChanges();
+    expect(comp.timepicker.time).toEqual('12:00am (GMT)');
   });
 });
