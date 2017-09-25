@@ -35,7 +35,7 @@ export class TimepickerComponent implements OnChanges {
   }
 
   roundMinutes(value: number): string {
-    return value > 0 && value <= 30 ? '30' : '00';
+    return value >= 0 && value < 30 ? '00' : '30';
   }
 
   convert24to12Hours(hours: number): number {
