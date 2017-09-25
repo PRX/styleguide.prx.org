@@ -25,8 +25,7 @@ export class DatepickerComponent implements AfterViewInit {
   _date: Date;
   @Input()
   set date(value: Date) {
-    if (value && (
-      !this._date || (value && this._date.valueOf() !== value.valueOf()))) {
+    if (this.dateDefinedAndChanged(value)) {
       this._date = new Date(value.valueOf());
       if (this.picker) {
         // if UTC, adjust picker date accordingly
@@ -42,6 +41,9 @@ export class DatepickerComponent implements AfterViewInit {
   @ViewChild('datepicker') input: ElementRef;
 
   picker: Pikaday;
+
+
+
 
   get formattedDate(): string {
     if (this._date && this.UTC) {
