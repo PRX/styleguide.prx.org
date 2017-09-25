@@ -85,4 +85,11 @@ describe('Component: DatepickerComponent', () => {
     expect(comp.date.getSeconds()).toEqual(seconds);
     expect(comp.date.getMilliseconds()).toEqual(milliseconds);
   });
+
+  it('should support displaying UTC date', () => {
+    comp.date = new Date(Date.UTC(2017, 0, 1, 0, 0, 0));
+    comp.UTC = true;
+    fix.detectChanges();
+    expect(comp.picker.getDate().getDate()).toEqual(1);
+  });
 });
