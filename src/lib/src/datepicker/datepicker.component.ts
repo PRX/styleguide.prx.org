@@ -25,7 +25,8 @@ export class DatepickerComponent implements AfterViewInit {
   _date: Date;
   @Input()
   set date(value: Date) {
-    if (!this._date || (value && this._date.valueOf() !== value.valueOf())) {
+    if (value && (
+      !this._date || (value && this._date.valueOf() !== value.valueOf()))) {
       this._date = new Date(value.valueOf());
       if (this.picker) {
         // if UTC, adjust picker date accordingly
