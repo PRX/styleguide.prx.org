@@ -55,4 +55,34 @@ describe('Component: DatepickerComponent', () => {
     fix.detectChanges();
     expect(de.query(By.css('input.invalid'))).not.toBeNull();
   }));
+
+  it('should update date picker to reflect changes to @Input() date', () => {
+    comp.date = new Date();
+    comp.date.setHours(0);
+    comp.date.setMinutes(0);
+    comp.date.setSeconds(0);
+    comp.date.setMilliseconds(0);
+    fix.detectChanges();
+    expect(comp.picker.getDate().valueOf()).toEqual(comp.date.valueOf());
+    comp.date = new Date(comp.date.valueOf() - 24 * 60 * 60 * 1000);
+    fix.detectChanges();
+    expect(comp.picker.getDate().valueOf()).toEqual(comp.date.valueOf());
+  });
+
+  it('should preserve time portion of date value', () => {
+    comp.date = new Date();
+    fix.detectChanges();
+    const hours = comp.date.getHours();
+    const minutes = comp.date.getMinutes();
+    const seconds = comp.date.getSeconds();
+    const milliseconds = comp.date.getMilliseconds();
+    comp.setDate(new Date(2017, 1, 17, 0, 0, 0));
+    expect(comp.date.getFullYear()).toEqual(2017);
+    expect(comp.date.getMonth()).toEqual(1);
+    expect(comp.date.getDate()).toEqual(17);
+    expect(comp.date.getHours()).toEqual(hours);
+    expect(comp.date.getMinutes()).toEqual(minutes);
+    expect(comp.date.getSeconds()).toEqual(seconds);
+    expect(comp.date.getMilliseconds()).toEqual(milliseconds);
+  });
 });
