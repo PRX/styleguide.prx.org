@@ -43,7 +43,7 @@ export class DatepickerComponent implements AfterViewInit {
   picker: Pikaday;
 
   dateDefinedAndChanged(value: Date) {
-    return value && (!this.date || this._date.valueOf() !== value.valueOf());
+    return value && (!this._date || this._date.valueOf() !== value.valueOf());
   }
 
   get formattedDate(): string {
