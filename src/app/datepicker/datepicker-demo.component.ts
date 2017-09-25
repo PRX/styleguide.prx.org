@@ -53,6 +53,18 @@ import * as moment from 'moment';
         <prx-timepicker [date]="today" (timeChange)="onDateChange($event)"></prx-timepicker>
         <span class="changed" *ngIf="dateChanged">Changed: {{dateChanged}}</span>
       </aside>
+      <aside>
+        <p>With UTC dates</p>
+        Usage:
+        <pre class="code">
+          &lt;prx-datepicker [date]="utcDate" UTC="true" (dateChange)="onUTCDateChange($event)"&gt;&lt;/prx-datepicker&gt;
+          &lt;prx-timepicker [date]="utcDate" UTC="true" (timeChange)="onUTCDateChange($event)"&gt;&lt;/prx-timepicker&gt;
+        </pre>
+        Examples:
+        <prx-datepicker [date]="utcDate" UTC="true" (dateChange)="onUTCDateChange($event)"></prx-datepicker>
+        <prx-timepicker [date]="utcDate" UTC="true" (timeChange)="onUTCDateChange($event)"></prx-timepicker>
+        <span class="changed" *ngIf="utcDateChanged">Changed: {{utcDateChanged}}</span>
+      </aside>
     </section>
   `,
   styles: ['.changed { padding-left: 20px; font-style: italic;}']
@@ -61,10 +73,17 @@ export class DatepickerDemoComponent {
 
   today = new Date();
   dateChanged: string;
+  utcDate = new Date(Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate(), 23, 59, 59));
+  utcDateChanged: string;
 
   onDateChange(value: Date) {
     this.today = value;
     this.dateChanged = value.toString();
+  }
+
+  onUTCDateChange(value: Date) {
+    this.utcDate = value;
+    this.utcDateChanged = value.toUTCString();
   }
 
   timeTravel(howMuch: any, period: any) {
