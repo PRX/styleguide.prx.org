@@ -32,6 +32,7 @@ import { ImageLoaderDemoComponent } from './image/image-loader-demo.component';
 import { ModalDemoComponent } from './modal/modal-demo.component';
 import { SelectDemoComponent } from './select/select-demo.component';
 import { SpinnerDemoComponent } from './spinner/spinner-demo.component';
+import { OverlaySpinnerDemoComponent } from './spinner/overlay-spinner-demo.component';
 import { ToastrDemoComponent } from './toastr/toastr-demo.component';
 
 import { AuthGuard, DeactivateGuard, UnauthGuard } from 'ngx-prx-styleguide';
@@ -68,6 +69,7 @@ export const routes: Routes = [
   { path: 'modal',                component: ModalDemoComponent },
   { path: 'model',                component: BaseModelDemoComponent },
   { path: 'toastr',               component: ToastrDemoComponent },
+  { path: 'util/overlay-spinner', component: OverlaySpinnerDemoComponent },
   { path: 'util/spinner',         component: SpinnerDemoComponent }
 ];
 
@@ -101,6 +103,7 @@ export const routingComponents: any[] = [
   ImageLoaderDemoComponent,
   NavItemDemoComponent,
   NavUserDemoComponent,
+  OverlaySpinnerDemoComponent,
   PadZeroDemoComponent,
   SelectDemoComponent,
   SpinnerDemoComponent,
