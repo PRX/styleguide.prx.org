@@ -10,7 +10,6 @@ import { Component } from '@angular/core';
       </prx-navuser>
     </prx-header>
     <prx-modal></prx-modal>
-    <prx-overlay-spinner></prx-overlay-spinner>
     <main>
       <article>
         <router-outlet></router-outlet>

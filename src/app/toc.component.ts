@@ -84,8 +84,6 @@ import { Component } from '@angular/core';
           <li><a [routerLink]="['guard']">Guard</a> - services to guard protected routes</li>
           <li><a [routerLink]="['hal']">Hal</a> - base classes for using PRX hal-based services</li>
           <li><a [routerLink]="['modal']">Modal</a> - service and corresponding component for displaying modals</li>
-          <li><a [routerLink]="['util/overlay-spinner']">Overlay Spinner</a> - service and corresponding component for
-          displaying spinner and overlay over entire application</li>
           <li><a [routerLink]="['toastr']">Toastr</a> - displays toast notifications</li>
         </ul>
       </section>
@@ -142,10 +140,6 @@ import { Component } from '@angular/core';
       <section>
         <h2>Utilities</h2>
         <ul>
-          <li>
-            <a [routerLink]="['util/overlay-spinner']">Overlay Spinner</a> - service and corresponding component for 
-            displaying spinner and overlay over entire application
-          </li>
           <li>
             <a [routerLink]="['util/spinner']">Spinner</a> - a component that shows a spinning animation to indicate loading status.
           </li>
