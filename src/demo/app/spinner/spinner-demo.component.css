@@ -1,5 +1,9 @@
 .container {
-  position: relative; width: 40px; height: 40px
+  position: relative;
+}
+.fixed-size {
+  width: 100px;
+  height: 100px
 }
 .blue {
   background-color: var(--blue);

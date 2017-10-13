@@ -4,7 +4,12 @@ import { Component, Input, OnDestroy } from '@angular/core';
   moduleId: module.id,
   selector: 'prx-spinner',
   styleUrls: ['spinner.component.css'],
-  template: `<div *ngIf="isSpinning" class="spinner" [class.inverse]="inverse"></div>`
+  template: `
+    <div *ngIf="isSpinning" [class.overlay]="overlay" [class.overlay-fixed]="overlayFixed">
+      <span class="loading" *ngIf="loadingMessage">{{loadingMessage}}</span>
+      <div class="spinner" [class.inverse]="inverse"></div>
+    </div>
+  `
 })
 
 export class SpinnerComponent implements OnDestroy {
@@ -15,6 +20,9 @@ export class SpinnerComponent implements OnDestroy {
 
   @Input() public inverse = false;
   @Input() public delay = 300;
+  @Input() public overlay = false;
+  @Input() public overlayFixed = false;
+  @Input() public loadingMessage: string;
 
   @Input() public set spinning(value: boolean) {
     if (!value) {

@@ -40,7 +40,6 @@ export { ModalService } from './src/modal/modal.service';
 
 export { SelectModule } from './src/select/select.module';
 
-export { OverlaySpinnerService } from './src/spinner/overlay.spinner.service';
 export { SpinnerModule } from './src/spinner/spinner.module';
 
 export { TabModule } from './src/tab/tab.module';

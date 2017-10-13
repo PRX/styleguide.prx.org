@@ -65,3 +65,24 @@
   animation-iteration-count: infinite;
   animation-play-state: running;
 }
+.overlay {
+  position: absolute;
+  z-index: 998;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.overlay-fixed {
+  position: fixed;
+}
+.loading {
+  position: absolute;
+  top: 50%;
+  margin-top: -40px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
