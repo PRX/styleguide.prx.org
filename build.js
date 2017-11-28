@@ -97,6 +97,7 @@ return Promise.resolve()
         'rxjs/add/operator/share': 'Rx.Observable',
         'rxjs/add/operator/skip': 'Rx.Observable',
         'rxjs/add/operator/toArray': 'Rx.Observable',
+        'rxjs/add/operator/takeUntil': 'Rx.Observable',
         'c3': 'C3',
         'moment': 'moment',
         'pikaday': 'Pikaday'
@@ -127,6 +128,7 @@ return Promise.resolve()
         'rxjs/add/operator/share',
         'rxjs/add/operator/skip',
         'rxjs/add/operator/toArray',
+        'rxjs/add/operator/takeUntil',
         'c3',
         'moment',
         'pikaday'

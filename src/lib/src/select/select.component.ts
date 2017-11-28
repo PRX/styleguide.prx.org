@@ -97,9 +97,9 @@ export class SelectComponent {
       maxHeight: `${this.maxheight}px`,
       displayAllSelectedText: false,
       closeOnClickOutside: true,
-      searchRenderLimit: this.searchable ? 25 : undefined,
+      searchRenderLimit: this.searchable ? 100 : undefined,
       searchRenderAfter: this.searchable ? 1 : undefined,
-      searchMaxLimit: this.searchable ? 25 : undefined
+      searchMaxLimit: this.searchable ? 100 : undefined
     };
   }
 
