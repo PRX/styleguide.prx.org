@@ -10,6 +10,7 @@ import { SpinnerModule } from '../spinner/spinner.module';
 import { AdvancedConfirmDirective } from './advanced-confirm.directive';
 import { ButtonComponent } from './button.component';
 import { CapitalizePipe } from './capitalize.pipe';
+import { CheckboxComponent } from './checkbox.component';
 import { FancyDurationComponent } from './fancy-duration.component';
 import { FancyFieldComponent } from './fancy-field.component';
 import { PadZeroPipe } from './padzero.pipe';
@@ -19,6 +20,7 @@ import { PadZeroPipe } from './padzero.pipe';
     AdvancedConfirmDirective,
     ButtonComponent,
     CapitalizePipe,
+    CheckboxComponent,
     FancyDurationComponent,
     FancyFieldComponent,
     PadZeroPipe
@@ -27,6 +29,7 @@ import { PadZeroPipe } from './padzero.pipe';
     AdvancedConfirmDirective,
     ButtonComponent,
     CapitalizePipe,
+    CheckboxComponent,
     FancyDurationComponent,
     FancyFieldComponent,
     PadZeroPipe
