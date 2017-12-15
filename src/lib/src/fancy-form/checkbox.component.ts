@@ -22,6 +22,7 @@ export class CheckboxComponent {
 
   @Input() checked = false;
   @Output() checkedChange = new EventEmitter<boolean>();
+  @Output() change = new EventEmitter<boolean>();
 
   @Input() disabled: any;
   @Input() color = '#f59f51';
@@ -33,6 +34,7 @@ export class CheckboxComponent {
       this.mousedown = false;
       this.checked = !this.checked;
       this.checkedChange.emit(this.checked);
+      this.change.emit(this.checked);
     }
   }
 
