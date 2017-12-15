@@ -16,20 +16,20 @@ import { Component } from '@angular/core';
       </dl>
       <ul>
         <li>
-          <code>@Input() checked: boolean</code>
-          - set checked state
-        </li>
-        <li>
-          <code>@Output() checked: boolean</code>
-          - get checked state
-        </li>
-        <li>
           <code>@Input() disabled: boolean</code>
           - disable the form input
         </li>
         <li>
           <code>@Input() color: string</code>
           - set the hex color of the checkbox (defaults to PRX-orange #f59f51)
+        </li>
+        <li>
+          <code>@Input/Output() checked: boolean</code>
+          - 2 way data binding to checkbox state
+        </li>
+        <li>
+          <code>@Output() change: boolean</code>
+          - Supplemantary output event for changes
         </li>
       </ul>
       <aside>
@@ -64,12 +64,16 @@ import { Component } from '@angular/core';
 
         Usage:
         <pre class="code">
-          &lt;prx-checkbox [(checked)]="isChecked2"&gt;&lt;/prx-checkbox&gt;
+          &lt;prx-checkbox (change)="checkedChanged($event)"&gt;&lt;/prx-checkbox&gt;
         </pre>
 
         <p>Example:</p>
-        <p><prx-checkbox [(checked)]="isChecked2"></prx-checkbox></p>
-        <p>Am I checked? <b *ngIf="isChecked2">YES</b><b *ngIf="!isChecked2">NO</b></p>
+        <p><prx-checkbox (change)="checkedChanged($event)"></prx-checkbox></p>
+        <p>Am I checked?
+          <b *ngIf="check2Undefined">Unknown</b>
+          <b *ngIf="!check2Undefined && check2">YES</b>
+          <b *ngIf="!check2Undefined && !check2">NO</b>
+        </p>
       </aside>
     </section>
   `
@@ -77,7 +81,14 @@ import { Component } from '@angular/core';
 
 export class CheckboxDemoComponent {
   isChecked = true;
-  isChecked2 = true;
   isDisabled = 0;
   myColor = '#f59f51';
+
+  check2Undefined = true;
+  check2: boolean;
+
+  checkedChanged(val: boolean) {
+    this.check2Undefined = false;
+    this.check2 = val;
+  }
 }
