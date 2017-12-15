@@ -116,6 +116,7 @@ import { Component } from '@angular/core';
               </li>
               <li><a [routerLink]="['form/button']">Fancy Button</a> - button for fancy forms</li>
               <li><a [routerLink]="['form/capitalize']">Capitalize</a> - a pipe used to capitalize field names and validation messages</li>
+              <li><a [routerLink]="['form/checkbox']">Fancy Checkbox</a> - checkbox for fancy forms</li>
               <li><a [routerLink]="['form/padzero']">PadZero</a> - a pipe that left pads numbers with zeroes</li>
             </ul>
           </li>
