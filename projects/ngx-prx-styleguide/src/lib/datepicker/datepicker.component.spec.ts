@@ -92,4 +92,11 @@ describe('Component: DatepickerComponent', () => {
     fix.detectChanges();
     expect(comp.picker.getDate().getDate()).toEqual(1);
   });
+
+  it('should support formatting the date', () => {
+    comp.format = 'YYYY-MM-DD';
+    comp.setDate(new Date(2018, 0, 1, 0, 0, 0));
+    fix.detectChanges();
+    expect(comp.input.nativeElement.value).toEqual('2018-01-01');
+  });
 });

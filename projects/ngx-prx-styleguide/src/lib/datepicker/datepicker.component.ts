@@ -20,7 +20,7 @@ const moment = (rawMoment as any).default ? (rawMoment as any).default : rawMome
 })
 
 export class DatepickerComponent implements AfterViewInit {
-  public static FORMAT = 'MM/DD/YYYY';
+  @Input() format = 'MM/DD/YYYY';
 
   _date: Date;
   @Input()
@@ -48,9 +48,9 @@ export class DatepickerComponent implements AfterViewInit {
 
   get formattedDate(): string {
     if (this._date && this.UTC) {
-      return moment(this._date.valueOf()).utc().format(DatepickerComponent.FORMAT);
+      return moment(this._date.valueOf()).utc().format(this.format);
     } else if (this._date) {
-      return moment(this._date.valueOf()).format(DatepickerComponent.FORMAT);
+      return moment(this._date.valueOf()).format(this.format);
     } else {
       return '';
     }
@@ -58,11 +58,11 @@ export class DatepickerComponent implements AfterViewInit {
 
   get invalid(): boolean {
     return this.input.nativeElement.value.length > 0 &&
-      !moment(this.input.nativeElement.value, DatepickerComponent.FORMAT, true).isValid();
+      !moment(this.input.nativeElement.value, this.format, true).isValid();
   }
 
   setWhenValid(value: string) {
-    if (moment(value, DatepickerComponent.FORMAT, true).isValid() &&
+    if (moment(value, this.format, true).isValid() &&
       (!this._date || this.picker.getDate().valueOf() !== this._date.valueOf())) {
       let date = new Date(value);
       this.picker.setDate(date);
@@ -73,7 +73,7 @@ export class DatepickerComponent implements AfterViewInit {
   ngAfterViewInit() {
     let options = {
       field: this.input.nativeElement,
-      format: DatepickerComponent.FORMAT,
+      format: this.format,
       theme: 'triangle-theme',
       onSelect: () => {
         if (!this._date || this._date.valueOf() !== this.picker.getDate().valueOf()) {
