@@ -13,7 +13,10 @@ import * as moment from 'moment';
       </dl>
       <ul>
         <li>
-          <code>@Input() date: Date</code> (optional) bound input to sets datepicker date
+          <code>@Input() format: string</code> (optional) sets the datepicker format shown in the form field
+        </li>
+        <li>
+          <code>@Input() date: Date</code> (optional) sets datepicker date
         </li>
         <li>
          <code>@Output() dateChange: EventEmitter&lt;Date&gt;</code> (optional) emitted when date is selected
@@ -40,6 +43,16 @@ import * as moment from 'moment';
         <button (click)="timeTravel(-1, 'months')">Go Back One Month</button>
         <button (click)="timeTravel(-1, 'years')">Go Back One Year</button>
         <button (click)="endOfDay()">End of Day</button>
+      </aside>
+      <aside>
+        <p>Specify the date format</p>
+        Usage:
+        <pre class="code">
+          &lt;prx-datepicker format="YYYY-MM-DD" [date]="today" (dateChange)="onDateChange($event)"&gt;&lt;/prx-datepicker&gt;
+        </pre>
+        Example:
+        <prx-datepicker format="YYYY-MM-DD" [date]="today" (dateChange)="onDateChange($event)"></prx-datepicker>
+        <span class="changed" *ngIf="dateChanged">Changed: {{dateChanged}}</span>
       </aside>
       <aside>
         <p>Can be used in conjunction with a time picker</p>
