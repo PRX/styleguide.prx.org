@@ -13,7 +13,11 @@ import * as moment from 'moment';
       </dl>
       <ul>
         <li>
-          <code>@Input() format: string</code> (optional) sets the datepicker format shown in the form field
+          <code>@Input() format: string</code> (optional) sets the datepicker format shown in the form field,
+          defaults to MM/DD/YYYY
+        </li>
+        <li>
+          <code>@Input() container: ElementRef</code> an element reference for an always open calendar picker
         </li>
         <li>
           <code>@Input() date: Date</code> (optional) sets datepicker date
