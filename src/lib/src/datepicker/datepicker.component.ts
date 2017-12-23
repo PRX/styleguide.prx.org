@@ -21,6 +21,7 @@ const moment = (rawMoment as any).default ? (rawMoment as any).default : rawMome
 
 export class DatepickerComponent implements AfterViewInit {
   @Input() format = 'MM/DD/YYYY';
+  @Input() container: ElementRef;
 
   _date: Date;
   @Input()
@@ -81,6 +82,10 @@ export class DatepickerComponent implements AfterViewInit {
         }
       }
     };
+    if (this.container) {
+      options['bound'] = false;
+      options['container'] = this.container.nativeElement;
+    }
     if (this._date) {
       // if UTC, adjust picker date accordingly
       options['defaultDate'] = this.UTC ? this.pickerUTCOffset(this._date) : new Date(this._date.valueOf());
