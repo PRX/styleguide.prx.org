@@ -85,6 +85,7 @@ export class DatepickerComponent implements AfterViewInit {
     if (this.container) {
       options['bound'] = false;
       options['container'] = this.container.nativeElement;
+      options.theme += ' container';
     }
     if (this._date) {
       // if UTC, adjust picker date accordingly
