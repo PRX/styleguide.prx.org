@@ -38,3 +38,7 @@
   border-bottom: none;
   cursor: default;
 }
+
+.pika-single.container {
+  border: 0;
+}

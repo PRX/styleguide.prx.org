@@ -1,25 +1,22 @@
 :host {
   display: flex;
 }
+.picker {
+  position: relative;
+  text-align: center;
+}
 .picker:first-child {
   margin-right: 20px;
 }
-label {
-  font-weight: 700;
+.picker > label {
+  color: #939393;
   cursor: default;
-  margin-left: 10px;
+  position: absolute;
+  line-height: 20px;
+  top: 10px;
+  left: calc(5% + 8px);
 }
 prx-datepicker {
-  width: 100%;
-}
-.picker >>> .prx-datepicker {
-  width: 100%;
-}
-.picker >>> .prx-datepicker > input[type="text"] {
-  width: 100%;
-  text-align: center;
-  cursor: default;
-}
-.picker >>> .pika-single {
-  border: 0;
+  width: 90%;
+  margin-bottom: 5px;
 }

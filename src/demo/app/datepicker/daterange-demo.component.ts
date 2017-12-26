@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'datepicker-demo',
   template: `
     <section class="main demo">
-      <h1>Date Picker</h1>
+      <h1>Date Range</h1>
       <p>The prx-daterange component is a date range picker with
         "from" and a "to" dates represented by a pair of <code>prx-datepicker</code>s.
       </p>
