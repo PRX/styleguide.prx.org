@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'datepicker-demo',
+  selector: 'daterange-demo',
   template: `
     <section class="main demo">
       <h1>Date Range</h1>
@@ -14,8 +14,8 @@ import { Component } from '@angular/core';
       </dl>
       <ul>
         <li>
-          <code>@Input() format: string</code> (optional) sets the datepicker format shown in the form fields,
-          defaults to YYYY-MM-DD
+          <code>@Input() format: string</code> (optional) sets the datepicker format shown in the form fields.
+          Formatting options are <a href="https://momentjs.com/docs/#/displaying/format/">moment</a> based. Defaults to YYYY-MM-DD
         </li>
         <li>
           <code>@Input() from: Date</code> (optional) sets "from" date
@@ -24,14 +24,14 @@ import { Component } from '@angular/core';
           <code>@Input() to: Date</code> (optional) sets "to" date
         </li>
         <li>
-          <code>@Output() rangeChange: EventEmitter&lt;&#123;from: Date, to: Date$#125;&gt;</code>
+          <code>@Output() rangeChange: EventEmitter&lt;&#123;from: Date, to: Date&#125;&gt;</code>
           (optional) emitted when either "from" or "to" date is selected
         </li>
       </ul>
       <aside>
         Usage:
         <pre class="code">
-          &lt;prx-daterange [from]="from" [to]="to" (rangeChange)="onRangeChange($event)"&gt;&lt;/prx-datepicker&gt;
+          &lt;prx-daterange [from]="from" [to]="to" (rangeChange)="onRangeChange($event)"&gt;&lt;/prx-daterange&gt;
         </pre>
         Example:
         <prx-daterange [from]="from" [to]="to" (rangeChange)="onRangeChange($event)"></prx-daterange>
