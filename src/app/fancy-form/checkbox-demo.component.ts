@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
     <section class="main demo">
       <h1>Checkboxes</h1>
       <p>
-        The Button Component is a button used with PRX Models in Fancy Forms. Use one of the style options, orange,
-        plain, red, or green.
+        A fancy Checkbox Component, with configurable color and size. With all
+        the usual bindings/emitters you'd expect in a quality checkbox.
       </p>
       <dl>
         <dt>module</dt><dd><code>FancyFormModule</code></dd>
@@ -18,6 +18,10 @@ import { Component } from '@angular/core';
         <li>
           <code>@Input() disabled: boolean</code>
           - disable the form input
+        </li>
+        <li>
+          <code>@Input() small: boolean</code>
+          - a much smaller checkbox
         </li>
         <li>
           <code>@Input() color: string</code>
@@ -37,15 +41,24 @@ import { Component } from '@angular/core';
 
         Usage:
         <pre class="code">
-          &lt;prx-checkbox [(checked)]="isChecked" [disabled]="isDisabled" [color]="myColor"&gt;My Label&lt;/prx-checkbox&gt;
+          &lt;prx-checkbox [(checked)]="isChecked" [disabled]="isDisabled"
+            [small]="isSmall" [color]="myColor"&gt;My Label&lt;/prx-checkbox&gt;
         </pre>
 
         <p>Example:</p>
-        <p><prx-checkbox [(checked)]="isChecked" [disabled]="isDisabled" [color]="myColor">My Label</prx-checkbox></p>
+        <p><prx-checkbox [(checked)]="isChecked" [disabled]="isDisabled"
+          [small]="isSmall" [color]="myColor">My Label</prx-checkbox></p>
         <p>Am I checked? <b *ngIf="isChecked">YES</b><b *ngIf="!isChecked">NO</b></p>
         <p class="form-group">
           <label>Is disabled?</label>
           <select [(ngModel)]="isDisabled">
+            <option value="1">Yup</option>
+            <option value="0">Nope</option>
+          </select>
+        </p>
+        <p class="form-group">
+          <label>Is small?</label>
+          <select [(ngModel)]="isSmall">
             <option value="1">Yup</option>
             <option value="0">Nope</option>
           </select>
@@ -82,6 +95,7 @@ import { Component } from '@angular/core';
 export class CheckboxDemoComponent {
   isChecked = true;
   isDisabled = 0;
+  isSmall = 0;
   myColor = '#f59f51';
 
   check2Undefined = true;
