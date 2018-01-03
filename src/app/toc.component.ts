@@ -101,6 +101,7 @@ import { Component } from '@angular/core';
           <li><h3>DatepickerModule</h3>
             <ul>
               <li><a [routerLink]="['form/datepicker']">DatePicker</a> - Pikaday datepicker component</li>
+              <li><a [routerLink]="['form/daterange']">DateRange</a> - Pikaday daterange component with "from" and "to" dates</li>
             </ul>
           </li>
           <li><h3>FancyFormModule</h3>
