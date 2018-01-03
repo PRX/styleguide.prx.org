@@ -41,16 +41,6 @@ section {
   max-width: 100%;
   height: 100%;
 }
-.demo prx-datepicker {
-  display: inline-block;
-  border: 1px solid #bbb;
-  margin-left: 20px;
-}
-.demo prx-timepicker {
-  display: inline-block;
-  margin-left: 20px;
-}
-
 .demo dl {
   background: var(--white);
   padding: var(--padding-base);

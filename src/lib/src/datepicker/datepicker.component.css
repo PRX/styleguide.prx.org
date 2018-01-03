@@ -1,23 +1,22 @@
-.prx-datepicker {
+:host {
   cursor: pointer;
   position: relative;
   min-height: 40px;
   display: inline-block;
 }
 
-.prx-datepicker input {
+input {
   cursor: pointer;
   height: 40px;
   width: 120px;
-  border: 1px;
   background: #fff;
 }
 
-.prx-datepicker input.changed {
+input.changed {
   outline: 5px auto #f09b4c;
 }
 
-.prx-datepicker input.invalid {
+input.invalid {
   outline: 5px auto #e32;
 }
 
@@ -29,30 +28,8 @@
   top: 8px;
 }
 
-.pika-single {
-  color: #000;
-  border-color: #e6e6e6;
-  font-family: 'Open Sans', sans-serif;
-}
-
-.pika-button {
-  color: #000;
-  background: #f0f0f0;
-  border-radius: 0;
-}
-
-.is-today .pika-button {
-  color: #368aa2;
-}
-
-.is-selected .pika-button {
-  color: #fff;
-  background: #368aa2;
-  box-shadow: none;
-  border-radius: 0;
-}
-
-.pika-button:hover {
-  background: #f59f51;
-  border-radius: 0;
+input.container {
+  width: 100%;
+  text-align: center;
+  cursor: default;
 }

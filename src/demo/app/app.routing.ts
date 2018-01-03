@@ -10,6 +10,7 @@ import { ChartsIndexedDemoComponent } from './charts/charts-indexed-demo.compone
 import { ChartsTimeseriesDemoComponent } from './charts/charts-timeseries-demo.component';
 import { CheckboxDemoComponent } from './fancy-form/checkbox-demo.component';
 import { DatepickerDemoComponent } from './datepicker/datepicker-demo.component';
+import { DaterangeDemoComponent } from './datepicker/daterange-demo.component';
 import { FancyButtonDemoComponent } from './fancy-form/button-demo.component';
 import { FancyDurationDemoComponent } from './fancy-form/fancy-duration-demo.component';
 import { FancyFieldDemoComponent } from './fancy-form/fancy-field-demo.component';
@@ -47,6 +48,7 @@ export const routes: Routes = [
   { path: 'form/button',          component: FancyButtonDemoComponent },
   { path: 'form/checkbox',        component: CheckboxDemoComponent },
   { path: 'form/datepicker',      component: DatepickerDemoComponent },
+  { path: 'form/daterange',       component: DaterangeDemoComponent },
   { path: 'form/capitalize',      component: CapitalizeDemoComponent },
   { path: 'form/fancy-duration',  component: FancyDurationDemoComponent },
   { path: 'form/fancy-field',     component: FancyFieldDemoComponent },
@@ -84,6 +86,7 @@ export const routingComponents: any[] = [
   ChartsTimeseriesDemoComponent,
   CheckboxDemoComponent,
   DatepickerDemoComponent,
+  DaterangeDemoComponent,
   AppDemoComponent,
   ButtonDemoComponent,
   FancyButtonDemoComponent,
