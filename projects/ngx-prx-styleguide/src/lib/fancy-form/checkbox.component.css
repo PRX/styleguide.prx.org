@@ -69,3 +69,23 @@ label.disabled {
 label.disabled .checkmark {
   opacity: 0.6;
 }
+
+/* really small checkbox */
+label.small {
+  text-indent: 22px;
+  font-size: 12px;
+  min-width: 15px;
+  min-height: 15px;
+  line-height: 15px;
+}
+.small .checkmark {
+  height: 15px;
+  width: 15px;
+}
+.small .checkmark:after {
+  left: 5px;
+  top: 3px;
+  width: 5px;
+  height: 8px;
+  border-width: 0 2px 2px 0;
+}

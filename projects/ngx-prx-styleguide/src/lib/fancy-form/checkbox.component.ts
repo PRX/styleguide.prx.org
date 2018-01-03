@@ -1,15 +1,34 @@
 import { Component, Input, Output, EventEmitter, HostListener } from '@angular/core';
 
+const isset = (val: any): boolean => {
+  return val !== false
+      && val !== undefined
+      && val !== '0'
+      && val !== 0;
+};
+
 @Component({
   moduleId: module.id,
   selector: 'prx-checkbox',
   styleUrls: ['checkbox.component.css'],
   template: `
-    <label [class.focused]="focused" [class.checked]="checked" [class.mousedown]="mousedown" [class.disabled]="isDisabled"
-      (click)="onClick($event)" (mousedown)="onMouseDown($event, inputEl)" (mouseout)="onMouseOut($event)"><ng-content></ng-content>
-      <input #inputEl type="checkbox" (focus)="onFocus()" (blur)="onBlur()"
-        [checked]="checked" [disabled]="isDisabled"
-        (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)"/>
+    <label [class.focused]="focused"
+           [class.checked]="checked"
+           [class.mousedown]="mousedown"
+           [class.disabled]="isDisabled"
+           [class.small]="small"
+           (click)="onClick($event)"
+           (mousedown)="onMouseDown($event, inputEl)"
+           (mouseout)="onMouseOut($event)">
+      <ng-content></ng-content>
+      <input #inputEl
+             type="checkbox"
+             (focus)="onFocus()"
+             (blur)="onBlur()"
+             [checked]="checked"
+             [disabled]="isDisabled"
+             (keydown)="onKeyDown($event)"
+             (keyup)="onKeyUp($event)"/>
       <span class="checkmark" [style.background-color]="dynamicColor"></span>
     </label>
   `
@@ -26,6 +45,11 @@ export class CheckboxComponent {
 
   @Input() disabled: any;
   @Input() color = '#f59f51';
+
+  _small = false;
+  @Input()
+  set small(small: boolean) { this._small = isset(small); }
+  get small() { return this._small; }
 
   onClick(event: Event) {
     event.stopPropagation();
