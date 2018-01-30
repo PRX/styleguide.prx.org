@@ -107,16 +107,17 @@ footer {
   margin-left: auto;
   max-width: 300px;
 }
-.columns .beta-notice p {
+.columns .beta-notice >>> p {
   font-size: 1em;
   padding-right: 15px;
   padding-left: 15px;
 }
-.columns .beta-notice p a {
+.columns .beta-notice >>> p a {
   font-size: inherit;
-  display: inline !important;
+  display: inline;
+  line-height: 1em;
 }
-.columns .beta-notice > a {
+.columns .beta-notice >>> a {
   display: block;
   line-height: 3rem;
   font-size: 1.125em;

@@ -9,12 +9,7 @@ import { Component } from '@angular/core';
       <div class="columns">
         <section>
           <div class="beta-notice">
-            <p>
-              You're seeing a beta preview of prx.org.
-              <a href="http://help.prx.org/anonymous_requests/new">Let us know</a>
-              what you think.
-            </p>
-            <a class="old-version" [href]="desktopUrl()">Use Old Version</a>
+            <ng-content></ng-content>
           </div>
         </section>
         <section>
