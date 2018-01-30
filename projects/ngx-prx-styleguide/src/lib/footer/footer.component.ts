@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
     <footer>
       <div class="columns">
         <section>
-          <div class="beta-notice">
+          <div class="footer-left">
             <ng-content></ng-content>
           </div>
         </section>
