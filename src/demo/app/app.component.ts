@@ -15,7 +15,12 @@ import { Component } from '@angular/core';
         <router-outlet></router-outlet>
       </article>
     </main>
-    <prx-footer></prx-footer>
+    <prx-footer>
+      <p>
+        And also some footer content, including a <a href="#">link to something</a>.
+      </p>
+      <a href="#">And also a standalone link</a>
+    </prx-footer>
     <prx-toastr></prx-toastr>
   `,
   styles: [`
