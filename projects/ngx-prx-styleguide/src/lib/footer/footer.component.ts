@@ -45,14 +45,4 @@ import { Component } from '@angular/core';
     `
 })
 
-export class FooterComponent {
-
-  locationPath(): string {
-    return window.location.pathname;
-  }
-
-  desktopUrl(): string {
-    return `http://www.prx.org${this.locationPath()}?m=false`;
-  }
-
-}
+export class FooterComponent {}
