@@ -8,13 +8,8 @@ import { Component } from '@angular/core';
     <footer>
       <div class="columns">
         <section>
-          <div class="beta-notice">
-            <p>
-              You're seeing a beta preview of prx.org.
-              <a href="http://help.prx.org/anonymous_requests/new">Let us know</a>
-              what you think.
-            </p>
-            <a class="old-version" [href]="desktopUrl()">Use Old Version</a>
+          <div class="footer-left">
+            <ng-content></ng-content>
           </div>
         </section>
         <section>
@@ -50,14 +45,4 @@ import { Component } from '@angular/core';
     `
 })
 
-export class FooterComponent {
-
-  locationPath(): string {
-    return window.location.pathname;
-  }
-
-  desktopUrl(): string {
-    return `http://www.prx.org${this.locationPath()}?m=false`;
-  }
-
-}
+export class FooterComponent {}

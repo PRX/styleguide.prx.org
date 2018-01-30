@@ -1,20 +1,29 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, Component } from '@angular/core';
 import { FooterComponent } from './footer.component';
 
+@Component({
+  selector: 'test-component',
+  template: `
+    <prx-footer>
+      Some projected content
+    </prx-footer>
+  `
+})
+class TestComponent {}
+
 describe('FooterComponent', () => {
-  let comp: FooterComponent;
-  let fix: ComponentFixture<FooterComponent>;
+  let comp: TestComponent;
+  let fix: ComponentFixture<TestComponent>;
   let de: DebugElement;
   let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FooterComponent]
+      declarations: [TestComponent, FooterComponent]
     }).compileComponents().then(() => {
-
-      fix = TestBed.createComponent(FooterComponent);
+      fix = TestBed.createComponent(TestComponent);
       comp = fix.componentInstance;
       de = fix.debugElement;
       el = de.nativeElement;
@@ -22,14 +31,12 @@ describe('FooterComponent', () => {
   }));
 
   it('renders the footer', () => {
-    expect(de.nativeElement.innerText).toContain(`You're seeing a beta preview of prx.org`);
+    expect(de.nativeElement.innerText).toContain('About Us');
+    expect(de.nativeElement.innerText).toContain('Radiotopia');
   });
 
-  it('uses the path in the old version link', () => {
-    spyOn(comp, 'locationPath').and.returnValue('/foobar');
-    fix.detectChanges();
-    expect(de.query(By.css('a.old-version')).nativeElement.innerText).toContain('Use Old Version');
-    expect(de.query(By.css('a.old-version')).nativeElement.getAttribute('href')).toEqual('http://www.prx.org/foobar?m=false');
+  it('projects inner content', () => {
+    expect(de.nativeElement.innerText).toContain('Some projected content');
   });
 
 });

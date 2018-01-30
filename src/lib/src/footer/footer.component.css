@@ -99,30 +99,31 @@ footer {
 }
 
 /*
- * Temp notice of beta
+ * Projected content in left-most column
  */
-.columns .beta-notice {
+.columns .footer-left {
   font-size: 10px;
   margin-right: auto;
   margin-left: auto;
   max-width: 300px;
 }
-.columns .beta-notice p {
+.columns .footer-left >>> p {
   font-size: 1em;
   padding-right: 15px;
   padding-left: 15px;
 }
-.columns .beta-notice p a {
+.columns .footer-left >>> p a {
   font-size: inherit;
-  display: inline !important;
+  display: inline;
+  line-height: 1em;
 }
-.columns .beta-notice > a {
+.columns .footer-left >>> a {
   display: block;
   line-height: 3rem;
   font-size: 1.125em;
 }
 @media screen and (min-width: 768px) {
-  .columns .beta-notice {
+  .columns .footer-left {
     padding-top: 3rem;
     font-size: 12px;
   }
