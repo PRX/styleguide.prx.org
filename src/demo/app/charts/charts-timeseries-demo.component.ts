@@ -32,17 +32,47 @@ import * as moment from 'moment';
           Non stacked charts do allow sparse datasets.
         </li>
         <li>
-          <code>@Input() formatX: Function | string</code>
-          - <a href="http://c3js.org/reference.html#axis-x-tick-format">format the X axis value</a>
-          with a function that returns a string or a date format string
-        </li>
-        <li>
           <code>@Input() datasets: TimeseriesChartModel[]</code>
           - an array of TimeseriesChartModel,
           i.e. 
           <code>
             [&#123; data: TimeseriesDatumModel[&#123; value: number, date: number &#125;], label: string, color: string; &#125;]
           </code>
+        </li>
+        <li>
+          <code>@Input() formatX: Function | string</code>
+          - <a href="http://c3js.org/reference.html#axis-x-tick-format">format the X axis values</a>
+          with a function that returns a string or a date format string
+        </li>
+        <li>
+          <code>@Input() formatY: Function | string</code>
+          - <a href="http://c3js.org/reference.html#axis-y-tick-format">format the Y axis values</a>
+          with a function that returns a string or a date format string
+        </li>
+        <li>
+          <code>@Input() strokeWidth = 2.5</code>
+          - defaults to 2.5px, for line charts stokeWidth dynamically sets the CSS property <code>stroke-width</code> on
+          <a href="http://c3js.org/reference.html#class-c3-line"><code>.c3-line</code></a>
+        </li>
+        <li>
+          <code>@Input() showPoints = true</code>
+          - defaults to true but if false, does not <a href="http://c3js.org/reference.html#point-show">show points</a>
+        </li>
+        <li>
+          <code>@Input() pointRadius = 3.25</code>
+          - defaults to 3.25px, sets the <a href="http://c3js.org/reference.html#point-r">radius of each point</a>
+        </li>
+        <li>
+          <code>@Input() pointRadiusOnHover = 3.75</code>
+          - defaults to 3.75px, sets the <a href="http://c3js.org/reference.html#point-focus-expand-r">radius of each point on focus</a>
+        </li>
+        <li>
+          <code>@Input() paddingLeft = 20</code>
+          - defaults to 20px, sets the <a href="http://c3js.org/reference.html#padding-left">padding on the left of the chart</a>
+        </li>
+        <li>
+          <code>@Input() paddingRight = 20</code>
+          - defaults to 20px, sets the <a href="http://c3js.org/reference.html#padding-right">padding on the right of the chart</a>
         </li>
       </ul>
       
@@ -92,11 +122,11 @@ import * as moment from 'moment';
         </p>
         Usage:
         <pre class="code">
-          &lt;prx-timeseries-chart type="area" stacked="true" [datasets]="datasets" formatX="%m/%d"&gt;
+          &lt;prx-timeseries-chart type="area" stacked="true" [datasets]="datasets" formatX="%m/%d" [showPoints]="showPointsOnStacked"&gt;
           &lt;/prx-timeseries-chart&gt;
         </pre>
         Example:
-        <prx-timeseries-chart type="area" stacked="true" [datasets]="datasets" formatX="%m/%d">
+        <prx-timeseries-chart type="area" stacked="true" [datasets]="datasets" formatX="%m/%d" [showPoints]="showPointsOnStacked">
         </prx-timeseries-chart>
       </aside>
       
@@ -107,11 +137,15 @@ import * as moment from 'moment';
         </p>
         Usage:
         <pre class="code">
-          &lt;prx-timeseries-chart type="line" stacked="true" [datasets]="datasets" formatX="%m/%d"&gt;
+          &lt;prx-timeseries-chart type="line" stacked="true" [datasets]="datasets"
+            [formatX]="formatDate" [formatY]="formatNumber"
+            strokeWidth="5" pointRadius="10" pointRadiusOnHover="15"&gt;
           &lt;/prx-timeseries-chart&gt;
         </pre>
         Example:
-        <prx-timeseries-chart type="line" [datasets]="datasets" formatX="%m/%d">
+        <prx-timeseries-chart type="line" [datasets]="datasets"
+                              [formatX]="formatDate" [formatY]="formatNumber"
+                              strokeWidth="5" pointRadius="10" pointRadiusOnHover="15">
         </prx-timeseries-chart>
       </aside>
     </section>
@@ -121,6 +155,7 @@ import * as moment from 'moment';
 export class ChartsTimeseriesDemoComponent {
 
   datasets: TimeseriesChartModel[];
+  showPointsOnStacked = false;
 
   constructor() {
     this.mapData();
@@ -144,7 +179,11 @@ export class ChartsTimeseriesDemoComponent {
   }
 
   formatDate(d: Date) {
-    return (d.getMonth() + 1) + '/' + d.getDate();
+    return (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+  }
+
+  formatNumber(value: number) {
+    return Number(value).toLocaleString(undefined, {useGrouping: true});
   }
 
   get impressionsEp00(): any[][] {
