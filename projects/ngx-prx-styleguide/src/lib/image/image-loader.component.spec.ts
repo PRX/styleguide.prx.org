@@ -88,7 +88,7 @@ describe('ImageLoaderComponent', () => {
         expect(de.query(By.css('img')).nativeElement.getAttribute('src')).toEqual('http://fillmurray.com/10/10');
         expect(getBackground()).toEqual('http://fillmurray.com/10/10');
         comp.ngOnChanges(<any> {imageDoc: mockDoc(null)});
-        expect(getBackground()).toEqual('');
+        expect(getBackground()).toMatch('data:image/gif;base64');
         done();
       });
 

@@ -1,6 +1,8 @@
 import { Component, Input, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { HalDoc } from '../hal/doc/haldoc';
 
+const PLACEHOLDER = 'url("data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=")';
+
 @Component({
   moduleId: module.id,
   selector: 'prx-image',
@@ -20,7 +22,7 @@ export class ImageLoaderComponent implements OnChanges {
     if (src) {
       this.element.nativeElement.style['background-image'] = `url(${src})`;
     } else {
-      this.element.nativeElement.style['background-image'] = null;
+      this.element.nativeElement.style['background-image'] = PLACEHOLDER;
     }
   }
 
