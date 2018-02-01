@@ -34,7 +34,7 @@ export class ImageLoaderComponent implements OnChanges {
 
   ngOnChanges() {
     if (!this.src) {
-      if (this.imageDoc.has('prx:image')) {
+      if (this.imageDoc && this.imageDoc.has('prx:image')) {
         this.imageDoc.follow('prx:image').subscribe(
           img => this.src = img.expand('enclosure'),
           err => this.setPlaceholder(true)
