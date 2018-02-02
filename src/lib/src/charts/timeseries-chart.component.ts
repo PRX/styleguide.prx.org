@@ -18,7 +18,7 @@ export class TimeseriesChartComponent implements OnChanges {
   @Input() stacked = false;
   @Input() datasets: TimeseriesChartModel[];
   @Input() formatX: Function | string;
-  @Input() formatY: Function | string;
+  @Input() formatY: Function;
   @Input() strokeWidth = 2.5;
   @Input() showPoints = true;
   @Input() pointRadius = 3.25;

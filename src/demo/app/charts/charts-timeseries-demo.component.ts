@@ -45,9 +45,9 @@ import * as moment from 'moment';
           with a function that returns a string or a date format string
         </li>
         <li>
-          <code>@Input() formatY: Function | string</code>
+          <code>@Input() formatY: Function</code>
           - <a href="http://c3js.org/reference.html#axis-y-tick-format">format the Y axis values</a>
-          with a function that returns a string or a date format string
+          with a function that returns a string
         </li>
         <li>
           <code>@Input() strokeWidth = 2.5</code>
