@@ -67,12 +67,8 @@ import * as moment from 'moment';
           - defaults to 3.75px, sets the <a href="http://c3js.org/reference.html#point-focus-expand-r">radius of each point on focus</a>
         </li>
         <li>
-          <code>@Input() paddingLeft = 20</code>
-          - defaults to 20px, sets the <a href="http://c3js.org/reference.html#padding-left">padding on the left of the chart</a>
-        </li>
-        <li>
-          <code>@Input() paddingRight = 20</code>
-          - defaults to 20px, sets the <a href="http://c3js.org/reference.html#padding-right">padding on the right of the chart</a>
+          <code>@Input() paddingRight = 30</code>
+          - defaults to 30px, sets the <a href="http://c3js.org/reference.html#padding-right">padding on the right of the chart</a>
         </li>
       </ul>
       
@@ -139,13 +135,13 @@ import * as moment from 'moment';
         <pre class="code">
           &lt;prx-timeseries-chart type="line" stacked="true" [datasets]="datasets"
             [formatX]="formatDate" [formatY]="formatNumber"
-            strokeWidth="5" pointRadius="10" pointRadiusOnHover="15"&gt;
+            strokeWidth="5" pointRadius="5" pointRadiusOnHover="8"&gt;
           &lt;/prx-timeseries-chart&gt;
         </pre>
         Example:
         <prx-timeseries-chart type="line" [datasets]="datasets"
                               [formatX]="formatDate" [formatY]="formatNumber"
-                              strokeWidth="5" pointRadius="10" pointRadiusOnHover="15">
+                              strokeWidth="5" pointRadius="5" pointRadiusOnHover="8">
         </prx-timeseries-chart>
       </aside>
     </section>
