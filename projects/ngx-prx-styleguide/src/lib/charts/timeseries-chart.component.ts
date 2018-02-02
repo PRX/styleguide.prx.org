@@ -23,8 +23,7 @@ export class TimeseriesChartComponent implements OnChanges {
   @Input() showPoints = true;
   @Input() pointRadius = 3.25;
   @Input() pointRadiusOnHover = 3.75;
-  @Input() paddingLeft = 20;
-  @Input() paddingRight = 20;
+  @Input() paddingRight = 30;
 
   chart: any;
   @ViewChild('chart') el: ElementRef;
@@ -79,7 +78,6 @@ export class TimeseriesChartComponent implements OnChanges {
           pattern: this.colors
         },
         padding: {
-          left: this.paddingLeft,
           right: this.paddingRight
         },
         bindto: this.el.nativeElement
