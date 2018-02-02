@@ -87,18 +87,20 @@ describe('ImageLoaderComponent', () => {
       waitFor('onLoad', () => {
         expect(de.query(By.css('img')).nativeElement.getAttribute('src')).toEqual('http://fillmurray.com/10/10');
         expect(getBackground()).toEqual('http://fillmurray.com/10/10');
+        comp.ngOnChanges(<any> {imageDoc: mockDoc(null)});
+        expect(getBackground()).toMatch('data:image/gif;base64');
         done();
       });
 
       // TODO: ngOnChanges not firing (https://github.com/angular/angular/issues/9866)
-      comp.ngOnChanges();
+      comp.ngOnChanges({});
       fix.detectChanges();
     });
 
     it('shows a placeholder for missing images', () => {
       comp.imageDoc = mockDoc(null);
       // TODO: ngOnChanges not firing (https://github.com/angular/angular/issues/9866)
-      comp.ngOnChanges();
+      comp.ngOnChanges({});
       expect(getClasslist().contains('placeholder')).toBeTruthy();
     });
 
@@ -111,7 +113,7 @@ describe('ImageLoaderComponent', () => {
       });
 
       // TODO: ngOnChanges not firing (https://github.com/angular/angular/issues/9866)
-      comp.ngOnChanges();
+      comp.ngOnChanges({});
       fix.detectChanges();
     });
 
