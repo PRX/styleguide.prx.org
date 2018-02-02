@@ -47,6 +47,22 @@ describe('Component: DatepickerComponent', () => {
     expect(comp.dateChange.emit).toHaveBeenCalled();
   });
 
+  it('should update date on valid date entry', () => {
+    const date = new Date('02/01/2018');
+    comp.setWhenValid('02/01/2018');
+    expect(comp.date.valueOf()).toEqual(date.valueOf());
+    expect((comp.picker.getDate().valueOf())).toEqual(date.valueOf());
+  });
+
+  it('should update date in UTC mode on valid date entry', () => {
+    comp.UTC = true;
+    comp.date = new Date(Date.UTC(2018, 0, 1)); // '01/01/2018'
+    const date = new Date(Date.UTC(2018, 1, 2, 0, 0, 0)); // '02/02/2018'
+    comp.setWhenValid('02/02/2018');
+    expect(comp.date.valueOf()).toEqual(date.valueOf());
+    expect((comp.picker.getDate().valueOf())).toEqual(comp.pickerUTCOffset(date).valueOf());
+  });
+
   it('should have CSS class invalid if entry is not valid date', fakeAsync(() => {
     fix.detectChanges();
     comp.input.nativeElement.value = 'abc';
@@ -58,6 +74,20 @@ describe('Component: DatepickerComponent', () => {
 
   it('should update date picker to reflect changes to @Input() date', () => {
     comp.date = new Date();
+    comp.date.setHours(0);
+    comp.date.setMinutes(0);
+    comp.date.setSeconds(0);
+    comp.date.setMilliseconds(0);
+    fix.detectChanges();
+    expect(comp.picker.getDate().valueOf()).toEqual(comp.date.valueOf());
+    comp.date = new Date(comp.date.valueOf() - 24 * 60 * 60 * 1000);
+    fix.detectChanges();
+    expect(comp.picker.getDate().valueOf()).toEqual(comp.date.valueOf());
+  });
+
+  it('should update date picker in UTC mode to reflect changes to @Input() date', () => {
+    comp.date = new Date(Date.UTC(2018, 1, 1));
+    comp.UTC = true;
     comp.date.setHours(0);
     comp.date.setMinutes(0);
     comp.date.setSeconds(0);
