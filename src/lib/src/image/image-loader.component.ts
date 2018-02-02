@@ -1,5 +1,7 @@
-import { Component, Input, ElementRef, OnChanges } from '@angular/core';
+import { Component, Input, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { HalDoc } from '../hal/doc/haldoc';
+
+const PLACEHOLDER = 'url("data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=")';
 
 @Component({
   moduleId: module.id,
@@ -17,7 +19,11 @@ export class ImageLoaderComponent implements OnChanges {
   constructor(private element: ElementRef) {}
 
   setBackgroundImage(src: string) {
-    this.element.nativeElement.style['background-image'] = `url(${src})`;
+    if (src) {
+      this.element.nativeElement.style['background-image'] = `url(${src})`;
+    } else {
+      this.element.nativeElement.style['background-image'] = PLACEHOLDER;
+    }
   }
 
   setPlaceholder(isError: boolean) {
@@ -32,7 +38,11 @@ export class ImageLoaderComponent implements OnChanges {
 
   onError = () => this.setPlaceholder(true);
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.imageDoc) {
+      this.src = null;
+      this.setBackgroundImage(null);
+    }
     if (!this.src) {
       if (this.imageDoc && this.imageDoc.has('prx:image')) {
         this.imageDoc.follow('prx:image').subscribe(
