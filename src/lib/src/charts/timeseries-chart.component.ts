@@ -18,6 +18,12 @@ export class TimeseriesChartComponent implements OnChanges {
   @Input() stacked = false;
   @Input() datasets: TimeseriesChartModel[];
   @Input() formatX: Function | string;
+  @Input() formatY: Function;
+  @Input() strokeWidth = 2.5;
+  @Input() showPoints = true;
+  @Input() pointRadius = 3.25;
+  @Input() pointRadiusOnHover = 3.75;
+  @Input() paddingRight = 30;
 
   chart: any;
   @ViewChild('chart') el: ElementRef;
@@ -59,8 +65,20 @@ export class TimeseriesChartComponent implements OnChanges {
         legend: {
           show: false
         },
+        point: {
+          show: this.showPoints,
+          r: this.pointRadius,
+          focus: {
+            expand: {
+              r: this.pointRadiusOnHover
+            }
+          }
+        },
         color: {
           pattern: this.colors
+        },
+        padding: {
+          right: this.paddingRight
         },
         bindto: this.el.nativeElement
       };
@@ -75,13 +93,31 @@ export class TimeseriesChartComponent implements OnChanges {
           x: {
             type: 'timeseries',
             tick: {
-              format: this.formatX,
+              format: this.formatX
+            }
+          }
+        };
+      }
+
+      if (this.formatY) {
+        config['axis'] = {
+          ...config['axis'],
+          y: {
+            tick: {
+              format: this.formatY
             }
           }
         };
       }
 
       this.chart = C3.generate(config);
+
+      if (this.strokeWidth && this.type === 'line') {
+        // dynamically add style with the equivalence of a deep selector, not sure of a better way
+        var collection: HTMLCollection = this.el.nativeElement.getElementsByClassName('c3-line');
+        // HTMLCollection is an Array like object but not an Array
+        Array.prototype.forEach.call(collection, (element: HTMLElement) => element.style['stroke-width'] = this.strokeWidth + 'px');
+      }
     }
   }
 

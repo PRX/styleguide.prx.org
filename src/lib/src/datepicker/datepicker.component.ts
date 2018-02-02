@@ -66,6 +66,9 @@ export class DatepickerComponent implements AfterViewInit {
     if (moment(value, this.format, true).isValid() &&
       (!this._date || this.picker.getDate().valueOf() !== this._date.valueOf())) {
       let date = new Date(value);
+      if (this.UTC) {
+        date = this.pickerUTCOffset(date);
+      }
       this.picker.setDate(date);
       this.setDate(date);
     }
