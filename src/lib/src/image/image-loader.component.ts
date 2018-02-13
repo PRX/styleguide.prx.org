@@ -29,8 +29,10 @@ export class ImageLoaderComponent implements OnChanges {
   setPlaceholder(isError: boolean) {
     if (isError) {
       this.element.nativeElement.classList.add('placeholder-error');
+      this.element.nativeElement.style['background-image'] = '';
     } else {
       this.element.nativeElement.classList.add('placeholder');
+      this.element.nativeElement.style['background-image'] = '';
     }
   }
 
