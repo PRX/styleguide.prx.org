@@ -62,7 +62,7 @@ export const TOKENY = (msg?: string): BaseInvalid => {
 };
 
 // basic url matching ... not entirely accurate, but hopefully good enough
-const urlPattern = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
+const urlPattern = /^(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?$/;
 export const URL = (msg?: string): BaseInvalid => {
   return (key: string, value: any) => {
     if (value && !value.match(urlPattern)) {
