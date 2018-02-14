@@ -101,6 +101,22 @@ button.delete {
 button.delete:hover, button.delete:focus {
   background-color: var(--red-emphasis);
 }
+/* pagination controls */
+.pager {
+  display: inline-block;
+}
+.pager .btn-link {
+  padding: 4px 8px;
+  border: 1px solid var(--grey-light);
+  transition: background-color .3s;
+}
+.pager .btn-link:hover:not(.active):not(:disabled) {
+  background-color: var(--grey-light);
+}
+.pager .btn-link.active {
+  color: var(--white);
+  background-color: var(--blue-emphasis);
+}
 
 /********
  * an updown-toggle is a triangle-shaped type of button used as an asc/desc toggle
