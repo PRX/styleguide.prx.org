@@ -19,6 +19,7 @@ export class TimeseriesChartComponent implements OnChanges {
   @Input() datasets: TimeseriesChartModel[];
   @Input() formatX: Function | string;
   @Input() formatY: Function;
+  @Input() minY: number;
   @Input() strokeWidth = 2.5;
   @Input() showPoints = true;
   @Input() pointRadius = 3.25;
@@ -106,6 +107,17 @@ export class TimeseriesChartComponent implements OnChanges {
             tick: {
               format: this.formatY
             }
+          }
+        };
+      }
+
+      if (this.minY !== undefined) {
+        config['axis'] = {
+          ...config['axis'],
+          y: {
+            ...config['axis']['y'],
+            min: this.minY,
+            padding: {top: 20, bottom: 20}
           }
         };
       }
