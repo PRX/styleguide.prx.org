@@ -17,8 +17,9 @@ export class TimeseriesChartComponent implements OnChanges {
   @Input() order: ChartOrder = null;
   @Input() stacked = false;
   @Input() datasets: TimeseriesChartModel[];
-  @Input() formatX: Function | string;
-  @Input() formatY: Function;
+  @Input() formatX: ((x: number | Date) => string) | string;
+  @Input() formatY: ((x: number | Date) => string);
+  @Input() minY: number;
   @Input() strokeWidth = 2.5;
   @Input() showPoints = true;
   @Input() pointRadius = 3.25;
@@ -55,7 +56,7 @@ export class TimeseriesChartComponent implements OnChanges {
         }
       });
 
-      let config = {
+      let config: C3.ChartConfiguration = {
         data: {
           type: this.type,
           xs: this.xDateKeys,
@@ -80,6 +81,14 @@ export class TimeseriesChartComponent implements OnChanges {
         padding: {
           right: this.paddingRight
         },
+        axis: {
+          x: {
+            tick: {
+              fit: false,
+              count: Math.min(20, this.datasets[0].data.length)
+            }
+          }
+        },
         bindto: this.el.nativeElement
       };
 
@@ -88,24 +97,28 @@ export class TimeseriesChartComponent implements OnChanges {
       }
 
       if (this.formatX) {
-        config.data['xFormat'] = this.formatX;
+        config.axis.x['type'] = 'timeseries';
+        config.axis.x.tick['format'] = this.formatX;
+      }
+
+      if (this.formatY) {
         config['axis'] = {
-          x: {
-            type: 'timeseries',
+          ...config.axis,
+          y: {
             tick: {
-              format: this.formatX
+              format: this.formatY
             }
           }
         };
       }
 
-      if (this.formatY) {
+      if (this.minY !== undefined) {
         config['axis'] = {
           ...config['axis'],
           y: {
-            tick: {
-              format: this.formatY
-            }
+            ...config['axis']['y'],
+            min: this.minY,
+            padding: {top: 20, bottom: 20}
           }
         };
       }
