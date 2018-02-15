@@ -58,7 +58,7 @@ import {Component} from '@angular/core';
       
       <section>
         <h2>Link Button, i.e. <code>&lt;button class="btn-link"&gt;</code></h2>
-        <p>Sometimes you need a button with click behavior that looks like a link, such as for paging results</p>
+        <p>Sometimes you need a button with click behavior that looks like a link.</p>
         <ul>
           <li>The link button has <code>color: @blue</code> and on <code>:hover color: @blue-emphasis</code></li>
           <li>When given the class <code>active</code>, the link button has color: <code>@blue-emphasis</code></li>
@@ -72,6 +72,29 @@ import {Component} from '@angular/core';
           Example:
           <button class="btn-link">Click me</button>
         </aside>
+      </section>
+
+      <section>
+        <h2>Pager Button, i.e. <code>&lt;button class="pager"&gt;</code></h2>
+        <p>Sometimes your dataset won't all fit on a single page, and you want a way to navigate between pages.</p>
+        <ul>
+          <li>The pager button has a border color <code>@grey-light</code></li>
+          <li>The pager button has <code>color: @blue</code> and on <code>:hover color: @blue-emphasis</code></li>
+          <li>When given the class <code>active</code>, the link button has <code>color: @white</code> and <code>background-color: @blue-emphasis</code></li>
+          <li>When disabled, the button has <code>color: @grey-silver</code></li>
+          <li><code>vertical-align: baseline</code></li>
+          <li><code>padding: 4px 8px</code></li>
+          <li><code>border: 1px solid var(--grey-light)</code></li>
+          <li><code>background-color: var(--white);</code></li>
+        </ul>
+        <aside>
+          Example:
+          <button class="pager">|&#171;</button>
+          <button class="pager">1</button>
+          <button class="pager active">2</button>
+          <button disabled class="pager">&#187;|</button>
+        </aside>
+
       </section>
       
       <section>
