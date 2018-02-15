@@ -64,17 +64,17 @@ a.button {
 a.button:hover, a.button:active, a.button:focus {
   color: var(--white);
 }
-button.btn-link {
+button.btn-link, button.pager {
   color: var(--blue);
   vertical-align: baseline;
   padding: 0;
   border: 0;
   background: 0 0 transparent;
 }
-button.btn-link:hover, button.btn-link:focus {
+button.btn-link:hover, button.btn-link:focus, button.pager:hover, button.pager:focus {
   color: var(--blue-emphasis);
 }
-button.btn-link[disabled] {
+button.btn-link[disabled], button.pager[disabled] {
   color: var(--grey-silver);
 }
 button.btn-link.active {
@@ -102,18 +102,16 @@ button.delete:hover, button.delete:focus {
   background-color: var(--red-emphasis);
 }
 /* pagination controls */
-.pager {
-  display: inline-block;
-}
-.pager .btn-link {
+button.pager {
   padding: 4px 8px;
   border: 1px solid var(--grey-light);
   transition: background-color .3s;
+  background-color: var(--white);
 }
-.pager .btn-link:hover:not(.active):not(:disabled) {
+button.pager:hover:not(.active):not(:disabled) {
   background-color: var(--grey-light);
 }
-.pager .btn-link.active {
+button.pager.active {
   color: var(--white);
   background-color: var(--blue-emphasis);
 }
