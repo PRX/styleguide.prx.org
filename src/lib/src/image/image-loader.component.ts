@@ -1,13 +1,12 @@
-import { Component, Input, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, HostBinding } from '@angular/core';
 import { HalDoc } from '../hal/doc/haldoc';
-
-const PLACEHOLDER = 'url("data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=")';
 
 @Component({
   moduleId: module.id,
   selector: 'prx-image',
   template: `
     <img *ngIf="src" [src]="src" (load)="onLoad()" (error)="onError()"/>
+    <img *ngIf="docSrc" [src]="docSrc" (load)="onLoad()" (error)="onError()"/>
   `,
   styleUrls: ['./image-loader.component.css']
 })
@@ -15,44 +14,41 @@ const PLACEHOLDER = 'url("data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=
 export class ImageLoaderComponent implements OnChanges {
   @Input() public src: string;
   @Input() public imageDoc: HalDoc;
+  public docSrc: string;
 
-  constructor(private element: ElementRef) {}
-
-  setBackgroundImage(src: string) {
-    if (src) {
-      this.element.nativeElement.style['background-image'] = `url(${src})`;
-    } else {
-      this.element.nativeElement.style['background-image'] = PLACEHOLDER;
-    }
-  }
-
-  setPlaceholder(isError: boolean) {
-    if (isError) {
-      this.element.nativeElement.classList.add('placeholder-error');
-    } else {
-      this.element.nativeElement.classList.add('placeholder');
-    }
-  }
-
-  onLoad = () => this.setBackgroundImage(this.src);
-
-  onError = () => this.setPlaceholder(true);
+  @HostBinding('style.background-image') background: string;
+  @HostBinding('class.placeholder') isPlaceholder = false;
+  @HostBinding('class.placeholder-error') isError = false;
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.imageDoc) {
-      this.src = null;
-      this.setBackgroundImage(null);
-    }
-    if (!this.src) {
+    if (changes.src) {
+      this.reset();
+    } else if (changes.imageDoc) {
+      this.reset();
       if (this.imageDoc && this.imageDoc.has('prx:image')) {
         this.imageDoc.follow('prx:image').subscribe(
-          img => this.src = img.expand('enclosure'),
-          err => this.setPlaceholder(true)
+          img => this.docSrc = img.expand('enclosure'),
+          err => this.isError = true,
         );
-      } else {
-        this.setPlaceholder(false);
+      } else if (this.imageDoc) {
+        this.isPlaceholder = true;
       }
     }
+  }
+
+  onLoad() {
+    this.background = `url(${this.src || this.docSrc})`;
+  }
+
+  onError() {
+    this.isError = true;
+  }
+
+  reset() {
+    this.background = null;
+    this.isPlaceholder = false;
+    this.isError = false;
+    this.docSrc = null;
   }
 
 }

@@ -31,16 +31,6 @@ describe('ImageLoaderComponent', () => {
     });
   };
 
-  const getBackground = () => {
-    let style = de.nativeElement.getAttribute('style') || '';
-    let match = style.match(/background-image: url\((.+)\)/);
-    return match ? match[1].replace(/^"|"$/g, '') : '';
-  };
-
-  const getClasslist = () => {
-    return de.nativeElement.classList;
-  };
-
   const mockDoc = (linkHref: string) => {
     let doc = cms.mock('prx:anything', {});
     if (linkHref) {
@@ -56,9 +46,9 @@ describe('ImageLoaderComponent', () => {
       waitFor('onLoad', () => {
         let imageEl = de.query(By.css('img'));
         expect(de.query(By.css('img')).nativeElement.getAttribute('src')).toEqual('http://fillmurray.com/10/10');
-        expect(getBackground()).toEqual('http://fillmurray.com/10/10');
-        expect(getClasslist().contains('placeholder')).toBeFalsy();
-        expect(getClasslist().contains('placeholder-error')).toBeFalsy();
+        expect(comp.background).toMatch('http://fillmurray.com/10/10');
+        expect(comp.isPlaceholder).toBeFalsy();
+        expect(comp.isError).toBeFalsy();
         done();
       });
       fix.detectChanges();
@@ -72,7 +62,7 @@ describe('ImageLoaderComponent', () => {
       comp.src = 'http://foo.bar/this/is/fake.jpg';
       waitFor('onError', () => {
         expect(de.query(By.css('img')).nativeElement.getAttribute('src')).toEqual('http://foo.bar/this/is/fake.jpg');
-        expect(getClasslist().contains('placeholder-error')).toBeTruthy();
+        expect(comp.isError).toBeTruthy();
         done();
       });
       fix.detectChanges();
@@ -86,34 +76,35 @@ describe('ImageLoaderComponent', () => {
       comp.imageDoc = mockDoc('http://fillmurray.com/10/10');
       waitFor('onLoad', () => {
         expect(de.query(By.css('img')).nativeElement.getAttribute('src')).toEqual('http://fillmurray.com/10/10');
-        expect(getBackground()).toEqual('http://fillmurray.com/10/10');
-        comp.ngOnChanges(<any> {imageDoc: mockDoc(null)});
-        expect(getBackground()).toMatch('data:image/gif;base64');
+        expect(comp.background).toMatch('http://fillmurray.com/10/10');
+        comp.imageDoc = mockDoc(null);
+        comp.ngOnChanges(<any> {imageDoc: true});
+        expect(comp.background).toBeNull();
         done();
       });
 
       // TODO: ngOnChanges not firing (https://github.com/angular/angular/issues/9866)
-      comp.ngOnChanges({});
+      comp.ngOnChanges(<any> {imageDoc: true});
       fix.detectChanges();
     });
 
     it('shows a placeholder for missing images', () => {
       comp.imageDoc = mockDoc(null);
       // TODO: ngOnChanges not firing (https://github.com/angular/angular/issues/9866)
-      comp.ngOnChanges({});
-      expect(getClasslist().contains('placeholder')).toBeTruthy();
+      comp.ngOnChanges(<any> {imageDoc: true});
+      expect(comp.isPlaceholder).toBeTruthy();
     });
 
     it('shows an error for bad enclosure href', (done: any) => {
       comp.imageDoc = mockDoc('http://foo.bar/this/is/fake.jpg');
       waitFor('onError', () => {
         expect(de.query(By.css('img')).nativeElement.getAttribute('src')).toEqual('http://foo.bar/this/is/fake.jpg');
-        expect(getClasslist().contains('placeholder-error')).toBeTruthy();
+        expect(comp.isError).toBeTruthy();
         done();
       });
 
       // TODO: ngOnChanges not firing (https://github.com/angular/angular/issues/9866)
-      comp.ngOnChanges({});
+      comp.ngOnChanges(<any> {imageDoc: true});
       fix.detectChanges();
     });
 
