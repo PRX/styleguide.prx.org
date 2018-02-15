@@ -50,6 +50,10 @@ import * as moment from 'moment';
           with a function that returns a string
         </li>
         <li>
+          <code>@Input() minY: Function</code>
+          - <a href="http://c3js.org/reference.html#axis-y-min">set min value of y axis</a>
+        </li>
+        <li>
           <code>@Input() strokeWidth = 2.5</code>
           - defaults to 2.5px, for line charts stokeWidth dynamically sets the CSS property <code>stroke-width</code> on
           <a href="http://c3js.org/reference.html#class-c3-line"><code>.c3-line</code></a>
@@ -140,7 +144,7 @@ import * as moment from 'moment';
         </pre>
         Example:
         <prx-timeseries-chart type="line" [datasets]="datasets"
-                              [formatX]="formatDate" [formatY]="formatNumber"
+                              [formatX]="formatDate" [formatY]="formatNumber" minY="0"
                               strokeWidth="5" pointRadius="5" pointRadiusOnHover="8">
         </prx-timeseries-chart>
       </aside>
@@ -170,6 +174,7 @@ export class ChartsTimeseriesDemoComponent {
       { data: mapData(this.impressionsEp02), label: 'Episode 70: The Procedure', color: '#59598C' },
       { data: mapData(this.impressionsEp03), label: 'Episode 69: Becoming Chief Brown', color: '#8686B0' },
       { data: mapData(this.impressionsEp04), label: 'Episode 68: All the Time in the World', color: '#B3B3D4' },
+      { data: mapData(this.impressionsEp05), label: 'Episode 69: Something I\'m Too Lazy To Come Up With', color: '#B3B3D4' },
       { data: mapData(this.impressionsOthers), label: 'Others', color: '#a3a3a3' }
     ];
   }
@@ -260,7 +265,7 @@ export class ChartsTimeseriesDemoComponent {
       ],
       [
         '2017-07-14',
-        1041
+        55000
       ],
       [
         '2017-07-15',
@@ -343,6 +348,39 @@ export class ChartsTimeseriesDemoComponent {
       [
         '2017-07-18',
         596
+      ]
+    ];
+  }
+
+  get impressionsEp05(): any[][] {
+    return [
+      [
+        '2017-07-12',
+        0
+      ],
+      [
+        '2017-07-13',
+        0
+      ],
+      [
+        '2017-07-14',
+        0
+      ],
+      [
+        '2017-07-15',
+        0
+      ],
+      [
+        '2017-07-16',
+        0
+      ],
+      [
+        '2017-07-17',
+        0
+      ],
+      [
+        '2017-07-18',
+        0
       ]
     ];
   }
