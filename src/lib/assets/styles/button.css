@@ -112,6 +112,7 @@ button.pager:hover:not(.active):not(:disabled) {
   background-color: var(--grey-light);
 }
 button.pager.active {
+  cursor: auto;
   color: var(--white);
   background-color: var(--blue-emphasis);
 }
