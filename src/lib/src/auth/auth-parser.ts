@@ -17,7 +17,7 @@ export class AuthParser {
       let parts = pair.split('=');
       data[parts[0]] = parts[1];
     }
-    return data['access_token'];
+    return data['access_token'] || data['error'];
   }
 
 }

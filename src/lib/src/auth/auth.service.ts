@@ -23,7 +23,7 @@ export class AuthService {
       url = url.match(/\.org|\.tech/) ? `https://${url}` : `http://${url}`;
     }
     let nonce = this.getNonce();
-    return `${url}&nonce=${nonce}&response_type=token&prompt=${prompt}`;
+    return `${url}&nonce=${nonce}&response_type=token&scope=apps&prompt=${prompt}`;
   }
 
   setToken(authToken: string) {

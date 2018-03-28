@@ -61,7 +61,15 @@ export class AuthComponent implements OnChanges, OnDestroy {
     // 1st load has no query, 2nd redirect-load does
     if (query) {
       let token = AuthParser.parseToken(query);
-      this.authService.setToken(token);
+      if (token == 'invalid_scope') {
+        this.authService.setError({
+          name: 'Access Denied',
+          message: 'Sorry, you do not have access to this application.',
+          stack: 'Invalid scope'
+        })
+      } else {
+        this.authService.setToken(token);
+      }
     }
   }
 
