@@ -61,13 +61,18 @@ export class AuthComponent implements OnChanges, OnDestroy {
     // 1st load has no query, 2nd redirect-load does
     if (query) {
       let token = AuthParser.parseToken(query);
-      if (token == 'invalid_scope') {
-        this.authService.setError({
-          name: 'Access Denied',
-          message: 'Sorry, you do not have access to this application.',
-          stack: 'Invalid scope'
-        })
-      } else {
+      let error = AuthParser.parseError(query);
+      if (error) {
+        if (error == 'invalid_scope') {
+          // we don't want to use setError because this error is final.
+          // i.e. we don't want to prompt another login attempt, because
+          // the error is not with authentication, it's with authorization.
+          this.authService.setToken('AUTHORIZATION_FAIL');
+        } else {
+          throw error;
+        }
+      }
+      if (token) {
         this.authService.setToken(token);
       }
     }

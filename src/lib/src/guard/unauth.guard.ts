@@ -11,8 +11,13 @@ export class UnauthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.authService.token.map((token) => {
       if (token) {
-        this.router.navigate(['/']);
-        return false;
+        if (token === 'AUTHORIZATION_FAIL') {
+          this.router.navigate(['/permission-denied']);
+          return true;
+        } else {
+          this.router.navigate(['/']);
+          return false;
+        }
       } else {
         return true;
       }

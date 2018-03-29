@@ -11,7 +11,12 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.authService.token.map((token) => {
       if (token) {
-        return true;
+        if (token === 'AUTHORIZATION_FAIL') {
+          this.router.navigate(['/permission-denied']);
+          return false;
+        } else {
+          return true;
+        }
       } else {
         this.router.navigate(['/login']);
         return false;
