@@ -9,6 +9,8 @@ import { AppComponent }  from './app.component';
 import { routing, routingProviders, routingComponents } from './app.routing';
 import { tabDemoRouting, tabDemoComponents } from './tab/tab.routing';
 
+import { geoDemoComponents } from './geo/index';
+
 import {
   AuthModule,
   ChartsModule,
@@ -51,7 +53,7 @@ import {
     routing,
     tabDemoRouting
   ],
-  declarations: [ AppComponent, routingComponents, tabDemoComponents ],
+  declarations: [ AppComponent, routingComponents, tabDemoComponents, geoDemoComponents ],
   providers:    [ routingProviders,
                   AuthGuard, DeactivateGuard, UnauthGuard,
                   ModalService, TabService, ToastrService ],

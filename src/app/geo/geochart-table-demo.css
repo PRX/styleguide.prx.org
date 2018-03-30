@@ -1,0 +1,26 @@
+:host {
+  margin-left: -3px;
+  margin-right: -3px;
+}
+table {
+  line-height: 14px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  vertical-align: middle;
+  border: 3px solid #f0f0f0;
+  background: white;
+}
+th {
+  text-align: left;
+  height: 45px;
+}
+td {
+  font-size: 12px;
+  white-space: nowrap;
+}
+td.number {
+  text-align: right;
+}

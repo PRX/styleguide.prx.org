@@ -74,6 +74,7 @@ import { Component } from '@angular/core';
               </li>
             </ul>
           </li>
+          <li><a [routerLink]="['geo']">Google Geochart Demo</a></li>
         </ul>
       </section>
       <hr>

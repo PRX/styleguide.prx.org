@@ -21,6 +21,7 @@ import { HeaderDemoComponent } from './header/header-demo.component';
 import { NavItemDemoComponent } from './header/navitem-demo.component';
 import { NavUserDemoComponent } from './header/navuser-demo.component';
 import { HeroDemoComponent } from './hero/hero-demo.component';
+import { GeoChartDemoComponent } from './geo/geochart-demo.component';
 import { GuardDemoComponent } from './guard/guard-demo.component';
 import { GuardedRouteDemoComponent } from './guard/guarded-route-demo.component';
 import { LoginDemoComponent } from './guard/login-demo.component';
@@ -54,6 +55,7 @@ export const routes: Routes = [
   { path: 'form/fancy-field',     component: FancyFieldDemoComponent },
   { path: 'form/padzero',         component: PadZeroDemoComponent },
   { path: 'form/select',          component: SelectDemoComponent },
+  { path: 'geo',                  component: GeoChartDemoComponent },
   { path: 'guard/guarded',        component: GuardedRouteDemoComponent, canActivate: [AuthGuard], canDeactivate: [DeactivateGuard] },
   { path: 'guard',                component: GuardDemoComponent },
   { path: 'global/app',           component: AppDemoComponent },
@@ -94,6 +96,7 @@ export const routingComponents: any[] = [
   FancyFieldDemoComponent,
   FooterDemoComponent,
   FormDemoComponent,
+  GeoChartDemoComponent,
   GuardDemoComponent,
   GuardedRouteDemoComponent,
   LayoutDemoComponent,
