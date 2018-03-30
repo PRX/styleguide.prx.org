@@ -67,7 +67,7 @@ export class AuthComponent implements OnChanges, OnDestroy {
           // we don't want to use setError because this error is final.
           // i.e. we don't want to prompt another login attempt, because
           // the error is not with authentication, it's with authorization.
-          this.authService.setToken('AUTHORIZATION_FAIL');
+          this.authService.failAuthorization();
         } else {
           throw error;
         }
