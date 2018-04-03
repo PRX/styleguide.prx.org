@@ -24,7 +24,6 @@ export class UserinfoService {
 
   getUserinfo(): Observable<Userinfo[]> {
     let url = `${this.authHost}/userinfo?scope=profile+apps`;
-    console.log('userinfo url:', url);
     let optionsArgs:RequestOptionsArgs = { withCredentials: true };
     let options = new RequestOptions(optionsArgs);
     return this.http.get(url, options)
