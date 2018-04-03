@@ -6,6 +6,7 @@ export { TimeseriesChartModel, TimeseriesDatumModel } from './src/charts/models/
 
 export { AuthModule } from './src/auth/auth.module';
 export { AuthService } from './src/auth/auth.service';
+export { Userinfo, UserinfoService } from './src/auth/userinfo.service';
 
 export { BaseModel, RelatedMap, ValidatorMap } from './src/model/base.model';
 export { BaseInvalid, UNLESS_NEW, REQUIRED, LENGTH, IN, FALSEY, TOKENY, URL } from './src/model/base.invalid';
