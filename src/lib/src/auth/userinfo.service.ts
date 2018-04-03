@@ -22,12 +22,12 @@ export class UserinfoService {
     this.authHost = authHost;
   }
 
-  getUserinfo(): Observable<Userinfo[]> {
+  getUserinfo(): Observable<Userinfo> {
     let url = `${this.authHost}/userinfo?scope=profile+apps`;
     let optionsArgs:RequestOptionsArgs = { withCredentials: true };
     let options = new RequestOptions(optionsArgs);
     return this.http.get(url, options)
-                    .map(response => response.json() as Userinfo[])
+                    .map(response => response.json() as Userinfo)
                     .catch(this.handleError);
   }
 
