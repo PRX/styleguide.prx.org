@@ -16,6 +16,9 @@ import { AuthService } from 'ngx-prx-styleguide';
             Your application should have a <code>'login'</code> route. The <code>AuthGuard</code> Service will redirect to
             this route when the user is not logged in.
           </li>
+          <li>Your application should have a <code>'permission-denied'</code> route. The <code>AuthGuard</code>
+              Service will redirect to this route when the user does not have permission to use your application.
+          </li>
           <li>The <code>prx-auth</code> component should be present and shown somewhere on the page in the component hierarchy.</li>
           <li>Protected routes use <code>canActivate: [AuthGuard], canDeactivate: [DeactivateGuard]</code></li>
           <li>Login route uses <code>canActivate: [UnauthGuard]</code></li>
