@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'ngx-prx-styleguide';
+import { Env } from '../core.env';
 
 @Component({
   selector: 'auth-demo',
@@ -70,8 +71,8 @@ import { AuthService } from 'ngx-prx-styleguide';
 })
 export class AuthDemoComponent {
 
-  authHost = 'id-staging.prx.tech';
-  authClient = 'lVN05vLI8aCADh7lzbrL0AkDvEfPNuoEPpL2umL5';
+  authHost = Env.AUTH_HOST;
+  authClient = Env.AUTH_CLIENT_ID;
   status = 'waiting...';
   loggedIn = false;
   reason: string;
