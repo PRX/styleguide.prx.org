@@ -37,7 +37,7 @@
     "build-test": "tsc -p src/lib/tsconfig.spec.json",
     "build-test:watch": "tsc -p src/lib/tsconfig.spec.json -w",
     "pretest": "npm run build-test",
-    "test": "concurrently \"npm run build-test:watch\" \"karma start karma.conf.js\"",
+    "test": "node bin/mk-demo-env.js && concurrently \"npm run build-test:watch\" \"karma start karma.conf.js\"",
     "pretest:once": "npm run build-test",
     "test:once": "karma start karma.conf.js --single-run",
     "preintegration": "npm run build && cd integration && npm run clean && yarn install",
@@ -102,5 +102,8 @@
     "tslint": "^4.4.2",
     "typescript": "^2.2.1",
     "zone.js": "^0.8.4"
+  },
+  "optionalDependencies": {
+    "karma-phantomjs-launcher": "^1.0.4"
   }
 }

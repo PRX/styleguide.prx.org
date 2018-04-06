@@ -10,6 +10,7 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
+      require('karma-phantomjs-launcher'),
       require('karma-spec-reporter')
     ],
 
@@ -58,7 +59,8 @@ module.exports = function (config) {
       { pattern: 'node_modules/moment/moment.js', included: false, watched: false },
       { pattern: 'node_modules/pikaday/pikaday.js', included: false, watched: false },
 
-      'karma-test-shim.js', // optionally extend SystemJS mapping e.g., with barrels
+      // optionally extend SystemJS mapping e.g., with barrels
+      { pattern: 'karma-test-shim.js', included: process.env.PHANTOM ? false : true, watched: false },
 
       // transpiled application & spec code paths loaded via module imports
       { pattern: libBase + '**/*.js', included: false, watched: true },
@@ -83,17 +85,25 @@ module.exports = function (config) {
 
     exclude: [],
     preprocessors: {},
+    angularCli: {
+      environment: 'dev'
+    },
     reporters: ['spec', 'kjhtml'],
 
     specReporter: {
-      suppressSkipped: true
+      maxLogLines: 5,
+      suppressErrorSummary: true,
+      suppressFailed: false,
+      suppressPassed: false,
+      suppressSkipped: true,
+      showSpecTiming: false
     },
 
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: [process.env.PHANTOM ? 'PhantomJS' : 'Chrome'],
     singleRun: false
   })
 }
