@@ -2,7 +2,11 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { AuthGuard } from './auth.guard';
 
 const mockAuthService = {
-  token: new ReplaySubject<string>(1)
+  token: new ReplaySubject<string>(1),
+  parseToken: (tokStr: string) => {
+    if (tokStr == 'AUTHORIZATION_DENIED') return false;
+    return tokStr;
+  }
 };
 const mockRouter = {
   goto: <any> null,
@@ -25,6 +29,20 @@ describe('AuthGuard', () => {
       expect(canActivate).toBeUndefined();
       mockAuthService.token.next('something');
       expect(canActivate).toEqual(true);
+    });
+
+  });
+
+  describe('with a token of AUTHORIZATION_DENIED', () => {
+
+    it('auth redirects to permission-denied', () => {
+      let guard = new AuthGuard(<any> mockAuthService, <any> mockRouter);
+      let canActivate: boolean;
+      guard.canActivate().subscribe((can: boolean) => { canActivate = can; });
+      expect(canActivate).toBeUndefined();
+      mockAuthService.token.next('AUTHORIZATION_DENIED');
+      expect(canActivate).toEqual(false);
+      expect(mockRouter.goto).toEqual('/permission-denied');
     });
 
   });
