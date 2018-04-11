@@ -54,8 +54,12 @@ export class AuthService {
     if (tokStr === AuthService.AUTHORIZATION_DENIED) return false;
 
     // https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript
-    var base64decoded = tokStr.replace(/-/g, '+').replace(/_/g, '/');
-    switch (base64decoded.length % 4) {
+    let base64decoded = tokStr.replace(/-/g, '+').replace(/_/g, '/');
+    let payload = base64decoded.split('.')[1];
+    if (!payload) {
+      throw new Error('Invalid xxxx.yyyy token string structure');
+    }
+    switch (payload.length % 4) {
       case 0:
         break;
       case 2:
@@ -65,9 +69,9 @@ export class AuthService {
         base64decoded += '=';
         break;
       default:
-        throw 'Illegal base64url string!';
+        throw new Error('Illegal base64url string!');
     }
-    return JSON.parse(atob(base64decoded.split('.')[1]));
+    return JSON.parse(atob(payload));
   }
 
   private getNonce(): string {
