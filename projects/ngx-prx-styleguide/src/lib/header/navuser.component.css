@@ -15,6 +15,35 @@
   display: inline-block;
   margin-top: 10px;
 }
+.nav-userinfo-menu-apps {
+  background-color: #fff;
+  border: 1px solid #f59f51;
+  padding: 0;
+  display: none;
+  min-width: 200px;
+  right: 0;
+  padding: 10px 20px;
+  position: absolute;
+  top: 100%;
+  z-index: 20;
+}
+.nav-userinfo-menu-apps .nav-userinfo-apps {
+  padding: 0;
+}
+.nav-userinfo-menu-apps .nav-userinfo-apps li a {
+  display: block;
+  font-weight: normal;
+  padding: 5px;
+  color: #368aa2;
+  height: auto;
+  line-height: 24px;
+}
+.nav-userinfo-menu-apps .nav-userinfo-apps li a:hover {
+  background-color: #eee;
+}
+.nav-userinfo:hover .nav-userinfo-menu-apps {
+  display: block;
+}
 @media screen and (min-width: 768px) {
   .name {
     display: inline-block;

@@ -12,6 +12,8 @@ export class AuthService {
   token = new ReplaySubject<string>(1);
   refresh = new ReplaySubject<boolean>(1);
 
+  static AUTHORIZATION_DENIED = 'AUTHORIZATION_DENIED';
+
   config(authHost: string, authClient: string) {
     this.authHost = authHost;
     this.authClient = authClient;
@@ -23,7 +25,7 @@ export class AuthService {
       url = url.match(/\.org|\.tech/) ? `https://${url}` : `http://${url}`;
     }
     let nonce = this.getNonce();
-    return `${url}&nonce=${nonce}&response_type=token&prompt=${prompt}`;
+    return `${url}&nonce=${nonce}&response_type=token&scope=apps&prompt=${prompt}`;
   }
 
   setToken(authToken: string) {
@@ -42,6 +44,34 @@ export class AuthService {
   refreshToken(): Observable<string> {
     this.refresh.next(true);
     return this.token.skip(1);
+  }
+
+  failAuthorization() {
+    this.setToken(AuthService.AUTHORIZATION_DENIED);
+  }
+
+  parseToken(tokStr: string) {
+    if (tokStr === AuthService.AUTHORIZATION_DENIED) return false;
+
+    // https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript
+    let base64decoded = tokStr.replace(/-/g, '+').replace(/_/g, '/');
+    let payload = base64decoded.split('.')[1];
+    if (!payload) {
+      throw new Error('Invalid xxxx.yyyy token string structure');
+    }
+    switch (payload.length % 4) {
+      case 0:
+        break;
+      case 2:
+        base64decoded += '==';
+        break;
+      case 3:
+        base64decoded += '=';
+        break;
+      default:
+        throw new Error('Illegal base64url string!');
+    }
+    return JSON.parse(atob(payload));
   }
 
   private getNonce(): string {

@@ -61,7 +61,25 @@ export class AuthComponent implements OnChanges, OnDestroy {
     // 1st load has no query, 2nd redirect-load does
     if (query) {
       let token = AuthParser.parseToken(query);
-      this.authService.setToken(token);
+      let error = AuthParser.parseError(query);
+      if (error) {
+        if (error == 'invalid_scope') {
+          // authz error
+          // we don't want to use setError because this error is final.
+          // i.e. we don't want to prompt another login attempt.
+          this.authService.failAuthorization();
+        } else if (error == 'login_required') {
+          // authn error
+          // normal first-pass authn error which triggers login form.
+          this.authService.setToken(null);
+        } else {
+          console.log('unexpected auth error', error);
+          throw error;
+        }
+      }
+      if (token) {
+        this.authService.setToken(token);
+      }
     }
   }
 
