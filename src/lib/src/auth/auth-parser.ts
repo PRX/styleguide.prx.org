@@ -11,13 +11,21 @@ export class AuthParser {
     return locationHash.replace(/^#/, '');
   }
 
-  static parseToken(query = ''): string {
+  static queryToPairs(query = ''): {} {
     let data = {};
     for (let pair of query.split('&')) {
       let parts = pair.split('=');
       data[parts[0]] = parts[1];
     }
-    return data['access_token'];
+    return data;
+  }
+
+  static parseToken(query = ''): string {
+    return this.queryToPairs(query)['access_token'];
+  }
+
+  static parseError(query = ''): string {
+    return this.queryToPairs(query)['error'];
   }
 
 }
