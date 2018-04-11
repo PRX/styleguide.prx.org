@@ -29,6 +29,8 @@ module.exports = function (config) {
     },
 
     files: [
+      'node_modules/systemjs/dist/system-polyfills.src.js',
+
       // System.js for module loading
       'node_modules/systemjs/dist/system.src.js',
 
@@ -60,7 +62,7 @@ module.exports = function (config) {
       { pattern: 'node_modules/pikaday/pikaday.js', included: false, watched: false },
 
       // optionally extend SystemJS mapping e.g., with barrels
-      { pattern: 'karma-test-shim.js', included: process.env.PHANTOM ? false : true, watched: false },
+      'karma-test-shim.js',
 
       // transpiled application & spec code paths loaded via module imports
       { pattern: libBase + '**/*.js', included: false, watched: true },
