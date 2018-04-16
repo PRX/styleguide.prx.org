@@ -37,6 +37,7 @@
   color: #368aa2;
   height: auto;
   line-height: 24px;
+  white-space: nowrap;
 }
 .nav-userinfo-menu-apps .nav-userinfo-apps li a:hover {
   color: #2b7187;
