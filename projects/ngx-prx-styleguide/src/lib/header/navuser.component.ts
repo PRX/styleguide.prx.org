@@ -12,7 +12,7 @@ import { Userinfo } from '../auth/userinfo.service';
     <div class="nav-holder nav-userinfo">
       <ng-template [ngIf]="userinfo">
         <a *ngIf="userinfo">
-          <span class="name">{{userinfo.preferred_username}}</span>
+          <span class="name">{{userinfo.name}}</span>
           <ng-content select=".user-loaded"></ng-content>
         </a>
         <div *ngIf="userinfo" class="nav-userinfo-menu-apps">
