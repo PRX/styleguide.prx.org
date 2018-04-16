@@ -18,9 +18,9 @@
 .nav-userinfo-menu-apps {
   background-color: #fff;
   border: 1px solid #f59f51;
+  border-top: none;
   padding: 0;
   display: none;
-  min-width: 200px;
   right: 0;
   padding: 10px 20px;
   position: absolute;
@@ -39,7 +39,7 @@
   line-height: 24px;
 }
 .nav-userinfo-menu-apps .nav-userinfo-apps li a:hover {
-  background-color: #eee;
+  color: #2b7187;
 }
 .nav-userinfo:hover .nav-userinfo-menu-apps {
   display: block;
