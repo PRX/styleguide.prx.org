@@ -44,7 +44,7 @@ export class CheckboxComponent {
   @Output() change = new EventEmitter<boolean>();
 
   @Input() disabled: any;
-  @Input() color = '#f59f51';
+  @Input() color = '#ff9600';
 
   _small = false;
   @Input()
