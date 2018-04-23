@@ -25,7 +25,7 @@ import { Component } from '@angular/core';
         </li>
         <li>
           <code>@Input() color: string</code>
-          - set the hex color of the checkbox (defaults to PRX-orange #f59f51)
+          - set the hex color of the checkbox (defaults to PRX-orange #ff9600)
         </li>
         <li>
           <code>@Input/Output() checked: boolean</code>
@@ -66,9 +66,9 @@ import { Component } from '@angular/core';
         <p class="form-group">
           <label>Checkbox Color</label>
           <select [(ngModel)]="myColor">
-            <option value="#f59f51">Orange</option>
+            <option value="#ff9600">Orange</option>
             <option value="#61A85D">Green</option>
-            <option value="#368aa2">Blue</option>
+            <option value="#0089bc">Blue</option>
           </select>
         </p>
       </aside>
@@ -96,7 +96,7 @@ export class CheckboxDemoComponent {
   isChecked = true;
   isDisabled = 0;
   isSmall = 0;
-  myColor = '#f59f51';
+  myColor = '#ff9600';
 
   check2Undefined = true;
   check2: boolean;

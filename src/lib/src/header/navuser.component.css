@@ -11,13 +11,13 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 1px solid rgb(112, 142, 151);
+  border: 1px solid rgb(0, 141, 177);
   display: inline-block;
   margin-top: 10px;
 }
 .nav-userinfo-menu-apps {
   background-color: #fff;
-  border: 1px solid #f59f51;
+  border: 1px solid #ff9600;
   border-top: none;
   padding: 0;
   display: none;
@@ -34,13 +34,13 @@
   display: block;
   font-weight: normal;
   padding: 5px;
-  color: #368aa2;
+  color: #0089bc;
   height: auto;
   line-height: 24px;
   white-space: nowrap;
 }
 .nav-userinfo-menu-apps .nav-userinfo-apps li a:hover {
-  color: #2b7187;
+  color: #0070a1;
 }
 .nav-userinfo:hover .nav-userinfo-menu-apps {
   display: block;

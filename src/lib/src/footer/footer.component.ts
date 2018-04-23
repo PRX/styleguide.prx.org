@@ -14,28 +14,26 @@ import { Component } from '@angular/core';
         </section>
         <section>
           <h3>Company</h3>
-          <a href="//www.prx.org/about-us/what-is-prx">About Us</a>
-          <a href="//blog.prx.org/">Blog</a>
-          <a href="//www.prx.org/about-us/organization">Team</a>
-          <a href="//www.prx.org/about-us/press">Press</a>
-          <a href="//www.prx.org/about-us/funding">Funding</a>
-          <a href="//www.prx.org/donate">Donate</a>
+          <a href="https://www.prx.org">PRX</a>
+          <a href="https://www.prx.org/company/about">About Us</a>
+          <a href="https://medium.com/public-radio-exchange">Blog</a>
+          <a href="https://www.prx.org/company/donate">Donate</a>
         </section>
         <section>
           <h3>Support</h3>
-          <a href="http://help.prx.org/">Help</a>
+          <a href="https://help.prx.org/">Help</a>
           <a href="http://status.prx.org/">Status</a>
-          <a href="//www.prx.org/terms-of-use">Terms</a>
-          <a href="//www.prx.org/privacy-policy">Privacy</a>
+          <a href="https://exchange.prx.org/terms-of-use">Terms</a>
+          <a href="https://exchange.prx.org/privacy-policy">Privacy</a>
         </section>
         <section>
           <h3>Projects</h3>
-          <a href="http://www.radiotopia.fm">Radiotopia</a>
-          <a href="http://www.matter.vc">Matter Ventures</a>
+          <a href="https://www.radiotopia.fm">Radiotopia</a>
+          <a href="https://www.matter.vc">Matter Ventures</a>
         </section>
       </div>
       <ul class="social">
-        <li><a href="//www.prx.org/newsletters" class="icon-mail-alt" title="Newsletter"></a></li>
+        <li><a href="https://www.prx.org/company/about/#newsletter" class="icon-mail-alt" title="Newsletter"></a></li>
         <li><a href="https://www.twitter.com/prx" class="icon-twitter" title="Twitter"></a></li>
         <li>
           <a href="https://www.facebook.com/publicradioexchange" class="icon-facebook-official" title="Facebook"></a>
