@@ -22,7 +22,7 @@ import { Component } from '@angular/core';
         <section>
           <h3>Support</h3>
           <a href="https://help.prx.org/">Help</a>
-          <a href="https://status.prx.org/">Status</a>
+          <a href="http://status.prx.org/">Status</a>
           <a href="https://exchange.prx.org/terms-of-use">Terms</a>
           <a href="https://exchange.prx.org/privacy-policy">Privacy</a>
         </section>
