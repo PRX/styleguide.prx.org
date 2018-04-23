@@ -69,8 +69,8 @@
   top: 100%;
   right: 0;
   background: #fff;
-  color: #368aa2;
-  border: 1px solid #368aa2;
+  color: #0089bc;
+  border: 1px solid #0089bc;
   padding: 4px 10px;
   margin-top: 15px;
   display: none;
@@ -99,7 +99,7 @@
 }
 .toolbar >>> .invalid-tip:before {
 	border-color: rgba(54, 138, 162, 0);
-	border-bottom-color: #368aa2;
+	border-bottom-color: #0089bc;
 	border-width: 15px;
 	margin-right: -15px;
 }
@@ -112,12 +112,12 @@
   border-bottom-color: #61A85D;
 }
 .toolbar >>> .invalid-tip.publish {
-  color: #f59f51;
-  border-color: #f59f51;
+  color: #ff9600;
+  border-color: #ff9600;
 }
 .toolbar >>> .invalid-tip.publish:before {
   border-color: rgba(97, 168, 93, 0);
-  border-bottom-color: #f59f51;
+  border-bottom-color: #ff9600;
 }
 
 /**

@@ -21,11 +21,11 @@
   text-decoration: underline;
 }
 .main >>> nav a.active {
-  background-color: #368aa2;
+  background-color: #0089bc;
   color: #fff;
 }
 .main >>> nav a.active:hover {
-  background-color: #2b7187;
+  background-color: #0070a1;
   text-decoration: none;
 }
 .main >>> nav a[disabled], .main >>> nav a[disabled]:hover {
