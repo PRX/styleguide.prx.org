@@ -45,7 +45,7 @@
                 <tspan x="220" y="234">Article title</tspan>
                 <tspan x="220" y="264" font-size="14">Status information</tspan>
             </text>
-            <rect id="Rectangle-7" fill="#0089bc" x="1120" y="210" width="100" height="38"></rect>
+            <rect id="Rectangle-7" fill="#0089bd" x="1120" y="210" width="100" height="38"></rect>
             <text id="Action" font-family="ArialMT, Arial" font-size="14" font-weight="normal" letter-spacing="2.4000001" fill="#FFFFFF">
                 <tspan x="1143" y="234">Actio</tspan>
                 <tspan x="1186.12402" y="234">n</tspan>
