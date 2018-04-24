@@ -11,12 +11,12 @@
 }
 
 .is-today .pika-button {
-  color: #0089bc;
+  color: #0089bd;
 }
 
 .is-selected .pika-button {
   color: #fff;
-  background: #0089bc;
+  background: #0089bd;
   box-shadow: none;
   border-radius: 0;
 }
