@@ -68,7 +68,7 @@ import { Component } from '@angular/core';
           <select [(ngModel)]="myColor">
             <option value="#ff9600">Orange</option>
             <option value="#61A85D">Green</option>
-            <option value="#0089bc">Blue</option>
+            <option value="#0089bd">Blue</option>
           </select>
         </p>
       </aside>
