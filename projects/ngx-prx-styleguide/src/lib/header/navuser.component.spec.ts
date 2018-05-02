@@ -36,7 +36,7 @@ describe('Component: NavUserComponent', () => {
 
   it('displays the account name', () => {
     comp.userinfo = new Userinfo();
-    comp.userinfo.preferred_username = 'Mary';
+    comp.userinfo.name = 'Mary';
     fix.detectChanges();
     expect(de.query(By.css('.name')).nativeElement.innerText).toEqual('Mary');
   });
