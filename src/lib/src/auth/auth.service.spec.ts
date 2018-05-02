@@ -52,6 +52,7 @@ describe('AuthService', () => {
 
     it('throws excepption when token is not valid JWT structure', () => {
       expect(() => { auth.parseToken('invalid jwt') }).toThrow(new Error('Invalid xxxx.yyyy token string structure'));
+    });
 
     it('returns JS object from base64 encoded JSON', () => {
       let tokenJson = JSON.stringify({ foo: 'bar' });
