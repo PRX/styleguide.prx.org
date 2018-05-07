@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HalService, HalObservable, HalDoc } from 'ngx-prx-styleguide';
+import { Env } from '../core.env';
 
 @Component({
   selector: 'hal-demo',
@@ -66,12 +67,12 @@ import { HalService, HalObservable, HalDoc } from 'ngx-prx-styleguide';
 })
 export class HalDemoComponent {
 
-  cmsHost = 'cms-staging.prx.tech';
+  cmsHost = Env.CMS_HOST;
   code = '';
   error = false;
   loadAuth = false;
-  authHost = 'id-staging.prx.tech';
-  authClient = 'lVN05vLI8aCADh7lzbrL0AkDvEfPNuoEPpL2umL5';
+  authHost = Env.AUTH_HOST;
+  authClient = Env.AUTH_CLIENT_ID;
 
   constructor(private hal: HalService) {}
 

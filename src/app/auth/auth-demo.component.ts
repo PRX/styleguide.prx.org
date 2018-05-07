@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'ngx-prx-styleguide';
+import { Env } from '../core.env';
 
 @Component({
   selector: 'auth-demo',
@@ -26,8 +27,12 @@ import { AuthService } from 'ngx-prx-styleguide';
           </li>
           <li>
             Subscribe to <code>AuthService.token</code> Observable. It will emit
-            null when the user is confirmed to be unauthorized, and a string token
-            when the user is authorized.
+            null when the user is not authenticated, and a string token
+            when the user is authenticated. If the user is authenticated,
+            but not authorized for your application, the token will be set
+            to a special reserved string. You can check for this case
+            with <code>AuthService.parseToken(tokenString)</code> which will
+            return false if the token is not parse-able.
           </li>
         </ol>
         <ul>
@@ -45,7 +50,7 @@ import { AuthService } from 'ngx-prx-styleguide';
           <li>
             Add a <code>&lt;prx-login&gt;</code> component somewhere in your app.
             You probably only want to show it when the <code>AuthService.token</code>
-            emits null/unauthorized.
+            emits null.
           </li>
           <li>
             The <code>&lt;prx-login&gt;</code> component has 2 outputs: (1) a
@@ -70,8 +75,8 @@ import { AuthService } from 'ngx-prx-styleguide';
 })
 export class AuthDemoComponent {
 
-  authHost = 'id-staging.prx.tech';
-  authClient = 'lVN05vLI8aCADh7lzbrL0AkDvEfPNuoEPpL2umL5';
+  authHost = Env.AUTH_HOST;
+  authClient = Env.AUTH_CLIENT_ID;
   status = 'waiting...';
   loggedIn = false;
   reason: string;

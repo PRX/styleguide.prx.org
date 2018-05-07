@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'ngx-prx-styleguide';
+import { Env } from '../core.env';
 
 @Component({
   template: `
@@ -15,6 +16,9 @@ import { AuthService } from 'ngx-prx-styleguide';
           <li>
             Your application should have a <code>'login'</code> route. The <code>AuthGuard</code> Service will redirect to
             this route when the user is not logged in.
+          </li>
+          <li>Your application should have a <code>'permission-denied'</code> route. The <code>AuthGuard</code>
+              Service will redirect to this route when the user does not have permission to use your application.
           </li>
           <li>The <code>prx-auth</code> component should be present and shown somewhere on the page in the component hierarchy.</li>
           <li>Protected routes use <code>canActivate: [AuthGuard], canDeactivate: [DeactivateGuard]</code></li>
@@ -49,8 +53,8 @@ import { AuthService } from 'ngx-prx-styleguide';
 })
 
 export class GuardDemoComponent {
-  authHost = 'id-staging.prx.tech';
-  authClient = 'lVN05vLI8aCADh7lzbrL0AkDvEfPNuoEPpL2umL5';
+  authHost = Env.AUTH_HOST;
+  authClient = Env.AUTH_CLIENT_ID;
   status = 'waiting...';
   loggedIn = false;
 
