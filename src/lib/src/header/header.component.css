@@ -51,7 +51,7 @@ a.drawer {
   }
 }
 h1 {
-  width: 62px;
+  width: 72px;
   margin: 0;
   position: relative;
   opacity: 0.99;
@@ -62,7 +62,7 @@ h1 {
 h1 a {
   line-height: 50px;
   display: block;
-  background-image: url("ngx-prx-styleguide/assets/images/ic_header_logo.svg");
+  background-image: url("ngx-prx-styleguide/assets/images/prx_logo.svg");
   -webkit-background-size: auto 22px;
   -moz-background-size: auto 22px;
   background-size: auto 22px;
@@ -120,7 +120,7 @@ nav.alternate {
     height: 73px;
   }
   h1 {
-    width: 93px;
+    width: 113px;
   }
   h1 a {
     line-height: 73px;

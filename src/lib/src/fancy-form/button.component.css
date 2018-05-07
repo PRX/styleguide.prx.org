@@ -17,10 +17,10 @@ button.plain[disabled] {
   background-color: #ccc;
 }
 button.orange {
-  background-color: #f59f51;
+  background-color: #ff9600;
 }
 button.orange:hover, button.orange:focus {
-  background-color: #e28b42;
+  background-color: #ec8200;
 }
 button.orange[disabled] {
   color: #fce4cf;

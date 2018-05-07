@@ -5,6 +5,10 @@ describe('AuthService', () => {
   let auth = new AuthService();
   auth.config('some-host', 'some-client-id');
 
+  beforeEach(() => {
+    auth.setToken(undefined);
+  });
+
   describe('url', () => {
 
     it('generates unique nonces', () => {
@@ -25,9 +29,44 @@ describe('AuthService', () => {
 
   });
 
+  describe('failAuthorization', () => {
+
+    it('sets the special token value', () => {
+      let currentToken = 'something';
+      auth.token.subscribe((token) => { currentToken = token; });
+      auth.failAuthorization();
+      expect(currentToken).toEqual(AuthService.AUTHORIZATION_DENIED);
+    });
+
+  });
+
+  describe('parseToken', () => {
+
+    it('returns false when the token is AUTHORIZATION_DENIED', () => {
+      expect(auth.parseToken(AuthService.AUTHORIZATION_DENIED)).toEqual(false);
+    });
+
+    it('throws exception when token is not base64 encoded', () => {
+      expect(() => { auth.parseToken('a header.random string') }).toThrow(new Error('Illegal base64url string!'));
+    });
+
+    it('throws excepption when token is not valid JWT structure', () => {
+      expect(() => { auth.parseToken('invalid jwt') }).toThrow(new Error('Invalid xxxx.yyyy token string structure'));
+    });
+
+    it('returns JS object from base64 encoded JSON', () => {
+      let tokenJson = JSON.stringify({ foo: 'bar' });
+      let myToken = 'this-header-is-ignored.' + btoa(tokenJson);
+      console.log(myToken);
+      expect(auth.parseToken(myToken)).toEqual({foo: 'bar'});
+    });
+
+  });
+
   it('emits tokens', () => {
     let currentToken = 'nothing';
     auth.token.subscribe((token) => { currentToken = token; });
+    auth.setToken('nothing');
     expect(currentToken).toEqual('nothing');
     auth.setToken(undefined);
     expect(currentToken).toBeNull();

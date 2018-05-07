@@ -1,0 +1,4 @@
+# example .env file for running styleguide demo app
+CMS_HOST=cms.staging.prx.tech
+AUTH_HOST=id.staging.prx.tech
+AUTH_CLIENT_ID=lVN05vLI8aCADh7lzbrL0AkDvEfPNuoEPpL2umL5

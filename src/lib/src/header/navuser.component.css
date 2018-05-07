@@ -11,9 +11,39 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 1px solid rgb(112, 142, 151);
+  border: 1px solid rgb(0, 141, 177);
   display: inline-block;
   margin-top: 10px;
+}
+.nav-userinfo-menu-apps {
+  background-color: #fff;
+  border: 1px solid #ff9600;
+  border-top: none;
+  padding: 0;
+  display: none;
+  right: 0;
+  padding: 10px 20px;
+  position: absolute;
+  top: 100%;
+  z-index: 999;
+}
+.nav-userinfo-menu-apps .nav-userinfo-apps {
+  padding: 0;
+}
+.nav-userinfo-menu-apps .nav-userinfo-apps li a {
+  display: block;
+  font-weight: normal;
+  padding: 5px;
+  color: #0089bd;
+  height: auto;
+  line-height: 24px;
+  white-space: nowrap;
+}
+.nav-userinfo-menu-apps .nav-userinfo-apps li a:hover {
+  color: #0070a1;
+}
+.nav-userinfo:hover .nav-userinfo-menu-apps {
+  display: block;
 }
 @media screen and (min-width: 768px) {
   .name {
