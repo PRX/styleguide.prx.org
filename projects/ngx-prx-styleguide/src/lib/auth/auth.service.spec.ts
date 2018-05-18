@@ -57,7 +57,6 @@ describe('AuthService', () => {
     it('returns JS object from base64 encoded JSON', () => {
       let tokenJson = JSON.stringify({ foo: 'bar' });
       let myToken = 'this-header-is-ignored.' + btoa(tokenJson);
-      console.log(myToken);
       expect(auth.parseToken(myToken)).toEqual({foo: 'bar'});
     });
 

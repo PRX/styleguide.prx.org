@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Headers, Http, RequestOptionsArgs, RequestOptions } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { HalDoc } from '../hal/doc/haldoc';
 import { HalObservable } from '../hal/doc/halobservable';
 import { HalService } from '../hal/hal.service';
@@ -21,23 +21,21 @@ export class UserinfoService {
   authHost: string;
   userinfo: Userinfo;
 
-  constructor(private http: Http, private hal: HalService) { }
+  constructor(private http: HttpClient, private hal: HalService) { }
 
   config(authHost: string) {
     this.authHost = authHost;
   }
 
   getUserinfo(): Observable<Userinfo> {
-    let url = `${this.authHost}/userinfo?scope=profile+apps`;
-    let optionsArgs:RequestOptionsArgs = { withCredentials: true };
-    let options = new RequestOptions(optionsArgs);
-    return this.http.get(url, options)
-                    .map(response => response.json() as Userinfo)
+    const url = `${this.authHost}/userinfo`;
+    const params = new HttpParams().set('scope', 'profile+apps');
+    return this.http.get(url, {params, withCredentials: true})
                     .catch(this.handleError);
   }
 
   getUserDoc(userinfo: Userinfo): HalObservable<HalDoc> {
-    let url = userinfo.href.match(/^(https?:\/\/.+?)(\/.+)/);
+    const url = userinfo.href.match(/^(https?:\/\/.+?)(\/.+)/);
     return this.hal.public(url[1], url[2]);
   }
 

@@ -1,5 +1,5 @@
 import { Injectable, Optional } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { HalDoc } from './doc/haldoc';
 import { HalLink } from './doc/hallink';
@@ -11,7 +11,7 @@ export class HalService {
 
   private remotes: { [key: string]: HalRemote; } = {};
 
-  constructor(private http: Http, @Optional() private auth: AuthService) {}
+  constructor(private http: HttpClient, @Optional() private auth: AuthService) {}
 
   public(host: string, path = '/api/v1', ttl?: number): HalObservable<HalDoc> {
     return this.remoteGet(this.loadRemote(host, false, ttl), path);
