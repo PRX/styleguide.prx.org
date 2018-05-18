@@ -17,7 +17,6 @@ import { Userinfo } from '../auth/userinfo.service';
         </a>
         <div *ngIf="userinfo" class="nav-userinfo-menu-apps">
           <ul class="nav-userinfo-apps">
-            <li><a class="nav-userinfo-app" href="https://exchange.prx.org/">PRX Exchange</a></li>
             <li *ngFor="let appName of appNames();">
               <a class="nav-userinfo-app" href="{{userinfo.apps[appName]}}">{{appLabel(appName)}}</a>
             </li>
