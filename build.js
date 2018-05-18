@@ -37,15 +37,13 @@ return Promise.resolve()
     .then(() => console.log('Inlining succeeded.'))
   )
   // Compile to ES2015.
-  .then(() => ngc({ project: `${tempLibFolder}/tsconfig.es2015.json` })
+  .then(() => ngc([ '--project', `${tempLibFolder}/tsconfig.es2015.json` ]))
     .then(exitCode => exitCode === 0 ? Promise.resolve() : Promise.reject())
     .then(() => console.log('ES2015 compilation succeeded.'))
-  )
   // Compile to ES5.
-  .then(() => ngc({ project: `${tempLibFolder}/tsconfig.es5.json` })
+  .then(() => ngc([ '--project', `${tempLibFolder}/tsconfig.es5.json` ]))
     .then(exitCode => exitCode === 0 ? Promise.resolve() : Promise.reject())
     .then(() => console.log('ES5 compilation succeeded.'))
-  )
   // Copy typings and metadata to `dist/` folder.
   .then(() => Promise.resolve()
     .then(() => _relativeCopy('**/*.d.ts', es2015OutputFolder, distFolder))
@@ -75,9 +73,9 @@ return Promise.resolve()
         // the window object.
         // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals for more.
         '@angular/common': 'ng.common',
+        '@angular/common/http': 'ng.http',
         '@angular/core': 'ng.core',
         '@angular/forms': 'ng.forms',
-        '@angular/http': 'ng.http',
         '@angular/platform-browser': 'ng.platformBrowser',
         '@angular/router': 'ng.router',
         'rxjs/Observable': 'Rx',
@@ -106,9 +104,9 @@ return Promise.resolve()
         // List of dependencies
         // See https://github.com/rollup/rollup/wiki/JavaScript-API#external for more.
         '@angular/common',
+        '@angular/common/http',
         '@angular/core',
         '@angular/forms',
-        '@angular/http',
         '@angular/platform-browser',
         '@angular/router',
         'rxjs/Observable',

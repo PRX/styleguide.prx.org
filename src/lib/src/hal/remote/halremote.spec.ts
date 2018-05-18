@@ -1,26 +1,37 @@
-import { Http, Response, ResponseOptions, RequestOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+import { TestBed } from '@angular/core/testing';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/operator/delay';
 
 import { HalRemote } from './halremote';
+import { HalLink } from '../doc/hallink';
 
 describe('HalRemote', () => {
 
-  const mockHttp = new Http(new MockBackend(), new RequestOptions());
-  const mockResponse = (data = {}, status = 200) => {
+  let mockHttp: HttpTestingController;
+  let httpClient: HttpClient;
+  /*const mockResponse = (data = {}, status = 200) => {
     return new Response(new ResponseOptions({body: JSON.stringify(data), status}));
-  };
+  };*/
 
-  let remote: HalRemote, link: any, token: ReplaySubject<string>;
+  let remote: HalRemote, link: any, token: ReplaySubject<string>, fakeAuth: any;
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule
+      ]
+    });
+    mockHttp = TestBed.get(HttpTestingController);
+    httpClient = TestBed.get(HttpClient);
+
     link = {href: '/foobar'};
     token = new ReplaySubject<string>(1);
     token.next('thetoken');
-    let fakeAuth: any = {token: token, refreshToken: () => token.next('nexttoken') || token};
-    remote = new HalRemote('http://thehost', mockHttp, fakeAuth, 10);
+    fakeAuth = {token, refreshToken: () => token.next('nexttoken') || token};
+    remote = new HalRemote('http://thehost', httpClient, fakeAuth, 10);
     remote.clear();
   });
 
@@ -70,54 +81,88 @@ describe('HalRemote', () => {
 
   describe('get', () => {
 
-    it('sets the correct headers', () => {
-      spyOn(mockHttp, 'get').and.callFake((url: any, options: any) => {
-        expect(url).toEqual('http://thehost/somewhere');
-        expect(options.headers.get('Accept')).toEqual('application/hal+json');
-        expect(options.headers.get('Authorization')).toEqual('Bearer thetoken');
-        return Observable.empty();
-      });
+    afterEach(() => {
+      mockHttp.verify();
+    });
+
+    it('expands templated links', () => {
       link.href = '/{foo}';
       link.templated = true;
-      remote.get(link, {foo: 'somewhere'}).subscribe();
-      expect(mockHttp.get).toHaveBeenCalled();
+      remote.get(link, {foo: 'somewhere'}).subscribe(() => {});
+      const req = mockHttp.expectOne(request => {
+        return request.url === 'http://thehost/somewhere';
+      });
+      expect(req.request.method).toBe('GET');
+      req.flush({});
+    });
+
+    it('sets the correct headers', () => {
+      remote.get(link).subscribe(() => {});
+      const req = mockHttp.expectOne(request => {
+        return request.headers.get('Accept') === 'application/hal+json' &&
+          request.headers.get('Authorization') === 'Bearer thetoken';
+      });
+      expect(req.request.method).toBe('GET');
+      req.flush({});
     });
 
     it('caches values for a short time', () => {
       let httpCount = 0;
-      spyOn(mockHttp, 'get').and.callFake((url: any, options: any) => {
-        return Observable.of(mockResponse({count: httpCount++}));
+      let completed = 0;
+      remote.get(link).subscribe(data => {
+        expect(data['count']).toEqual(1);
+        expect(++completed).toEqual(1);
+      });
+      const cachedReq = mockHttp.expectOne(request => {
+        return request.url.indexOf(link.href) > -1;
+      });
+      expect(cachedReq.request.method).toBe('GET');
+      cachedReq.flush({count: ++httpCount});
+      expect(httpCount).toEqual(1);
+
+      // check that we still have the same data cached
+      remote.get(link).subscribe(data => {
+        expect(data['count']).toEqual(1);
+        expect(++completed).toEqual(2);
       });
 
-      let completed = 0;
-      remote.get(link).subscribe(data => completed++);
-      expect(httpCount).toEqual(1);
-      expect(completed).toEqual(1);
-
-      remote.get(link).subscribe(data => completed++);
-      expect(httpCount).toEqual(1);
-      expect(completed).toEqual(2);
-
+      // clear and get again
       remote.clear();
-      remote.get(link).subscribe(data => completed++);
+      remote.get(link).subscribe(data => {
+        expect(data['count']).toEqual(2);
+        expect(++completed).toEqual(3);
+      });
+      const clearReq = mockHttp.expectOne(request => {
+        return request.url.indexOf(link.href) > -1;
+      });
+      expect(clearReq.request.method).toBe('GET');
+      clearReq.flush({count: ++httpCount});
       expect(httpCount).toEqual(2);
-      expect(completed).toEqual(3);
     });
 
     it('caches in-flight observables', function(done: DoneFn) {
       let httpCount = 0;
-      spyOn(mockHttp, 'get').and.callFake((url: any, options: any) => {
-        return Observable.of(mockResponse({count: httpCount++})).delay(100);
+      let completed = 0;
+      remote.get(link).map(data => {
+        return Observable.of(data).delay(100);
+      }).subscribe(() => {
+        completed++;
+      });
+      remote.get(link).subscribe(() => {
+        completed++;
+      });
+      remote.get(link).subscribe(() => {
+        completed++;
       });
 
-      let completed = 0;
-      remote.get(link).subscribe(data => completed++);
-      remote.get(link).subscribe(data => completed++);
-      remote.get(link).subscribe(data => completed++);
-
-      expect(httpCount).toEqual(1);
-      expect(completed).toEqual(0);
       setTimeout(() => {
+        expect(httpCount).toEqual(0);
+        expect(completed).toEqual(0);
+        const req = mockHttp.expectOne(request => {
+          return request.url.indexOf(link.href) > -1;
+        });
+        expect(req.request.method).toBe('GET');
+        req.flush({count: ++httpCount});
         expect(httpCount).toEqual(1);
         expect(completed).toEqual(3);
         done();
@@ -128,18 +173,20 @@ describe('HalRemote', () => {
 
   describe('post', () => {
 
+    afterEach(() => {
+      mockHttp.verify();
+    });
+
     it('sets the correct headers', () => {
-      spyOn(mockHttp, 'post').and.callFake((url: any, body: string, options: any) => {
-        expect(url).toEqual('http://thehost/foobar');
-        expect(body).toEqual('{"hello":"world"}');
-        expect(options.headers.get('Accept')).toEqual('application/hal+json');
-        expect(options.headers.get('Authorization')).toEqual('Bearer thetoken');
-        expect(options.headers.get('Content-Type')).toEqual('application/hal+json');
-        return Observable.empty();
+      remote.post(link, {}, {hello: 'world'}).subscribe(() => {});
+      const req = mockHttp.expectOne(request => {
+        return request.body === '{"hello":"world"}' &&
+          request.headers.get('Accept') === 'application/hal+json' &&
+          request.headers.get('Authorization') === 'Bearer thetoken' &&
+          request.headers.get('Content-Type') === 'application/hal+json';
       });
-      link.href = '/foobar';
-      remote.post(link, {}, {hello: 'world'}).subscribe();
-      expect(mockHttp.post).toHaveBeenCalled();
+      expect(req.request.method).toBe('POST');
+      req.flush({});
     });
 
   });
@@ -147,35 +194,18 @@ describe('HalRemote', () => {
   describe('retries', () => {
 
     it('retries 401s after getting a new token', () => {
+      spyOn(fakeAuth, 'refreshToken').and.callThrough();
+      remote.get(link).subscribe();
+
       let httpCount = 0;
-      spyOn(mockHttp, 'get').and.callFake((url: any, options: any) => {
-        if (httpCount > 0) {
-          expect(options.headers.get('Authorization')).toEqual('Bearer nexttoken');
-          return Observable.of(mockResponse({count: httpCount++}));
-        } else {
-          expect(options.headers.get('Authorization')).toEqual('Bearer thetoken');
-          return Observable.of(mockResponse({count: httpCount++}, 401));
-        }
+      const req = mockHttp.expectOne(request => request.headers.get('Authorization') === 'Bearer thetoken');
+      expect(req.request.method).toBe('GET');
+      req.flush({data: 'Unauthorized'}, {status: 401, statusText: 'Unauthorized'});
+
+      expect(fakeAuth.refreshToken).toHaveBeenCalledTimes(1);
+      token.subscribe(tkn => {
+        expect(tkn).toEqual('nexttoken');
       });
-
-      let completed = 0, errored = 0;
-      remote.get(link).subscribe(data => completed++, err => errored++);
-      expect(httpCount).toEqual(2);
-      expect(completed).toEqual(1);
-      expect(errored).toEqual(0);
-    });
-
-    it('retries 401 responses only once before erroring', () => {
-      let httpCount = 0;
-      spyOn(mockHttp, 'get').and.callFake((url: any, options: any) => {
-        return Observable.of(mockResponse({count: httpCount++}, 401));
-      });
-
-      let completed = 0, errored = 0;
-      remote.get(link).subscribe(data => completed++, err => errored++);
-      expect(httpCount).toEqual(2);
-      expect(completed).toEqual(0);
-      expect(errored).toEqual(1);
     });
 
   });

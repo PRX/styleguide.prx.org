@@ -47,11 +47,10 @@
     "lint": "tslint './src/**/*.ts' -t verbose"
   },
   "peerDependencies": {
-    "@angular/common": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
-    "@angular/core": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
-    "@angular/forms": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
-    "@angular/http": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0",
-    "@angular/platform-browser": ">=4.0.0 <5.0.0 || >=4.0.0-beta <5.0.0"
+    "@angular/common": ">=5.0.0 <5.1.2",
+    "@angular/core": ">=5.0.0 <5.1.2",
+    "@angular/forms": ">=5.0.0 <5.1.2",
+    "@angular/platform-browser": ">=5.0.0 <5.1.2"
   },
   "dependencies": {
     "angular-2-dropdown-multiselect": "^1.5.4",
@@ -59,15 +58,14 @@
     "pikaday": "^1.5.1"
   },
   "devDependencies": {
-    "@angular/common": "~4.0.0",
-    "@angular/compiler": "~4.0.0",
-    "@angular/compiler-cli": "~4.0.0",
-    "@angular/core": "~4.0.0",
-    "@angular/forms": "~4.0.0",
-    "@angular/http": "~4.0.0",
-    "@angular/platform-browser": "~4.0.0",
-    "@angular/platform-browser-dynamic": "~4.0.0",
-    "@angular/router": "~4.0.0",
+    "@angular/common": "^5.1.2",
+    "@angular/compiler": "^5.1.2",
+    "@angular/compiler-cli": "^5.1.2",
+    "@angular/core": "^5.1.2",
+    "@angular/forms": "^5.1.2",
+    "@angular/platform-browser": "^5.1.2",
+    "@angular/platform-browser-dynamic": "^5.1.2",
+    "@angular/router": "^5.1.2",
     "@types/c3": "^0.4.41",
     "@types/jasmine": "2.5.36",
     "@types/node": "^6.0.46",
@@ -97,10 +95,10 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-sourcemaps": "^0.4.1",
     "rollup-plugin-uglify": "^1.0.1",
-    "rxjs": "^5.1.0",
+    "rxjs": "^5.5.2",
     "systemjs": "^0.19.40",
     "tslint": "^4.4.2",
-    "typescript": "^2.2.1",
+    "typescript": "^2.4.2",
     "zone.js": "^0.8.4"
   }
 }

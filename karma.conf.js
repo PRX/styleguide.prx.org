@@ -51,6 +51,7 @@ module.exports = function (config) {
       // Angular itself
       { pattern: 'node_modules/@angular/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false },
+      { pattern: 'node_modules/tslib/tslib.js', included: false, watched: false },
 
       // 3rd party libs
       { pattern: 'node_modules/c3/c3.js', included: false, watched: false },

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { HalService } from './hal.service';
 import './doc/halobservable';
@@ -8,12 +8,14 @@ import './doc/halobservable';
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule
+    HttpClientModule
   ],
   declarations: [],
   providers: [
     HalService
   ],
-  exports: []
+  exports: [
+    HttpClientModule
+  ]
 })
 export class HalModule { }
