@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -7,7 +7,6 @@ import 'rxjs/add/observable/empty';
 import 'rxjs/add/operator/delay';
 
 import { HalRemote } from './halremote';
-import { HalLink } from '../doc/hallink';
 
 describe('HalRemote', () => {
 
