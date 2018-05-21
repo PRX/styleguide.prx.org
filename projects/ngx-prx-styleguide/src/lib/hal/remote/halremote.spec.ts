@@ -13,10 +13,7 @@ describe('HalRemote', () => {
 
   let mockHttp: HttpTestingController;
   let httpClient: HttpClient;
-  /*const mockResponse = (data = {}, status = 200) => {
-    return new Response(new ResponseOptions({body: JSON.stringify(data), status}));
-  };*/
-
+ 
   let remote: HalRemote, link: any, token: ReplaySubject<string>, fakeAuth: any;
   beforeEach(() => {
     TestBed.configureTestingModule({
