@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AuthComponent } from './auth.component';
 import { AuthService } from './auth.service';
@@ -10,7 +10,7 @@ import { UserinfoService } from './userinfo.service';
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
+    HttpClientModule,
   ],
   declarations: [
     AuthComponent,

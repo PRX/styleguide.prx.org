@@ -3,12 +3,12 @@ import { ElementRef } from '@angular/core';
 export class AuthParser {
 
   static parseIframeQuery(el: ElementRef) {
-    let iframe = el.nativeElement.getElementsByTagName('iframe')[0];
+    const iframe = el.nativeElement.getElementsByTagName('iframe')[0];
     return this.parseQuery(iframe.contentDocument.location.hash);
   }
 
   static parseQuery(locationHash: string) {
-    return locationHash.replace(/^#/, '');
+    return locationHash.replace(new RegExp('^#'), '');
   }
 
   static queryToPairs(query = ''): {} {
@@ -21,11 +21,11 @@ export class AuthParser {
   }
 
   static parseToken(query = ''): string {
-    return this.queryToPairs(query)['access_token'];
+    return AuthParser.queryToPairs(query)['access_token'];
   }
 
   static parseError(query = ''): string {
-    return this.queryToPairs(query)['error'];
+    return AuthParser.queryToPairs(query)['error'];
   }
 
 }

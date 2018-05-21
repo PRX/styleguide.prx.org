@@ -1,6 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { FormsModule }   from '@angular/forms';
-import { HttpModule }    from '@angular/http';
+import { HttpClientModule }    from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AuthGuard, DeactivateGuard, UnauthGuard } from 'ngx-prx-styleguide';
@@ -8,6 +8,8 @@ import { AuthGuard, DeactivateGuard, UnauthGuard } from 'ngx-prx-styleguide';
 import { AppComponent }  from './app.component';
 import { routing, routingProviders, routingComponents } from './app.routing';
 import { tabDemoRouting, tabDemoComponents } from './tab/tab.routing';
+
+import { geoDemoComponents } from './geo/index';
 
 import {
   AuthModule,
@@ -33,7 +35,7 @@ import {
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     AuthModule,
     ChartsModule,
     DatepickerModule,
@@ -51,7 +53,7 @@ import {
     routing,
     tabDemoRouting
   ],
-  declarations: [ AppComponent, routingComponents, tabDemoComponents ],
+  declarations: [ AppComponent, routingComponents, tabDemoComponents, geoDemoComponents ],
   providers:    [ routingProviders,
                   AuthGuard, DeactivateGuard, UnauthGuard,
                   ModalService, TabService, ToastrService ],

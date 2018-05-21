@@ -1,4 +1,4 @@
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/first';
@@ -27,7 +27,7 @@ export class HalRemote {
 
   constructor(
     public host: string,
-    private http: Http,
+    private http: HttpClient,
     private auth?: AuthService,
     private ttl?: number
   ) {
@@ -94,42 +94,25 @@ export class HalRemote {
     this.cache.clear();
   }
 
-  private httpRequest(method: string, href: string, body?: string, allowRetry = true): Observable<Response> {
-    return this.getResponse(method, href, body).mergeMap(res => {
-      if ((method === 'get' || method === 'put') && res.status === 200) {
-        return Observable.of(res.json());
-      } else if (method === 'put' && res.status === 204) {
-        return Observable.of(null);
-      } else if (method === 'post' && res.status === 201) {
-        return Observable.of(res.json());
-      } else if (method === 'delete' && res.status === 204) {
-        return Observable.of(null);
-      } else if (res.status === 401 && allowRetry && this.auth) {
-        return this.auth.refreshToken().mergeMap(() => this.httpRequest(method, href, body, false));
-      } else if (res.status === 0) {
-        return Observable.throw(new Error(`CORS preflight failed for ${method.toUpperCase()} ${href}`));
-      } else {
-        return Observable.throw(new HalHttpError(res.status, `Got ${res.status} from ${method.toUpperCase()} ${href}`));
-      }
-    });
+  private httpRequest(method: string, href: string, body?: string, allowRetry = true): Observable<{}> {
+    return this.getResponse(method, href, body, allowRetry);
   }
 
-  private getResponse(method: string, href: string, body?: string): Observable<Response> {
-    let headers = new Headers();
-    headers.set('Accept', 'application/hal+json');
+  private getResponse(method: string, href: string, body?: string, allowRetry = true): Observable<{}> {
+    let headers = new HttpHeaders({'Accept': 'application/hal+json'});
     if (body) {
-      headers.set('Content-Type', 'application/hal+json');
+      headers = headers.append('Content-Type', 'application/hal+json');
     }
 
     // wait for auth token - but not for root api paths!
-    let options: Observable<RequestOptions>;
+    let options: Observable<{headers?: HttpHeaders}>;
     if (this.auth && !this.isRoot(href)) {
       options = this.auth.token.first().map(tokenString => {
-        headers.set('Authorization', `Bearer ${tokenString}`);
-        return new RequestOptions({headers: headers});
+        headers = headers.append('Authorization', `Bearer ${tokenString}`);
+        return {headers};
       });
     } else {
-      options = Observable.of(new RequestOptions({headers: headers}));
+      options = Observable.of({headers});
     }
 
     // make request, and catch http errors
@@ -146,8 +129,14 @@ export class HalRemote {
         throw new Error(`Unknown method ${method}`);
       }
     }).catch(err => {
-      if (err instanceof Response) {
-        return Observable.of(err);
+      if (err instanceof HttpErrorResponse) {
+        if (err.status === 401 && allowRetry && this.auth) {
+          return this.auth.refreshToken().mergeMap(() => this.httpRequest(method, href, body, false));
+        } else if (err.status === 0) {
+          return Observable.throw(new Error(`CORS preflight failed for ${method.toUpperCase()} ${href}`));
+        } else {
+          return Observable.throw(new HalHttpError(err.status, `Got ${err.status} from ${method.toUpperCase()} ${href}`));
+        }
       } else {
         throw err;
       }
