@@ -29,7 +29,7 @@ import { Component } from '@angular/core';
       height: 30px;
       border-radius: 50%;
       border: 1px solid rgb(0, 141, 177);
-      background-color: #7b9fa7;
+      background-color: #676767;
       display: inline-block;
       vertical-align: middle;
       margin-left: 10px;
