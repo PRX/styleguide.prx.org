@@ -28,7 +28,7 @@ describe('Component: NavItemComponent', () => {
     comp.text = 'Foobar';
     comp.route = '/home';
     fix.detectChanges();
-    expect(de.query(By.css('a')).nativeElement.innerText).toEqual('Foobar');
+    expect(de.query(By.css('a')).nativeElement.innerText).toEqual(('Foobar').toUpperCase());
     expect(de.query(By.css('a')).nativeElement.getAttribute('href')).toEqual('/home');
   });
 
@@ -36,7 +36,7 @@ describe('Component: NavItemComponent', () => {
     comp.text = 'Somewhere';
     comp.href = 'http://some.where';
     fix.detectChanges();
-    expect(de.query(By.css('a')).nativeElement.innerText).toEqual('Somewhere');
+    expect(de.query(By.css('a')).nativeElement.innerText).toEqual(('Somewhere').toUpperCase());
     expect(de.query(By.css('a')).nativeElement.getAttribute('href')).toEqual('http://some.where');
   });
 
