@@ -3,7 +3,7 @@
 html {
   line-height: 1.5em;/* TODO: why em when we're not specifying font-size yet? */
   height: 100%;
-  background-color: var(--charcoal);
+  background-color: var(--grey-darkest);
   background-image: url('../images/tl_diag_stripes.svg');
 }
 
