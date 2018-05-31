@@ -6,12 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css'],
   template: `
     <header>
-      <div class="contents">
-        <h1><a [routerLink]="['/']">PRX</a></h1>
-        <nav>
-          <ng-content></ng-content>
-        </nav>
-      </div>
+      <h1><a [routerLink]="['/']">PRX</a></h1>
+      <nav>
+        <ng-content></ng-content>
+      </nav>
     </header>
     `
 })
