@@ -11,11 +11,10 @@ import { Userinfo } from '../auth/userinfo.service';
   template: `
     <div class="nav-holder nav-userinfo">
       <ng-template [ngIf]="userinfo">
-        <a *ngIf="userinfo">
-          <span class="name">{{userinfo.name}}</span>
+        <a>
           <ng-content select=".user-loaded"></ng-content>
         </a>
-        <div *ngIf="userinfo" class="nav-userinfo-menu-apps">
+        <div class="nav-userinfo-menu-apps">
           <ul class="nav-userinfo-apps">
             <li *ngFor="let appName of appNames();">
               <a class="nav-userinfo-app" href="{{userinfo.apps[appName]}}">{{appLabel(appName)}}</a>
