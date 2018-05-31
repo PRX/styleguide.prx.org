@@ -46,6 +46,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   userinfo = {
     sub: 1,
+    email: 'somebody@somewhere.org',
     preferred_username: 'somebody',
     name: 'Some body',
     href: '',
