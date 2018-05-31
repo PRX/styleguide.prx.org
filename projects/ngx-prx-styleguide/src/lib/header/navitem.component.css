@@ -2,12 +2,13 @@
  * Navigation items
  */
 a {
-  color: #bababa;
+  color: #bebebe;
   display: block;
   padding: 0 3px;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 1.1em;
+  font-family: 'Montserrat', sans-serif;
 }
 a.active {
   color: #fff;
