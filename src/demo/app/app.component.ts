@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <prx-header>
       <prx-navitem route="/" text="PRX StyleGuide"></prx-navitem>
-      <prx-navuser userName="Mary">
+      <prx-navuser [userinfo]="userinfo">
         <div class="user-loaded profile-image-placeholder"></div>
       </prx-navuser>
     </prx-header>
@@ -43,4 +43,16 @@ import { Component } from '@angular/core';
      }
   `]
 })
-export class AppComponent {}
+export class AppComponent {
+  userinfo = {
+    sub: 1,
+    preferred_username: 'somebody',
+    name: 'Some body',
+    href: '',
+    apps: {
+      'exchange.prx.org': 'https://exchange.prx.org',
+      'metrics.prx.org': 'https://metrics.prx.org',
+      'publish.prx.org': 'https://publish.prx.org'
+    }
+  };
+}
