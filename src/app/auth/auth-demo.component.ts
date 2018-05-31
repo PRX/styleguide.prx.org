@@ -49,7 +49,6 @@ import { Env } from '../core.env';
         <h2>UserinfoService Usage:</h2>
         <p>Authorization is handled by the UserinfoService via the NavUserComponent.</p>
         <ol>
-          <li>Include the <code>AuthModule</code> in your app</li>
           <li>
             Inject the UserinfoService into your app where you have the NavUserComponent, usually the top level component.
           </li>
