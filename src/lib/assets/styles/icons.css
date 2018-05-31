@@ -125,7 +125,7 @@ a:focus .icon-down-dir, button:focus .icon-down-dir, .icon-down-dir:focus,
 }
 
 .icon-facebook-official {
-  background-image: url('../images/icons/ic_facebook-official_facebook-blue.svg');
+  background-image: url('../images/icons/ic_facebook-official_grey-dove.svg');
 }
 
 .icon-mail-alt {
@@ -211,7 +211,7 @@ a:focus .icon-right-dir, button:focus .icon-right-dir, .icon-right-dir:focus,
 }
 
 .icon-twitter {
-  background-image: url('../images/icons/ic_twitter_twitter-blue.svg');
+  background-image: url('../images/icons/ic_twitter_grey-dove.svg');
 }
 
 .icon-up-dir {
