@@ -7,6 +7,7 @@ import { HalService } from '../hal/hal.service';
 
 export class Userinfo {
   sub: number;
+  email: string;
   name: string;
   given_name: string;
   family_name: string;
@@ -29,7 +30,7 @@ export class UserinfoService {
 
   getUserinfo(): Observable<Userinfo> {
     const url = `${this.authHost}/userinfo`;
-    const params = new HttpParams().set('scope', 'profile+apps');
+    const params = new HttpParams().set('scope', 'profile+apps+email');
     return this.http.get(url, {params, withCredentials: true})
                     .catch(this.handleError);
   }
