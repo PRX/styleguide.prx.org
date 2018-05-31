@@ -16,7 +16,7 @@
   margin-top: 10px;
 }
 .nav-userinfo-menu-apps {
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   display: none;
   right: 0;
   padding: 10px 20px;
@@ -30,6 +30,7 @@
   font-size: 0.9em;
   font-weight: 700;
   text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
 }
 .nav-userinfo-menu-apps ul {
   border-top: 1px solid #ddd;
@@ -38,8 +39,9 @@
 .nav-userinfo-menu-apps li a {
   display: block;
   font-weight: normal;
+  font-family: 'Montserrat', sans-serif;
   padding: 5px;
-  color: #bababa;
+  color: #bebebe;
   height: auto;
   line-height: 24px;
   white-space: nowrap;
