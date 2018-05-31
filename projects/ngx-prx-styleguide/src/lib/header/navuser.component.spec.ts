@@ -34,18 +34,17 @@ describe('Component: NavUserComponent', () => {
     });
   }));
 
-  it('displays the account name', () => {
+  it('displays the account email', () => {
     comp.userinfo = new Userinfo();
-    comp.userinfo.name = 'Mary';
+    comp.userinfo.email = 'somebody@somewhere.org';
     fix.detectChanges();
-    expect(de.query(By.css('.name')).nativeElement.innerText).toEqual('Mary');
+    expect(de.query(By.css('.nav-userinfo-menu-account')).nativeElement.innerText).toEqual('somebody@somewhere.org');
   });
 
   it('displays the loaded content', () => {
     comp.userinfo = new Userinfo();
-    comp.userinfo.preferred_username = 'Mary';
     fix.detectChanges();
-    expect(el.innerText).toContain('IsLoaded');
+    expect(el.innerText).toContain(('IsLoaded').toUpperCase());
   });
 
   it('displays loading content', () => {
