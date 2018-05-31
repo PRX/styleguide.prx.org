@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  background: var(--white);
+  background: var(--grey-darkest);
   max-width: 1200px;
   min-height: 100%;
   margin-right: auto;
