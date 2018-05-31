@@ -16,10 +16,7 @@
   margin-top: 10px;
 }
 .nav-userinfo-menu-apps {
-  background-color: #fff;
-  border: 1px solid #ff9600;
-  border-top: none;
-  padding: 0;
+  background-color: #1C1C1C;
   display: none;
   right: 0;
   padding: 10px 20px;
@@ -27,20 +24,28 @@
   top: 100%;
   z-index: 999;
 }
-.nav-userinfo-menu-apps .nav-userinfo-apps {
-  padding: 0;
+.nav-userinfo-menu-apps h1 {
+  color: #fff;
+  line-height: 36px;
+  font-size: 0.9em;
+  font-weight: 700;
+  text-transform: uppercase;
 }
-.nav-userinfo-menu-apps .nav-userinfo-apps li a {
+.nav-userinfo-menu-apps ul {
+  border-top: 1px solid #ddd;
+  padding: 15px 0 0;
+}
+.nav-userinfo-menu-apps li a {
   display: block;
   font-weight: normal;
   padding: 5px;
-  color: #0089bd;
+  color: #bababa;
   height: auto;
   line-height: 24px;
   white-space: nowrap;
 }
-.nav-userinfo-menu-apps .nav-userinfo-apps li a:hover {
-  color: #0070a1;
+.nav-userinfo-menu-apps li a:hover {
+  color: #fff;
 }
 .nav-userinfo:hover .nav-userinfo-menu-apps {
   display: block;

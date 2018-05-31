@@ -34,8 +34,7 @@ a.active {
 .nav-holder.expanded .dropdown {
   display: block;
 }
-.nav-holder > * {
-  cursor: pointer;
+.nav-holder > a {
   padding: 0 25px;
 }
 .nav-holder .dropdown {
