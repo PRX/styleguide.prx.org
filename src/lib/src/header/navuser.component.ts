@@ -15,7 +15,7 @@ import { Userinfo } from '../auth/userinfo.service';
           <ng-content select=".user-loaded"></ng-content>
         </a>
         <div class="nav-userinfo-menu-apps">
-          <h1 id="nav-userinfo-menu-account">{{userinfo.email}}</h1>
+          <h1 class="nav-userinfo-menu-account">{{userinfo.email}}</h1>
           <ul>
             <li *ngFor="let appName of appNames();">
               <a class="nav-userinfo-app" href="{{userinfo.apps[appName]}}">{{appLabel(appName)}}</a>
