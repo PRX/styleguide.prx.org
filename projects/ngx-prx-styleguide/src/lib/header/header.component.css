@@ -1,7 +1,7 @@
 /*
  * PRX header component
  */
-header {
+:host {
   position: fixed;
   top: 0;
   right: 0;
@@ -9,24 +9,12 @@ header {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  height: 50px;
   z-index: 200;
   border-bottom: 1px solid #e6e6e6;
-  background: #fff;
+  background: #1C1C1C;
+  padding-left: 20px;
 }
-.contents {
-  max-width: 1060px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-@media screen and (min-width: 768px) {
-  .contents {
-    padding-right: 30px;
-    padding-left: 30px;
-  }
-}
+
 a.drawer {
   position: absolute;
   top: 0;
@@ -80,7 +68,7 @@ nav {
   display: block;
   position: absolute;
   top: 0;
-  right: 30px;
+  right: 0;
   width: calc(50% - 80px);
   text-align: right;
   display: -webkit-box;

@@ -2,13 +2,16 @@
  * Navigation items
  */
 a {
-  color: #a3a3a3;
+  color: #bababa;
   display: block;
   padding: 0 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.1em;
 }
 a.active {
-  color: #434343;
-  text-decoration: underline;
+  color: #fff;
+  text-decoration: none;
 }
 .nav-holder {
   height: 50px;
@@ -18,12 +21,6 @@ a.active {
 }
 .nav-holder > *:not(.dropdown) {
   line-height: 50px;
-}
-.nav-holder:hover, .nav-holder.expanded {
-  background-color: #ff9600;
-  border: 0 solid #e6e6e6;
-  border-width: 0 1px;
-  margin: 0 -1px;
 }
 .nav-holder:hover a, .nav-holder.expanded a {
   color: #fff;
@@ -59,11 +56,7 @@ a.active {
   display: inline-block;
   height: 14px;
   overflow: show;
-  border-left: 1px solid #e6e6e6;
   line-height: 14px;
-}
-:host:first-child {
-  border-left: none;
 }
 :host.alert .nav-holder {
   background: #ff0;
