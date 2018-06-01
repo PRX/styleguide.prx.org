@@ -5,8 +5,9 @@ import { Component } from '@angular/core';
   template: `
     <prx-header>
       <prx-navitem route="/" text="PRX StyleGuide"></prx-navitem>
-      <prx-navuser [userinfo]="userinfo">
-        <div class="user-loaded profile-image-placeholder"></div>
+      <prx-navuser [userinfo]="userinfo" (click)="toggleUserInfo()">
+        <prx-image class="user-loaded" src="../assets/images/user_placeholder.png"></prx-image>
+        <prx-spinner class="user-loading"></prx-spinner>
       </prx-navuser>
     </prx-header>
     <prx-modal></prx-modal>
@@ -22,38 +23,26 @@ import { Component } from '@angular/core';
       <a href="#">And also a standalone link</a>
     </prx-footer>
     <prx-toastr></prx-toastr>
-  `,
-  styles: [`
-    .profile-image-placeholder {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      border: 1px solid rgb(0, 141, 177);
-      background-color: #676767;
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 10px;
-    }
-    @media screen and (min-width: 768px) {
-      .profile-image-placeholder {
-        border-width: 2px;
-        width: 40px;
-        height: 40px;
-       }
-     }
-  `]
+  `
 })
 export class AppComponent {
-  userinfo = {
-    sub: 1,
-    email: 'somebody@somewhere.org',
-    preferred_username: 'somebody',
-    name: 'Some body',
-    href: '',
-    apps: {
-      'exchange.prx.org': 'https://exchange.prx.org',
-      'metrics.prx.org': 'https://metrics.prx.org',
-      'publish.prx.org': 'https://publish.prx.org'
+  userinfo: any;
+  toggleUserInfo() {
+    if (this.userinfo) {
+      this.userinfo = null;
+    } else {
+      this.userinfo = {
+        sub: 1,
+        email: 'somebody@somewhere.org',
+        preferred_username: 'somebody',
+        name: 'Some body',
+        href: '',
+        apps: {
+          'exchange.prx.org': 'https://exchange.prx.org',
+          'metrics.prx.org': 'https://metrics.prx.org',
+          'publish.prx.org': 'https://publish.prx.org'
+        }
+      };
     }
-  };
+  }
 }
