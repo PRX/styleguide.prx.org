@@ -8,22 +8,22 @@ Get [Yarn](https://yarnpkg.com/en/docs/install) and then `yarn install`.
 
 ## Development server / Demo app
 
-Run `npm start` for a demo server. The app will automatically reload if you change any of the source files.
+Run `yarn start` for a demo server. The app will automatically reload if you change any of the source files.
 
 ## Build
 
-Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. To release these
+Run `yarn run build` to build the project. The build artifacts will be stored in the `dist/` directory. To release these
 
 ## Running unit tests
 
-Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `yarn test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Usage
 
 To use this library in an angular-cli project:
 
 ```
-npm install --save ngx-prx-styleguide
+yarn add ngx-prx-styleguide
 ```
 
 Then import the modules you want into your module:
@@ -51,13 +51,12 @@ And add styles for any components you are using to your `.angular-cli.json`:
 
 ## Releasing
 
-To release to npm, *make sure* you do it from the `./dist` folder.
+To release to the npm registry, *make sure* you publish the `dist` folder.
 
 ```
-npm version patch
-npm run build
-cd dist/
-npm publish
+yarn version --patch
+yarn run build
+yarn publish dist
 ```
 
 ## License
