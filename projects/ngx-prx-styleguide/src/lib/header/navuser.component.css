@@ -2,10 +2,13 @@
  * Navbar user info
  */
 .spin-holder {
-  width: 80px;
+  position: relative;
+  width: 60px;
+  height: 100%;
+  margin-left: -10px;
 }
-.name {
-  display: none;
+.nav-holder {
+  display: block;
 }
 .nav-holder >>> prx-image {
   width: 30px;
@@ -15,6 +18,21 @@
   display: inline-block;
   margin-top: 10px;
 }
+@media screen and (min-width: 768px) {
+  .spin-holder {
+    margin-left: 10px;
+    width: 80px;
+  }
+  .nav-holder >>> prx-image {
+    border-width: 2px;
+    width: 40px;
+    height: 40px;
+    margin-right: -10px;
+    margin-left: 10px;
+    margin-bottom: -15px;
+  }
+}
+
 .nav-userinfo-menu-apps {
   background-color: #1c1c1c;
   display: none;
@@ -49,17 +67,4 @@
 }
 .nav-userinfo:hover .nav-userinfo-menu-apps {
   display: block;
-}
-@media screen and (min-width: 768px) {
-  .name {
-    display: inline-block;
-  }
-  .nav-holder >>> prx-image {
-    border-width: 2px;
-    width: 40px;
-    height: 40px;
-    margin-right: -10px;
-    margin-left: 10px;
-    margin-bottom: -15px;
-  }
 }
