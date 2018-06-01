@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
     <section class="main demo">
       <h2>Nav User</h2>
       <p>
-        The Nav User Component typically the user image and a user apps dropdown menu. It has two selectors for
+        The Nav User Component typically contains the user image and a user apps dropdown menu. It has two selectors for
         projected content, <code>.user-loading</code> and <code>.user-loaded</code>. Typically, the user image
         is shown when loaded and the <code>prx-spinner</code> is used when loading.
       </p>
