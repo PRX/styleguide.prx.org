@@ -62,10 +62,10 @@ a:focus .icon-calendar, button:focus .icon-calendar, .icon-calendar:focus,
   background-image: url('../images/icons/ic_calendar_grey-dove.svg');
 }
 
-.icon-calendar.charcoal,
+.icon-calendar.grey-darkest,
 a:hover .icon-calendar.grey-dove, button:hover .icon-calendar.grey-dove, .icon-calendar.grey-dove:hover,
 a:focus .icon-calendar.grey-dove, button:focus .icon-calendar.grey-dove, .icon-calendar.grey-dove:focus {
-  background-image: url('../images/icons/ic_calendar_charcoal.svg');
+  background-image: url('../images/icons/ic_calendar_grey-darkest.svg');
 }
 
 .icon-calendar.grey-silver, .icon-calendar[disabled] {
@@ -86,10 +86,10 @@ a:focus .icon-cancel, button:focus .icon-cancel, .icon-cancel:focus,
   background-image: url('../images/icons/ic_cancel_grey-dove.svg');
 }
 
-.icon-cancel.charcoal,
+.icon-cancel.grey-darkest,
 a:hover .icon-cancel.grey-dove, button:hover .icon-cancel.grey-dove, .icon-cancel.grey-dove:hover,
 a:focus .icon-cancel.grey-dove, button:focus .icon-cancel.grey-dove, .icon-cancel.grey-dove:focus {
-  background-image: url('../images/icons/ic_cancel_charcoal.svg');
+  background-image: url('../images/icons/ic_cancel_grey-darkest.svg');
 }
 
 .icon-cancel.grey-silver, .icon-cancel[disabled] {
@@ -146,10 +146,10 @@ a:focus .icon-menu, button:focus .icon-menu, .icon-menu:focus,
   background-image: url('../images/icons/ic_menu_grey-dove.svg');
 }
 
-.icon-menu.charcoal,
+.icon-menu.grey-darkest,
 a:hover .icon-menu.grey-dove, button:hover .icon-menu.grey-dove, .icon-menu.grey-dove:hover,
 a:focus .icon-menu.grey-dove, button:focus .icon-menu.grey-dove, .icon-menu.grey-dove:focus {
-  background-image: url('../images/icons/ic_menu_charcoal.svg');
+  background-image: url('../images/icons/ic_menu_grey-darkest.svg');
 }
 
 .icon-menu.grey-silver, .icon-menu[disabled] {

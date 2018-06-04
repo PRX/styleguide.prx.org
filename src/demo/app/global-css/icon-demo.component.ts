@@ -17,7 +17,8 @@ import {Component} from '@angular/core';
             Default icon color is our <code>blue</code> with <code>blue-emphasis</code> on <code>hover</code> and <code>focus</code>
           </li>
           <li>
-            Some icons also provide a <code>grey-dove</code> option with <code>charcoal</code> on <code>hover</code> and <code>focus</code>
+            Some icons also provide a <code>grey-dove</code> option
+            with <code>grey-darkest</code> on <code>hover</code> and <code>focus</code>
           </li>
           <li>Some icons also provide a <code>white</code> option</li>
           <li>Only one color is provided for social icons to match their branding</li>
