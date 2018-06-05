@@ -112,6 +112,7 @@ footer {
 ul.social {
   display: flex;
   justify-content: center;
+  padding-top: 20px;
 }
 ul.social a {
   display: block;
