@@ -36,9 +36,9 @@ describe('Component: NavUserComponent', () => {
 
   it('displays the account email', () => {
     comp.userinfo = new Userinfo();
-    comp.userinfo.email = 'somebody@somewhere.org';
+    comp.userinfo.name = 'somebody';
     fix.detectChanges();
-    expect(de.query(By.css('.nav-userinfo-menu-account')).nativeElement.innerText).toEqual('somebody@somewhere.org');
+    expect(de.query(By.css('.nav-userinfo-menu-account')).nativeElement.innerText).toEqual('somebody');
   });
 
   it('displays the loaded content', () => {
