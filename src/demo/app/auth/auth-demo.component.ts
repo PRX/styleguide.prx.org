@@ -11,10 +11,12 @@ import { Env } from '../core.env';
   template: `
     <section class="main demo">
       <h1>AuthModule</h1>
+      <p>In order to use the authorization and authentication services provided by id.prx.prg,
+        include the <code>AuthModule</code> in your app</p>
       <section>
         <h2>AuthService Usage:</h2>
+        <p>Authentication is handled by the AuthService via the AuthComponent.</p>
         <ol>
-          <li>Include the <code>AuthModule</code> in your app</li>
           <li>
             In your top-level component's template, include
             <code>&lt;prx-auth host="thePrxAuthHost" client="yourClientId"&gt;&lt;/prx-auth&gt;</code>.
@@ -42,6 +44,21 @@ import { Env } from '../core.env';
             <button (click)="refresh()">Refresh token</button>
           </li>
         </ul>
+      </section>
+      <section>
+        <h2>UserinfoService Usage:</h2>
+        <p>Authorization is handled by the UserinfoService via the NavUserComponent.</p>
+        <ol>
+          <li>
+            Inject the UserinfoService into your app where you have the NavUserComponent, usually the top level component.
+          </li>
+          <li>
+            Set the auth host with the <code>config</code> function
+          </li>
+          <li>
+            Subscribe to <code>getUserinfo()</code> Observable and provide the result to the NavUserComponent
+          </li>
+        </ol>
       </section>
       <section>
         <h2>LoginComponent Usage:</h2>

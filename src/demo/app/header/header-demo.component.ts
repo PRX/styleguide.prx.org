@@ -18,7 +18,7 @@ import {Component} from '@angular/core';
         <pre class="code">
           &lt;prx-header&gt;
             &lt;prx-navitem route="/" text="PRX StyleGuide"&gt;&lt;/prx-navitem&gt;
-            &lt;prx-navuser userName="Mary"&gt;
+            &lt;prx-navuser [userinfo]="userinfo"&gt;
               &lt;div class="user-loaded"&gt;Sign Out&lt;/div&gt;
             &lt;/prx-navuser&gt; 
           &lt;/prx-header&gt;

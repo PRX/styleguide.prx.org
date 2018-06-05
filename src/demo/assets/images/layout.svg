@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="1440px" height="1024px" viewBox="0 0 1440 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #252525;">
+<svg width="1440px" height="1024px" viewBox="0 0 1440 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #1C1C1C;">
     <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
     <title>Desktop HD</title>
     <desc>Created with Sketch.</desc>
@@ -23,7 +23,7 @@
             <text id="&lt;HTML&gt;" font-family="ArialMT, Arial" font-size="24" font-weight="normal" letter-spacing="2.39999986" fill="#FFFFFF">
                 <tspan x="6.1183598" y="34">&lt;HTML&gt;</tspan>
             </text>
-            <rect id="Rectangle" fill="#FFFFFF" x="120" y="0" width="1200" height="1024"></rect>
+            <rect id="Rectangle" fill="#1C1C1C" x="120" y="0" width="1200" height="1024"></rect>
             <rect id="Rectangle-4" fill="#F0F0F0" x="120" y="74" width="1200" height="900"></rect>
             <text id="&lt;MAIN&gt;-&lt;ARTICLE&gt;-&lt;Ro" font-family="ArialMT, Arial" font-size="24" font-weight="normal" letter-spacing="2.4" fill="#000000">
                 <tspan x="400" y="322">&lt;MAIN&gt;</tspan>
@@ -47,23 +47,21 @@
             </text>
             <rect id="Rectangle-7" fill="#0089bd" x="1120" y="210" width="100" height="38"></rect>
             <text id="Action" font-family="ArialMT, Arial" font-size="14" font-weight="normal" letter-spacing="2.4000001" fill="#FFFFFF">
-                <tspan x="1143" y="234">Actio</tspan>
-                <tspan x="1186.12402" y="234">n</tspan>
+                <tspan x="1143" y="234">Action</tspan>
             </text>
-            <rect id="Rectangle-3" fill="#FFFFFF" x="120" y="0" width="1200" height="73"></rect>
-            <text id="&lt;PRX-FOOTER&gt;" font-family="ArialMT, Arial" font-size="24" font-weight="normal" letter-spacing="2.4" fill="#000000">
+            <rect id="Rectangle-3" fill="#1C1C1C" x="120" y="0" width="1200" height="73"></rect>
+            <text id="&lt;PRX-FOOTER&gt;" font-family="ArialMT, Arial" font-size="24" font-weight="normal" letter-spacing="2.4" fill="#FFFFFF">
                 <tspan x="400.416406" y="1012">&lt;PRX-FOOTER&gt;</tspan>
             </text>
             <rect id="Rectangle-5" fill="url(#pattern-4)" x="120" y="73" width="1200" height="120"></rect>
             <text id="Page-Title" font-family="ArialMT, Arial" font-size="40" font-weight="normal" letter-spacing="2.4000001" fill="#FFFFFF">
-                <tspan x="220" y="143">Page Titl</tspan>
-                <tspan x="397.244532" y="143">e</tspan>
+                <tspan x="220" y="143">Page Title</tspan>
             </text>
             <text id="&lt;PRX-HERO&gt;" font-family="ArialMT, Arial" font-size="24" font-weight="normal" letter-spacing="2.4000001" fill="#FFFFFF">
                 <tspan x="600" y="107">&lt;PRX-HERO</tspan>
                 <tspan x="762.295313" y="107">&gt;</tspan>
             </text>
-            <text id="&lt;PRX-HEADER&gt;" font-family="ArialMT, Arial" font-size="24" font-weight="normal" letter-spacing="2.4" fill="#000000">
+            <text id="&lt;PRX-HEADER&gt;" font-family="ArialMT, Arial" font-size="24" font-weight="normal" letter-spacing="2.4" fill="#FFFFFF">
                 <tspan x="400.404687" y="43">&lt;PRX-HEADER&gt;</tspan>
             </text>
             <g id="prx_logo" transform="translate(220.000000, 18.000000) scale(0.1)" fill-rule="nonzero">

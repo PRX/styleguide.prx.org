@@ -2,12 +2,10 @@
  * PRX footer component
  */
 footer {
-  background: #fff;
+  background: #1a1a1a;
+  color: #bebebe;
   font-size: 0.857rem;
   padding-bottom: 67px;
-  max-width: 1060px;
-  margin-right: auto;
-  margin-left: auto;
   padding-right: 15px;
   padding-left: 15px;
 }
@@ -24,22 +22,8 @@ footer {
  * Columns of footer content
  */
 .columns {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-lines: multiple;
-  -moz-box-lines: multiple;
-  -o-box-lines: multiple;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -o-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
   margin: 0 auto;
 }
@@ -49,28 +33,11 @@ footer {
  */
 .columns section {
   flex-basis: 96px;
-  -ms-flex-preferred-size: 96px;
-  -webkit-flex-basis: 96px;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  -ms-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex-grow: 1;
   flex-grow: 1;
-  -webkit-flex-shrink: 1;
   flex-shrink: 1;
 }
 .columns section:first-child {
   flex-basis: 100%;
-  -ms-flex-preferred-size: 100%;
-  -webkit-flex-basis: 100%;
-  -webkit-box-flex: 6;
-  -moz-box-flex: 6;
-  -o-box-flex: 6;
-  -ms-box-flex: 6;
-  box-flex: 6;
-  -webkit-flex-grow: 6;
   flex-grow: 6;
   margin-top: -1px;
   padding-top: 1.5rem;
@@ -82,15 +49,21 @@ footer {
 .columns section h3 {
   display: block;
   line-height: 3rem;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
 }
 .columns section a {
   display: block;
+  color: #a3a3a3;
+}
+.columns section a:hover, .columns section a:focus {
+  color: #ffffff;
 }
 @media screen and (min-width: 768px) {
   .columns section:first-child {
     flex-basis: 290px;
-    -ms-flex-preferred-size: 290px;
-    -webkit-flex-basis: 290px;
     border: none;
   }
   .columns section h3, .columns section a {
@@ -116,11 +89,15 @@ footer {
   font-size: inherit;
   display: inline;
   line-height: 1em;
+  color: #bebebe;
+  text-decoration: underline;
 }
 .columns .footer-left >>> a {
   display: block;
   line-height: 3rem;
   font-size: 1.125em;
+  color: #bebebe;
+  text-decoration: underline;
 }
 @media screen and (min-width: 768px) {
   .columns .footer-left {
@@ -133,16 +110,7 @@ footer {
  * Social icons
  */
 ul.social {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -o-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
 }
 ul.social a {

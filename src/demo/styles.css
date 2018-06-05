@@ -6,6 +6,11 @@
 section {
   margin: 1em;
 }
+
+.demo {
+  margin: 20px 10px;
+}
+
 .demo h1 {
   font-size: 2em;
   margin: 0.67em 0;
