@@ -75,6 +75,32 @@ import {Component} from '@angular/core';
           <span class="icon-down-dir" disabled></span>
         </aside>
         <aside>
+          <h3><code>icon-globe</code></h3>
+          Usage:
+          <pre>
+            &lt;span class="icon-globe"&gt;&lt;/span&gt;
+            &lt;span class="icon-globe grey-darkest"&gt;&lt;/span&gt;
+            &lt;span class="icon-globe" disabled&gt;&lt;/span&gt;
+          </pre>
+          Example:
+          <span class="icon-globe"></span>
+          <span class="icon-globe grey-darkest"></span>
+          <span class="icon-globe" disabled></span>
+        </aside>
+        <aside>
+          <h3><code>icon-headphones</code></h3>
+          Usage:
+          <pre>
+            &lt;span class="icon-headphones"&gt;&lt;/span&gt;
+            &lt;span class="icon-headphones grey-darkest"&gt;&lt;/span&gt;
+            &lt;span class="icon-headphones" disabled&gt;&lt;/span&gt;
+          </pre>
+          Example:
+          <span class="icon-headphones"></span>
+          <span class="icon-headphones grey-darkest"></span>
+          <span class="icon-headphones" disabled></span>
+        </aside>
+        <aside>
           <h3><code>icon-facebook-official</code></h3>
           Usage:
           <pre>
@@ -149,6 +175,32 @@ import {Component} from '@angular/core';
           Example:
           <span class="icon-right-dir"></span>
           <span class="icon-right-dir" disabled></span>
+        </aside>
+        <aside>
+          <h3><code>icon-smartphone</code></h3>
+          Usage:
+          <pre>
+            &lt;span class="icon-smartphone"&gt;&lt;/span&gt;
+            &lt;span class="icon-smartphone grey-darkest"&gt;&lt;/span&gt;
+            &lt;span class="icon-smartphone" disabled&gt;&lt;/span&gt;
+          </pre>
+          Example:
+          <span class="icon-smartphone"></span>
+          <span class="icon-smartphone grey-darkest"></span>
+          <span class="icon-smartphone" disabled></span>
+        </aside>
+        <aside>
+          <h3><code>icon-speedometer</code></h3>
+          Usage:
+          <pre>
+            &lt;span class="icon-speedometer"&gt;&lt;/span&gt;
+            &lt;span class="icon-speedometer grey-darkest"&gt;&lt;/span&gt;
+            &lt;span class="icon-speedometer" disabled&gt;&lt;/span&gt;
+          </pre>
+          Example:
+          <span class="icon-speedometer"></span>
+          <span class="icon-speedometer grey-darkest"></span>
+          <span class="icon-speedometer" disabled></span>
         </aside>
         <aside>
           <h3><code>icon-twitter</code></h3>
