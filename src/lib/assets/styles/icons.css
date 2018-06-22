@@ -3,11 +3,15 @@
 .icon-cw,
 .icon-down-dir,
 .icon-facebook-official,
+.icon-globe,
+.icon-headphones,
 .icon-mail-alt,
 .icon-menu,
 .icon-play,
 .icon-plus,
 .icon-right-dir,
+.icon-smartphone,
+.icon-speedometer,
 .icon-twitter,
 .icon-up-dir {
   background-repeat: no-repeat;
@@ -22,12 +26,16 @@
 .icon-cancel:hover, .icon-cancel:focus,
 .icon-cw:hover, .icon-cw:focus,
 .icon-down-dir:hover, .icon-down-dir:focus,
+.icon-globe:hover, .icon-globe:focus,
+.icon-headphones:hover, .icon-headphones:focus,
 .icon-facebook-official:hover, .icon-facebook-official:focus,
 .icon-mail-alt:hover, .icon-mail-alt:focus,
 .icon-menu:hover, .icon-menu:focus,
 .icon-play:hover, .icon-play:focus,
 .icon-plus:hover, .icon-plus:focus,
 .icon-right-dir:hover, .icon-right-dir:focus,
+.icon-smartphone:hover, .icon-smartphone:focus,
+.icon-speedometer:hover, .icon-speedometer:focus,
 .icon-twitter:hover, .icon-twitter:focus,
 .icon-up-dir:hover, .icon-up-dir:focus {
   background-color: transparent;
@@ -37,12 +45,16 @@ i.icon-calendar, span.icon-calendar,
 i.icon-cancel, span.icon-cancel,
 i.icon-cw, span.icon-cw,
 i.icon-down-dir, span.icon-down-dir,
+i.icon-globe, span.icon-globe,
+i.icon-headphones, span.icon-headphones,
 i.icon-facebook-official, span.icon-facebook-official,
 i.icon-mail-alt, span.icon-mail-alt,
 i.icon-menu, span.icon-menu,
 i.icon-play, span.icon-play,
 i.icon-plus, span.icon-plus,
 i.icon-right-dir, span.icon-right-dir,
+i.icon-smartphone, span.icon-smartphone,
+i.icon-speedometer, span.icon-speedometer,
 i.icon-twitter, span.icon-twitter,
 i.icon-up-dir, span.icon-up-dir {
   display: inline-block;
@@ -122,6 +134,42 @@ a:focus .icon-down-dir, button:focus .icon-down-dir, .icon-down-dir:focus,
 
 .icon-down-dir.grey-silver, .icon-down-dir[disabled] {
   background-image: url('../images/icons/ic_down-dir_grey-silver.svg');
+}
+
+.icon-globe {
+  background-image: url('../images/icons/ic_globe_blue.svg');
+}
+
+a:hover .icon-globe, button:hover .icon-globe, .icon-globe:hover,
+a:focus .icon-globe, button:focus .icon-globe, .icon-globe:focus,
+.icon-globe.active {
+  background-image: url('../images/icons/ic_globe_blue-emphasis.svg');
+}
+
+.icon-globe.grey-silver, .icon-globe[disabled] {
+  background-image: url('../images/icons/ic_globe_grey-silver.svg');
+}
+
+.icon-globe.grey-darkest {
+  background-image: url('../images/icons/ic_globe_grey-darkest.svg');
+}
+
+.icon-headphones {
+  background-image: url('../images/icons/ic_headphones_blue.svg');
+}
+
+a:hover .icon-headphones, button:hover .icon-headphones, .icon-headphones:hover,
+a:focus .icon-headphones, button:focus .icon-headphones, .icon-headphones:focus,
+.icon-headphones.active {
+  background-image: url('../images/icons/ic_headphones_blue-emphasis.svg');
+}
+
+.icon-headphones.grey-silver, .icon-headphones[disabled] {
+  background-image: url('../images/icons/ic_headphones_grey-silver.svg');
+}
+
+.icon-headphones.grey-darkest {
+  background-image: url('../images/icons/ic_headphones_grey-darkest.svg');
 }
 
 .icon-facebook-official {
@@ -208,6 +256,42 @@ a:focus .icon-right-dir, button:focus .icon-right-dir, .icon-right-dir:focus,
 
 .icon-right-dir.grey-silver, .icon-right-dir[disabled] {
   background-image: url('../images/icons/ic_right-dir_grey-silver.svg');
+}
+
+.icon-smartphone {
+  background-image: url('../images/icons/ic_smartphone_blue.svg');
+}
+
+a:hover .icon-smartphone, button:hover .icon-smartphone, .icon-smartphone:hover,
+a:focus .icon-smartphone, button:focus .icon-smartphone, .icon-smartphone:focus,
+.icon-smartphone.active {
+  background-image: url('../images/icons/ic_smartphone_blue-emphasis.svg');
+}
+
+.icon-smartphone.grey-silver, .icon-smartphone[disabled] {
+  background-image: url('../images/icons/ic_smartphone_grey-silver.svg');
+}
+
+.icon-smartphone.grey-darkest {
+  background-image: url('../images/icons/ic_smartphone_grey-darkest.svg');
+}
+
+.icon-speedometer {
+  background-image: url('../images/icons/ic_speedometer_blue.svg');
+}
+
+a:hover .icon-speedometer, button:hover .icon-speedometer, .icon-speedometer:hover,
+a:focus .icon-speedometer, button:focus .icon-speedometer, .icon-speedometer:focus,
+.icon-speedometer.active {
+  background-image: url('../images/icons/ic_speedometer_blue-emphasis.svg');
+}
+
+.icon-speedometer.grey-silver, .icon-speedometer[disabled] {
+  background-image: url('../images/icons/ic_speedometer_grey-silver.svg');
+}
+
+.icon-speedometer.grey-darkest {
+  background-image: url('../images/icons/ic_speedometer_grey-darkest.svg');
 }
 
 .icon-twitter {
