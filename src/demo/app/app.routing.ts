@@ -6,6 +6,7 @@ import { AdvancedConfirmDemoComponent } from './fancy-form/advanced-confirm-demo
 import { AuthDemoComponent } from './auth/auth-demo.component';
 import { BaseModelDemoComponent } from './model/base-model-demo.component';
 import { CapitalizeDemoComponent } from './fancy-form/capitalize-demo.component';
+import { ChartsCategoryDemoComponent } from './charts/charts-category-demo.component';
 import { ChartsIndexedDemoComponent } from './charts/charts-indexed-demo.component';
 import { ChartsTimeseriesDemoComponent } from './charts/charts-timeseries-demo.component';
 import { CheckboxDemoComponent } from './fancy-form/checkbox-demo.component';
@@ -42,6 +43,7 @@ import { AuthGuard, DeactivateGuard, UnauthGuard } from 'ngx-prx-styleguide';
 export const routes: Routes = [
   { path: '',                     component: TocComponent },
   { path: 'auth',                 component: AuthDemoComponent },
+  { path: 'charts/category',      component: ChartsCategoryDemoComponent},
   { path: 'charts/indexed',       component: ChartsIndexedDemoComponent },
   { path: 'charts/timeseries',    component: ChartsTimeseriesDemoComponent },
   { path: 'footer',               component: FooterDemoComponent },
@@ -84,6 +86,7 @@ export const routingComponents: any[] = [
   BaseModelDemoComponent,
   ButtonDemoComponent,
   CapitalizeDemoComponent,
+  ChartsCategoryDemoComponent,
   ChartsIndexedDemoComponent,
   ChartsTimeseriesDemoComponent,
   CheckboxDemoComponent,
