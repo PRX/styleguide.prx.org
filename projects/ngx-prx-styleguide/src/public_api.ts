@@ -1,6 +1,7 @@
 export { ChartsModule } from './src/charts/charts.module';
 export { ChartOrder } from './src/charts/models/chart-order.type';
 export { ChartType } from './src/charts/models/chart-type.type';
+export { CategoryChartModel } from './src/charts/models/category-chart.model';
 export { IndexedChartModel } from './src/charts/models/indexed-chart.model';
 export { TimeseriesChartModel, TimeseriesDatumModel } from './src/charts/models/timeseries-chart.model';
 
