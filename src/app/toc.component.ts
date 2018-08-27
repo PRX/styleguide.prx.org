@@ -67,6 +67,9 @@ import { Component } from '@angular/core';
           <li><h3>ChartsModule  - C3 chart components</h3>
             <ul>
               <li>
+                <a [routerLink]="['charts/category']">CategoryChartComponent</a> - charts categorized by given labels
+              </li>
+              <li>
                 <a [routerLink]="['charts/indexed']">IndexedChartComponent</a> - charts categorized by their array indices
               </li>
               <li>
