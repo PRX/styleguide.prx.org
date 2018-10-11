@@ -113,6 +113,13 @@ export class TimeseriesChartComponent implements OnChanges {
             count: this.maxTicks
           }
         };
+        if (this.type === 'bar') {
+          config['bar'] = {
+            width: {
+              ratio: this.maxTicks / this.datasets[0].data.length
+            }
+          };
+        }
       }
 
       if (this.formatY) {
