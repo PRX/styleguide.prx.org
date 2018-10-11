@@ -25,6 +25,7 @@ export class TimeseriesChartComponent implements OnChanges {
   @Input() pointRadius = 3.25;
   @Input() pointRadiusOnHover = 3.75;
   @Input() paddingRight = 30;
+  @Input() maxTicks: number;
 
   chart: any;
   @ViewChild('chart') el: ElementRef;
@@ -81,14 +82,6 @@ export class TimeseriesChartComponent implements OnChanges {
         padding: {
           right: this.paddingRight
         },
-        axis: {
-          x: {
-            tick: {
-              fit: false,
-              count: Math.min(20, this.datasets[0].data.length)
-            }
-          }
-        },
         bindto: this.el.nativeElement
       };
 
@@ -97,29 +90,51 @@ export class TimeseriesChartComponent implements OnChanges {
       }
 
       if (this.formatX) {
-        config.axis.x['type'] = 'timeseries';
-        config.axis.x.tick['format'] = this.formatX;
+        config['axis'] = {
+          ...config['axis']
+        };
+        config['axis']['x'] = {
+          ...config['axis']['x'],
+          type: 'timeseries',
+          tick: {
+            format: this.formatX
+          }
+        };
+      }
+      // limit the max number of ticks, which honestly doesn't always work well with timeseries tick labels
+      if (this.maxTicks && this.datasets[0].data.length > this.maxTicks) {
+        config['axis'] = {
+          ...config['axis']
+        };
+        config['axis']['x'] = {
+          ...config['axis']['x'],
+          tick: {
+            ...config['axis']['x']['tick'],
+            count: this.maxTicks
+          }
+        };
       }
 
       if (this.formatY) {
         config['axis'] = {
-          ...config.axis,
-          y: {
-            tick: {
-              format: this.formatY
-            }
+          ...config['axis']
+        };
+        config['axis']['y'] = {
+          ...config['axis']['y'],
+          tick: {
+            format: this.formatY
           }
         };
       }
 
       if (this.minY !== undefined) {
         config['axis'] = {
-          ...config['axis'],
-          y: {
-            ...config['axis']['y'],
-            min: this.minY,
-            padding: {top: 20, bottom: 20}
-          }
+          ...config['axis']
+        };
+        config['axis']['y'] = {
+          ...config['axis']['y'],
+          min: this.minY,
+          padding: {top: 20, bottom: 20}
         };
       }
 
@@ -127,7 +142,7 @@ export class TimeseriesChartComponent implements OnChanges {
 
       if (this.strokeWidth && this.type === 'line') {
         // dynamically add style with the equivalence of a deep selector, not sure of a better way
-        var collection: HTMLCollection = this.el.nativeElement.getElementsByClassName('c3-line');
+        const collection: HTMLCollection = this.el.nativeElement.getElementsByClassName('c3-line');
         // HTMLCollection is an Array like object but not an Array
         Array.prototype.forEach.call(collection, (element: HTMLElement) => element.style['stroke-width'] = this.strokeWidth + 'px');
       }
