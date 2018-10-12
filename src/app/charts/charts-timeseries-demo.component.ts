@@ -74,6 +74,11 @@ import * as moment from 'moment';
           <code>@Input() paddingRight = 30</code>
           - defaults to 30px, sets the <a href="http://c3js.org/reference.html#padding-right">padding on the right of the chart</a>
         </li>
+        <li>
+          <code>@Input() maxTicks</code>
+          - not set by default.
+          Doesn't always play well with tick labels on timeseries charts so use sparingly for charts with a lot of datapoints.
+        </li>
       </ul>
       
       <aside>
