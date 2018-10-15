@@ -67,15 +67,6 @@ export class TimeseriesChartComponent implements OnChanges {
         legend: {
           show: false
         },
-        point: {
-          show: this.showPoints,
-          r: this.pointRadius,
-          focus: {
-            expand: {
-              r: this.pointRadiusOnHover
-            }
-          }
-        },
         color: {
           pattern: this.colors
         },
@@ -142,6 +133,18 @@ export class TimeseriesChartComponent implements OnChanges {
           ...config['axis']['y'],
           min: this.minY,
           padding: {top: 20, bottom: 20}
+        };
+      }
+
+      if (this.type === 'line' || this.type === 'area') {
+        config['point'] = {
+          show: this.showPoints,
+          r: this.pointRadius,
+          focus: {
+            expand: {
+              r: this.pointRadiusOnHover
+            }
+          }
         };
       }
 
