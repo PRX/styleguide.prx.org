@@ -80,12 +80,9 @@ export class TimeseriesChartComponent implements OnChanges {
         config.data['groups'] = [this.groups];
       }
 
+      const axis: {x?: any, y?: any} = {};
       if (this.formatX) {
-        config['axis'] = {
-          ...config['axis']
-        };
-        config['axis']['x'] = {
-          ...config['axis']['x'],
+        axis.x = {
           type: 'timeseries',
           tick: {
             format: this.formatX
@@ -94,13 +91,10 @@ export class TimeseriesChartComponent implements OnChanges {
       }
       // limit the max number of ticks, which honestly doesn't always work well with timeseries tick labels
       if (this.maxTicks && this.datasets[0].data.length > this.maxTicks) {
-        config['axis'] = {
-          ...config['axis']
-        };
-        config['axis']['x'] = {
-          ...config['axis']['x'],
+        axis.x = {
+          ...axis.x,
           tick: {
-            ...config['axis']['x']['tick'],
+            ...axis.x['tick'],
             count: this.maxTicks
           }
         };
@@ -114,11 +108,7 @@ export class TimeseriesChartComponent implements OnChanges {
       }
 
       if (this.formatY) {
-        config['axis'] = {
-          ...config['axis']
-        };
-        config['axis']['y'] = {
-          ...config['axis']['y'],
+        axis.y = {
           tick: {
             format: this.formatY
           }
@@ -126,14 +116,15 @@ export class TimeseriesChartComponent implements OnChanges {
       }
 
       if (this.minY !== undefined) {
-        config['axis'] = {
-          ...config['axis']
-        };
-        config['axis']['y'] = {
-          ...config['axis']['y'],
+        axis.y = {
+          ...axis.y,
           min: this.minY,
           padding: {top: 20, bottom: 20}
         };
+      }
+
+      if (axis.x || axis.y) {
+        config['axis'] = axis;
       }
 
       if (this.type === 'line' || this.type === 'area') {
