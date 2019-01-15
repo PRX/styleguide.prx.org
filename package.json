@@ -11,7 +11,7 @@
     "url": "https://github.com/prx/styleguide.prx.org/issues",
     "email": "help@prx.org"
   },
-  "main": "./ngx-prx-styleguide.umd.js",
+  "main": "./bundles/ngx-prx-styleguide.umd.js",
   "module": "./ngx-prx-styleguide.es5.js",
   "es2015": "./ngx-prx-styleguide.js",
   "typings": "./ngx-prx-styleguide.d.ts",
