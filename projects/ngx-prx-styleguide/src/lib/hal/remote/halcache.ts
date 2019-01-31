@@ -1,8 +1,11 @@
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/finally';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/share';
+
+import {of as observableOf,  Observable } from 'rxjs';
+
+import {finalize, map, share} from 'rxjs/operators';
+
+
+
+
 
 /**
  * Generic cache for json
@@ -22,23 +25,23 @@ export class HalCache {
       return this.inFlight[key];
     } else {
       let item = this.getItem(key);
-      return item ? Observable.of(item) : null;
+      return item ? observableOf(item) : null;
     }
   }
 
   set(key: string, valObservable: Observable<any>, ttl: number = this.ttl): Observable<any> {
     let gotValue = false;
-    this.inFlight[key] = valObservable.share().map(val => {
+    this.inFlight[key] = valObservable.pipe(share(),map(val => {
       gotValue = true;
       this.setItem(key, val, ttl);
       return val;
-    }).finally(() => {
+    }),finalize(() => {
       if (gotValue) {
         delete this.inFlight[key];
       } else {
         this.delItem(key);
       }
-    });
+    }),);
     return this.inFlight[key];
   }
 

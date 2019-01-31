@@ -1,7 +1,8 @@
+
+import {skip} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import 'rxjs/add/operator/skip';
+import { Observable ,  ReplaySubject } from 'rxjs';
+
 
 @Injectable()
 export class AuthService {
@@ -43,7 +44,7 @@ export class AuthService {
   // refresh and wait for a new auth token
   refreshToken(): Observable<string> {
     this.refresh.next(true);
-    return this.token.skip(1);
+    return this.token.pipe(skip(1));
   }
 
   failAuthorization() {

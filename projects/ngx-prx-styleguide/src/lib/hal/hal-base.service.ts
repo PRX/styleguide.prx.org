@@ -1,3 +1,5 @@
+
+import {mergeMap} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HalDoc } from './doc/haldoc';
 import { HalObservable } from './doc/halobservable';
@@ -19,21 +21,21 @@ export abstract class HalBaseService {
     }
 
     follow(rel: string, params: {} = null): HalObservable<HalDoc> {
-      return <HalObservable<HalDoc>> this.root.flatMap((rootDoc) => {
+      return <HalObservable<HalDoc>> this.root.pipe(mergeMap((rootDoc) => {
         return rootDoc.follow(rel, params);
-      });
+      }));
     }
 
     followList(rel: string, params: {} = null): HalObservable<HalDoc[]> {
-      return <HalObservable<HalDoc[]>> this.root.flatMap((rootDoc) => {
+      return <HalObservable<HalDoc[]>> this.root.pipe(mergeMap((rootDoc) => {
         return rootDoc.followList(rel, params);
-      });
+      }));
     }
 
     followItems(rel: string, params: {} = null): HalObservable<HalDoc[]> {
-      return <HalObservable<HalDoc[]>> this.root.flatMap((rootDoc) => {
+      return <HalObservable<HalDoc[]>> this.root.pipe(mergeMap((rootDoc) => {
         return rootDoc.followItems(rel, params);
-      });
+      }));
     }
 
   }

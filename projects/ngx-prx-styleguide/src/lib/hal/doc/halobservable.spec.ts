@@ -1,12 +1,13 @@
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+
+import {of as observableOf,  Observable } from 'rxjs';
+
 import { HalObservable } from './halobservable';
 import './halobservable';
 
 describe('HalObservable', () => {
 
   let observe = (thing: any): HalObservable<any> => {
-    return <HalObservable<any>> Observable.of(thing);
+    return <HalObservable<any>> observableOf(thing);
   };
   let mockDoc: any = {
     follow: () => observe('followed'),

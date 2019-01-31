@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/mergeMap';
+import { Observable } from 'rxjs';
+
 import { HalDoc } from './haldoc';
 
 // Bring observables up to snuff

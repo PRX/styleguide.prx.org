@@ -1,7 +1,7 @@
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import 'rxjs/add/observable/empty';
-import 'rxjs/add/observable/of';
+
+import {of as observableOf, empty as observableEmpty,  Observable ,  Observer } from 'rxjs';
+
+
 import { BaseModel } from './base.model';
 
 class FakeModel extends BaseModel {
@@ -57,7 +57,7 @@ describe('BaseModel', () => {
 
     it('subscribes to related models', () => {
       spyOn(base, 'related').and.callFake(() => {
-        return {foo: Observable.of('bar')};
+        return {foo: observableOf('bar')};
       });
       base.init(null, null, false);
       expect(base.RELATIONS).toEqual(['foo']);
@@ -149,7 +149,7 @@ describe('BaseModel', () => {
     });
 
     it('calls to the child class for new docs', () => {
-      spyOn(base, 'saveNew').and.returnValue(Observable.empty());
+      spyOn(base, 'saveNew').and.returnValue(observableEmpty());
       base.isNew = true;
       base.save();
       expect(base.saveNew).toHaveBeenCalled();
@@ -158,7 +158,7 @@ describe('BaseModel', () => {
     it('updates existing docs', () => {
       base.doc = <any> {update: null};
       base.changed = () => false;
-      spyOn(base.doc, 'update').and.returnValue(Observable.empty());
+      spyOn(base.doc, 'update').and.returnValue(observableEmpty());
       base.save();
       expect(base.doc.update).not.toHaveBeenCalled();
       base.changed = () => true;
@@ -168,7 +168,7 @@ describe('BaseModel', () => {
 
     it('deletes destroyed docs', () => {
       base.doc = <any> {destroy: null};
-      spyOn(base.doc, 'destroy').and.returnValue(Observable.empty());
+      spyOn(base.doc, 'destroy').and.returnValue(observableEmpty());
       base.isDestroy = true;
       base.save();
       expect(base.doc.destroy).toHaveBeenCalled();
@@ -177,7 +177,7 @@ describe('BaseModel', () => {
     it('re-inits after saving', () => {
       base.doc = <any> {update: null};
       base.changed = () => true;
-      spyOn(base.doc, 'update').and.returnValue(Observable.of({foo: 'bar'}));
+      spyOn(base.doc, 'update').and.returnValue(observableOf({foo: 'bar'}));
       spyOn(base, 'unstore').and.stub();
       spyOn(base, 'init').and.callFake((parent: any, doc: any) => {
         expect(doc.foo).toEqual('bar');
@@ -190,14 +190,14 @@ describe('BaseModel', () => {
 
     it('cascades saving to changed child models', () => {
       base.doc = <any> {update: null};
-      spyOn(base.doc, 'update').and.returnValue(Observable.of({foo: 'bar'}));
+      spyOn(base.doc, 'update').and.returnValue(observableOf({foo: 'bar'}));
       spyOn(base, 'init').and.stub();
 
       let firstSaved = false, secondSaved = false;
       base.RELATIONS = ['foo'];
       base['foo'] = [
-        {changed: () => true, save: () => { firstSaved = true; return Observable.of(true); }},
-        {changed: () => false, save: () => { secondSaved = true; return Observable.of(true); }}
+        {changed: () => true, save: () => { firstSaved = true; return observableOf(true); }},
+        {changed: () => false, save: () => { secondSaved = true; return observableOf(true); }}
       ];
       base.save().subscribe();
       expect(firstSaved).toEqual(true);
@@ -212,7 +212,7 @@ describe('BaseModel', () => {
         isNew: true,
         changed: () => true,
         swapNew: (data: any) => swapCalled = data,
-        save: () => { originalSaved = true; return Observable.of(true); },
+        save: () => { originalSaved = true; return observableOf(true); },
         unstore: () => originalUnstore = true
       };
       spyOn(base, 'related').and.callFake(() => {
@@ -220,7 +220,7 @@ describe('BaseModel', () => {
       });
 
       // init related
-      base.init(null, <any> {update: () => Observable.of({})});
+      base.init(null, <any> {update: () => observableOf({})});
       expect(base.RELATIONS).toEqual(['foo']);
       expect(base['foo'][0].name).toEqual('original');
 
@@ -230,7 +230,7 @@ describe('BaseModel', () => {
         isNew: false,
         changed: () => true,
         swapNew: () => true,
-        save: () => { swapSaved = true; return Observable.of(true); },
+        save: () => { swapSaved = true; return observableOf(true); },
         unstore: () => swapUnstore = true
       };
       base.save().subscribe();
@@ -253,24 +253,24 @@ describe('BaseModel', () => {
         isNew: false,
         changed: () => true,
         swapNew: () => { throw new Error('should not have swapped'); },
-        save: () => { originalSaved = true; return Observable.of(true); }
+        save: () => { originalSaved = true; return observableOf(true); }
       };
       spyOn(base, 'related').and.callFake(() => {
         return {foo: Observable.create((sub: Observer<any>) => sub.next([fakeFoo]))};
       });
 
       // init related and save
-      base.init(null, <any> {update: () => Observable.of({})});
+      base.init(null, <any> {update: () => observableOf({})});
       base.save().subscribe();
       expect(originalSaved).toEqual(true);
     });
 
     it('removes destroyed child models', () => {
       base.doc = <any> {update: null};
-      spyOn(base.doc, 'update').and.returnValue(Observable.of({foo: 'bar'}));
+      spyOn(base.doc, 'update').and.returnValue(observableOf({foo: 'bar'}));
       spyOn(base, 'init').and.stub();
       base.RELATIONS = ['foo'];
-      base['foo'] = [{changed: () => true, save: () => Observable.of(true), isDestroy: true}];
+      base['foo'] = [{changed: () => true, save: () => observableOf(true), isDestroy: true}];
       base.save().subscribe();
       expect(base['foo'].length).toEqual(0);
     });
@@ -456,7 +456,7 @@ describe('BaseModel', () => {
 
     it('discards child models and removes new records', () => {
       spyOn(base, 'related').and.callFake(() => {
-        return {foo: Observable.of('bar')};
+        return {foo: observableOf('bar')};
       });
       base['foo'] = [
         {id: 1, isNew: true, discard: () => true},

@@ -1,12 +1,15 @@
-import { Observable } from 'rxjs/Observable';
+
+import {from as observableFrom, of as observableOf, throwError as observableThrowError,  Observable } from 'rxjs';
+
+import {toArray, concatAll, map, mergeMap} from 'rxjs/operators';
 import { HalRemote } from '../remote/halremote';
 import { HalObservable } from './halobservable';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/concatAll';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toArray';
+
+
+
+
+
+
 
 /*
  * Generic class for interacting with HAL api
@@ -52,10 +55,10 @@ export class HalDoc {
     } else if (link instanceof Array) {
       return <HalObservable<HalDoc>> this.error(`Expected reload link at _links.self - got array`);
     } else {
-      return <HalObservable<HalDoc>> this.remote.get(link).map((obj) => {
+      return <HalObservable<HalDoc>> this.remote.get(link).pipe(map((obj) => {
         this.setData(obj);
         return <HalDoc> this;
-      });
+      }));
     }
   }
 
@@ -66,10 +69,10 @@ export class HalDoc {
     } else if (link instanceof Array) {
       return <HalObservable<HalDoc>> this.error(`Expected update link at _links.self - got array`);
     } else {
-      return <HalObservable<HalDoc>> this.remote.put(link, null, data).map((obj) => {
+      return <HalObservable<HalDoc>> this.remote.put(link, null, data).pipe(map((obj) => {
         this.setData(obj || data);
         return <HalDoc> this;
-      });
+      }));
     }
   }
 
@@ -81,9 +84,9 @@ export class HalDoc {
       return <HalObservable<HalDoc>>
         this.error(`Expected create link at _links.${rel} - got array`);
     } else {
-      return <HalObservable<HalDoc>> this.remote.post(link, params, data).map((obj) => {
+      return <HalObservable<HalDoc>> this.remote.post(link, params, data).pipe(map((obj) => {
         return new HalDoc(obj, this.remote.switchHost(link));
-      });
+      }));
     }
   }
 
@@ -94,9 +97,9 @@ export class HalDoc {
     } else if (link instanceof Array) {
       return <HalObservable<HalDoc>> this.error(`Expected destroy link at _links.self - got array`);
     } else {
-      return <HalObservable<HalDoc>> this.remote.delete(link).map(() => {
+      return <HalObservable<HalDoc>> this.remote.delete(link).pipe(map(() => {
         return <HalDoc> this;
-      });
+      }));
     }
   }
 
@@ -158,9 +161,9 @@ export class HalDoc {
     } else {
       result = this.remote.get(linkObj, params);
     }
-    return <HalObservable<HalDoc>> result.map(obj => {
+    return <HalObservable<HalDoc>> result.pipe(map(obj => {
       return new HalDoc(obj, this.remote.switchHost(linkObj));
-    });
+    }));
   }
 
   follow(rel: string, params: {} = null): HalObservable<HalDoc> {
@@ -184,27 +187,27 @@ export class HalDoc {
   }
 
   followItems(rel: string, params: {} = null): HalObservable<HalDoc[]> {
-    return <HalObservable<HalDoc[]>> this.follow(rel, params).flatMap((doc) => {
-      return doc.followList('prx:items').map((items) => {
+    return <HalObservable<HalDoc[]>> this.follow(rel, params).pipe(mergeMap((doc) => {
+      return doc.followList('prx:items').pipe(map((items) => {
         for (let item of items) {
           item['_count'] = doc['count'];
           item['_total'] = doc['total'];
         }
         return items;
-      });
-    });
+      }));
+    }));
   }
 
   protected error(msg: string): Observable<any> {
     console.error(msg);
-    return Observable.throw(new Error(msg));
+    return observableThrowError(new Error(msg));
   }
 
   private embedOne(rel: string): Observable<HalDoc> {
     if (this['_embedded'][rel] instanceof Array) {
       return this.error(`Expected object at _embedded.${rel} - got list`);
     } else {
-      return Observable.of(new HalDoc(this['_embedded'][rel], this.remote));
+      return observableOf(new HalDoc(this['_embedded'][rel], this.remote));
     }
   }
 
@@ -223,7 +226,7 @@ export class HalDoc {
 
   private embedList(rel: string): Observable<HalDoc[]> {
     if (this['_embedded'][rel] instanceof Array) {
-      return Observable.of(this['_embedded'][rel].map((data: any) => {
+      return observableOf(this['_embedded'][rel].map((data: any) => {
         return new HalDoc(data, this.remote);
       }));
     } else {
@@ -236,7 +239,7 @@ export class HalDoc {
       let links: HalObservable<HalDoc>[] = this['_links'][rel].map((link: any) => {
         return this.followLink(link, params);
       });
-      return Observable.from(links).concatAll().toArray();
+      return observableFrom(links).pipe(concatAll(),toArray(),);
     } else {
       return this.error(`Expected array at _links.${rel} - got object`);
     }

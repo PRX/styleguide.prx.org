@@ -1,13 +1,14 @@
-import { Observable } from 'rxjs/Observable';
+
+import {throwError as observableThrowError, of as observableOf,  Observable } from 'rxjs';
 import { HalDoc } from './haldoc';
 
 let mockData = {};
 let mockRemote: any = {
   get: (link: any, params: {} = null): Observable<{}> => {
-    return Observable.of(mockData[link['href']]);
+    return observableOf(mockData[link['href']]);
   },
   put: (link: any, params: {} = null, data: {}): Observable<{}> => {
-    return Observable.of([data]);
+    return observableOf([data]);
   },
   expand: (link: any, params: {} = null): string => link.href,
   switchHost: (link: any): any => mockRemote
@@ -18,7 +19,7 @@ describe('HalDoc', () => {
   // disable error logging
   beforeEach(() => {
     spyOn(HalDoc.prototype, 'error').and.callFake((msg: string) => {
-      return Observable.throw(new Error(msg));
+      return observableThrowError(new Error(msg));
     });
   });
 

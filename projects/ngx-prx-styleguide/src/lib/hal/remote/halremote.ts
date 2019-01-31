@@ -1,9 +1,12 @@
+
+import {of as observableOf, throwError as observableThrowError,  Observable } from 'rxjs';
+
+import {map, first, mergeMap, catchError} from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/first';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
+
+
+
+
 
 import { expand } from '../rfc6570-expand/expand';
 import { AuthService } from '../../auth/auth.service';
@@ -66,7 +69,7 @@ export class HalRemote {
     } else if (href) {
       return this.cache.cache(href, this.httpRequest('get', href));
     } else {
-      return Observable.throw(new HalLinkError('No link object specified!'));
+      return observableThrowError(new HalLinkError('No link object specified!'));
     }
   }
 
@@ -107,16 +110,16 @@ export class HalRemote {
     // wait for auth token - but not for root api paths!
     let options: Observable<{headers?: HttpHeaders}>;
     if (this.auth && !this.isRoot(href)) {
-      options = this.auth.token.first().map(tokenString => {
+      options = this.auth.token.pipe(first(),map(tokenString => {
         headers = headers.append('Authorization', `Bearer ${tokenString}`);
         return {headers};
-      });
+      }),);
     } else {
-      options = Observable.of({headers});
+      options = observableOf({headers});
     }
 
     // make request, and catch http errors
-    return options.mergeMap(opts => {
+    return options.pipe(mergeMap(opts => {
       if (method === 'put') {
         return this.http.put(href, body, opts);
       } else if (method === 'post') {
@@ -128,19 +131,19 @@ export class HalRemote {
       } else {
         throw new Error(`Unknown method ${method}`);
       }
-    }).catch(err => {
+    }),catchError(err => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401 && allowRetry && this.auth) {
-          return this.auth.refreshToken().mergeMap(() => this.httpRequest(method, href, body, false));
+          return this.auth.refreshToken().pipe(mergeMap(() => this.httpRequest(method, href, body, false)));
         } else if (err.status === 0) {
-          return Observable.throw(new Error(`CORS preflight failed for ${method.toUpperCase()} ${href}`));
+          return observableThrowError(new Error(`CORS preflight failed for ${method.toUpperCase()} ${href}`));
         } else {
-          return Observable.throw(new HalHttpError(err.status, `Got ${err.status} from ${method.toUpperCase()} ${href}`));
+          return observableThrowError(new HalHttpError(err.status, `Got ${err.status} from ${method.toUpperCase()} ${href}`));
         }
       } else {
         throw err;
       }
-    });
+    }),);
   }
 
   private isRoot(href: string): boolean {

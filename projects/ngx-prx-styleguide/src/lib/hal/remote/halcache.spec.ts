@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs/Observable';
+
+import {of as observableOf,  Observable } from 'rxjs';
 import { HalCache } from './halcache';
 
 describe('HalCache', () => {
@@ -14,7 +15,7 @@ describe('HalCache', () => {
   });
 
   it('sets observables', () => {
-    cache.set('foo', Observable.of('bar'));
+    cache.set('foo', observableOf('bar'));
     expect(cache.get('foo') instanceof Observable).toBeTruthy();
     cache.get('foo').subscribe((val) => {
       expect(val).toEqual('bar');
@@ -22,36 +23,36 @@ describe('HalCache', () => {
   });
 
   it('caches observables', () => {
-    cache.cache('foo', Observable.of('one')).subscribe(val => {
+    cache.cache('foo', observableOf('one')).subscribe(val => {
       expect(val).toEqual('one');
     });
-    cache.cache('foo', Observable.of('two')).subscribe(val => {
+    cache.cache('foo', observableOf('two')).subscribe(val => {
       expect(val).toEqual('one');
     });
   });
 
   it('does not cache when ttl is 0', () => {
     expect(cache.get('foo')).toBeNull();
-    cache.set('foo', Observable.of('bar'), 0).subscribe();
+    cache.set('foo', observableOf('bar'), 0).subscribe();
     expect(cache.get('foo')).toBeNull();
-    cache.set('foo', Observable.of('bar'), 1).subscribe();
+    cache.set('foo', observableOf('bar'), 1).subscribe();
     expect(cache.get('foo') instanceof Observable).toBeTruthy();
   });
 
   it('deletes caches', () => {
-    cache.set('foo', Observable.of('bar'));
+    cache.set('foo', observableOf('bar'));
     cache.del('foo');
     expect(cache.get('foo')).toBeNull();
   });
 
   it('clears caches', () => {
-    cache.set('one', Observable.of('bar'));
+    cache.set('one', observableOf('bar'));
     cache.clear();
     expect(cache.get('foo')).toBeNull();
   });
 
   it('expires caches', () => {
-    cache.set('foo', Observable.of('bar')).subscribe();
+    cache.set('foo', observableOf('bar')).subscribe();
     expect(cache.get('foo') instanceof Observable).toBeTruthy();
     spyOn(cache, 'checkExpired').and.returnValue(true);
     spyOn(cache, 'del').and.stub();

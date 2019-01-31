@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ModalService, ModalState } from './modal.service';
 
 const fakeSanitizer: any = {

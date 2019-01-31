@@ -1,10 +1,12 @@
+
+import {of as observableOf,  Observable ,  ReplaySubject } from 'rxjs';
+
+import {delay, map} from 'rxjs/operators';
 import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import 'rxjs/add/observable/empty';
-import 'rxjs/add/operator/delay';
+
+
 
 import { HalRemote } from './halremote';
 
@@ -139,9 +141,9 @@ describe('HalRemote', () => {
     it('caches in-flight observables', function(done: DoneFn) {
       let httpCount = 0;
       let completed = 0;
-      remote.get(link).map(data => {
-        return Observable.of(data).delay(100);
-      }).subscribe(() => {
+      remote.get(link).pipe(map(data => {
+        return observableOf(data).pipe(delay(100));
+      })).subscribe(() => {
         completed++;
       });
       remote.get(link).subscribe(() => {

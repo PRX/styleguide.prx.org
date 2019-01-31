@@ -1,14 +1,16 @@
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import 'rxjs/add/observable/forkJoin';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/concatAll';
-import 'rxjs/add/operator/first';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/toArray';
+
+import {from as observableFrom, forkJoin as observableForkJoin, throwError as observableThrowError, of as observableOf,  Observable ,  ReplaySubject } from 'rxjs';
+
+import {first, map, concatAll, toArray, mergeMap} from 'rxjs/operators';
+
+
+
+
+
+
+
+
+
 import { HalDoc } from '../hal/doc/haldoc';
 import { BaseInvalid } from './base.invalid';
 import { BaseStorage } from './base.storage';
@@ -84,7 +86,7 @@ export abstract class BaseModel {
     if (!this.doc && this.isDestroy) {
       this.unstore();
       this.lastStored = null;
-      return Observable.of(false);
+      return observableOf(false);
     }
     this.isSaving = true;
 
@@ -96,10 +98,10 @@ export abstract class BaseModel {
     } else if (this.changed(null, false)) {
       saveMe = this.doc.update(this.encode());
     } else {
-      saveMe = Observable.of(this.doc);
+      saveMe = observableOf(this.doc);
     }
 
-    return saveMe.flatMap((doc?) => {
+    return saveMe.pipe(mergeMap((doc?) => {
       this.unstore();
       this.lastStored = null;
       if (doc) {
@@ -107,20 +109,20 @@ export abstract class BaseModel {
       }
 
       // save related docs in parallel
-      return this.swapRelated().flatMap(() => {
-        return this.saveRelated().map(() => {
+      return this.swapRelated().pipe(mergeMap(() => {
+        return this.saveRelated().pipe(map(() => {
           this.isNew = false;
           this.isSaving = false;
           this.resetRelated();
           return true;
-        });
-      });
-    });
+        }));
+      }));
+    }));
   }
 
   loadRelated(relName?: string, force = false): Observable<BaseModel | BaseModel[]> {
     if (relName && !this.relatedLoaders[relName]) {
-      return Observable.throw(new Error(`Unknown model related: ${relName}`));
+      return observableThrowError(new Error(`Unknown model related: ${relName}`));
     } else if (relName) {
       if (force || !this.relatedReplays[relName]) {
         let relValue = new ReplaySubject<any>(1);
@@ -130,10 +132,10 @@ export abstract class BaseModel {
         });
         this.relatedReplays[relName] = relValue;
       }
-      return this.relatedReplays[relName].first();
+      return this.relatedReplays[relName].pipe(first());
     } else {
       let allRelated = this.RELATIONS.map(r => this.loadRelated(r, force));
-      return Observable.forkJoin(allRelated).map(relateds => null);
+      return observableForkJoin(allRelated).pipe(map(relateds => null));
     }
   }
 
@@ -141,7 +143,7 @@ export abstract class BaseModel {
     let relatedSwappers = this.RELATIONS.map(rel => {
       let models = this.getRelated(rel);
       if (models.some(m => (m.isNew && m['swapNew']))) {
-        return this.loadRelated(rel, true).map(() => {
+        return this.loadRelated(rel, true).pipe(map(() => {
           let newModels = this.getRelated(rel);
           models.forEach((model, idx) => {
             if (model.isNew && model['swapNew'] && newModels[idx]) {
@@ -150,12 +152,12 @@ export abstract class BaseModel {
             model.unstore();
           });
           return true;
-        });
+        }));
       } else {
-        return Observable.of(false);
+        return observableOf(false);
       }
     });
-    return Observable.from(relatedSwappers).concatAll().toArray();
+    return observableFrom(relatedSwappers).pipe(concatAll(),toArray(),);
   }
 
   saveRelated(): Observable<boolean[]> {
@@ -170,14 +172,14 @@ export abstract class BaseModel {
         model.parent = this.doc;
       }
       let wasDestroy = model.isDestroy;
-      return model.save().map(saved => {
+      return model.save().pipe(map(saved => {
         if (saved && wasDestroy) {
           this.removeRelated(model);
         }
         return saved;
-      });
+      }));
     });
-    return Observable.from(relatedSavers).concatAll().toArray();
+    return observableFrom(relatedSavers).pipe(concatAll(),toArray(),);
   }
 
   removeRelated(model: BaseModel) {

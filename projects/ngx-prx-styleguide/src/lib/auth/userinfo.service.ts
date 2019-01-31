@@ -1,5 +1,7 @@
+
+import {catchError} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { HalDoc } from '../hal/doc/haldoc';
 import { HalObservable } from '../hal/doc/halobservable';
@@ -30,8 +32,8 @@ export class UserinfoService {
   getUserinfo(): Observable<Userinfo> {
     const url = `${this.authHost}/userinfo`;
     const params = new HttpParams().set('scope', 'profile+apps');
-    return this.http.get(url, {params, withCredentials: true})
-                    .catch(this.handleError);
+    return this.http.get(url, {params, withCredentials: true}).pipe(
+                    catchError(this.handleError));
   }
 
   getUserDoc(userinfo: Userinfo): HalObservable<HalDoc> {

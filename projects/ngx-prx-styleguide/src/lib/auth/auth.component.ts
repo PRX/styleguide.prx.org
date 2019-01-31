@@ -1,6 +1,6 @@
 import { Component, Input, ElementRef, SimpleChanges, OnChanges, OnDestroy } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import { AuthService } from './auth.service';
 import { AuthParser } from './auth-parser';

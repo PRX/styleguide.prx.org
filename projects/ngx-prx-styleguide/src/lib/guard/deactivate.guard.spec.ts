@@ -1,5 +1,6 @@
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+
+import {of as observableOf,  Observable } from 'rxjs';
+
 import { DeactivateGuard } from './deactivate.guard';
 
 describe('DeactivateGuard', () => {
@@ -19,8 +20,8 @@ describe('DeactivateGuard', () => {
   });
 
   it('decides deactivation from an observable', () => {
-    let allow: any = {canDeactivate: () => Observable.of(true)};
-    let deny: any = {canDeactivate: () => Observable.of(false)};
+    let allow: any = {canDeactivate: () => observableOf(true)};
+    let deny: any = {canDeactivate: () => observableOf(false)};
     let allowObs = <Observable<boolean>> guard.canDeactivate(allow);
     let denyObs = <Observable<boolean>> guard.canDeactivate(deny);
     expect(allowObs instanceof Observable).toBeTruthy();

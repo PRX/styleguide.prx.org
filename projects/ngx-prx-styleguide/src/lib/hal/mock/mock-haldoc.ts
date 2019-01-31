@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
+
+import {of as observableOf,  Observable ,  Observer } from 'rxjs';
 
 import { HalDoc } from '../doc/haldoc';
 import { HalObservable } from '../doc/halobservable';
@@ -64,17 +64,17 @@ export class MockHalDoc extends HalDoc {
     for (let key of Object.keys(data)) {
       this[key] = data[key];
     }
-    return <HalObservable<MockHalDoc>> Observable.of(<MockHalDoc> this);
+    return <HalObservable<MockHalDoc>> observableOf(<MockHalDoc> this);
   }
 
   create(rel: string, params: any = {}, data: any): HalObservable<MockHalDoc> {
     let doc = this.mock(rel, data); // TODO: params?
-    return <HalObservable<MockHalDoc>> Observable.of(doc);
+    return <HalObservable<MockHalDoc>> observableOf(doc);
   }
 
   destroy(): HalObservable<MockHalDoc> {
     this['_destroyed'] = true; // TODO: something better
-    return <HalObservable<MockHalDoc>> Observable.of(<MockHalDoc> this);
+    return <HalObservable<MockHalDoc>> observableOf(<MockHalDoc> this);
   }
 
   count(rel?: string): number {

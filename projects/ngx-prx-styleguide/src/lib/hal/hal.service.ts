@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
@@ -26,7 +28,7 @@ export class HalService {
 
   private remoteGet(remote: HalRemote, path: string): HalObservable<HalDoc> {
     let link = HalLink.from(path);
-    return <HalObservable<HalDoc>> remote.get(link).map(obj => new HalDoc(obj, remote));
+    return <HalObservable<HalDoc>> remote.get(link).pipe(map(obj => new HalDoc(obj, remote)));
   }
 
   private loadRemote(host: string, withAuth: boolean, ttl: number): HalRemote {
