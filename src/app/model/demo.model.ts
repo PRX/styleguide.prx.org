@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs/Observable';
+
+import {of as observableOf,  Observable } from 'rxjs';
 import { BaseModel, RelatedMap, HalDoc, REQUIRED } from 'ngx-prx-styleguide';
 
 export class DemoModel extends BaseModel {
@@ -37,5 +38,5 @@ export class DemoModel extends BaseModel {
     this.duration = this.doc['duration'];
   };
   encode(): {} { return {}; };
-  saveNew(data: {}): Observable<HalDoc> { return Observable.of(this.doc); };
+  saveNew(data: {}): Observable<HalDoc> { return observableOf(this.doc); };
 }

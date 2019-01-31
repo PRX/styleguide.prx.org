@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { TabService } from 'ngx-prx-styleguide';
 import { DemoModel } from '../model/demo.model';
 
