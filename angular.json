@@ -121,6 +121,41 @@
           }
         }
       }
+    },
+    "ngx-prx-styleguide": {
+      "root": "projects/ngx-prx-styleguide",
+      "sourceRoot": "projects/ngx-prx-styleguide/src",
+      "projectType": "library",
+      "prefix": "prx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-prx-styleguide/tsconfig.lib.json",
+            "project": "projects/ngx-prx-styleguide/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-prx-styleguide/src/test.ts",
+            "tsConfig": "projects/ngx-prx-styleguide/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-prx-styleguide/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-prx-styleguide/tsconfig.lib.json",
+              "projects/ngx-prx-styleguide/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-prx-styleguide-demo"

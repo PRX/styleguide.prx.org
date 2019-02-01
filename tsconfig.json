@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-prx-styleguide": [
+        "dist/ngx-prx-styleguide"
+      ],
+      "ngx-prx-styleguide/*": [
+        "dist/ngx-prx-styleguide/*"
+      ]
+    }
   }
 }
