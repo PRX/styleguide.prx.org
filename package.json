@@ -1,6 +1,27 @@
 {
-  "name": "ngx-prx-styleguide-demo",
-  "version": "0.0.0",
+  "name": "ngx-prx-styleguide",
+  "version": "2.0.0",
+  "description": "PRX Angular 6 style guide library",
+  "keywords": [
+    "PRX",
+    "Styleguide"
+  ],
+  "homepage": "https://github.com/prx/styleguide.prx.org",
+  "bugs": {
+    "url": "https://github.com/prx/styleguide.prx.org/issues",
+    "email": "help@prx.org"
+  },
+  "author": "PRX, Inc. <help@prx.org> (http://www.prx.org)",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PRX/styleguide.prx.org.git"
+  },
+  "engines": {
+    "node": ">= 6.9.0",
+    "npm": ">= 3.0.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +30,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^6.1.0",
     "@angular/common": "^6.1.0",
@@ -20,9 +40,12 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
-    "core-js": "^2.5.4",
-    "rxjs": "~6.2.0",
-    "zone.js": "~0.8.26"
+    "core-js": "^2.4.1",
+    "rxjs": "^6.0.0",
+    "zone.js": "^0.8.4"
+    "angular-2-dropdown-multiselect": "~1.8.1",
+    "c3": "^0.4.11",
+    "pikaday": "^1.5.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",
@@ -32,7 +55,10 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "@types/c3": "^0.4.41",
+    "@types/pikaday": "0.0.32",
     "codelyzer": "~4.3.0",
+    "dotenv": "^2.0.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",
