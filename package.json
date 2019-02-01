@@ -42,7 +42,7 @@
     "@angular/router": "^6.1.0",
     "core-js": "^2.4.1",
     "rxjs": "^6.0.0",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
     "angular-2-dropdown-multiselect": "~1.8.1",
     "c3": "^0.4.11",
     "pikaday": "^1.5.1"
