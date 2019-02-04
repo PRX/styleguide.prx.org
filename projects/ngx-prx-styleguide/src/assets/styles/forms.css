@@ -1,0 +1,138 @@
+@import 'variables.css';
+
+form {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-box-align: baseline;
+  -moz-box-align: baseline;
+  -o-box-align: baseline;
+  -ms-flex-align: baseline;
+  -webkit-align-items: baseline;
+  align-items: baseline;
+  -ms-flex-line-pack: start;
+  -webkit-align-content: flex-start;
+  align-content: flex-start;
+}
+
+label {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 0 1 100%;
+  -ms-flex: 0 1 100%;
+  flex: 0 1 100%;
+  flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  -webkit-flex-basis: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0 0 3px 0;
+  font-size: 100%;
+  font-weight: 400;
+  vertical-align: baseline;
+  background: 0 0;
+  outline: none;
+  cursor: pointer;
+}
+
+label + textarea {
+  vertical-align: top;
+}
+
+input, select, textarea {
+  margin: 0;
+}
+input, select {
+  vertical-align: middle;
+}
+input, textarea, select {
+  background-color: var(--white);
+}
+input, textarea {
+  color: var(--grey-suva);
+}
+input:focus, textarea:focus {
+  color: var(--black);
+}
+input {
+  border: 1px solid var(--white-fog);
+}
+select {
+  border-color: var(--grey-suva);
+  color: var(--grey-dark);
+}
+select:focus {
+  color: var(--black);
+}
+input, select, textarea {
+  font-family: sans-serif;
+}
+input, textarea {
+  font-size: 99%;
+}
+select {
+  font-size: 16px;
+}
+input{
+  outline: none;
+  padding: var(--padding-base);
+}
+
+input {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 1 215px;
+  -ms-flex: 1 1 215px;
+  flex: 1 1 215px;
+  flex-basis: 215px;
+  -ms-flex-preferred-size: 215px;
+  -webkit-flex-basis: 215px;
+}
+
+::placeholder {
+  color: var(--grey-northernsky);
+}
+
+[disabled] {
+  cursor: default;
+}
+
+label[disabled=disabled] {
+  color: var(--grey-silver);
+}
+
+select[disabled] {
+  border-color: var(--grey-northernsky);
+  color: var(--grey-northernsky);
+  background: var(--white-smoke);
+}
+
+input[readonly], input[disabled], textarea[readonly], textarea[disabled] {
+  background-color: var(--white-smoke);
+  border: 1px solid var(--grey-silver);
+}
+
+input[disabled][type=checkbox], input[disabled][type=radio] {
+  cursor: not-allowed;
+}

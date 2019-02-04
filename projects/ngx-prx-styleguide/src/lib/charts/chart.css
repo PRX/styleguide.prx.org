@@ -1,0 +1,7 @@
+:host > div {
+  background-color: white;
+}
+
+:host >>> .c3-area {
+  opacity: 1;
+}

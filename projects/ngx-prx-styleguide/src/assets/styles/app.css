@@ -1,0 +1,33 @@
+/*
+ * Fonts
+ */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,600,600i,700,700i);
+
+h1,
+h2,
+h3 {
+  color: var(--grey-dark);
+  font-weight: 100;/* We don't have 100, so 300 is what is being rendered. */
+}
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+a:focus, a:hover {
+  color: var(--blue-emphasis);
+}
+a:active {
+  color: var(--blue-emphasis);
+}
+a.current:hover {/* Don't see this used */
+  text-decoration: none;
+}
+strong {
+  font-weight: 700;
+}
+
+::selection {
+  background: var(--orange);
+  color: var(--white);
+}

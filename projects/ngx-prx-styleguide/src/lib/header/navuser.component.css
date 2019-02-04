@@ -1,0 +1,71 @@
+/*
+ * Navbar user info
+ */
+.spin-holder {
+  position: relative;
+  width: 50px;
+  height: 100%;
+}
+.nav-holder {
+  display: block;
+}
+.nav-holder >>> prx-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgb(0, 141, 177);
+  display: inline-block;
+  margin-top: 10px;
+}
+@media screen and (min-width: 768px) {
+  .spin-holder {
+    margin-left: 10px;
+    width: 80px;
+  }
+  .nav-holder > a {
+    padding: 0 20px;
+  }
+  .nav-holder >>> prx-image {
+    border-width: 2px;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    margin-bottom: -15px;
+  }
+}
+
+.nav-userinfo-menu-apps {
+  background-color: #1a1a1a;
+  display: none;
+  right: 0;
+  padding: 10px 20px;
+  position: absolute;
+  top: 100%;
+  z-index: 999;
+}
+.nav-userinfo-menu-apps h1 {
+  color: #fff;
+  line-height: 36px;
+  font-size: 0.9em;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+}
+.nav-userinfo-menu-apps ul {
+  border-top: 1px solid #ddd;
+  padding: 15px 0 0;
+}
+.nav-userinfo-menu-apps li a {
+  display: block;
+  padding: 5px;
+  color: #bebebe;
+  height: auto;
+  line-height: 24px;
+  white-space: nowrap;
+}
+.nav-userinfo-menu-apps li a:hover {
+  color: #fff;
+}
+.nav-userinfo:hover .nav-userinfo-menu-apps {
+  display: block;
+}

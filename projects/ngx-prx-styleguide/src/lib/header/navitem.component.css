@@ -1,0 +1,43 @@
+/*
+ * Navigation items
+ */
+:host {
+  flex: 0 0 auto;
+  font-size: 14px;
+}
+
+.nav-holder {
+  height: 50px;
+  display: inline-block;
+}
+.nav-holder > a {
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 50px;
+  padding: 0 10px;
+}
+a {
+  color: #bebebe;
+  display: block;
+  padding: 0 3px;
+  font-size: 1.1em;
+  font-family: 'Montserrat', sans-serif;
+}
+a.active {
+  color: #fff;
+  text-decoration: none;
+}
+.nav-holder:hover a {
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-holder {
+    height: 73px;
+  }
+  .nav-holder > a {
+    line-height: 73px;
+    padding: 0 25px;
+  }
+}

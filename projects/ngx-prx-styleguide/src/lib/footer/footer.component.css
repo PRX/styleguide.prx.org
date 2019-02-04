@@ -1,0 +1,127 @@
+/*
+ * PRX footer component
+ */
+footer {
+  background: #1a1a1a;
+  color: #bebebe;
+  font-size: 0.857rem;
+  padding-bottom: 67px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+@media screen and (min-width: 768px) {
+  footer {
+    font-size: 1rem;
+    padding-top: 3rem;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+/*
+ * Columns of footer content
+ */
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/*
+ * Individual sections
+ */
+.columns section {
+  flex-basis: 96px;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.columns section:first-child {
+  flex-basis: 100%;
+  flex-grow: 6;
+  margin-top: -1px;
+  padding-top: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+.columns section h3 {
+  display: block;
+  line-height: 3rem;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+.columns section a {
+  display: block;
+  color: #a3a3a3;
+}
+.columns section a:hover, .columns section a:focus {
+  color: #ffffff;
+}
+@media screen and (min-width: 768px) {
+  .columns section:first-child {
+    flex-basis: 290px;
+    border: none;
+  }
+  .columns section h3, .columns section a {
+    font-size: 14px;
+  }
+}
+
+/*
+ * Projected content in left-most column
+ */
+.columns .footer-left {
+  font-size: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 300px;
+}
+.columns .footer-left >>> p {
+  font-size: 1em;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.columns .footer-left >>> p a {
+  font-size: inherit;
+  display: inline;
+  line-height: 1em;
+  color: #bebebe;
+  text-decoration: underline;
+}
+.columns .footer-left >>> a {
+  display: block;
+  line-height: 3rem;
+  font-size: 1.125em;
+  color: #bebebe;
+  text-decoration: underline;
+}
+@media screen and (min-width: 768px) {
+  .columns .footer-left {
+    padding-top: 3rem;
+    font-size: 12px;
+  }
+}
+
+/*
+ * Social icons
+ */
+ul.social {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+ul.social a {
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  margin: 0 14px;
+}
+@media screen and (min-width: 768px) {
+  ul.social {
+    padding-top: 30px;
+  }
+}

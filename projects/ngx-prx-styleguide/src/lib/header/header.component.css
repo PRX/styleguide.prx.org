@@ -1,0 +1,69 @@
+/*
+ * PRX header component
+ */
+:host {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 200;
+  border-bottom: 1px solid #e6e6e6;
+  background: #1a1a1a;
+  padding-left: 20px;
+}
+
+h1 {
+  width: 72px;
+  margin: 0;
+  position: relative;
+  opacity: 0.99;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=99)";
+  filter: alpha(opacity=99);
+  z-index: 900;
+}
+h1 a {
+  line-height: 50px;
+  display: block;
+  background-image: url("ngx-prx-styleguide/assets/images/prx_logo.svg");
+  background-size: auto 22px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/*
+ * Navigation
+ */
+nav {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: calc(100% - 100px);
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  header {
+    height: 73px;
+  }
+  h1 {
+    width: 113px;
+  }
+  h1 a {
+    line-height: 73px;
+    background-size: auto 33px;
+  }
+  nav {
+    width: calc(100% - 150px);
+  }
+}

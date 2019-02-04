@@ -1,0 +1,91 @@
+/**
+ * Fancy css checkbox
+ */
+:host {
+  display: inline-block;
+  line-height: 0;
+}
+label {
+  display: inline-block;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  text-indent: 35px;
+  cursor: pointer;
+  font-size: 18px;
+  min-width: 25px;
+  min-height: 25px;
+  line-height: 25px;
+  font-weight: 400;
+  color: #343434;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+input {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #ddd;
+}
+.focused .checkmark {
+  background-color: #bebebe;
+}
+.mousedown .checkmark {
+  background-color: #a3a3a3;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.checked .checkmark:after {
+  display: block;
+}
+.checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 7px;
+  height: 12px;
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+label.disabled {
+  color: #a3a3a3;
+  cursor: not-allowed;
+}
+label.disabled .checkmark {
+  opacity: 0.6;
+}
+
+/* really small checkbox */
+label.small {
+  text-indent: 22px;
+  font-size: 12px;
+  min-width: 15px;
+  min-height: 15px;
+  line-height: 15px;
+}
+.small .checkmark {
+  height: 15px;
+  width: 15px;
+}
+.small .checkmark:after {
+  left: 5px;
+  top: 3px;
+  width: 5px;
+  height: 8px;
+  border-width: 0 2px 2px 0;
+}

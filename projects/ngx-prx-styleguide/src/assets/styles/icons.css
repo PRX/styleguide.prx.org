@@ -1,0 +1,313 @@
+.icon-calendar,
+.icon-cancel,
+.icon-cw,
+.icon-down-dir,
+.icon-facebook-official,
+.icon-globe,
+.icon-headphones,
+.icon-mail-alt,
+.icon-menu,
+.icon-play,
+.icon-plus,
+.icon-right-dir,
+.icon-smartphone,
+.icon-speedometer,
+.icon-twitter,
+.icon-up-dir {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-color: transparent;
+  background-size: cover;
+  height: 1em;
+  width: 1em;
+}
+
+.icon-calendar:hover, .icon-calendar:focus,
+.icon-cancel:hover, .icon-cancel:focus,
+.icon-cw:hover, .icon-cw:focus,
+.icon-down-dir:hover, .icon-down-dir:focus,
+.icon-globe:hover, .icon-globe:focus,
+.icon-headphones:hover, .icon-headphones:focus,
+.icon-facebook-official:hover, .icon-facebook-official:focus,
+.icon-mail-alt:hover, .icon-mail-alt:focus,
+.icon-menu:hover, .icon-menu:focus,
+.icon-play:hover, .icon-play:focus,
+.icon-plus:hover, .icon-plus:focus,
+.icon-right-dir:hover, .icon-right-dir:focus,
+.icon-smartphone:hover, .icon-smartphone:focus,
+.icon-speedometer:hover, .icon-speedometer:focus,
+.icon-twitter:hover, .icon-twitter:focus,
+.icon-up-dir:hover, .icon-up-dir:focus {
+  background-color: transparent;
+}
+
+i.icon-calendar, span.icon-calendar,
+i.icon-cancel, span.icon-cancel,
+i.icon-cw, span.icon-cw,
+i.icon-down-dir, span.icon-down-dir,
+i.icon-globe, span.icon-globe,
+i.icon-headphones, span.icon-headphones,
+i.icon-facebook-official, span.icon-facebook-official,
+i.icon-mail-alt, span.icon-mail-alt,
+i.icon-menu, span.icon-menu,
+i.icon-play, span.icon-play,
+i.icon-plus, span.icon-plus,
+i.icon-right-dir, span.icon-right-dir,
+i.icon-smartphone, span.icon-smartphone,
+i.icon-speedometer, span.icon-speedometer,
+i.icon-twitter, span.icon-twitter,
+i.icon-up-dir, span.icon-up-dir {
+  display: inline-block;
+}
+
+.icon-calendar {
+  background-image: url('../images/icons/ic_calendar_blue.svg');
+}
+
+a:hover .icon-calendar, button:hover .icon-calendar, .icon-calendar:hover,
+a:focus .icon-calendar, button:focus .icon-calendar, .icon-calendar:focus,
+.icon-calendar.active {
+  background-image: url('../images/icons/ic_calendar_blue-emphasis.svg');
+}
+
+.icon-calendar.grey-dove {
+  background-image: url('../images/icons/ic_calendar_grey-dove.svg');
+}
+
+.icon-calendar.grey-darkest,
+a:hover .icon-calendar.grey-dove, button:hover .icon-calendar.grey-dove, .icon-calendar.grey-dove:hover,
+a:focus .icon-calendar.grey-dove, button:focus .icon-calendar.grey-dove, .icon-calendar.grey-dove:focus {
+  background-image: url('../images/icons/ic_calendar_grey-darkest.svg');
+}
+
+.icon-calendar.grey-silver, .icon-calendar[disabled] {
+  background-image: url('../images/icons/ic_calendar_grey-silver.svg');
+}
+
+.icon-cancel {
+  background-image: url('../images/icons/ic_cancel_blue.svg');
+}
+
+a:hover .icon-cancel, button:hover .icon-cancel, .icon-cancel:hover,
+a:focus .icon-cancel, button:focus .icon-cancel, .icon-cancel:focus,
+.icon-cancel.active {
+  background-image: url('../images/icons/ic_cancel_blue-emphasis.svg');
+}
+
+.icon-cancel.grey-dove {
+  background-image: url('../images/icons/ic_cancel_grey-dove.svg');
+}
+
+.icon-cancel.grey-darkest,
+a:hover .icon-cancel.grey-dove, button:hover .icon-cancel.grey-dove, .icon-cancel.grey-dove:hover,
+a:focus .icon-cancel.grey-dove, button:focus .icon-cancel.grey-dove, .icon-cancel.grey-dove:focus {
+  background-image: url('../images/icons/ic_cancel_grey-darkest.svg');
+}
+
+.icon-cancel.grey-silver, .icon-cancel[disabled] {
+  background-image: url('../images/icons/ic_cancel_grey-silver.svg');
+}
+
+.icon-cw {
+  background-image: url('../images/icons/ic_cw_blue.svg');
+}
+
+a:hover .icon-cw, button:hover .icon-cw, .icon-cw:hover,
+a:focus .icon-cw, button:focus .icon-cw, .icon-cw:focus,
+.icon-cw.active {
+  background-image: url('../images/icons/ic_cw_blue-emphasis.svg');
+}
+
+.icon-cw.grey-silver, .icon-cw[disabled] {
+  background-image: url('../images/icons/ic_cw_grey-silver.svg');
+}
+
+.icon-down-dir {
+  background-image: url('../images/icons/ic_down-dir_blue.svg');
+}
+
+a:hover .icon-down-dir, button:hover .icon-down-dir, .icon-down-dir:hover,
+a:focus .icon-down-dir, button:focus .icon-down-dir, .icon-down-dir:focus,
+.icon-down-dir.active {
+  background-image: url('../images/icons/ic_down-dir_blue-emphasis.svg');
+}
+
+.icon-down-dir.grey-silver, .icon-down-dir[disabled] {
+  background-image: url('../images/icons/ic_down-dir_grey-silver.svg');
+}
+
+.icon-globe {
+  background-image: url('../images/icons/ic_globe_blue.svg');
+}
+
+a:hover .icon-globe, button:hover .icon-globe, .icon-globe:hover,
+a:focus .icon-globe, button:focus .icon-globe, .icon-globe:focus,
+.icon-globe.active {
+  background-image: url('../images/icons/ic_globe_blue-emphasis.svg');
+}
+
+.icon-globe.grey-silver, .icon-globe[disabled] {
+  background-image: url('../images/icons/ic_globe_grey-silver.svg');
+}
+
+.icon-globe.grey-darkest {
+  background-image: url('../images/icons/ic_globe_grey-darkest.svg');
+}
+
+.icon-headphones {
+  background-image: url('../images/icons/ic_headphones_blue.svg');
+}
+
+a:hover .icon-headphones, button:hover .icon-headphones, .icon-headphones:hover,
+a:focus .icon-headphones, button:focus .icon-headphones, .icon-headphones:focus,
+.icon-headphones.active {
+  background-image: url('../images/icons/ic_headphones_blue-emphasis.svg');
+}
+
+.icon-headphones.grey-silver, .icon-headphones[disabled] {
+  background-image: url('../images/icons/ic_headphones_grey-silver.svg');
+}
+
+.icon-headphones.grey-darkest {
+  background-image: url('../images/icons/ic_headphones_grey-darkest.svg');
+}
+
+.icon-facebook-official {
+  background-image: url('../images/icons/ic_facebook-official_grey-dove.svg');
+}
+
+.icon-mail-alt {
+  background-image: url('../images/icons/ic_mail-alt_grey-dove.svg');
+}
+
+.icon-menu {
+  background-image: url('../images/icons/ic_menu_blue.svg');
+}
+
+a:hover .icon-menu, button:hover .icon-menu, .icon-menu:hover,
+a:focus .icon-menu, button:focus .icon-menu, .icon-menu:focus,
+.icon-menu.active {
+  background-image: url('../images/icons/ic_menu_blue-emphasis.svg');
+}
+
+.icon-menu.grey-dove {
+  background-image: url('../images/icons/ic_menu_grey-dove.svg');
+}
+
+.icon-menu.grey-darkest,
+a:hover .icon-menu.grey-dove, button:hover .icon-menu.grey-dove, .icon-menu.grey-dove:hover,
+a:focus .icon-menu.grey-dove, button:focus .icon-menu.grey-dove, .icon-menu.grey-dove:focus {
+  background-image: url('../images/icons/ic_menu_grey-darkest.svg');
+}
+
+.icon-menu.grey-silver, .icon-menu[disabled] {
+  background-image: url('../images/icons/ic_menu_grey-silver.svg');
+}
+
+.icon-play {
+  background-image: url('../images/icons/ic_play_blue.svg');
+}
+
+a:hover .icon-play, button:hover .icon-play, .icon-play:hover,
+a:focus .icon-play, button:focus .icon-play, .icon-play:focus,
+.icon-play.active {
+  background-image: url('../images/icons/ic_play_blue-emphasis.svg');
+}
+
+.icon-play.white, .icon-play.white:hover, .icon-play.white:focus
+a:hover .icon-play.white, button:hover .icon-play.white,
+a:focus .icon-play.white, button:focus .icon-play.white {
+  background-image: url('../images/icons/ic_play_white.svg');
+}
+
+.icon-play.grey-silver, .icon-play[disabled] {
+  background-image: url('../images/icons/ic_play_grey-silver.svg');
+}
+
+.icon-plus {
+  background-image: url('../images/icons/ic_plus_blue.svg');
+}
+
+a:hover .icon-plus, button:hover .icon-plus, .icon-plus:hover,
+a:focus .icon-plus, button:focus .icon-plus, .icon-plus:focus,
+.icon-plus.active {
+  background-image: url('../images/icons/ic_plus_blue-emphasis.svg');
+}
+
+.icon-plus.white, .icon-plus.white:hover, .icon-plus.white:focus,
+a:hover .icon-plus.white, button:hover .icon-plus.white,
+a:focus .icon-plus.white, button:focus .icon-plus.white {
+  background-image: url('../images/icons/ic_plus_white.svg');
+}
+
+.icon-plus.grey-silver, .icon-plus[disabled] {
+  background-image: url('../images/icons/ic_plus_grey-silver.svg');
+}
+
+.icon-right-dir {
+  background-image: url('../images/icons/ic_right-dir_blue.svg');
+}
+
+a:hover .icon-right-dir, button:hover .icon-right-dir, .icon-right-dir:hover,
+a:focus .icon-right-dir, button:focus .icon-right-dir, .icon-right-dir:focus,
+.icon-right-dir.active {
+  background-image: url('../images/icons/ic_right-dir_blue-emphasis.svg');
+}
+
+.icon-right-dir.grey-silver, .icon-right-dir[disabled] {
+  background-image: url('../images/icons/ic_right-dir_grey-silver.svg');
+}
+
+.icon-smartphone {
+  background-image: url('../images/icons/ic_smartphone_blue.svg');
+}
+
+a:hover .icon-smartphone, button:hover .icon-smartphone, .icon-smartphone:hover,
+a:focus .icon-smartphone, button:focus .icon-smartphone, .icon-smartphone:focus,
+.icon-smartphone.active {
+  background-image: url('../images/icons/ic_smartphone_blue-emphasis.svg');
+}
+
+.icon-smartphone.grey-silver, .icon-smartphone[disabled] {
+  background-image: url('../images/icons/ic_smartphone_grey-silver.svg');
+}
+
+.icon-smartphone.grey-darkest {
+  background-image: url('../images/icons/ic_smartphone_grey-darkest.svg');
+}
+
+.icon-speedometer {
+  background-image: url('../images/icons/ic_speedometer_blue.svg');
+}
+
+a:hover .icon-speedometer, button:hover .icon-speedometer, .icon-speedometer:hover,
+a:focus .icon-speedometer, button:focus .icon-speedometer, .icon-speedometer:focus,
+.icon-speedometer.active {
+  background-image: url('../images/icons/ic_speedometer_blue-emphasis.svg');
+}
+
+.icon-speedometer.grey-silver, .icon-speedometer[disabled] {
+  background-image: url('../images/icons/ic_speedometer_grey-silver.svg');
+}
+
+.icon-speedometer.grey-darkest {
+  background-image: url('../images/icons/ic_speedometer_grey-darkest.svg');
+}
+
+.icon-twitter {
+  background-image: url('../images/icons/ic_twitter_grey-dove.svg');
+}
+
+.icon-up-dir {
+  background-image: url('../images/icons/ic_up-dir_blue.svg');
+}
+
+a:hover .icon-up-dir, button:hover .icon-up-dir, .icon-up-dir:hover,
+a:hover .icon-up-dir, button:hover .icon-up-dir, .icon-up-dir:focus,
+.icon-up-dir.active {
+  background-image: url('../images/icons/ic_up-dir_blue-emphasis.svg');
+}
+
+.icon-up-dir.grey-silver, .icon-up-dir[disabled] {
+  background-image: url('../images/icons/ic_up-dir_grey-silver.svg');
+}

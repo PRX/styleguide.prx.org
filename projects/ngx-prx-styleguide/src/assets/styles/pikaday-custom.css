@@ -1,0 +1,44 @@
+.pika-single {
+  color: #000;
+  border-color: #e6e6e6;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.pika-button {
+  color: #000;
+  background: #f0f0f0;
+  border-radius: 0;
+}
+
+.is-today .pika-button {
+  color: #0089bd;
+}
+
+.is-selected .pika-button {
+  color: #fff;
+  background: #0089bd;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.pika-button:hover {
+  background: #ff9600;
+  border-radius: 0;
+}
+
+.pika-label {
+  text-transform: uppercase;
+}
+.pika-select-month {
+  text-transform: uppercase;
+}
+.pika-table thead abbr {
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: none;
+  cursor: default;
+}
+
+.pika-single.container {
+  border: 0;
+}
