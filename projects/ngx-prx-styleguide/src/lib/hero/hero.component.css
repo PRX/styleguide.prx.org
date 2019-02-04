@@ -2,13 +2,13 @@
  * Banner text
  */
 .banner {
-  background: #818181 url('ngx-prx-styleguide/assets/images/towers.png') repeat;
+  background: #818181 url('../../assets/images/towers.png') repeat;
 }
 .banner.orange {
-  background-image: url('ngx-prx-styleguide/assets/images/tl_orange_radios.png');
+  background-image: url('../../assets/images/tl_orange_radios.png');
 }
 .banner.blue {
-  background-image: url('ngx-prx-styleguide/assets/images/tl_blue_mics.png');
+  background-image: url('../../assets/images/tl_blue_mics.png');
 }
 .banner section {
   min-height: 120px;

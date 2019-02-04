@@ -27,7 +27,7 @@ h1 {
 h1 a {
   line-height: 50px;
   display: block;
-  background-image: url("ngx-prx-styleguide/assets/images/prx_logo.svg");
+  background-image: url("../../assets/images/prx_logo.svg");
   background-size: auto 22px;
   background-position: center center;
   background-repeat: no-repeat;
