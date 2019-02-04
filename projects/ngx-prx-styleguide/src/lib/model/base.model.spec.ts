@@ -3,6 +3,7 @@ import {of as observableOf, empty as observableEmpty,  Observable ,  Observer } 
 
 
 import { BaseModel } from './base.model';
+import { MockHalDoc } from '../hal/mock/mock-haldoc';
 
 class FakeModel extends BaseModel {
   someattribute = 'somevalue';
@@ -27,10 +28,12 @@ describe('BaseModel', () => {
 
     it('sets the parent-self relationship', () => {
       spyOn(base, 'decode').and.stub();
-      base.init(<any> 'parent', <any> 'self');
+      const fakeParent = new MockHalDoc({id: 123, foo: 'bar'}, 'model/whatever')
+      const fakeSelf = new MockHalDoc({id: 123, foo: 'bar'}, 'model/whatever')
+      base.init(fakeParent, fakeSelf);
       expect(base.isNew).toEqual(false);
-      expect(base.parent).toEqual('parent');
-      expect(base.doc).toEqual('self');
+      expect(base.parent).toEqual(fakeParent);
+      expect(base.doc).toEqual(fakeSelf);
       expect(base.decode).toHaveBeenCalled();
     });
 
