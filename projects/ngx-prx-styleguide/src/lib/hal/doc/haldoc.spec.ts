@@ -18,7 +18,7 @@ describe('HalDoc', () => {
 
   // disable error logging
   beforeEach(() => {
-    spyOn(HalDoc.prototype, 'error').and.callFake((msg: string) => {
+    spyOn<any>(HalDoc.prototype, 'error').and.callFake((msg: string) => {
       return observableThrowError(new Error(msg));
     });
   });

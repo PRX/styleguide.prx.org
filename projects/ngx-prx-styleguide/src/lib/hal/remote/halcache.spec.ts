@@ -54,7 +54,7 @@ describe('HalCache', () => {
   it('expires caches', () => {
     cache.set('foo', observableOf('bar')).subscribe();
     expect(cache.get('foo') instanceof Observable).toBeTruthy();
-    spyOn(cache, 'checkExpired').and.returnValue(true);
+    spyOn<any>(cache, 'checkExpired').and.returnValue(true);
     spyOn(cache, 'del').and.stub();
     expect(cache.get('foo')).toBeNull();
     expect(cache.del).toHaveBeenCalled();
