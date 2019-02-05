@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PRX Styleguide</title>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel=icon type=image/png href=//media.prx.org/favicon-16x16.png sizes=16x16>
+    <link rel=icon type=image/png href=//media.prx.org/favicon-32x32.png sizes=32x32>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ngx-prx-styleguide/assets/styles/base.css" />
+
+    <!-- bootstrap the .env file -->
+    <script type="text/javascript" src="/assets/dotenv.js"></script>
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('main.js').catch(function(err){ console.error(err); });
+    </script>
+  </head>
+
+  <body>
+    <demo-app>Loading...</demo-app>
+  </body>
+</html>
