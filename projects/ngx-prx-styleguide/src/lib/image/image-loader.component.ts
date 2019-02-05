@@ -2,7 +2,6 @@ import { Component, Input, OnChanges, SimpleChanges, HostBinding } from '@angula
 import { HalDoc } from '../hal/doc/haldoc';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-image',
   template: `
     <img *ngIf="src" [src]="src" (load)="onLoad()" (error)="onError()"/>

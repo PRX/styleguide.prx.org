@@ -3,7 +3,6 @@ import * as C3 from 'c3';
 import { CategoryChartModel } from './models/category-chart.model';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-category-chart',
   template: `<div #chart></div>`,
   styleUrls: ['./chart.css']

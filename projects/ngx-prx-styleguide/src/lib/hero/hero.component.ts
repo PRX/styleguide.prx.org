@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-hero',
   styleUrls: ['hero.component.css'],
   template: `

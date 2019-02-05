@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-timepicker',
   template: `
     <select [class.changed]="changed"

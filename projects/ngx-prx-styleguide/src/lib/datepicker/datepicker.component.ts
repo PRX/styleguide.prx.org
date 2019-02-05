@@ -13,7 +13,6 @@ const moment = (rawMoment as any).default ? (rawMoment as any).default : rawMome
  *   ../node_modules/pikaday/css/triangle.css
  */
 @Component({
-  moduleId: module.id,
   selector: 'prx-datepicker',
   templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.css']

@@ -4,7 +4,6 @@ import { BaseModel } from '../model/base.model';
 const isset = (val: any): boolean => val !== false && val !== undefined;
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-fancy-field',
   styleUrls: ['fancy-field.component.css'],
   templateUrl: 'fancy-field.component.html'

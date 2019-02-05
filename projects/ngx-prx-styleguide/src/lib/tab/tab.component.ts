@@ -4,7 +4,6 @@ import { BaseModel } from '../model/base.model';
 import { TabService } from './tab.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-tabs',
   styleUrls: ['tab.component.css'],
   template: `

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ToastrService } from './toastr.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-toastr',
   styleUrls: ['toastr.component.css'],
   template: `

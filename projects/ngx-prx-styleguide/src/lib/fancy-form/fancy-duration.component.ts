@@ -2,7 +2,6 @@ import { Component, Input, DoCheck } from '@angular/core';
 import { BaseModel } from '../model/base.model';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-fancy-duration',
   styleUrls: ['fancy-field.component.css', 'fancy-duration.component.css'],
   template: `

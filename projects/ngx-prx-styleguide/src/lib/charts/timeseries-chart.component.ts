@@ -6,7 +6,6 @@ import { ChartType } from './models/chart-type.type';
 import { ChartOrder } from './models/chart-order.type';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-timeseries-chart',
   template: `<div #chart></div>`,
   styleUrls: ['./chart.css']

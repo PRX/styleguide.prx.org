@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-navitem',
   styleUrls: ['./navitem.component.css'],
   template: `

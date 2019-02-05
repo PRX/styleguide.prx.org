@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-header',
   styleUrls: ['./header.component.css'],
   template: `

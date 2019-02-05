@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { Userinfo } from '../auth/userinfo.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-navuser',
   styleUrls: [
     './navitem.component.css',

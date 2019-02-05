@@ -8,7 +8,6 @@ const isset = (val: any): boolean => {
 };
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-checkbox',
   styleUrls: ['checkbox.component.css'],
   template: `

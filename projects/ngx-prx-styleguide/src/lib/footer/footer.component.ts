@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-footer',
   styleUrls: ['footer.component.css'],
   template: `

@@ -2,7 +2,6 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { ModalService, ModalState } from './modal.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-modal',
   styleUrls: ['modal.component.css'],
   template: `

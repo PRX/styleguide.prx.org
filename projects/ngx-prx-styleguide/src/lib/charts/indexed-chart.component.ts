@@ -4,7 +4,6 @@ import { IndexedChartModel } from './models/indexed-chart.model';
 import { ChartType } from './models/chart-type.type';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-indexed-chart',
   template: `<div #chart></div>`,
   styleUrls: ['./chart.css']

@@ -5,7 +5,6 @@ import { AuthService } from './auth.service';
 import { AuthParser } from './auth-parser';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-login',
   styles: [`
     :host { width: 100%; }

@@ -6,7 +6,6 @@ import { AuthService } from './auth.service';
 import { AuthParser } from './auth-parser';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-auth',
   styles: ['iframe { display: none; }'],
   template: `<iframe *ngIf="authUrl" [src]="authUrl" (load)="checkAuth()"></iframe>`

@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { BaseModel } from '../model/base.model';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-button',
   styleUrls: ['button.component.css'],
   template: `

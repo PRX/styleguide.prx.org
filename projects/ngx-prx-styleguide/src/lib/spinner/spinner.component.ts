@@ -1,7 +1,6 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'prx-spinner',
   styleUrls: ['spinner.component.css'],
   template: `

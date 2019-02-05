@@ -6,7 +6,6 @@ import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@
  *   ../node_modules/pikaday/css/triangle.css
  */
 @Component({
-  moduleId: module.id,
   selector: 'prx-daterange',
   template: `
     <div class="picker">
