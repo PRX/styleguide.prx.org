@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MockHalDoc } from 'ngx-prx-styleguide';
 
 @Component({
-  moduleId: module.id,
   selector: 'image-loader-demo',
   template: `
     <section class="main demo">

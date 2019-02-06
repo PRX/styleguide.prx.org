@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'capitalize-demo',
   template: `
     <section class="main demo">

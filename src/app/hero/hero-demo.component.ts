@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import { HalService, HalDoc } from 'ngx-prx-styleguide';
 
 @Component({
-  moduleId: module.id,
   selector: 'hero-demo',
   template: `    
     <prx-hero>

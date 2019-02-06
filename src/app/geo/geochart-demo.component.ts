@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import * as geoData from './geo-data';
 
 @Component({
-  moduleId: module.id,
   selector: 'geochart-demo',
   template: `
     <div class="sidebar">

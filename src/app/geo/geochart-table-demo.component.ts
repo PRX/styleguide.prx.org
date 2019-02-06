@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'geochart-table-demo',
   template: `
     <table>

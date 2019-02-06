@@ -3,7 +3,6 @@ import { DemoModel } from '../model/demo.model';
 import { HalDoc } from 'ngx-prx-styleguide';
 
 @Component({
-  moduleId: module.id,
   selector: 'fancy-duration-demo',
   template: `
     <section class="main demo">
