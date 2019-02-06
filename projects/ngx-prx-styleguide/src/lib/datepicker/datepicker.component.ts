@@ -1,11 +1,16 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild,
   ElementRef } from '@angular/core';
 
-import * as rawPikaday from 'pikaday';
-const Pikaday = (rawPikaday as any).default ? (rawPikaday as any).default : rawPikaday;
+import * as Pikaday from 'pikaday';
 
-import * as rawMoment from 'moment';
-const moment = (rawMoment as any).default ? (rawMoment as any).default : rawMoment;
+import * as momentNs from 'moment';
+
+// Moment doesn't export the type for the moment() function itself, so I need to set one up
+interface MomentConstructor {
+  (inp?: momentNs.MomentInput, format?: momentNs.MomentFormatSpecification, strict?: boolean): momentNs.Moment;
+}
+// This artifice seems to be necessary to appease both Webpack and Rollup https://github.com/ng-packagr/ng-packagr/issues/163
+const moment = momentNs as MomentConstructor;
 
 /**
  * TODO: parent project must include (in .angular-cli.json):

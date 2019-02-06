@@ -2,6 +2,11 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ngx-prx-styleguide",
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+      "c3": "C3",
+      "pikaday": "Pikaday",
+      "moment": "Moment"
+    }
   }
 }
