@@ -1,4 +1,11 @@
-@import 'variables.css';
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+
+@import 'variables';
 
 /* TODO: create separate modal file */
 /* Seems like we maybe could use this modal stuff for projected content in the modal but we're not right now. Should I keep it? */
@@ -7,11 +14,11 @@
 .modal form h4,
 .modal form h5,
 .modal form h6 {
-  color: var(--white);
+  color: $white;
 }
 .modal form fieldset {
-  padding-bottom: var(--padding-base);
-  border-bottom: 1px solid var(--grey-silver);
+  padding-bottom: $padding-base;
+  border-bottom: 1px solid $grey-silver;
 }
 .modal form fieldset:last-child {
   border-bottom-color: transparent;
@@ -23,17 +30,17 @@
   font-weight: 700;
 }
 .modal form input[type=checkbox] {
-  margin-bottom: var(--margin-base);
+  margin-bottom: $margin-base;
 }
 .modal form textarea {
   width: 100%;
   height: 70px;
-  border: 1px solid var(--black);
+  border: 1px solid $black;
   padding: 5px;
-  background-color: var(--grey-dark);
-  color: var(--white);
+  background-color: $grey-dark;
+  color: $white;
 }
 .modal form fieldset.pricing label {
   display: inline-block;
-  margin-right: var(--margin-base);
+  margin-right: $margin-base;
 }

@@ -1,14 +1,21 @@
-@import 'variables.css';
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+
+@import 'variables';
 
 html {
   line-height: 1.5em;/* TODO: why em when we're not specifying font-size yet? */
   height: 100%;
-  background-color: var(--grey-darkest);
+  background-color: $grey-darkest;
   background-image: url('../images/tl_diag_stripes.svg');
 }
 
 body {
-  background: var(--grey-darkest);
+  background: $grey-darkest;
   max-width: 1200px;
   min-height: 100%;
   margin-right: auto;
@@ -16,14 +23,14 @@ body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.5rem;/* TODO: why is this rem when there is no font-size for html? */
   font-size: 14px;
-  color: var(--grey-dove);
+  color: $grey-dove;
 }
 main {
   display: block;/* IE 11 gives auto/no height to main */
   min-height: 200px;
-  background: var(--white-smoke);
+  background: $white-smoke;
   padding-top: 50px;
-  padding-bottom: var(--padding-base);
+  padding-bottom: $padding-base;
   position: relative;
 }
 @media screen and (min-width: 768px) {

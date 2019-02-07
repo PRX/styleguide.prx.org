@@ -1,4 +1,11 @@
-@import 'variables.css';
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+
+@import 'variables';
 
 /***********************************
  * A note on .button - Publish uses:
@@ -14,7 +21,7 @@ button,
 .button {
   font-size: 100%;
   outline: none;
-  padding: var(--padding-base);
+  padding: $padding-base;
 }
 button, .button, input[type=button], input[type=file], input[type=submit] {
   cursor: pointer
@@ -39,14 +46,14 @@ button, .button {
 button, .button {
   display: inline-block;
   position: relative;
-  color: var(--white);
+  color: $white;
   text-align: center;
 }
 button, .button {
-  background-color: var(--blue);
+  background-color: $blue;
 }
 button:hover, .button:hover {
-  background-color: var(--blue-emphasis);
+  background-color: $blue-emphasis;
 }
 button[disabled], .button[disabled] {
   -webkit-transition: background-color 0.2s, color 0.2s;
@@ -54,37 +61,37 @@ button[disabled], .button[disabled] {
   -o-transition: background-color 0.2s, color 0.2s;
   -ms-transition: background-color 0.2s, color 0.2s;
   transition: background-color 0.2s, color 0.2s;
-  background-color: var(--blue-emphasis);
-  color: var(--blue-muted);
+  background-color: $blue-emphasis;
+  color: $blue-muted;
 }
 a.button {
   line-height: 17px;
-  color: var(--white);
+  color: $white;
 }
 a.button:hover, a.button:active, a.button:focus {
-  color: var(--white);
+  color: $white;
 }
 button.btn-link, button.pager {
-  color: var(--blue);
+  color: $blue;
   vertical-align: baseline;
   padding: 0;
   border: 0;
   background: 0 0 transparent;
 }
 button.btn-link:hover, button.btn-link:focus, button.pager:hover, button.pager:focus {
-  color: var(--blue-emphasis);
+  color: $blue-emphasis;
 }
 button.btn-link[disabled], button.pager[disabled] {
-  color: var(--grey-silver);
+  color: $grey-silver;
 }
 button.btn-link.active {
-  color: var(--blue-emphasis);
+  color: $blue-emphasis;
 }
 
 button.btn-icon {
   font-size: 22px;
   padding: 0;
-  margin: var(--margin-base);
+  margin: $margin-base;
 }
 button.btn-icon::before {
   margin-left: 0;
@@ -95,26 +102,26 @@ button.btn-icon[disabled] {
 }
 
 button.delete {
-  color: var(--white);
-  background-color: var(--red);
+  color: $white;
+  background-color: $red;
 }
 button.delete:hover, button.delete:focus {
-  background-color: var(--red-emphasis);
+  background-color: $red-emphasis;
 }
 /* pagination controls */
 button.pager {
   padding: 4px 8px;
-  border: 1px solid var(--grey-light);
+  border: 1px solid $grey-light;
   transition: background-color .3s;
-  background-color: var(--white);
+  background-color: $white;
 }
 button.pager:hover:not(.active):not(:disabled) {
-  background-color: var(--grey-light);
+  background-color: $grey-light;
 }
 button.pager.active {
   cursor: auto;
-  color: var(--white);
-  background-color: var(--blue-emphasis);
+  color: $white;
+  background-color: $blue-emphasis;
 }
 
 /********
@@ -134,7 +141,7 @@ input[type=checkbox].updown-toggle:checked + label {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 8px solid var(--blue);
+  border-top: 8px solid $blue;
   border-bottom: 0;
 }
 
@@ -143,6 +150,6 @@ input[type=checkbox].updown-toggle + label {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 8px solid var(--blue);
+  border-bottom: 8px solid $blue;
   border-top: 0;
 }

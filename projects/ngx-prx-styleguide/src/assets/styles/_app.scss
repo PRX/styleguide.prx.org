@@ -1,3 +1,10 @@
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+
 /*
  * Fonts
  */
@@ -7,18 +14,18 @@
 h1,
 h2,
 h3 {
-  color: var(--grey-dark);
+  color: $grey-dark;
   font-weight: 100;/* We don't have 100, so 300 is what is being rendered. */
 }
 a {
-  color: var(--blue);
+  color: $blue;
   text-decoration: none;
 }
 a:focus, a:hover {
-  color: var(--blue-emphasis);
+  color: $blue-emphasis;
 }
 a:active {
-  color: var(--blue-emphasis);
+  color: $blue-emphasis;
 }
 a.current:hover {/* Don't see this used */
   text-decoration: none;
@@ -28,6 +35,6 @@ strong {
 }
 
 ::selection {
-  background: var(--orange);
-  color: var(--white);
+  background: $orange;
+  color: $white;
 }
