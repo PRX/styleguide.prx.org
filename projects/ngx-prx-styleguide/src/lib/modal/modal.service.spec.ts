@@ -12,6 +12,14 @@ describe('ModalService', () => {
     expect(modal.state instanceof Observable).toBeTruthy();
   });
 
+  it('hides the modal appropriately', () => {
+    let modal = new ModalService(fakeSanitizer), theState: ModalState;
+    modal.alert('foobar');
+    expect(theState.hide).toBeFalsy();
+    modal.hide()
+    expect(theState.hide).toBeTruthy();
+  });
+
   it('creates alert dialogs', () => {
     let modal = new ModalService(fakeSanitizer), theState: ModalState;
     modal.state.subscribe((state) => { theState = state; });
