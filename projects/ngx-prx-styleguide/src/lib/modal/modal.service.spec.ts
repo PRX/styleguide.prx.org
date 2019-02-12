@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { ModalService, ModalState } from './modal.service';
 
 const fakeSanitizer: any = {
@@ -14,6 +14,8 @@ describe('ModalService', () => {
 
   it('hides the modal appropriately', () => {
     let modal = new ModalService(fakeSanitizer), theState: ModalState;
+    modal.state.subscribe((state) => { theState = state; });
+
     modal.alert('foobar');
     expect(theState.hide).toBeFalsy();
     modal.hide()
