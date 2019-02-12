@@ -1,7 +1,6 @@
 @import 'node_modules/c3/c3.css';
 @import 'node_modules/pikaday/css/pikaday.css';
 @import 'node_modules/pikaday/css/triangle.css';
-@import '../projects/ngx-prx-styleguide/src/assets/styles/variables.css';
 
 section {
   margin: 1em;

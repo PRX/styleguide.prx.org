@@ -8,5 +8,10 @@
       "pikaday": "Pikaday",
       "moment": "Moment"
     }
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "angular-2-dropdown-multiselect",
+    "c3",
+    "pikaday"
+  ]
 }
