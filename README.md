@@ -1,27 +1,69 @@
-# NgxPrxStyleguideDemo
+# PRX Style Guide and Component Library
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.9.
+Generated using the Angular CLI's library support. Uses `ng-packagr` under the hood and adheres to the Angular Package Format.
 
-## Development server
+## Install Dependencies
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm install`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm run build:lib` to build the library. The build artifacts will be stored in the `dist/` directory.
+
+## Development server / Demo app
+
+Run `npm run start` for a demo server. You must first build the library.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Usage
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+To use this library in an angular-cli project:
 
-## Further help
+```
+npm install ngx-prx-styleguide
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Then import the modules you want into your module:
+
+```typescript
+import { ChartsModule, DatepickerModule } from 'ngx-prx-styleguide';
+
+@NgModule({
+  imports: [ChartsModule, DatepickerModule]
+})
+```
+
+And add styles for the base stylesheet, as well as any components you are using, to your `angular.json`:
+
+```json
+{
+  "styles": [
+  	"../node_modules/ngx-prx-styleguide/assets/styles/bundle.scss",
+    "../node_modules/pikaday/css/pikaday.css",
+    "../node_modules/pikaday/css/triangle.css",
+    "../node_modules/c3/c3.css",
+    "styles.css"
+  ]
+}
+```
+
+## Releasing
+
+The `npm version` command will run scripts to update the library version as well. To release to the npm registry, *make sure* you publish the `dist` folder.
+
+```
+npm version [ major | minor | patch ...]
+npm run build:lib
+npm publish dist
+```
+
+## License
+
+This library is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+## Contributing
+
+Completing a Contributor License Agreement (CLA) is required for PRs to be accepted.

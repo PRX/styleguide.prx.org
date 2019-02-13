@@ -31,7 +31,8 @@
     "e2e": "ng e2e",
     "build:lib": "npm run build ngx-prx-styleguide && npm run build:lib:scss",
     "test:lib": "npm run test ngx-prx-styleguide",
-    "build:lib:scss": "scss-bundle -e projects/ngx-prx-styleguide/src/assets/styles/base.scss -d dist/ngx-prx-styleguide/assets/styles/bundle.scss && cp -R projects/ngx-prx-styleguide/src/assets/images dist/ngx-prx-styleguide/assets"
+    "build:lib:scss": "scss-bundle -e projects/ngx-prx-styleguide/src/assets/styles/base.scss -d dist/ngx-prx-styleguide/assets/styles/bundle.scss && cp -R projects/ngx-prx-styleguide/src/assets/images dist/ngx-prx-styleguide/assets",
+    "version": "node ./bin/readver.js | ./bin/newver.sh"
   },
   "dependencies": {
     "@angular/animations": "^6.1.0",
