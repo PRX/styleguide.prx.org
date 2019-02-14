@@ -41,7 +41,7 @@ And add styles for the base stylesheet, as well as any components you are using,
 ```json
 {
   "styles": [
-  	"../node_modules/ngx-prx-styleguide/assets/styles/bundle.scss",
+    "../node_modules/ngx-prx-styleguide/assets/styles/bundle.scss",
     "../node_modules/pikaday/css/pikaday.css",
     "../node_modules/pikaday/css/triangle.css",
     "../node_modules/c3/c3.css",
@@ -52,12 +52,12 @@ And add styles for the base stylesheet, as well as any components you are using,
 
 ## Releasing
 
-The `npm version` command will run scripts to update the library version as well. To release to the npm registry, *make sure* you publish the `dist` folder.
+The `npm version` command will run scripts to update the library version as well. To release to the npm registry, publish the `dist/ngx-prx-styleguide` directory. The `package.json` in the base directory has `private` set to `true` to prevent accidental publishing.
 
 ```
-npm version [ major | minor | patch ...]
+npm version [ major | minor | patch ... ]
 npm run build:lib
-npm publish dist
+npm publish dist/ngx-prx-styleguide
 ```
 
 ## License
