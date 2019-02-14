@@ -36,17 +36,33 @@ import { ChartsModule, DatepickerModule } from 'ngx-prx-styleguide';
 })
 ```
 
-And add styles for the base stylesheet, as well as any components you are using, to your `angular.json`:
+And add image assets, styles for the base stylesheet, and any components you are using, to your `angular.json`:
 
 ```json
 {
-  "styles": [
-    "../node_modules/ngx-prx-styleguide/assets/styles/bundle.scss",
-    "../node_modules/pikaday/css/pikaday.css",
-    "../node_modules/pikaday/css/triangle.css",
-    "../node_modules/c3/c3.css",
-    "styles.css"
-  ]
+  "projects": {
+    "your-project": {
+      "architect": {
+        "your-arch": {
+          "options": {
+            "assets": [
+              {
+                "glob": "*",
+                "input": "node_modules/ngx-prx-styleguide/assets/images",
+                "output": "assets/images/"
+              }
+            ],
+            "styles": [
+              "node_modules/pikaday/css/pikaday.css",
+              "node_modules/pikaday/css/triangle.css",
+              "node_modules/c3/c3.css",
+              "node_modules/ngx-prx-styleguide/assets/styles/bundle.scss"
+            ],
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
