@@ -2,33 +2,31 @@
  * PRX header component
  */
 :host {
+  --header-height: 50px;
+  --logo-width: 72px;
+
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  z-index: 200;
+  z-index: 900;
   border-bottom: 1px solid #e6e6e6;
   background: #1a1a1a;
   padding-left: 20px;
 }
 
-h1 {
-  width: 72px;
-  margin: 0;
-  position: relative;
-  opacity: 0.99;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=99)";
-  filter: alpha(opacity=99);
-  z-index: 900;
+header {
+  display: flex;
+  justify-content: space-between;
 }
+
 h1 a {
-  line-height: 50px;
   display: block;
+  width: var(--logo-width);
+  height: var(--header-height);
   background-image: url("../../assets/images/prx_logo.svg");
-  background-size: auto 22px;
   background-position: center center;
   background-repeat: no-repeat;
   text-indent: 100%;
@@ -40,30 +38,17 @@ h1 a {
  * Navigation
  */
 nav {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: calc(100% - 100px);
-  text-align: right;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 100%;
+
+  text-align: right;
 }
 
 @media screen and (min-width: 768px) {
-  header {
-    height: 73px;
-  }
-  h1 {
-    width: 113px;
-  }
-  h1 a {
-    line-height: 73px;
-    background-size: auto 33px;
-  }
-  nav {
-    width: calc(100% - 150px);
+  :host {
+    --header-height: 73px;
+    --logo-width: 113px;
   }
 }
