@@ -24,8 +24,8 @@ header {
 
 h1 a {
   display: block;
-  width: var(--logo-width);
-  height: var(--header-height);
+  width: 72px;
+  height: 50px;
   background-image: url("../../assets/images/prx_logo.svg");
   background-position: center center;
   background-repeat: no-repeat;
@@ -47,8 +47,8 @@ nav {
 }
 
 @media screen and (min-width: 768px) {
-  :host {
-    --header-height: 73px;
-    --logo-width: 113px;
+  h1 a {
+    width: 113px;
+    height: 73px;
   }
 }
