@@ -21,7 +21,7 @@ class TestComponent {
   testOutput: any = undefined;
   setTestOutput(val: any) { this.testOutput = val; }
 }
-fdescribe('SelectComponent', () => {
+describe('SelectComponent', () => {
 
   let comp: TestComponent;
   let fix: ComponentFixture<TestComponent>;
