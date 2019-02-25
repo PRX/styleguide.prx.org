@@ -21,7 +21,7 @@ class TestComponent {
   testOutput: any = undefined;
   setTestOutput(val: any) { this.testOutput = val; }
 }
-describe('SelectComponent', () => {
+fdescribe('SelectComponent', () => {
 
   let comp: TestComponent;
   let fix: ComponentFixture<TestComponent>;
@@ -55,20 +55,20 @@ describe('SelectComponent', () => {
   it('transforms string options', () => {
     comp.testOptions = ['hello', 'there', 'world'];
     fix.detectChanges();
-    expect(select.msOptions).toEqual([
-      {name: 'hello', id: 'hello'},
-      {name: 'there', id: 'there'},
-      {name: 'world', id: 'world'}
+    expect(select.ngSelectOptions).toEqual([
+      {name: 'hello', id: 'hello', value: 'hello'},
+      {name: 'there', id: 'there', value: 'there'},
+      {name: 'world', id: 'world', value: 'world'}
     ]);
   });
 
   it('transforms array options', () => {
     comp.testOptions = [['hello', 1], 'there', ['world', 3]];
     fix.detectChanges();
-    expect(select.msOptions).toEqual([
-      {name: 'hello', id: 1},
-      {name: 'there', id: 'there'},
-      {name: 'world', id: 3}
+    expect(select.ngSelectOptions).toEqual([
+      {name: 'hello', id: 1, value: 1},
+      {name: 'there', id: 'there', value: 'there'},
+      {name: 'world', id: 3, value: 3}
     ]);
   });
 
@@ -76,12 +76,12 @@ describe('SelectComponent', () => {
     comp.testOutput = undefined;
     comp.testSelected = ['hello'];
     fix.detectChanges();
-    select.msSelectChanged();
+    select.onChange();
     expect(comp.testOutput).toEqual(['hello']);
     comp.testOutput = undefined;
     comp.testSingle = true;
     fix.detectChanges();
-    select.msSelectChanged();
+    select.onChange();
     expect(comp.testOutput).toEqual('hello');
   });
 
@@ -89,7 +89,7 @@ describe('SelectComponent', () => {
     comp.testOptions = [['one', 1], 2, ['three', 3], ['four', 4], 5];
     comp.testSelected = [5, 2, 3];
     fix.detectChanges();
-    select.msSelectChanged();
+    select.onChange();
     expect(comp.testOutput).toEqual([2, 3, 5]);
   });
 

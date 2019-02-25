@@ -17,11 +17,7 @@ import { Component } from '@angular/core';
         <li><code>@Input() selected: string | string[]</code> - Initially selected values</li>
         <li><code>@Input() options: string[] | [string, string][]</code> - Dropdown options</li>
         <li><code>@Input() placeholder: string = ''</code> - placeholder when nothing is selected</li>
-        <li><code>@Input() titlemax: number = 4</code> - max number of selected items to show in the field</li>
-        <li><code>@Input() maxheight: number = 300</code> - max height in px for the dropdown</li>
         <li><code>@Input() searchable: boolean = false</code> - enable dropdown search field</li>
-        <li><code>@Input() selectall: boolean = false</code> - show the select all control</li>
-        <li><code>@Input() selectnone: boolean = false</code> - show the unselect all control</li>
         <li><code>@Input() single: boolean = false</code> - use single-select mode</li>
         <li><code>@Output() select: string | string[]</code> - outputs any change to the selected value(s)</li>
       </ul>
@@ -42,7 +38,7 @@ import { Component } from '@angular/core';
         </div><br/>
         Searchable Example:
         <div class="container blue">
-          <prx-select searchable selectall selectnone [options]="options3" (onSelect)="onselect3($event)"></prx-select>
+          <prx-select searchable [options]="options3" (onSelect)="onselect3($event)"></prx-select>
           <span>Selected = {{selected3}}</span>
         </div><br/>
         Disabled Example:
