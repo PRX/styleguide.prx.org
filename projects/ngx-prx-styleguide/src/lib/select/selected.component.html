@@ -1,11 +1,11 @@
 <ng-select
   [items]="ngSelectOptions"
-  [multiple]="true"
-  [maxSelectedItems]="maxSelectedItems"
+  [multiple]="!single"
   [closeOnSelect]="single"
   [searchable]="searchable"
   [disabled]="disabled"
   bindLabel="name"
+  bindValue="value"
   [placeholder]="placeholder"
   [(ngModel)]="selected"
   (change)="onChange()">

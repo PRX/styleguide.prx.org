@@ -42,23 +42,13 @@ describe('SelectComponent', () => {
     });
   }));
 
-  it('transforms selected into an array', () => {
-    comp.testSelected = ['hello'];
-    fix.detectChanges();
-    expect(select.selected).toEqual(['hello']);
-    comp.testSingle = true;
-    comp.testSelected = 'hello';
-    fix.detectChanges();
-    expect(select.selected).toEqual(['hello']);
-  });
-
   it('transforms string options', () => {
     comp.testOptions = ['hello', 'there', 'world'];
     fix.detectChanges();
     expect(select.ngSelectOptions).toEqual([
-      {name: 'hello', id: 'hello', value: 'hello'},
-      {name: 'there', id: 'there', value: 'there'},
-      {name: 'world', id: 'world', value: 'world'}
+      {name: 'hello', value: 'hello'},
+      {name: 'there', value: 'there'},
+      {name: 'world', value: 'world'}
     ]);
   });
 
@@ -66,9 +56,9 @@ describe('SelectComponent', () => {
     comp.testOptions = [['hello', 1], 'there', ['world', 3]];
     fix.detectChanges();
     expect(select.ngSelectOptions).toEqual([
-      {name: 'hello', id: 1, value: 1},
-      {name: 'there', id: 'there', value: 'there'},
-      {name: 'world', id: 3, value: 3}
+      {name: 'hello', value: 1},
+      {name: 'there', value: 'there'},
+      {name: 'world', value: 3}
     ]);
   });
 
@@ -80,17 +70,9 @@ describe('SelectComponent', () => {
     expect(comp.testOutput).toEqual(['hello']);
     comp.testOutput = undefined;
     comp.testSingle = true;
+    comp.testSelected = 'hello'
     fix.detectChanges();
     select.onChange();
     expect(comp.testOutput).toEqual('hello');
   });
-
-  it('always orders selections by options', () => {
-    comp.testOptions = [['one', 1], 2, ['three', 3], ['four', 4], 5];
-    comp.testSelected = [5, 2, 3];
-    fix.detectChanges();
-    select.onChange();
-    expect(comp.testOutput).toEqual([2, 3, 5]);
-  });
-
 });
