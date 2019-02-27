@@ -42,55 +42,67 @@ describe('SelectComponent', () => {
     });
   }));
 
-  it('transforms selected into an array', () => {
-    comp.testSelected = ['hello'];
-    fix.detectChanges();
-    expect(select.selected).toEqual(['hello']);
-    comp.testSingle = true;
-    comp.testSelected = 'hello';
-    fix.detectChanges();
-    expect(select.selected).toEqual(['hello']);
-  });
-
   it('transforms string options', () => {
     comp.testOptions = ['hello', 'there', 'world'];
     fix.detectChanges();
-    expect(select.msOptions).toEqual([
-      {name: 'hello', id: 'hello'},
-      {name: 'there', id: 'there'},
-      {name: 'world', id: 'world'}
+    expect(select.ngSelectOptions).toEqual([
+      {name: 'hello', value: 'hello'},
+      {name: 'there', value: 'there'},
+      {name: 'world', value: 'world'}
     ]);
   });
 
   it('transforms array options', () => {
     comp.testOptions = [['hello', 1], 'there', ['world', 3]];
     fix.detectChanges();
-    expect(select.msOptions).toEqual([
-      {name: 'hello', id: 1},
-      {name: 'there', id: 'there'},
-      {name: 'world', id: 3}
+    expect(select.ngSelectOptions).toEqual([
+      {name: 'hello', value: 1},
+      {name: 'there', value: 'there'},
+      {name: 'world', value: 3}
     ]);
   });
 
   it('outputs array or string values', () => {
     comp.testOutput = undefined;
     comp.testSelected = ['hello'];
+    comp.testOptions = ['hello'];
     fix.detectChanges();
-    select.msSelectChanged();
+    select.onChange();
     expect(comp.testOutput).toEqual(['hello']);
     comp.testOutput = undefined;
     comp.testSingle = true;
+    comp.testSelected = 'hello'
     fix.detectChanges();
-    select.msSelectChanged();
+    select.onChange();
     expect(comp.testOutput).toEqual('hello');
   });
 
-  it('always orders selections by options', () => {
-    comp.testOptions = [['one', 1], 2, ['three', 3], ['four', 4], 5];
-    comp.testSelected = [5, 2, 3];
+  it('filters out selected values not in options', () => {
+    comp.testOutput = undefined;
+    comp.testOptions = ['hello', 'goodbye'];
+    comp.testSelected = ['hello'];
     fix.detectChanges();
-    select.msSelectChanged();
-    expect(comp.testOutput).toEqual([2, 3, 5]);
+    select.onChange();
+    expect(comp.testOutput).toEqual(['hello']);
+    comp.testOutput = undefined;
+    comp.testSelected = ['goodbye', 'later']
+    fix.detectChanges();
+    select.onChange();
+    expect(comp.testOutput).toEqual(['goodbye']);
   });
 
+  it('filters out values in single selects', () => {
+    comp.testSingle = true;
+    comp.testOutput = undefined;
+    comp.testSelected = 'hello';
+    comp.testOptions = ['hello', 'goodbye'];
+    fix.detectChanges();
+    select.onChange();
+    expect(comp.testOutput).toEqual('hello');
+    comp.testOutput = undefined;
+    comp.testSelected = 'later'
+    fix.detectChanges();
+    select.onChange();
+    expect(comp.testOutput).toEqual([]);
+  });
 });

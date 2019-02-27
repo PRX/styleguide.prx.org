@@ -56,6 +56,7 @@ And add image assets, styles for the base stylesheet, and any components you are
               "node_modules/pikaday/css/pikaday.css",
               "node_modules/pikaday/css/triangle.css",
               "node_modules/c3/c3.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css"
               "node_modules/ngx-prx-styleguide/assets/styles/bundle.scss"
             ],
           }

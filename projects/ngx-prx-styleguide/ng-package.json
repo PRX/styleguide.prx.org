@@ -10,8 +10,8 @@
     }
   },
   "whitelistedNonPeerDependencies": [
-    "angular-2-dropdown-multiselect",
     "c3",
-    "pikaday"
+    "pikaday",
+    "@ng-select/ng-select"
   ]
 }

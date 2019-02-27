@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { NgSelectModule } from '@ng-select/ng-select'
 
 import { SelectComponent } from './select.component';
 
@@ -15,7 +15,7 @@ import { SelectComponent } from './select.component';
   imports: [
     CommonModule,
     FormsModule,
-    MultiselectDropdownModule
+    NgSelectModule
   ],
   providers: []
 })

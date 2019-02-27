@@ -1,42 +1,31 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { NgOption, NgSelectConfig } from '@ng-select/ng-select'
 
 const isset = (val: any): boolean => val !== false && val !== undefined;
 
 @Component({
   selector: 'prx-select',
   styleUrls: ['select.component.css'],
-  template: `
-    <ss-multiselect-dropdown
-      [options]="msOptions"
-      [texts]="msTexts"
-      [settings]="msSettings"
-      [(ngModel)]="selected"
-      (ngModelChange)="msSelectChanged()"
-      [disabled]="disabled"
-      >
-    </ss-multiselect-dropdown>
-  `
+  templateUrl: 'select.component.html'
 })
 
-export class SelectComponent {
+export class SelectComponent implements OnChanges {
+  ngSelectOptions: NgOption[] = []
+  ngSelectSelected: any | any[] = []
+  private haveReceivedInitialOpts = false
 
   @Input() options: any[] = [];
   @Input() placeholder = '';
-  @Input() titlemax = 4;
-  @Input() maxheight = 300;
 
   // translate selected to array
   _selected: any[] = [];
   @Input()
-  set selected(val: any | any[]) { this._selected = (val instanceof Array) ? val.slice() : [val]; this.orderSelected(); }
+  set selected(val: any | any[]) { this._selected = (val instanceof Array) ? val.slice() : val; }
   get selected() { return this._selected; }
 
   // boolean inputs, i.e. "<prx-select single>"
   _disabled = false;
   _searchable = false;
-  _selectall = false;
-  _selectnone = false;
   _single = false;
   @Input()
   set disabled(val: boolean) { this._disabled = isset(val); }
@@ -45,77 +34,58 @@ export class SelectComponent {
   set searchable(val: boolean) { this._searchable = isset(val); }
   get searchable() { return this._searchable; }
   @Input()
-  set selectall(val: boolean) { this._selectall = isset(val); }
-  get selectall() { return this._selectall; }
-  @Input()
-  set selectnone(val: boolean) { this._selectnone = isset(val); }
-  get selectnone() { return this._selectnone; }
-  @Input()
   set single(val: boolean) { this._single = isset(val); }
   get single() { return this._single; }
 
-  @Output() onSelect = new EventEmitter<any>();
+  @Output() onSelect = new EventEmitter<string|string[]>();
 
-  get msOptions(): IMultiSelectOption[] {
-    return this.options.map(opt => {
-      if (opt instanceof Array) {
-        return {name: opt[0], id: opt[1]};
-      } else {
-        return {name: opt, id: opt};
+  onChange() {
+    this.onSelect.emit(this.ngSelectSelected);
+  }
+
+  ngOnChanges(simpleChanges: SimpleChanges) {
+    this.ngSelectOptions = this.convertOptions()
+    // Sometimes the select is initialized without options and receives them later
+    // we need to track this in order to accurately filter selected options
+    if(simpleChanges.hasOwnProperty('options')) {
+      const {previousValue,currentValue} = simpleChanges.options
+
+      if(!previousValue || (previousValue instanceof Array) && previousValue.length === 0) {
+        if((currentValue instanceof Array) && currentValue.length > 0) {
+          this.haveReceivedInitialOpts = true
+        }
       }
-    });
-  }
+    }
 
-  get msTexts(): IMultiSelectTexts {
-    return {
-      checkAll: 'Select all',
-      uncheckAll: 'Unselect all',
-      checked: 'selected',
-      checkedPlural: 'selected',
-      searchPlaceholder: 'Filter...',
-      defaultTitle: this.placeholder,
-      allSelected: 'All selected',
-      searchEmptyResult: 'Nothing found...',
-      searchNoRenderText: 'Start typing to see results...'
-    };
-  }
-
-  get msSettings(): IMultiSelectSettings {
-    return {
-      enableSearch: this.searchable,
-      checkedStyle: 'checkboxes',
-      buttonClasses: this.selected.length ? '' : 'placeholder',
-      itemClasses: '',
-      containerClasses: this.single ? 'single-select' : '',
-      selectionLimit: this.single ? 1 : 0,
-      autoUnselect: true,
-      closeOnSelect: this.single,
-      showCheckAll: this.selectall,
-      showUncheckAll: this.selectnone,
-      dynamicTitleMaxItems: this.titlemax,
-      maxHeight: `${this.maxheight}px`,
-      displayAllSelectedText: false,
-      closeOnClickOutside: true,
-      searchRenderLimit: this.searchable ? 100 : undefined,
-      searchRenderAfter: this.searchable ? 1 : undefined,
-      searchMaxLimit: this.searchable ? 100 : undefined
-    };
-  }
-
-  msSelectChanged() {
-    this.orderSelected();
-    if (this.single) {
-      this.onSelect.emit(this.selected[0]);
-    } else {
-      this.onSelect.emit(this.selected);
+    if(this.haveReceivedInitialOpts) {
+      const optVals = this.convertOptions().map(opt => opt.value)
+      this.ngSelectSelected = this.filterSelected(this.selected, optVals)
     }
   }
 
-  private orderSelected() {
-    let ids = this.msOptions.map(o => o.id);
-    this._selected = this._selected.sort((a, b) => {
-      return ids.indexOf(a) - ids.indexOf(b);
-    });
+  private filterSelected(val: any | any[], optVals: any[]): any | any[] {
+    let valFiltered;
+    if (val instanceof Array) {
+      valFiltered = val.filter(val => optVals.includes(val));
+      if(valFiltered.length !== val.length) {
+        console.warn(`prx-select: ${JSON.stringify(val)} was filtered to ${JSON.stringify(valFiltered)}`)
+      }
+    } else {
+      valFiltered = optVals.includes(val) ? val : [];
+      if(valFiltered !== val) {
+        console.warn(`prx-select: ${JSON.stringify(val)} was filtered to ${JSON.stringify(valFiltered)}`)
+      }
+    }
+    return valFiltered;
   }
 
+  private convertOptions(): NgOption[] {
+    return this.options.map(opt => {
+      if (opt instanceof Array) {
+        return {name: opt[0], value: opt[1]};
+      } else {
+        return {name: opt, value: opt};
+      }
+    });
+  }
 }
