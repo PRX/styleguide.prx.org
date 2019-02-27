@@ -62,9 +62,10 @@ describe('SelectComponent', () => {
     ]);
   });
 
-  it('outputs array or string values', () => {
+  fit('outputs array or string values', () => {
     comp.testOutput = undefined;
     comp.testSelected = ['hello'];
+    comp.testOptions = ['hello'];
     fix.detectChanges();
     select.onChange();
     expect(comp.testOutput).toEqual(['hello']);
@@ -74,5 +75,34 @@ describe('SelectComponent', () => {
     fix.detectChanges();
     select.onChange();
     expect(comp.testOutput).toEqual('hello');
+  });
+
+  it('filters out selected values not in options', () => {
+    comp.testOutput = undefined;
+    comp.testOptions = ['hello', 'goodbye'];
+    comp.testSelected = ['hello'];
+    fix.detectChanges();
+    select.onChange();
+    expect(comp.testOutput).toEqual(['hello']);
+    comp.testOutput = undefined;
+    comp.testSelected = ['goodbye', 'later']
+    fix.detectChanges();
+    select.onChange();
+    expect(comp.testOutput).toEqual(['goodbye']);
+  });
+
+  it('filters out values in single selects', () => {
+    comp.testSingle = true;
+    comp.testOutput = undefined;
+    comp.testSelected = 'hello';
+    comp.testOptions = ['hello', 'goodbye'];
+    fix.detectChanges();
+    select.onChange();
+    expect(comp.testOutput).toEqual('hello');
+    comp.testOutput = undefined;
+    comp.testSelected = 'later'
+    fix.detectChanges();
+    select.onChange();
+    expect(comp.testOutput).toEqual([]);
   });
 });
