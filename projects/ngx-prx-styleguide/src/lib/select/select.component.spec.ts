@@ -62,7 +62,7 @@ describe('SelectComponent', () => {
     ]);
   });
 
-  fit('outputs array or string values', () => {
+  it('outputs array or string values', () => {
     comp.testOutput = undefined;
     comp.testSelected = ['hello'];
     comp.testOptions = ['hello'];
