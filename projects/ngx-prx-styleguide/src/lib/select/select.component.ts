@@ -37,6 +37,11 @@ export class SelectComponent implements OnChanges {
   set single(val: boolean) { this._single = isset(val); }
   get single() { return this._single; }
 
+  _maxSelectedItems: number = Infinity
+  @Input()
+  set maxSelectedItems(val: number) { this._maxSelectedItems = val; }
+  get maxSelectedItems() { return this._maxSelectedItems; }
+
   @Output() onSelect = new EventEmitter<string|string[]>();
 
   onChange() {
