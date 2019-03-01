@@ -12,6 +12,7 @@
   "whitelistedNonPeerDependencies": [
     "c3",
     "pikaday",
-    "@ng-select/ng-select"
+    "@ng-select/ng-select",
+    "ngx-tooltip"
   ]
 }

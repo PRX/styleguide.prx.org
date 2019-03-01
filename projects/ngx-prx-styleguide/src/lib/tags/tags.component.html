@@ -1,0 +1,19 @@
+<ng-select class="tags"
+  [placeholder]="placeholder"
+  [items]="[]"
+  [addTag]="true"
+  [multiple]="true"
+  bindLabel="name"
+  [isOpen]="false"
+  [(ngModel)]="selectedTags"
+  (change)="onTagsChange()">
+</ng-select>
+<div class="quick_tags" *ngIf="quickTags.length">
+  <a class="quick_tags-tag"
+    [class.selected]="isSelected(tag)"
+    [tooltip]="tag.tooltip"
+    [tooltipDisabled]="!tag.tooltip"
+    tooltipPlacement="right"
+    (click)="toggleTag(tag)"
+    *ngFor="let tag of quickTags">{{tag.name}}</a>
+</div>

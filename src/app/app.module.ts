@@ -27,6 +27,7 @@ import {
   SpinnerModule,
   TabModule,
   TabService,
+  TagsModule,
   ToastrModule,
   ToastrService
 } from 'ngx-prx-styleguide';
@@ -49,6 +50,7 @@ import {
     SelectModule,
     SpinnerModule,
     TabModule,
+    TagsModule,
     ToastrModule,
     routing,
     tabDemoRouting

@@ -47,5 +47,7 @@ export { SpinnerModule } from './lib/spinner/spinner.module';
 export { TabModule } from './lib/tab/tab.module';
 export { TabService } from './lib/tab/tab.service';
 
+export { TagsModule } from './lib/tags/tags.module';
+
 export { ToastrModule } from './lib/toastr/toastr.module';
 export { ToastrService } from './lib/toastr/toastr.service';
