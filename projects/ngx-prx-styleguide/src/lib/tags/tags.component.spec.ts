@@ -42,6 +42,47 @@ describe('TagsComponent', () => {
     });
   }));
 
+  it('defaults to no quick tags', () => {
+    expect(de.query(By.css('.quick_tags'))).toBeNull();
+  });
+
+  it('show quick tags', () => {
+    comp.testOptions = ['hello'];
+    fix.detectChanges();
+    expect(de.query(By.css('.quick_tags'))).not.toBeNull();
+  });
+
+  it('create quick tags', () => {
+    comp.testOptions = ['hello', 'there', 'world'];
+    fix.detectChanges();
+    expect(de.query(By.css('.quick_tags-tag'))).not.toBeNull();
+    expect(de.query(By.css('.quick_tags')).children.length).toBe(3);
+  });
+
+  it('should select quick tag matching a selected values', () => {
+    comp.testOptions = ['hello', 'there', 'world'];
+    comp.testSelected = ['hello'];
+    fix.detectChanges();
+    const selected = de.query(By.css('.quick_tags-tag.selected'));
+    expect(selected).not.toBeNull();
+    expect(selected.nativeNode.textContent).toBe('hello');
+  });
+
+  it('should toggle selected quick tag value on click', () => {
+    comp.testOptions = ['hello'];
+    fix.detectChanges();
+    let qt = de.query(By.css('.quick_tags-tag'));
+    spyOn(comp, 'setTestOutput').and.stub();
+    qt.nativeElement.click();
+    expect(comp.setTestOutput).toHaveBeenCalled();
+    expect(comp.setTestOutput).toHaveBeenCalledWith(['hello']);
+    expect(tags.selected).toEqual(['hello']);
+    qt.nativeElement.click();
+    expect(comp.setTestOutput).toHaveBeenCalled();
+    expect(comp.setTestOutput).toHaveBeenCalledWith([]);
+    expect(tags.selected).toEqual([]);
+  });
+
   it('transforms string options', () => {
     comp.testOptions = ['hello', 'there', 'world'];
     fix.detectChanges();
