@@ -1,7 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, DebugElement, NO_ERRORS_SCHEMA }    from '@angular/core';
+import { Component, DebugElement }    from '@angular/core';
 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { TooltipModule } from "ngx-tooltip";
 import { TagsComponent } from './tags.component';
 
 @Component({
@@ -31,8 +35,13 @@ describe('TagsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent, TagsComponent],
-      schemas: [ NO_ERRORS_SCHEMA ]
+      imports: [
+        CommonModule,
+        FormsModule,
+        NgSelectModule,
+        TooltipModule
+      ],
+      declarations: [TestComponent, TagsComponent]
     }).compileComponents().then(() => {
       fix = TestBed.createComponent(TestComponent);
       comp = fix.componentInstance;

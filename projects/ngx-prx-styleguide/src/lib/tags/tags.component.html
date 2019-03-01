@@ -9,11 +9,11 @@
   (change)="onTagsChange()">
 </ng-select>
 <div class="quick_tags" *ngIf="quickTags.length">
-  <a class="quick_tags-tag"
+  <button class="quick_tags-tag"
     [class.selected]="isSelected(tag)"
     [tooltip]="tag.tooltip"
     [tooltipDisabled]="!tag.tooltip"
     tooltipPlacement="right"
     (click)="toggleTag(tag)"
-    *ngFor="let tag of quickTags">{{tag.name}}</a>
+    *ngFor="let tag of quickTags">{{tag.name}}</button>
 </div>

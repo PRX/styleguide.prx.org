@@ -130,6 +130,11 @@ import { Component } from '@angular/core';
               <li><a [routerLink]="['form/select']">Select</a> - styled single/multi selector</li>
             </ul>
           </li>
+          <li><h3>TagsModule</h3>
+            <ul>
+              <li><a [routerLink]="['form/tags']">Tags</a> - Stuctured tag entry input.</li>
+            </ul>
+          </li>
         </ul>
       </section>
       <hr>

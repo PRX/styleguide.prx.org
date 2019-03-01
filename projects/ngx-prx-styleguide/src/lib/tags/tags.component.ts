@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { NgOption } from '@ng-select/ng-select'
 
-class TagOption {
+interface TagOption {
   name: string;
   value: string;
   tooltip?: string;
@@ -95,24 +95,19 @@ export class TagsComponent implements OnChanges {
   }
 
   private convertOptionToTag(opt: any): TagOption {
-    const tagDefault: TagOption = new TagOption();
-
     if (opt instanceof Array) {
       return {
-        ...tagDefault,
         name: opt[0],
         value: opt[1]
       };
     }
     else if (isPlainObject(opt)) {
       return {
-        ...tagDefault,
         ...opt
       };
     }
     else {
       return {
-        ...tagDefault,
         name: opt,
         value: opt
       };
