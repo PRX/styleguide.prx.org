@@ -36,6 +36,7 @@ import { ImageLoaderDemoComponent } from './image/image-loader-demo.component';
 import { ModalDemoComponent } from './modal/modal-demo.component';
 import { SelectDemoComponent } from './select/select-demo.component';
 import { SpinnerDemoComponent } from './spinner/spinner-demo.component';
+import { TagsDemoComponent } from './tags-demo/tags-demo.component';
 import { ToastrDemoComponent } from './toastr/toastr-demo.component';
 
 import { AuthGuard, DeactivateGuard, UnauthGuard } from 'ngx-prx-styleguide';
@@ -57,6 +58,7 @@ export const routes: Routes = [
   { path: 'form/fancy-field',     component: FancyFieldDemoComponent },
   { path: 'form/padzero',         component: PadZeroDemoComponent },
   { path: 'form/select',          component: SelectDemoComponent },
+  { path: 'form/tags',            component: TagsDemoComponent },
   { path: 'geo',                  component: GeoChartDemoComponent },
   { path: 'guard/guarded',        component: GuardedRouteDemoComponent, canActivate: [AuthGuard], canDeactivate: [DeactivateGuard] },
   { path: 'guard',                component: GuardDemoComponent },
@@ -116,6 +118,7 @@ export const routingComponents: any[] = [
   PadZeroDemoComponent,
   SelectDemoComponent,
   SpinnerDemoComponent,
+  TagsDemoComponent,
   ToastrDemoComponent
 ];
 
