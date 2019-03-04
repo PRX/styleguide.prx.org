@@ -4,7 +4,7 @@
 
 // Custom Media Query Variables
 
-
+.icon-bar-chart,
 .icon-calendar,
 .icon-cancel,
 .icon-cw,
@@ -14,6 +14,7 @@
 .icon-headphones,
 .icon-mail-alt,
 .icon-menu,
+.icon-pencil,
 .icon-play,
 .icon-plus,
 .icon-right-dir,
@@ -29,6 +30,7 @@
   width: 1em;
 }
 
+.icon-bar-chart:hover, .icon-bar-chart:focus,
 .icon-calendar:hover, .icon-calendar:focus,
 .icon-cancel:hover, .icon-cancel:focus,
 .icon-cw:hover, .icon-cw:focus,
@@ -38,6 +40,7 @@
 .icon-facebook-official:hover, .icon-facebook-official:focus,
 .icon-mail-alt:hover, .icon-mail-alt:focus,
 .icon-menu:hover, .icon-menu:focus,
+.icon-pencil:hover, .icon-pencil:focus,
 .icon-play:hover, .icon-play:focus,
 .icon-plus:hover, .icon-plus:focus,
 .icon-right-dir:hover, .icon-right-dir:focus,
@@ -48,6 +51,7 @@
   background-color: transparent;
 }
 
+i.icon-bar-chart, span.icon-bar-chart,
 i.icon-calendar, span.icon-calendar,
 i.icon-cancel, span.icon-cancel,
 i.icon-cw, span.icon-cw,
@@ -57,6 +61,7 @@ i.icon-headphones, span.icon-headphones,
 i.icon-facebook-official, span.icon-facebook-official,
 i.icon-mail-alt, span.icon-mail-alt,
 i.icon-menu, span.icon-menu,
+i.icon-pencil, span.icon-pencil,
 i.icon-play, span.icon-play,
 i.icon-plus, span.icon-plus,
 i.icon-right-dir, span.icon-right-dir,
@@ -65,6 +70,16 @@ i.icon-speedometer, span.icon-speedometer,
 i.icon-twitter, span.icon-twitter,
 i.icon-up-dir, span.icon-up-dir {
   display: inline-block;
+}
+
+.icon-bar-chart {
+  background-image: url('../images/icons/ic_bar-chart_blue.svg');
+}
+
+a:hover .icon-bar-chart, button:hover .icon-bar-chart, .icon-bar-chart:hover,
+a:focus .icon-bar-chart, button:focus .icon-bar-chart, .icon-bar-chart:focus,
+.icon-bar-chart.active {
+  background-image: url('../images/icons/ic_bar-chart_blue-emphasis.svg');
 }
 
 .icon-calendar {
@@ -209,6 +224,16 @@ a:focus .icon-menu.grey-dove, button:focus .icon-menu.grey-dove, .icon-menu.grey
 
 .icon-menu.grey-silver, .icon-menu[disabled] {
   background-image: url('../images/icons/ic_menu_grey-silver.svg');
+}
+
+.icon-pencil {
+  background-image: url('../images/icons/ic_pencil_blue.svg');
+}
+
+a:hover .icon-pencil, button:hover .icon-pencil, .icon-pencil:hover,
+a:focus .icon-pencil, button:focus .icon-pencil, .icon-pencil:focus,
+.icon-pencil.active {
+  background-image: url('../images/icons/ic_pencil_blue-emphasis.svg');
 }
 
 .icon-play {
