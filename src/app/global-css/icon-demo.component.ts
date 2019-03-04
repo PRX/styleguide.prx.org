@@ -27,6 +27,15 @@ import {Component} from '@angular/core';
           <li>Supplementary Icons should be given an <code>aria-hidden="true"</code> for screen reader accessibility</li>
         </ul>
         <aside>
+          <h3><code>icon-bar-chart</code></h3>
+          Usage:
+          <pre>
+            &lt;span class="icon-bar-chart"&gt;&lt;/span&gt;
+          </pre>
+          Example:
+          <span class="icon-bar-chart"></span>
+        </aside>
+        <aside>
           <h3><code>icon-calendar</code></h3>
           Usage:
           <pre>
@@ -130,6 +139,15 @@ import {Component} from '@angular/core';
           <span class="icon-menu"></span>
           <span class="icon-menu grey-dove"></span>
           <span class="icon-menu" disabled></span>
+        </aside>
+        <aside>
+          <h3><code>icon-pencil</code></h3>
+          Usage:
+          <pre>
+            &lt;span class="icon-pencil"&gt;&lt;/span&gt;
+          </pre>
+          Example:
+          <span class="icon-pencil"></span>
         </aside>
         <aside>
           <h3><code>icon-play</code></h3>
