@@ -1,7 +1,8 @@
 <ng-select
+  [ngClass]="{'max-select-one': maxSelectedItems === 1 && ngSelectSelected.length}"
   [items]="ngSelectOptions"
   [multiple]="!single"
-  [closeOnSelect]="single"
+  [closeOnSelect]="single || closeOnSelect"
   [maxSelectedItems]="maxSelectedItems"
   [searchable]="searchable"
   [disabled]="disabled"
