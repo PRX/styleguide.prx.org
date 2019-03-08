@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { NgOption, NgSelectConfig } from '@ng-select/ng-select'
+import { NgOption } from '@ng-select/ng-select'
 
 const isset = (val: any): boolean => val !== false && val !== undefined;
 
@@ -27,6 +27,7 @@ export class SelectComponent implements OnChanges {
   _disabled = false;
   _searchable = false;
   _single = false;
+  _closeOnSelect = false;
   @Input()
   set disabled(val: boolean) { this._disabled = isset(val); }
   get disabled() { return this._disabled; }
@@ -36,6 +37,9 @@ export class SelectComponent implements OnChanges {
   @Input()
   set single(val: boolean) { this._single = isset(val); }
   get single() { return this._single; }
+  @Input()
+  set closeOnSelect(val: boolean) { this._closeOnSelect = isset(val); }
+  get closeOnSelect() { return this._closeOnSelect; }
 
   _maxSelectedItems: number = Infinity
   @Input()

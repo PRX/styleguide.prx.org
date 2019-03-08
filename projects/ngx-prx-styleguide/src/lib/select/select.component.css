@@ -12,3 +12,11 @@
   -ms-flex-preferred-size: 215px;
   -webkit-flex-basis: 215px;
 }
+
+:host /deep/ .max-select-one .ng-value-icon {
+  display: none !important;
+}
+
+:host /deep/ .max-select-one .ng-arrow-wrapper {
+  display: none !important;
+}
