@@ -1,6 +1,6 @@
-@import 'node_modules/c3/c3.css';
-@import 'node_modules/pikaday/css/pikaday.css';
-@import 'node_modules/pikaday/css/triangle.css';
+@import '../node_modules/c3/c3.css';
+@import '../node_modules/pikaday/css/pikaday.css';
+@import '../node_modules/pikaday/css/triangle.css';
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
 section {

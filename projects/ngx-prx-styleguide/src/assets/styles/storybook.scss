@@ -1,0 +1,16 @@
+
+@import 'reset';
+
+@import 'app';
+@import 'button';
+@import 'forms';
+@import 'icons';
+@import 'modal';
+@import 'pikaday-custom.scss';
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5rem;/* TODO: why is this rem when there is no font-size for html? */
+  font-size: 14px;
+  color: $grey-dove;
+}

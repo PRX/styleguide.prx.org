@@ -3,6 +3,55 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "ngx-prx-styleguide": {
+      "root": "projects/ngx-prx-styleguide",
+      "sourceRoot": "projects/ngx-prx-styleguide/src",
+      "projectType": "application",
+      "prefix": "prx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:browser",
+          "options": {
+            "tsConfig": "projects/ngx-prx-styleguide/tsconfig.lib.json",
+            "project": "projects/ngx-prx-styleguide/ng-package.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "*",
+                "input": "projects/ngx-prx-styleguide/src/assets/images",
+                "output": "assets/images/"
+              }
+            ],
+            "styles": [
+              "src/styles.css",
+              "project/ngx-prx-styleguide/src/assets/styles/storybook.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-prx-styleguide/src/test.ts",
+            "tsConfig": "projects/ngx-prx-styleguide/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-prx-styleguide/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-prx-styleguide/tsconfig.lib.json",
+              "projects/ngx-prx-styleguide/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
     "ngx-prx-styleguide-demo": {
       "root": "",
       "sourceRoot": "src",
@@ -23,7 +72,7 @@
               "src/assets",
               {
                 "glob": "*",
-                "input": "dist/ngx-prx-styleguide/assets/images",
+                "input": "projects/ngx-prx-styleguide/src/assets/images",
                 "output": "assets/images/"
               }
             ],
@@ -121,41 +170,6 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "ngx-prx-styleguide": {
-      "root": "projects/ngx-prx-styleguide",
-      "sourceRoot": "projects/ngx-prx-styleguide/src",
-      "projectType": "library",
-      "prefix": "prx",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/ngx-prx-styleguide/tsconfig.lib.json",
-            "project": "projects/ngx-prx-styleguide/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ngx-prx-styleguide/src/test.ts",
-            "tsConfig": "projects/ngx-prx-styleguide/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-prx-styleguide/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-prx-styleguide/tsconfig.lib.json",
-              "projects/ngx-prx-styleguide/tsconfig.spec.json"
-            ],
             "exclude": [
               "**/node_modules/**"
             ]
