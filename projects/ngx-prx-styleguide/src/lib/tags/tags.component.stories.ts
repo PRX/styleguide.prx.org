@@ -35,7 +35,7 @@ storiesOf('Forms Controls|Tags', module)
 
       return {
         template: `
-          <prx-tags [placeholder]="placeholder" [options]="quickTags" (onChange)="onTagsChange($event)" [selected]="selectedTags"></prx-tags>
+          <prx-tags [placeholder]="placeholder" [options]="quickTags" (onChange)="onTagsChange($event)" [selected]="selectedTags" style="min-width: 50vw;"></prx-tags>
         `,
         props: {
           placeholder,
@@ -52,16 +52,25 @@ storiesOf('Forms Controls|Tags', module)
 
 Provides input for providing tags in a structured manner.
 
+----
+
 __Module__ \`TagsModule\`
+
 __Selector__ \`prx-tags\`
+
+----
 
 - \`@Input() selected: string[]\` \\- Initially selected values.
 - \`@Input() options: any[] | [string, string][] | object[]\` \\- Preset tags shown as toggles below input.
 - \`@Input() placeholder: string = ''\` \\- Placeholder when nothing is selected.
 - \`@Output() onChange: string[]\` \\- Outputs any change to the selected values.
 
+----
+
 ### Usage
-    <prx prx-tags [selected]="selected" [options]="options" (onChange)="onChange($event)"></prx-tags>
+\`\`\`html
+<prx prx-tags [selected]="selected" [options]="options" (onChange)="onChange($event)"></prx-tags>
+\`\`\`
 `
       }
     }

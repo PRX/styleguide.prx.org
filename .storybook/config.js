@@ -1,11 +1,16 @@
 import { addDecorator, addParameters, configure } from '@storybook/angular';
+import { centered } from '@storybook/addon-centered/angular';
 import { themes } from '@storybook/theming';
 import { withNotes } from '@storybook/addon-notes';
+import theme from './theme';
 
 console.log(themes);
 
 // Add Notes to all stories.
 addDecorator(withNotes);
+
+// Add Centered to all stories.
+addDecorator(centered);
 
 // Theme Storybook UI.
 addParameters({
@@ -15,18 +20,7 @@ addParameters({
     { name: 'Dark', value: '#1a1a1a'},
   ],
   options: {
-    name: 'PRX Styleguide',
-    url: 'https://github.com/PRX/styleguide.prx.org',
-    theme: {
-      ...themes.normal,
-      brand: {
-        background: 'url("assets/images/prx_logo.svg")',
-        backgroundRepeat: 'no-repeat'
-      },
-      brandLink: {
-        paddingLeft: '40px'
-      }
-    }
+    theme
   }
 });
 
