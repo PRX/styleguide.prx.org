@@ -140,7 +140,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:builder",
+          "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/ngx-prx-styleguide/tsconfig.lib.json",
             "project": "projects/ngx-prx-styleguide/ng-package.json"

@@ -1,19 +1,35 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
 import { centered } from '@storybook/addon-centered/angular';
-import { withKnobs, text, number, boolean, array, select, radios, color, date, button } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
 import { FancyFormModule } from './fancy-form.module';
-import { DemoModel } from './../../../../../src/app/model/demo.model'; // TODO: Move this to storybook app.
-import { HalDoc } from 'ngx-prx-styleguide';
+import { BaseModel, RelatedMap } from '../model/base.model';
+import { HalDoc } from '../hal/doc/haldoc';
+import { Observable, of as ofasobservableOf } from 'rxjs';
 
-HalDoc
+// Setup simple model for the stories.
+class SimpleModel extends BaseModel {
+  public foo: string = 'bar';
 
-import '../../assets/styles/_reset.scss';
-import '../../assets/styles/_button.scss';
+  constructor(parent: HalDoc, demo?: HalDoc, loadRelated = true) {
+    super();
+    this.init(parent, demo, loadRelated);
+  }
 
-const model = new DemoModel(null, new HalDoc({}, null));
+  SETABLE = ['foo'];
 
-const componentMetaData = moduleMetadata({
+  encode(): {} { return {}; };
+  decode(): void {
+    this.foo = this.doc['foo'];
+  };
+  key(): string { return 'simple-model'; };
+  related(): RelatedMap { return {}; };
+  saveNew(data: {}): Observable<HalDoc> { return ofasobservableOf(this.doc); };
+};
+const model = new SimpleModel(null, new HalDoc({}, null));
+
+// Module metadata for stories.
+const storiesModuleMetaData = moduleMetadata({
   imports: [
     FancyFormModule
   ],
@@ -22,10 +38,10 @@ const componentMetaData = moduleMetadata({
   providers: [],
 });
 
-storiesOf('Forms Controls|Fancy Button', module)
+storiesOf('Forms Controls|Inputs/Fancy Button', module)
   .addDecorator(withKnobs)
   .addDecorator(centered)
-  .addDecorator(componentMetaData)
+  .addDecorator(storiesModuleMetaData)
   .add(
     'Usage Details (Knobs)',
     () => {
@@ -98,10 +114,9 @@ __Selector__ \`prx-button\`
   );
 
 
-storiesOf('Forms Controls|Fancy Button/Examples', module)
-  .addDecorator(withKnobs)
+storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
   .addDecorator(centered)
-  .addDecorator(componentMetaData)
+  .addDecorator(storiesModuleMetaData)
   .add(
     'Orange Button',
     () => ({

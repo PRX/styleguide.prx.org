@@ -12,7 +12,6 @@ addDecorator(withNotes);
 addParameters({
   backgrounds: [
     { name: 'White Smoke', value: '#f0f0f0', default: true},
-    { name: 'White Fog', value: '#e6e6e6'},
     { name: 'Dark', value: '#1a1a1a'},
   ],
   options: {

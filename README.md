@@ -1,22 +1,40 @@
 # PRX Style Guide and Component Library
 
-Generated using the Angular CLI's library support. Uses `ng-packagr` under the hood and adheres to the Angular Package Format.
+Generated using the Angular CLI's library support. Uses `ng-packagr` under the
+hood and adheres to the Angular Package Format.
 
 ## Install Dependencies
 
-Run `npm install`.
+Run `yarn install`.
+
+## Development Storybook Server
+
+Run `yarn storybook` to start Storybook server. The Storybook server will
+automatically detect and load any files ending with `.stories.ts`.
+
+### Writing Stories
+
+Each component should have a `.stories.ts`. Stories files should focus on one
+component or concept at a time. For examaple, the ButtonComponent's stories
+should only containing stories that provide usage examples for the button
+variations and states. Usage of the button in a menu component should be done
+in the menu components stories.
+
+## Demo App (Depricated)
+
+Run `yarn demo` for a legacy demo server. Use this as reference when
+converting demo pages to stories. Do not add new demo pages. New compoents or
+examples of existing components should be done as Storybook stories.
+
+## Running Unit Tests
+
+Run `yarn test` to execute the unit tests via
+[Karma](https://karma-runner.github.io).
 
 ## Build
 
-Run `npm run build:lib` to build the library. The build artifacts will be stored in the `dist/` directory.
-
-## Development server / Demo app
-
-Run `npm run start` for a demo server. You must first build the library.
-
-## Running unit tests
-
-Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `yarn build:lib` to build the library. The build artifacts will be stored
+in the `dist/` directory.
 
 ## Usage
 
@@ -36,7 +54,8 @@ import { ChartsModule, DatepickerModule } from 'ngx-prx-styleguide';
 })
 ```
 
-And add image assets, styles for the base stylesheet, and any components you are using, to your `angular.json`:
+And add image assets, styles for the base stylesheet, and any components you are
+using, to your `angular.json`:
 
 ```json
 {
@@ -69,7 +88,10 @@ And add image assets, styles for the base stylesheet, and any components you are
 
 ## Releasing
 
-The `npm version` command will run scripts to update the library version as well. To release to the npm registry, publish the `dist/ngx-prx-styleguide` directory. The `package.json` in the base directory has `private` set to `true` to prevent accidental publishing.
+The `npm version` command will run scripts to update the library version as
+well. To release to the npm registry, publish the `dist/ngx-prx-styleguide`
+directory. The `package.json` in the base directory has `private` set to `true`
+to prevent accidental publishing.
 
 ```
 npm version [ major | minor | patch ... ]
@@ -79,8 +101,10 @@ npm publish dist/ngx-prx-styleguide
 
 ## License
 
-This library is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+This library is available as open source under the terms of the
+[MIT License](http://opensource.org/licenses/MIT).
 
 ## Contributing
 
-Completing a Contributor License Agreement (CLA) is required for PRs to be accepted.
+Completing a Contributor License Agreement (CLA) is required for PRs to be
+accepted.

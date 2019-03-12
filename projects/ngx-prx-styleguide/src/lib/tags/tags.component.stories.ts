@@ -1,29 +1,20 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
 import { centered } from '@storybook/addon-centered/angular';
-import { withKnobs, text, number, boolean, array, select, radios, color, date, button } from '@storybook/addon-knobs';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { TooltipModule } from "ngx-tooltip";
-import { TagsComponent } from './tags.component';
+import { withKnobs, text, array } from '@storybook/addon-knobs';
+import { TagsModule } from './tags.module';
 
-import '../../assets/styles/_reset.scss';
-import '../../assets/styles/_button.scss';
-
+// Module metadata for stories.
 const componentMetaData = moduleMetadata({
   imports: [
-    CommonModule,
-    FormsModule,
-    NgSelectModule,
-    TooltipModule
+    TagsModule
   ],
   schemas: [],
-  declarations: [TagsComponent],
+  declarations: [],
   providers: [],
 });
 
-storiesOf('Forms Controls|Tags', module)
+storiesOf('Forms Controls|Inputs/Tags', module)
   .addDecorator(withKnobs)
   .addDecorator(centered)
   .addDecorator(componentMetaData)
