@@ -1,5 +1,4 @@
 import { addDecorator, addParameters, configure } from '@storybook/angular';
-import { centered } from '@storybook/addon-centered/angular';
 import { themes } from '@storybook/theming';
 import { withNotes } from '@storybook/addon-notes';
 import theme from './theme';
@@ -8,9 +7,6 @@ console.log(themes);
 
 // Add Notes to all stories.
 addDecorator(withNotes);
-
-// Add Centered to all stories.
-addDecorator(centered);
 
 // Theme Storybook UI.
 addParameters({

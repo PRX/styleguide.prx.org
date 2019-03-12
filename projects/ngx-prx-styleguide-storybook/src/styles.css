@@ -3,7 +3,3 @@
 @import '~pikaday/css/pikaday.css';
 @import '~pikaday/css/triangle.css';
 @import "~@ng-select/ng-select/themes/default.theme.css";
-
-.addon-notes-container code {
-  background: #666;
-}

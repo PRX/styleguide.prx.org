@@ -1,6 +1,7 @@
 :host {
   display: block;
   margin-bottom: 1em;
+  text-align: left;
 }
 
 .quick_tags {

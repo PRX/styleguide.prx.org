@@ -1,5 +1,6 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
+import { centered } from '@storybook/addon-centered/angular';
 import { withKnobs, text, number, boolean, array, select, radios, color, date, button } from '@storybook/addon-knobs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ const componentMetaData = moduleMetadata({
 
 storiesOf('Forms Controls|Tags', module)
   .addDecorator(withKnobs)
+  .addDecorator(centered)
   .addDecorator(componentMetaData)
   .add(
     'Usage Details (Knobs)',
@@ -35,7 +37,9 @@ storiesOf('Forms Controls|Tags', module)
 
       return {
         template: `
-          <prx-tags [placeholder]="placeholder" [options]="quickTags" (onChange)="onTagsChange($event)" [selected]="selectedTags" style="min-width: 50vw;"></prx-tags>
+          <div style="min-width: 50vw;">
+            <prx-tags [placeholder]="placeholder" [options]="quickTags" (onChange)="onTagsChange($event)" [selected]="selectedTags"></prx-tags>
+          </div>
         `,
         props: {
           placeholder,
@@ -69,7 +73,7 @@ __Selector__ \`prx-tags\`
 
 ### Usage
 \`\`\`html
-<prx prx-tags [selected]="selected" [options]="options" (onChange)="onChange($event)"></prx-tags>
+<prx-tags [selected]="selected" [options]="options" (onChange)="onChange($event)"></prx-tags>
 \`\`\`
 `
       }
