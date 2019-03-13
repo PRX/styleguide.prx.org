@@ -16,6 +16,9 @@ addParameters({
   ],
   options: {
     theme
+  },
+  knobs: {
+    timestamps: true
   }
 });
 
