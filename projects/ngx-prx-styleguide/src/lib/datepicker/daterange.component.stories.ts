@@ -88,37 +88,3 @@ __Selector__ \`prx-datepicker\`
     }
   );
 
-storiesOf('Forms Controls|Inputs/Date Picker/Examples', module)
-  .addDecorator(centered)
-  .addDecorator(storiesModuleMetaData)
-  .add(
-    'Always Open Picker',
-    () => ({
-      component: OpenPickerComponent
-    }),
-    {
-      notes: {
-        markdown: `
-### Usage
-\`\`\`javascript
-@Component ({
-  selector:'open-picker',
-  template: \`
-    <div class="centered-wrapper">
-      <prx-datepicker [container]="calendar"></prx-datepicker>
-      <div #calendar></div>
-    </div>
-  \`,
-  styles: [
-    ':host >>> .pika-single.container { border: 1px solid #e6e6e6; border-top: 0; }'
-  ]
-})
-class OpenPickerComponent {
-  @ViewChild('calendar') calendar:ElementRef;
-}
-\`\`\`
-        `
-      }
-    }
-  );
-

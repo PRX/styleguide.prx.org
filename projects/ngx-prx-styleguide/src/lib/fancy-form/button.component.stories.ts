@@ -9,7 +9,7 @@ import { Observable, of as ofasobservableOf } from 'rxjs';
 
 // Setup simple model for the stories.
 class SimpleModel extends BaseModel {
-  public foo: string = 'bar';
+  public foo: string;
 
   constructor(parent: HalDoc, demo?: HalDoc, loadRelated = true) {
     super();
@@ -26,7 +26,12 @@ class SimpleModel extends BaseModel {
   related(): RelatedMap { return {}; };
   saveNew(data: {}): Observable<HalDoc> { return ofasobservableOf(this.doc); };
 };
-const model = new SimpleModel(null, new HalDoc({}, null));
+const model = new SimpleModel(null, new HalDoc({
+  foo: 'bar'
+}, null));
+
+// Force model change so examples using model will be visible. T_T
+model.set('foo', 'baz');
 
 // Module metadata for stories.
 const storiesModuleMetaData = moduleMetadata({
