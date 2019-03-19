@@ -67,7 +67,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button', module)
 
       return {
         template: `
-          <div class="centered-wrapper">
+          <div>
             <prx-button
               [orange]="isColorSelected('orange')"
               [plain]="isColorSelected('plain')"
@@ -126,7 +126,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     'Orange Button',
     () => ({
       template: `
-        <div class="centered-wrapper">
+        <div>
           <prx-button [model]="model" orange=1 disabled=0 >Publish</prx-button>
         </div>
       `,
@@ -149,7 +149,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     'Plain Button',
     () => ({
       template: `
-        <div class="centered-wrapper">
+        <div>
           <prx-button [model]="model" plain=1 disabled=0 >Discard</prx-button>
         </div>
       `,
@@ -172,7 +172,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     'Red Button',
     () => ({
       template: `
-        <div class="centered-wrapper">
+        <div>
           <prx-button [model]="model" red=1 disabled=0 >Delete</prx-button>
         </div>
       `,
@@ -195,7 +195,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     'Green Button',
     () => ({
       template: `
-        <div class="centered-wrapper">
+        <div>
           <prx-button [model]="model" green=1 disabled=0 >Create</prx-button>
         </div>
       `,
@@ -218,7 +218,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     'Working State',
     () => ({
       template: `
-        <div class="centered-wrapper">
+        <div>
           <prx-button [model]="model" working=1 disabled=0 >Create</prx-button>
         </div>
       `,
@@ -241,7 +241,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     'Disabled State',
     () => ({
       template: `
-        <div class="centered-wrapper">
+        <div>
           <prx-button [model]="model" disabled=1 >Saved</prx-button>
         </div>
       `,

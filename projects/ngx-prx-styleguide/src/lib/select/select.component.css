@@ -12,3 +12,8 @@
   -ms-flex-preferred-size: 215px;
   -webkit-flex-basis: 215px;
 }
+
+.ng-select >>> .ng-input > input {
+  padding: 0;
+  line-height: 28px;
+}

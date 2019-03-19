@@ -5,7 +5,7 @@ import { withKnobs, text, array } from '@storybook/addon-knobs';
 import { TagsModule } from './tags.module';
 
 // Module metadata for stories.
-const componentMetaData = moduleMetadata({
+const storiesModuleMetaData = moduleMetadata({
   imports: [
     TagsModule
   ],
@@ -17,13 +17,13 @@ const componentMetaData = moduleMetadata({
 storiesOf('Forms Controls|Inputs/Tags', module)
   .addDecorator(withKnobs)
   .addDecorator(centered)
-  .addDecorator(componentMetaData)
+  .addDecorator(storiesModuleMetaData)
   .add(
     'Usage Details (Knobs)',
     () => {
-      const placeholder = text('placeholder', 'Type your tag and press Enter...');
-      const selectedTags = array('selected', []);
-      const quickTags = array('options', ['quick', 'tags']);
+      const placeholder = text('Placeholder', 'Type your tag and press Enter...');
+      const selectedTags = array('Selected', []);
+      const quickTags = array('Options', ['quick', 'tags']);
       const onTagsChange = action('Tags Changed');
 
       return {
