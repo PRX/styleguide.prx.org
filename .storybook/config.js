@@ -1,5 +1,6 @@
 import { addDecorator, addParameters, configure } from '@storybook/angular';
 import { themes } from '@storybook/theming';
+import { withA11y } from '@storybook/addon-a11y';
 import { withNotes } from '@storybook/addon-notes';
 import theme from './theme';
 
@@ -7,6 +8,9 @@ console.log(themes);
 
 // Add Notes to all stories.
 addDecorator(withNotes);
+
+// Add a11y checks to stories.
+addDecorator(withA11y);
 
 // Theme Storybook UI.
 addParameters({
