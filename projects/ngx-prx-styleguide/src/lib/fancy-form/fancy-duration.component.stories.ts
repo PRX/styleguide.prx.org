@@ -27,14 +27,28 @@ class DurationModel extends BaseModel {
 
     // Init with merged data.
     this.init(parent, new HalDoc(data, null), loadRelated);
+
+    // Override doc with default docs so discard reverts to default values,
+    // even after a page reload.
+    this.doc = doc;
   }
 
   SETABLE = ['duration'];
 
-  encode(): {} { return {}; };
-  decode(): void {
-    this.duration = this.doc['duration'];
+  encode(): {} {
+    let data: any = {};
+    for (let f of this.SETABLE) {
+      data[f] = this[f];
+    }
+    return data;
   };
+
+  decode(): void {
+    for (let f of this.SETABLE) {
+      this[f] = this.doc[f];
+    }
+  };
+
   key(): string { return 'duration-model'; };
   related(): RelatedMap { return {}; };
   saveNew(data: {}): Observable<HalDoc> { return ofasobservableOf(this.doc); };

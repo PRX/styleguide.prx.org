@@ -13,7 +13,11 @@
   -webkit-flex-basis: 215px;
 }
 
-.ng-select >>> .ng-input > input {
+:host >>> .ng-select .ng-select-container .ng-value-container .ng-input {
+  padding-bottom: 0;
+}
+
+:host >>> .ng-select .ng-select-container .ng-value-container .ng-input > input {
   padding: 0;
   line-height: 28px;
 }

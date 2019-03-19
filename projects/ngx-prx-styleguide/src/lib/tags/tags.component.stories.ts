@@ -70,3 +70,67 @@ __Selector__ \`prx-tags\`
       }
     }
   );
+
+storiesOf('Forms Controls|Inputs/Tags/Examples', module)
+  .addDecorator(centered)
+  .addDecorator(storiesModuleMetaData)
+  .add(
+    'Quick Tags w/ Labeled Values',
+    () => ({
+      template: `
+        <div style="min-width: 50vw;">
+          <prx-tags [options]="options" (onChange)="onTagsChange($event)"></prx-tags>
+        </div>
+      `,
+      props: {
+        options: [['Label 1', 'value_1'], ['Label 2', 'value_2'], ['Label 2', 'value_2']],
+        onTagsChange: action('Tags Changed')
+      }
+    }),
+    {
+      notes: {
+        markdown: `
+### Usage
+### Usage
+\`\`\`javascript
+const options = [['Label 1', 'value_1'], ['Label 2', 'value_2'], ['Label 2', 'value_2']];
+const onTagsChange = (val: string[]) => ( console.log('Selection Changed', val) );
+\`\`\`
+
+\`\`\`html
+<prx-tags [options]="options" (onChange)="onTagsChange($event)"></prx-tags>
+\`\`\`
+        `
+      }
+    }
+  )
+  .add(
+    'Quick Tag w/ Tooltips',
+    () => ({
+      template: `
+        <div style="min-width: 50vw;">
+          <prx-tags [options]="options" (onChange)="onTagsChange($event)"></prx-tags>
+        </div>
+      `,
+      props: {
+        options: [{name: 'Quick Tag', value: 'quick_tag', tooltip: 'Click me to toggle as a selected value.'}],
+        onTagsChange: action('Tags Changed')
+      }
+    }),
+    {
+      notes: {
+        markdown: `
+### Usage
+### Usage
+\`\`\`javascript
+const options = [{name: 'Quick Tag', value: 'quick_tag', tooltip: 'Click me to toggle as a selected value.'}];
+const onTagsChange = (val: string[]) => ( console.log('Selection Changed', val) );
+\`\`\`
+
+\`\`\`html
+<prx-tags [options]="options" (onChange)="onTagsChange($event)"></prx-tags>
+\`\`\`
+        `
+      }
+    }
+  );
