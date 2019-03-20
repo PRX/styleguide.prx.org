@@ -40,9 +40,38 @@ export class DatepickerComponent implements AfterViewInit {
     }
   }
   get date() { return this._date; }
-  @Output() dateChange = new EventEmitter<Date>();
+
+  _minDate: Date;
+  @Input()
+  set minDate(value: Date) {
+    const hasChanged = value && (!this._minDate || this._minDate.valueOf() !== value.valueOf());
+
+    if (hasChanged) {
+      this._minDate = new Date(value.valueOf());
+      if (this.picker) {
+        this.picker.setMinDate(this._minDate);
+      }
+    }
+  }
+  get minDate() { return this._minDate; }
+
+  _maxDate: Date;
+  @Input()
+  set maxDate(value: Date) {
+    const hasChanged = value && (!this._maxDate || this._maxDate.valueOf() !== value.valueOf());
+
+    if (hasChanged) {
+      this._maxDate = new Date(value.valueOf());
+      if (this.picker) {
+        this.picker.setMaxDate(this._maxDate);
+      }
+    }
+  }
+  get maxDate() { return this._maxDate; }
+
   @Input() changed: boolean;
   @Input() UTC = false;
+  @Output() dateChange = new EventEmitter<Date>();
   @ViewChild('datepicker') input: ElementRef;
 
   picker: Pikaday;
@@ -79,7 +108,7 @@ export class DatepickerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let options = {
+    let options: any = {
       field: this.input.nativeElement,
       format: this.format,
       theme: 'triangle-theme',
@@ -89,16 +118,27 @@ export class DatepickerComponent implements AfterViewInit {
         }
       }
     };
+
     if (this.container) {
-      options['bound'] = false;
-      options['container'] = this.container.nativeElement;
+      options.bound = false;
+      options.container = this.container.nativeElement;
       options.theme += ' container';
     }
+
     if (this._date) {
       // if UTC, adjust picker date accordingly
-      options['defaultDate'] = this.UTC ? this.pickerUTCOffset(this._date) : new Date(this._date.valueOf());
-      options['setDefaultDate'] = true;
+      options.defaultDate = this.UTC ? this.pickerUTCOffset(this._date) : new Date(this._date.valueOf());
+      options.setDefaultDate = true;
     }
+
+    if (this._minDate) {
+      options.minDate = new Date(this._minDate.valueOf());
+    }
+
+    if (this._maxDate) {
+      options.maxDate = new Date(this._maxDate.valueOf());
+    }
+
     this.picker = new Pikaday(options);
   }
 

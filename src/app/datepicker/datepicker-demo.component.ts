@@ -23,6 +23,12 @@ import * as moment from 'moment';
           <code>@Input() date: Date</code> (optional) sets datepicker date
         </li>
         <li>
+          <code>@Input() minDate: Date</code> (optional) sets datepicker minDate
+        </li>
+        <li>
+          <code>@Input() maxDate: Date</code> (optional) sets datepicker maxDate
+        </li>
+        <li>
          <code>@Output() dateChange: EventEmitter&lt;Date&gt;</code> (optional) emitted when date is selected
         </li>
         <li>
@@ -71,6 +77,21 @@ import * as moment from 'moment';
         <span class="changed" *ngIf="dateChanged">Changed: {{dateChanged}}</span>
       </aside>
       <aside>
+        <p>Limit dates to current week</p>
+        Usage:
+        <pre class="code">
+          &lt;prx-datepicker
+            [date]="today"
+            [minDate]="startOfWeek"
+            [maxDate]="endOfWeek"
+            (dateChange)="onDateChange($event)"
+          &gt;&lt;/prx-datepicker&gt;
+        </pre>
+        Examples:
+        <prx-datepicker [date]="today" [minDate]="startOfWeek" [maxDate]="endOfWeek" (dateChange)="onDateChange($event)"></prx-datepicker>
+        <span class="changed" *ngIf="dateChanged">Changed: {{dateChanged}}</span>
+      </aside>
+      <aside>
         <p>With UTC dates</p>
         Usage:
         <pre class="code">
@@ -89,6 +110,8 @@ import * as moment from 'moment';
 export class DatepickerDemoComponent {
 
   today = new Date();
+  startOfWeek = moment().startOf('week').toDate();
+  endOfWeek = moment().endOf('week').toDate();
   dateChanged: string;
   utcDate = new Date(Date.UTC(this.today.getFullYear(), this.today.getMonth(), this.today.getDate(), 23, 59, 59));
   utcDateChanged: string;
