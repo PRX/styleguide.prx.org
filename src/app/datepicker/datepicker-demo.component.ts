@@ -81,15 +81,14 @@ import * as moment from 'moment';
         Usage:
         <pre class="code">
           &lt;prx-datepicker
-            [date]="today"
+            [date]="thisWeekDay"
             [minDate]="startOfWeek"
             [maxDate]="endOfWeek"
             (dateChange)="onDateChange($event)"
           &gt;&lt;/prx-datepicker&gt;
         </pre>
         Examples:
-        <prx-datepicker [date]="today" [minDate]="startOfWeek" [maxDate]="endOfWeek" (dateChange)="onDateChange($event)"></prx-datepicker>
-        <span class="changed" *ngIf="dateChanged">Changed: {{dateChanged}}</span>
+        <prx-datepicker [date]="thisWeekDay" [minDate]="startOfWeek" [maxDate]="endOfWeek" (dateChange)="onDateChange($event)"></prx-datepicker>
       </aside>
       <aside>
         <p>With UTC dates</p>
@@ -110,6 +109,7 @@ import * as moment from 'moment';
 export class DatepickerDemoComponent {
 
   today = new Date();
+  thisWeekDay = new Date();
   startOfWeek = moment().startOf('week').toDate();
   endOfWeek = moment().endOf('week').toDate();
   dateChanged: string;
