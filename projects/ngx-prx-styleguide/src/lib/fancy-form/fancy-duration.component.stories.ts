@@ -6,7 +6,6 @@ import { BaseModel, RelatedMap } from '../model/base.model';
 import { HalDoc } from '../hal/doc/haldoc';
 import { Observable, of as ofasobservableOf } from 'rxjs';
 import { ModalModule } from '../modal/modal.module';
-import { ModalService } from '../modal/modal.service';
 
 // Setup simple model for the stories.
 class DurationModel extends BaseModel {
@@ -65,7 +64,7 @@ const componentMetaData = moduleMetadata({
   ],
   schemas: [],
   declarations: [],
-  providers: [ModalService],
+  providers: [],
 });
 
 storiesOf('Forms Controls|Inputs/Fancy Duration', module)
@@ -87,6 +86,7 @@ storiesOf('Forms Controls|Inputs/Fancy Duration', module)
 
       return {
         template: `
+          <prx-modal></prx-modal>
           <prx-fancy-duration [model]="model" name="duration" [label]="label" [tiny]="tiny" [advancedConfirm]="advancedConfirm"></prx-fancy-duration>
         `,
         props: {

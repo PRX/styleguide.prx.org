@@ -58,12 +58,10 @@ storiesOf('Services|Toastr', module)
       return {
         template: `
           <prx-toastr></prx-toastr>
-          <div class="centered-wrapper">
-            <toastr-button
-              [status]="status"
-              [message]="message"
-            >Make A Toast</toastr-button>
-          </div>
+          <toastr-button
+            [status]="status"
+            [message]="message"
+          >Make A Toast</toastr-button>
         `,
         props: {
           message,

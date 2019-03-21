@@ -39,14 +39,12 @@ storiesOf('Forms Controls|Inputs/Time Picker', module)
 
       return {
         template: `
-          <div class="centered-wrapper">
-            <prx-timepicker
-              [date]="dataDate"
-              (timeChange)="onTimeChange($event)"
-              [UTC]="useUTC"
-              [changed]="changed"
-            ></prx-timepicker>
-          </div>
+          <prx-timepicker
+            [date]="dataDate"
+            (timeChange)="onTimeChange($event)"
+            [UTC]="useUTC"
+            [changed]="changed"
+          ></prx-timepicker>
         `,
         props: {
           changed,
@@ -91,7 +89,6 @@ storiesOf('Forms Controls|Inputs/Time Picker/Examples', module)
 
       return {
         template: `
-        <div class="centered-wrapper">
           <prx-datepicker
             [date]="dataDate"
             (dateChange)="onDateChange($event)"
@@ -100,7 +97,6 @@ storiesOf('Forms Controls|Inputs/Time Picker/Examples', module)
             [date]="dataDate"
             (timeChange)="onDateChange($event)"
           ></prx-timepicker>
-        </div>
         `,
         props: {
           dataDate,

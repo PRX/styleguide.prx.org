@@ -44,15 +44,13 @@ storiesOf('Forms Controls|Inputs/Date Range', module)
 
       return {
         template: `
-          <div class="centered-wrapper">
-            <prx-daterange
-              [format]="dateFormat"
-              [from]="dataFromDate"
-              [to]="dataToDate"
-              (rangeChange)="onRangeChange($event)"
-              [UTC]="useUTC"
-            ></prx-daterange>
-          </div>
+          <prx-daterange
+            [format]="dateFormat"
+            [from]="dataFromDate"
+            [to]="dataToDate"
+            (rangeChange)="onRangeChange($event)"
+            [UTC]="useUTC"
+          ></prx-daterange>
         `,
         props: {
           dateFormat,

@@ -67,18 +67,16 @@ storiesOf('Forms Controls|Inputs/Fancy Button', module)
 
       return {
         template: `
-          <div>
-            <prx-button
-              [orange]="isColorSelected('orange')"
-              [plain]="isColorSelected('plain')"
-              [red]="isColorSelected('red')"
-              [green]="isColorSelected('green')"
-              [visible]="visible"
-              [working]="working"
-              [disabled]="disabled"
-              (click)="onClick($event)"
-            >{{ btnText }}</prx-button>
-          </div>
+          <prx-button
+            [orange]="isColorSelected('orange')"
+            [plain]="isColorSelected('plain')"
+            [red]="isColorSelected('red')"
+            [green]="isColorSelected('green')"
+            [visible]="visible"
+            [working]="working"
+            [disabled]="disabled"
+            (click)="onClick($event)"
+          >{{ btnText }}</prx-button>
         `,
         props: {
           btnText,
@@ -126,9 +124,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     'Orange Button',
     () => ({
       template: `
-        <div>
-          <prx-button [model]="model" orange=1 disabled=0 >Publish</prx-button>
-        </div>
+        <prx-button [model]="model" orange=1 disabled=0 >Publish</prx-button>
       `,
       props: {
         model
@@ -149,9 +145,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     'Plain Button',
     () => ({
       template: `
-        <div>
-          <prx-button [model]="model" plain=1 disabled=0 >Discard</prx-button>
-        </div>
+        <prx-button [model]="model" plain=1 disabled=0 >Discard</prx-button>
       `,
       props: {
         model
@@ -172,9 +166,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     'Red Button',
     () => ({
       template: `
-        <div>
-          <prx-button [model]="model" red=1 disabled=0 >Delete</prx-button>
-        </div>
+        <prx-button [model]="model" red=1 disabled=0 >Delete</prx-button>
       `,
       props: {
         model
@@ -195,9 +187,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     'Green Button',
     () => ({
       template: `
-        <div>
-          <prx-button [model]="model" green=1 disabled=0 >Create</prx-button>
-        </div>
+        <prx-button [model]="model" green=1 disabled=0 >Create</prx-button>
       `,
       props: {
         model
@@ -218,9 +208,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     'Working State',
     () => ({
       template: `
-        <div>
-          <prx-button [model]="model" working=1 disabled=0 >Create</prx-button>
-        </div>
+        <prx-button [model]="model" working=1 disabled=0 >Create</prx-button>
       `,
       props: {
         model
@@ -241,9 +229,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     'Disabled State',
     () => ({
       template: `
-        <div>
-          <prx-button [model]="model" disabled=1 >Saved</prx-button>
-        </div>
+        <prx-button [model]="model" disabled=1 >Saved</prx-button>
       `,
       props: {
         model

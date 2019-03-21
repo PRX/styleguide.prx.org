@@ -58,15 +58,13 @@ storiesOf('Forms Controls|Inputs/Date Picker', module)
 
       return {
         template: `
-          <div class="centered-wrapper">
-            <prx-datepicker
-              [format]="dateFormat"
-              [date]="dataDate"
-              (dateChange)="onDateChange($event)"
-              [UTC]="useUTC"
-              [changed]="changed"
-            ></prx-datepicker>
-          </div>
+          <prx-datepicker
+            [format]="dateFormat"
+            [date]="dataDate"
+            (dateChange)="onDateChange($event)"
+            [UTC]="useUTC"
+            [changed]="changed"
+          ></prx-datepicker>
         `,
         props: {
           changed,
@@ -119,10 +117,8 @@ storiesOf('Forms Controls|Inputs/Date Picker/Examples', module)
 @Component ({
   selector:'open-picker',
   template: \`
-    <div class="centered-wrapper">
-      <prx-datepicker [container]="calendar"></prx-datepicker>
-      <div #calendar></div>
-    </div>
+    <prx-datepicker [container]="calendar"></prx-datepicker>
+    <div #calendar></div>
   \`,
   styles: [
     ':host >>> .pika-single.container { border: 1px solid #e6e6e6; border-top: 0; }'

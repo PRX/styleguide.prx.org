@@ -6,7 +6,7 @@ import { FancyFormModule } from './fancy-form.module';
 import { BaseModel, RelatedMap } from '../model/base.model';
 import { HalDoc } from '../hal/doc/haldoc';
 import { Observable, of as ofasobservableOf } from 'rxjs';
-import { ModalService } from '../modal/modal.service';
+import { ModalModule } from '../modal/modal.module';
 
 // Setup simple model for the stories.
 class ConfirmModel extends BaseModel {
@@ -34,11 +34,12 @@ const model = new ConfirmModel(null, new HalDoc({
 // Module metadata for stories.
 const storiesModuleMetaData = moduleMetadata({
   imports: [
-    FancyFormModule
+    FancyFormModule,
+    ModalModule
   ],
   schemas: [],
   declarations: [],
-  providers: [ModalService],
+  providers: [],
 });
 
 storiesOf('Forms Controls|Directives/Advanced Confirm', module)
@@ -59,16 +60,15 @@ storiesOf('Forms Controls|Directives/Advanced Confirm', module)
 
       return {
         template: `
-          <div>
-            <input
-              [prxAdvancedConfirm]="confirmMessage"
-              [prxModel]="model"
-              prxName="foo"
-              (ngModelChange)="model.set('foo', $event)"
-              [ngModel]="model.foo"
-              (change)="onChange($event.target.value)"
-            >
-          </div>
+          <prx-modal></prx-modal>
+          <input
+            [prxAdvancedConfirm]="confirmMessage"
+            [prxModel]="model"
+            prxName="foo"
+            (ngModelChange)="model.set('foo', $event)"
+            [ngModel]="model.foo"
+            (change)="onChange($event.target.value)"
+          >
         `,
         props: {
           model,

@@ -41,15 +41,13 @@ storiesOf('Forms Controls|Inputs/Fancy Checkbox', module)
 
       return {
         template: `
-          <div class="centered-wrapper">
-            <prx-checkbox
-              [(checked)]="isChecked"
-              ${color && '[color]="color"'}
-              [small]="small"
-              [disabled]="disabled"
-              (change)="onClick($event)"
-            >{{ label }}</prx-checkbox>
-          </div>
+          <prx-checkbox
+            [(checked)]="isChecked"
+            ${color && '[color]="color"'}
+            [small]="small"
+            [disabled]="disabled"
+            (change)="onClick($event)"
+          >{{ label }}</prx-checkbox>
         `,
         props: {
           label,
