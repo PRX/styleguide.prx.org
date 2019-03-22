@@ -238,7 +238,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
     {
       notes: {
         markdown: `
-### Usage
+## Usage
 \`\`\`html
 <prx-button [model]="model" disabled=1 >Saved</prx-button>
 \`\`\`

@@ -479,7 +479,7 @@ Nested content will be wrapped in \`<div class="nested">\` element.
 
 ----
 
-### Usage
+## Usage
 
 \`\`\`html
 <prx-fancy-field label="Your Name">

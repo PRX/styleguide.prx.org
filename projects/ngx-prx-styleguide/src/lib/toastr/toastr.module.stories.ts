@@ -89,7 +89,7 @@ __Service__ \`ToastrService\`
 
 ----
 
-### ToastrService Methods
+## ToastrService Methods
 
 - \`info(message: string)\` \\- Shows an info toast.
 - \`success(message: string)\` \\- Shows an success toast.
@@ -98,7 +98,7 @@ __Service__ \`ToastrService\`
 
 ----
 
-### ToastrService Usage
+## ToastrService Usage
 
 \`\`\`javascript
 @Component ({

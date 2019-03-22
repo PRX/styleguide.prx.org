@@ -48,7 +48,7 @@ __Name__ \`padzero\`
 
 ----
 
-### Usage
+## Usage
 \`\`\`html
 <span>{{ intNumber | capitalize:intPadLength }}</span>
 \`\`\`

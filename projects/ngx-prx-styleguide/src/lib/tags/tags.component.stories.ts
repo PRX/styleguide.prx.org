@@ -62,7 +62,7 @@ __Selector__ \`prx-tags\`
 
 ----
 
-### Usage
+## Usage
 \`\`\`html
 <prx-tags [selected]="selected" [options]="options" (onChange)="onChange($event)"></prx-tags>
 \`\`\`
@@ -90,8 +90,7 @@ storiesOf('Forms Controls|Inputs/Tags/Examples', module)
     {
       notes: {
         markdown: `
-### Usage
-### Usage
+## Usage
 \`\`\`javascript
 const options = [['Label 1', 'value_1'], ['Label 2', 'value_2'], ['Label 2', 'value_2']];
 const onTagsChange = (val: string[]) => ( console.log('Selection Changed', val) );
@@ -120,8 +119,7 @@ const onTagsChange = (val: string[]) => ( console.log('Selection Changed', val) 
     {
       notes: {
         markdown: `
-### Usage
-### Usage
+## Usage
 \`\`\`javascript
 const options = [{name: 'Quick Tag', value: 'quick_tag', tooltip: 'Click me to toggle as a selected value.'}];
 const onTagsChange = (val: string[]) => ( console.log('Selection Changed', val) );

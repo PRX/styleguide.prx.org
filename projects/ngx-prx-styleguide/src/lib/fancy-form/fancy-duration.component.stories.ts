@@ -122,7 +122,7 @@ __Selector__ \`prx-fancy-duration\`
 
 ----
 
-### Usage
+## Usage
 \`\`\`html
 <prx-fancy-duration [model]="model" name="duration" label="Duration"></prx-fancy-duration>
 \`\`\`

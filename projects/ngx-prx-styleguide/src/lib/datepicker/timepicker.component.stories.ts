@@ -107,7 +107,7 @@ storiesOf('Forms Controls|Inputs/Time Picker/Examples', module)
     {
       notes: {
         markdown: `
-### Usage
+## Usage
 \`\`\`html
 <prx-datepicker [date]="dataDate" (dateChange)="onDateChange($event)" ></prx-datepicker>
 <prx-timepicker [date]="dataDate" (timeChange)="onDateChange($event)" ></prx-timepicker>
