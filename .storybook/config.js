@@ -4,8 +4,6 @@ import { withA11y } from '@storybook/addon-a11y';
 import { withNotes } from '@storybook/addon-notes';
 import theme from './theme';
 
-console.log(themes);
-
 // Add Notes to all stories.
 addDecorator(withNotes);
 
