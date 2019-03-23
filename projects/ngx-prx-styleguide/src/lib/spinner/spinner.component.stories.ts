@@ -19,11 +19,13 @@ const storyStyles = `
     position: relative;
     width: 100px;
     height: 100px;
-    margin: 50vh auto;
     background: #0089bd;
   }
   .inverse {
     background: none;
+  }
+  .force-scrolling {
+    margin: 50vh auto;
   }
 `;
 
@@ -43,7 +45,7 @@ storiesOf('Utilities|Spinner', module)
 
       return {
         template: `
-          <div class="wrapper">
+          <div class="wrapper force-scrolling">
             <prx-spinner
               [spinning]="spinning"
               [delay]="delay"
