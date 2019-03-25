@@ -10,10 +10,6 @@ const moment = momentNs;
 @Component({
   selector: 'prx-tz-datepicker',
   template: `
-  <!--<input (change)="onDateChange($event)" type="date" [value]="this.pickerDate" />-->
-    <pre>{{diagnostic}}</pre>
-    <pre>{{this.model && this.model.finalDate ? this.model.finalDate : ''}}</pre>
-    <pre>{{this.model ? this.model.twentyFourHourTime : ''}}</pre>
   <ng-container *ngIf="this.model">
     <prx-datepicker name="date"
       [date]="this.model.pickerDate" (dateChange)="handleDateChange($event)" [changed]="changed">
