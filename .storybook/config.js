@@ -20,7 +20,8 @@ addParameters({
     theme
   },
   knobs: {
-    timestamps: true
+    timestamps: true,
+    escapeHTML: false
   }
 });
 

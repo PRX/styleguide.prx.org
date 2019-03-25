@@ -47,13 +47,7 @@ storiesOf('Services|Toastr', module)
     () => {
       const statuses = ['info', 'error', 'success'];
       const status = select('Status', statuses, null);
-      // For some reason, text knob encodes HTML entities. We need to decode them for messages.
-      const decodeHtml = (label: string, value: string) => {
-        const txt = document.createElement('textarea');
-        txt.innerHTML = text(label, value);
-        return txt.value;
-      };
-      const message = decodeHtml('Message', 'May the force be with you.');
+      const message = text('Message', 'May the force be with you.');
 
       return {
         template: `

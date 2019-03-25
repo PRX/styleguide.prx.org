@@ -113,15 +113,9 @@ const storiesModuleMetaData = moduleMetadata({
 });
 
 const makeFieldStory = ({inputType = null, propName = null, defaultLabel = null, defaultHint = null, defaultPrompt = null}) => () => {
-  // For some reason, text knob encodes HTML entities. We need to decode them.
-  const decodeHtml = (label: string, value: string) => {
-    const txt = document.createElement('textarea');
-    txt.innerHTML = text(label, value);
-    return txt.value;
-  };
-  const label = decodeHtml('Label', defaultLabel);
-  const hint = decodeHtml('Hint Text', defaultHint);
-  const prompt = inputType === 'checkbox' ? decodeHtml('Option Label', defaultPrompt) : null;
+  const label = text('Label', defaultLabel);
+  const hint = text('Hint Text', defaultHint);
+  const prompt = inputType === 'checkbox' ? text('Option Label', defaultPrompt) : null;
   const isSelect = inputType === 'select' || inputType === 'multiselect';
   const defaultSelectOptions = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'];
   const selectOptions = isSelect ? array('Options', defaultSelectOptions) : null;

@@ -74,15 +74,9 @@ storiesOf('Forms Controls|Inputs/Fancy Duration', module)
   .add(
     'Usage Details (Knobs)',
     () => {
-      // For some reason, text knob encodes HTML entities. We need to decode them.
-      const decodeHtml = (label: string, value: string) => {
-        const txt = document.createElement('textarea');
-        txt.innerHTML = text(label, value);
-        return txt.value;
-      };
-      const label = decodeHtml('Label', 'Duration');
+      const label = text('Label', 'Duration');
       const tiny = boolean('Tiny', false);
-      const advancedConfirm = decodeHtml('Advanced Confirm Message', '');
+      const advancedConfirm = text('Advanced Confirm Message', '');
 
       return {
         template: `
