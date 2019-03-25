@@ -1,0 +1,17 @@
+input {
+  margin: 5px 0;
+  height: 40px;
+}
+
+input.changed {
+  outline: 5px auto #f09b4c;
+}
+
+input.ng-invalid, prx-datepicker.invalid, ng-select.invalid, ng-select.ng-invalid {
+  outline: 5px auto #e32;
+}
+
+p.error {
+  margin-top: 6px;
+  color: #e32;
+}

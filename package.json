@@ -31,7 +31,7 @@
     "e2e": "ng e2e",
     "build:lib": "npm run build ngx-prx-styleguide && npm run build:lib:scss",
     "test:lib": "npm run test ngx-prx-styleguide",
-    "build:lib:scss": "scss-bundle -e projects/ngx-prx-styleguide/src/assets/styles/base.scss -d dist/ngx-prx-styleguide/assets/styles/bundle.scss && cp -R projects/ngx-prx-styleguide/src/assets/images dist/ngx-prx-styleguide/assets",
+    "build:lib:scss": "./bin/copyassets.sh",
     "version": "node ./bin/readver.js | ./bin/newver.sh"
   },
   "dependencies": {
@@ -47,6 +47,7 @@
     "@ng-select/ng-select": "^2.15.3",
     "c3": "^0.4.11",
     "core-js": "^2.4.1",
+    "moment-timezone": "^0.5.23",
     "ngx-tooltip": "0.0.9",
     "pikaday": "^1.5.1",
     "rxjs": "^6.0.0",
@@ -61,6 +62,7 @@
     "@angular/language-service": "^6.1.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/moment-timezone": "^0.5.12",
     "@types/node": "~8.9.4",
     "@types/c3": "^0.4.41",
     "@types/pikaday": "0.0.32",
