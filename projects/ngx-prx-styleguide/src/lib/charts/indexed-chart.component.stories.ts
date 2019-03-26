@@ -35,10 +35,9 @@ __Selector__ \`prx-indexed-chart\`
 
 ----
 
-- \`@Input() datasets: IndexedChartModel[] \` \\- An array of IndexedChartModels, i.e. \`[{ data: number[], label: string, color: string; }]
-\`.
+- \`@Input() datasets: IndexedChartModel[] \` \\- An array of IndexedChartModels, i.e. \`[{ data: number[], label: string, color: string; }]\`.
 - \`@Input() type: ChartType = 'line'\` \\- ChartType can be 'line', 'pie', or 'bar'.
-- \`@Input() formatX: Function = (index: string): string\` \\- A function to [format the X axis tick value](https://c3js.org/reference.html#axis-x-tick-format).
+- \`@Input() formatX: Function \\- A function to [format the X axis tick value](https://c3js.org/reference.html#axis-x-tick-format).
 `
     }
   });
@@ -168,7 +167,7 @@ A Line Chart is often used to visualize a trend in data.
 
 \`\`\`javascript
 function formatLineX(s: string) {
-  return 'day ' + s;
+  return 'Day ' + s;
 }
 \`\`\`
 

@@ -1,7 +1,7 @@
 export const episodes: any[] = [
   {
     title: 'Episode 68: All the Time in the World',
-    color: '#00f',
+    color: '#B3B3D4',
     queries: {
       dateRange: {
         data: [
@@ -103,7 +103,7 @@ export const episodes: any[] = [
   },
   {
     title: 'Episode 69: Becoming Chief Brown',
-    color: '#f0f',
+    color: '#8686B0',
     queries: {
       dateRange: {
         data: [
@@ -205,7 +205,7 @@ export const episodes: any[] = [
   },
   {
     title: 'Episode 70: The Procedure',
-    color: '#0df',
+    color: '#59598C',
     queries: {
       dateRange: {
         data: [
@@ -307,7 +307,7 @@ export const episodes: any[] = [
   },
   {
     title: 'Episode 71: A Bump in the Night',
-    color: '#0f0',
+    color: '#2C2C68',
     queries: {
       dateRange: {
         data: [
@@ -409,7 +409,7 @@ export const episodes: any[] = [
   },
   {
     title: 'Episode 72: Bears, Birds, and Bones',
-    color: '#f02',
+    color: '#000044',
     queries: {
       dateRange: {
         data: [
