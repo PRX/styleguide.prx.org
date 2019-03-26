@@ -88,6 +88,8 @@ using, to your `angular.json`:
 
 ## Releasing
 
+Once a PR has been reviewed and approved, it's time to release!
+
 The `npm version` command will run scripts to update the library version as
 well. To release to the npm registry, publish the `dist/ngx-prx-styleguide`
 directory. The `package.json` in the base directory has `private` set to `true`
@@ -98,6 +100,9 @@ npm version [ major | minor | patch ... ]
 npm run build:lib
 npm publish dist/ngx-prx-styleguide
 ```
+
+After the package has been published, push the npm generated commit and tag to
+the repository: `git push --follow-tags`
 
 ## License
 
