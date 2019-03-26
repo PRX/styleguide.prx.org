@@ -1,5 +1,4 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
-import { action } from '@storybook/addon-actions';
 import { centered } from '@storybook/addon-centered/angular';
 import { withKnobs, text, boolean, select, color } from '@storybook/addon-knobs';
 import { ChartsModule } from './charts.module';
@@ -65,7 +64,7 @@ __Selector__ \`prx-category-chart\`
 
 ----
 
-- \`@Input() data: CategoryChartModel[]\` \\- Disable the form input.
+- \`@Input() data: CategoryChartModel[]\` \\- An array of CategoryChartModel, i.e. \`[{ value: number, label: string; }]\`.
 - \`@Input() color: string = '#0089bd'\` \\- Set the hex color for all bars.
 - \`@Input() rotated: boolean = true\` \\- Set to false to orient categories along x-axis.
 - \`@Input() dataLabel: string = 'amount'\` \\- General label describing to bar amount, displayed in hover with amount.

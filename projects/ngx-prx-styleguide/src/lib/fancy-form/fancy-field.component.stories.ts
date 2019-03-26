@@ -173,7 +173,7 @@ const makeFieldStory = ({inputType = null, propName = null, defaultLabel = null,
 };
 
 storiesOf('Forms Controls|Inputs/Fancy Field', module)
-.addDecorator(centered)
+  .addDecorator(centered)
   .add('Overview', () => ({
     template: 'See <strong>Notes</strong> tab for overview.'
   }), {
