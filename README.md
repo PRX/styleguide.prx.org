@@ -5,11 +5,11 @@ hood and adheres to the Angular Package Format.
 
 ## Install Dependencies
 
-Run `yarn install`.
+Run `npm install`.
 
 ## Development Storybook Server
 
-Run `yarn storybook` to start Storybook server. The Storybook server will
+Run `npm run storybook` to start Storybook server. The Storybook server will
 automatically detect and load any files ending with `.stories.ts`.
 
 ### Writing Stories
@@ -22,18 +22,18 @@ in the menu components stories.
 
 ## Demo App (Depricated)
 
-Run `yarn demo` for a legacy demo server. Use this as reference when
+Run `npm run demo` for a legacy demo server. Use this as reference when
 converting demo pages to stories. Do not add new demo pages. New compoents or
 examples of existing components should be done as Storybook stories.
 
 ## Running Unit Tests
 
-Run `yarn test` to execute the unit tests via
+Run `npm run test` to execute the unit tests via
 [Karma](https://karma-runner.github.io).
 
 ## Build
 
-Run `yarn build:lib` to build the library. The build artifacts will be stored
+Run `npm run build:lib` to build the library. The build artifacts will be stored
 in the `dist/` directory.
 
 ## Usage
@@ -88,6 +88,8 @@ using, to your `angular.json`:
 
 ## Releasing
 
+Once a PR has been reviewed and approved, it's time to release!
+
 The `npm version` command will run scripts to update the library version as
 well. To release to the npm registry, publish the `dist/ngx-prx-styleguide`
 directory. The `package.json` in the base directory has `private` set to `true`
@@ -98,6 +100,9 @@ npm version [ major | minor | patch ... ]
 npm run build:lib
 npm publish dist/ngx-prx-styleguide
 ```
+
+After the package has been published, push the npm generated commit and tag to
+the repository: `git push --follow-tags`
 
 ## License
 
