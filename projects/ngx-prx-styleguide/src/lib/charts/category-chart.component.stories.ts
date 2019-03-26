@@ -38,7 +38,7 @@ storiesOf('Charts|Category Chart', module)
             [data]="data"
             [color]="barColor"
             [rotated]="rotated"
-            [dataLabel]="dataLabel"
+            ${dataLabel && '[dataLabel]="dataLabel"'}
           ></prx-category-chart>
         `,
         props: {
