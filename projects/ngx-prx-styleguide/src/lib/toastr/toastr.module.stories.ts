@@ -117,6 +117,14 @@ class ToasterButtonComponent {
 
 }
 \`\`\`
+
+\`\`\`html
+<prx-toastr></prx-toastr>
+<toastr-button
+  [status]="status"
+  [message]="message"
+>Make A Toast</toastr-button>
+\`\`\`
 `
       }
     }
