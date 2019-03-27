@@ -20,4 +20,11 @@
 :host >>> .ng-select .ng-select-container .ng-value-container .ng-input > input {
   padding: 0;
   line-height: 28px;
+  
+:host >>> .max-select-one .ng-value-icon {
+  display: none !important;
+}
+
+:host >>> .max-select-one .ng-arrow-wrapper {
+  display: none !important;
 }

@@ -1,9 +1,9 @@
-
 import {of as observableOf, empty as observableEmpty,  Observable ,  Observer } from 'rxjs';
 
 
 import { BaseModel } from './base.model';
 import { MockHalDoc } from '../hal/mock/mock-haldoc';
+import { HalHttpError } from '../hal/remote/halremote';
 
 class FakeModel extends BaseModel {
   someattribute = 'somevalue';
@@ -101,9 +101,9 @@ describe('BaseModel', () => {
 
     beforeEach(() => {
       let fooCount = 1, barCount = 1;
-      let foo = Observable.create((sub: Observer<number>) => sub.next(fooCount++));
-      let bar = Observable.create((sub: Observer<number>) => sub.next(barCount++));
-      spyOn(base, 'related').and.callFake(() => { return {foo: foo, bar: bar}; });
+      const foo = Observable.create((sub: Observer<number>) => sub.next(fooCount++));
+      const bar = Observable.create((sub: Observer<number>) => sub.next(barCount++));
+      spyOn(base, 'related').and.callFake(() => ({foo, bar}));
       base.init(null, null, false);
     });
 
@@ -135,7 +135,19 @@ describe('BaseModel', () => {
       base.loadRelated('foo', true).subscribe(() => null);
       expect(base['foo']).toEqual(2);
     });
+  });
 
+  describe('loadRelated errors', () => {
+    beforeEach(() => {
+      const baz = Observable.create((sub: Observer<number>) => sub.error(new HalHttpError(404, 'HalHttpError')));
+      spyOn(base, 'related').and.callFake(() => ({baz}));
+      base.init(null, null, false);
+    });
+
+    it('should ignore 404 errors', () => {
+      expect(() => base.loadRelated('baz').subscribe(() => null)).not.toThrowError();
+      expect(base['baz']).toBeUndefined();
+    });
   });
 
   describe('save', () => {
