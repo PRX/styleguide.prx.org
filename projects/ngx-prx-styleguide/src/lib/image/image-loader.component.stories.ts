@@ -1,5 +1,4 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
-import { action } from '@storybook/addon-actions';
 import { centered } from '@storybook/addon-centered/angular';
 import { withKnobs, text, array, select } from '@storybook/addon-knobs';
 import { ImageModule } from './image.module';
