@@ -28,7 +28,7 @@ export class SelectComponent implements OnChanges {
   _searchable = false;
   _single = false;
   _closeOnSelect = false;
-  _clearable = false;
+  _clearable = true;
   @Input()
   set disabled(val: boolean) { this._disabled = isset(val); }
   get disabled() { return this._disabled; }
