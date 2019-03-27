@@ -1,6 +1,6 @@
 {
   "name": "ngx-prx-styleguide",
-  "version": "2.3.0",
+  "version": "2.3.3",
   "description": "PRX Angular 6 style guide library",
   "keywords": [
     "PRX",
@@ -35,7 +35,7 @@
     "build:lib:scss": "scss-bundle -e projects/ngx-prx-styleguide/src/assets/styles/base.scss -d dist/ngx-prx-styleguide/assets/styles/bundle.scss && cp -R projects/ngx-prx-styleguide/src/assets/images dist/ngx-prx-styleguide/assets",
     "version": "node ./bin/readver.js | ./bin/newver.sh",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build:storybook": "build-storybook"
   },
   "dependencies": {
     "@angular/animations": "~7.2.0",

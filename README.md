@@ -15,12 +15,12 @@ automatically detect and load any files ending with `.stories.ts`.
 ### Writing Stories
 
 Each component should have a `.stories.ts`. Stories files should focus on one
-component or concept at a time. For examaple, the ButtonComponent's stories
+component or concept at a time. For example, the ButtonComponent's stories
 should only containing stories that provide usage examples for the button
 variations and states. Usage of the button in a menu component should be done
-in the menu components stories.
+in the menu component's stories.
 
-## Demo App (Depricated)
+## Demo App (Deprecated)
 
 Run `npm run demo` for a legacy demo server. Use this as reference when
 converting demo pages to stories. Do not add new demo pages. New compoents or
