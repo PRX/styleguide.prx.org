@@ -26,6 +26,7 @@ storiesOf('Forms Controls|Inputs/Select', module)
       const options = array('Options', ['One', 'Two', 'Three', 'Four', 'Five', 'Six']);
       const searchable = boolean('Searchable', false);
       const single = boolean('Single Value', false);
+      const closeOnSelect = boolean('Close On Select', false);
       const disabled = boolean('Disabled', false);
       const onSelect = action('Selection Changed');
 
@@ -38,6 +39,7 @@ storiesOf('Forms Controls|Inputs/Select', module)
               [options]="options"
               [searchable]="searchable"
               [single]="single"
+              [closeOnSelect]="closeOnSelect"
               [disabled]="disabled"
               (onSelect)="onSelect($event)"
             ></prx-select>
@@ -49,6 +51,7 @@ storiesOf('Forms Controls|Inputs/Select', module)
           options,
           searchable,
           single,
+          closeOnSelect,
           disabled,
           onSelect
         }
@@ -76,6 +79,7 @@ __Selector__ \`prx-select\`
 - \`@Input() placeholder: string = ''\` \\- Placeholder when nothing is selected.
 - \`@Input() searchable: boolean = false\` \\- Enable dropdown search field.
 - \`@Input() single: boolean = ''\` \\- Use single-select mode.
+- \`@Input() closeOnSelect: boolean = ''\` \\- Force closing dropdown after a selection on multiselect field.
 - \`@Output() onSelect: string | string[]\` \\- Outputs any change to the selected value or values.
 `
       }
