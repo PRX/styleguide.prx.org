@@ -133,6 +133,11 @@
       "sourceRoot": "projects/ngx-prx-styleguide/src",
       "projectType": "library",
       "prefix": "prx",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -162,7 +167,113 @@
           }
         }
       }
+    },
+    "ngx-prx-styleguide-storybook": {
+      "root": "projects/ngx-prx-styleguide-storybook/",
+      "sourceRoot": "projects/ngx-prx-styleguide-storybook/src",
+      "projectType": "application",
+      "prefix": "sb",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ngx-prx-styleguide-storybook",
+            "index": "projects/ngx-prx-styleguide-storybook/src/index.html",
+            "main": "projects/ngx-prx-styleguide-storybook/src/main.ts",
+            "polyfills": "projects/ngx-prx-styleguide-storybook/src/polyfills.ts",
+            "tsConfig": "projects/ngx-prx-styleguide-storybook/tsconfig.app.json",
+            "assets": [
+              "projects/ngx-prx-styleguide-storybook/src/favicon.ico",
+              "projects/ngx-prx-styleguide-storybook/src/assets",
+              {
+                "glob": "*",
+                "input": "projects/ngx-prx-styleguide/src/assets/images",
+                "output": "assets/images/"
+              }
+            ],
+            "styles": [
+              "projects/ngx-prx-styleguide/src/assets/styles/storybook.scss",
+              "projects/ngx-prx-styleguide-storybook/src/styles.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngx-prx-styleguide-storybook/src/environments/environment.ts",
+                  "with": "projects/ngx-prx-styleguide-storybook/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ngx-prx-styleguide-storybook:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-prx-styleguide-storybook:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ngx-prx-styleguide-storybook:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-prx-styleguide-storybook/src/test.ts",
+            "polyfills": "projects/ngx-prx-styleguide-storybook/src/polyfills.ts",
+            "tsConfig": "projects/ngx-prx-styleguide-storybook/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-prx-styleguide-storybook/karma.conf.js",
+            "styles": [
+              "projects/ngx-prx-styleguide-storybook/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/ngx-prx-styleguide-storybook/src/favicon.ico",
+              "projects/ngx-prx-styleguide-storybook/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-prx-styleguide-storybook/tsconfig.app.json",
+              "projects/ngx-prx-styleguide-storybook/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
-  "defaultProject": "ngx-prx-styleguide-demo"
+  "defaultProject": "ngx-prx-styleguide-storybook"
 }

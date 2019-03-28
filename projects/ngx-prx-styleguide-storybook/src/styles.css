@@ -1,0 +1,5 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~c3/c3.css';
+@import '~pikaday/css/pikaday.css';
+@import '~pikaday/css/triangle.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";

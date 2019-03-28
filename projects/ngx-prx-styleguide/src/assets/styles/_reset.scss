@@ -90,6 +90,7 @@ del {
 abbr[title], dfn[title] {
   border-bottom: 1px dotted $black;
   cursor: help;
+  text-decoration: none;
 }
 
 hr {
