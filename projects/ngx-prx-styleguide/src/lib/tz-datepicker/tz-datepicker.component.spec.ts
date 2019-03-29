@@ -9,27 +9,6 @@ import 'moment-timezone/moment-timezone';
 import { By } from '@angular/platform-browser';
 import { TzDataService } from './tz-data.service';
 
-@Component({
-  selector: 'test-component',
-  template: `
-    <prx-tz-datepicker
-      #datepicker
-      (dateChange)="dateChange($event)"
-      [date]="date"
-      [changed]="changed"
-    ></prx-tz-datepicker>
-  `
-})
-class TestComponent {
-  @ViewChild('datepicker') datepicker: TzDatepickerComponent;
-  date = new Date(1410719000000);
-  changed = false;
-  dateChangeVal: Date;
-  dateChange(val: Date) {
-    this.dateChangeVal = val;
-  }
-}
-
 describe('TzDatepickerComponent', () => {
   let component: TzDatepickerComponent;
   let fixture: ComponentFixture<TzDatepickerComponent>;
@@ -55,7 +34,7 @@ describe('TzDatepickerComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [FormsModule, HttpClientTestingModule],
-      declarations: [TzDatepickerComponent, TestComponent],
+      declarations: [TzDatepickerComponent],
       providers: [{ provide: TzDataService, useValue: tzDataService }],
       schemas: [NO_ERRORS_SCHEMA]
     })
@@ -119,7 +98,7 @@ describe('TzDatepickerComponent', () => {
     const handleChangeSpy = spyOn(component, 'handleChange');
     const input = de.query(By.css('input[type="time"]'));
     input.nativeElement.value = 'a';
-    input.triggerEventHandler('change', {});
+    input.triggerEventHandler('ngModelChange', {});
     expect(handleChangeSpy).toHaveBeenCalled();
   });
 

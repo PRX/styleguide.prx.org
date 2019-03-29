@@ -61,8 +61,8 @@ export class TzDate {
   public get finalDate() {
     let dateInvalid = !moment(this.isoDateString, 'YYYY-MM-DD').isValid();
     const isoTimestamp = `${this.isoDateString} ${this.twentyFourHourTime}`;
-    let timeInvalid = (dateInvalid = !moment(isoTimestamp, moment.ISO_8601).isValid());
-    let timezoneInvalid = this.tz === null || this.tz.length === 0;
+    const timeInvalid = (dateInvalid = !moment(isoTimestamp, moment.ISO_8601).isValid());
+    const timezoneInvalid = this.tz === null || this.tz.length === 0;
     if (timezoneInvalid || timeInvalid || dateInvalid) {
       return undefined;
     }

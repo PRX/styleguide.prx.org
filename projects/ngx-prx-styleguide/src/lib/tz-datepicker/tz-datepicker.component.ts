@@ -14,7 +14,7 @@ const moment = momentNs;
       <prx-datepicker
         name="date"
         [date]="this.model.pickerDate"
-        (dateChange)="handleDateChange($event)"
+        (dateChange)="this.model.pickerDate = $event; handleChange()"
         [changed]="changed"
       >
       </prx-datepicker>
@@ -22,13 +22,19 @@ const moment = momentNs;
         <input
           [ngClass]="{ changed: changed }"
           (change)="handleChange()"
-          [(ngModel)]="model.time"
+          [ngModel]="model.time"
+          (ngModelChange)="model.time = $event; handleChange()"
           name="time"
           placeholder="08:00:00"
           #timestamp="ngModel"
           prxTzTimestamp="hh:mm:ss"
         />
-        <select [ngClass]="{ changed: changed }" (change)="handleChange()" [(ngModel)]="model.meridiem" name="meridiem">
+        <select
+          [ngClass]="{ changed: changed }"
+          [ngModel]="model.meridiem"
+          (ngModelChange)="model.meridiem = $event; handleChange()"
+          name="meridiem"
+        >
           <option name="AM" value="AM">AM</option>
           <option name="PM" value="PM">PM</option>
         </select>
@@ -37,8 +43,8 @@ const moment = momentNs;
       <ng-container *ngIf="supportsTimeInput">
         <input
           [ngClass]="{ changed: changed }"
-          (change)="handleChange()"
-          [(ngModel)]="model.time"
+          [ngModel]="model.time"
+          (ngModelChange)="model.time = $event; handleChange()"
           name="time"
           type="time"
           step="1"
@@ -54,8 +60,8 @@ const moment = momentNs;
         [items]="this.timezones | async"
         bindLabel="label"
         bindValue="name"
-        [(ngModel)]="model.tz"
-        (change)="handleChange()"
+        [ngModel]="model.tz"
+        (ngModelChange)="model.tz = $event; handleChange()"
       >
       </ng-select>
     </ng-container>
@@ -123,11 +129,6 @@ export class TzDatepickerComponent implements OnInit {
     const timeString = this.supportsTimeInput ? momentDate.format('HH:mm:ss') : momentDate.format('hh:mm:ss');
     const meridiem = this.supportsTimeInput ? null : momentDate.format('A');
     return new TzDate(momentDate.toDate(), timeString, userTimezone, meridiem);
-  }
-
-  handleDateChange($event) {
-    this.model.pickerDate = $event;
-    this.handleChange();
   }
 
   handleChange() {
