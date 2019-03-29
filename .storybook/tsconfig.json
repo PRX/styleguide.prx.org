@@ -1,0 +1,14 @@
+{
+  "extends": "../projects/ngx-prx-styleguide-storybook/tsconfig.app.json",
+  "compilerOptions": {
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "../projects/**/*.spec.ts"
+  ],
+  "include": [
+    "../projects/**/*"
+  ]
+}

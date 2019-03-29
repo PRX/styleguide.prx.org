@@ -1,7 +1,13 @@
 
-import {from as observableFrom, forkJoin as observableForkJoin, throwError as observableThrowError, of as observableOf,  Observable ,  ReplaySubject } from 'rxjs';
+import {
+  from as observableFrom,
+  forkJoin as observableForkJoin,
+  throwError as observableThrowError,
+  of as observableOf,
+  Observable,
+  ReplaySubject } from 'rxjs';
 
-import {first, map, concatAll, toArray, mergeMap} from 'rxjs/operators';
+import {first, map, concatAll, toArray, mergeMap, catchError} from 'rxjs/operators';
 
 
 
@@ -125,16 +131,24 @@ export abstract class BaseModel {
       return observableThrowError(new Error(`Unknown model related: ${relName}`));
     } else if (relName) {
       if (force || !this.relatedReplays[relName]) {
-        let relValue = new ReplaySubject<any>(1);
+        const relValue = new ReplaySubject<any>(1);
         this.relatedLoaders[relName].subscribe(v => {
           this[relName] = v;
           relValue.next(v);
+        },
+        err => {
+          if (err.status === 404 && err.name === 'HalHttpError') {
+            console.error(`404 on ${this.constructor.name} (${this.doc && this.doc.id}) related loader "${relName}"`);
+            relValue.next();
+          } else {
+            relValue.error(err);
+          }
         });
         this.relatedReplays[relName] = relValue;
       }
       return this.relatedReplays[relName].pipe(first());
     } else {
-      let allRelated = this.RELATIONS.map(r => this.loadRelated(r, force));
+      const allRelated = this.RELATIONS.map(r => this.loadRelated(r, force));
       return observableForkJoin(allRelated).pipe(map(relateds => null));
     }
   }
