@@ -15,7 +15,7 @@ const storiesModuleMetaData = moduleMetadata({
   providers: [],
 });
 
-storiesOf('Datepicker', module)
+storiesOf('Forms Controls|Inputs/Timezone Datepicker', module)
   .addDecorator(withKnobs)
   .addDecorator(centered)
   .addDecorator(storiesModuleMetaData)
@@ -42,26 +42,21 @@ storiesOf('Datepicker', module)
     {
       notes: {
         markdown:`
-# Fancy Button
+# Timezone Date Picker
 
-The Button Component is a button used with PRX Models in Fancy Forms.
-
-----
-
-__Module__ \`FancyFormModule\`
-
-__Selector__ \`prx-button\`
+The prx-tz-datepicker combines date, time and timezone pickers for precise user control over date input
 
 ----
 
-- \`@Input() model: BaseModel\` \\- Model for checking isSaving, invalid, or changed states.
-- \`@Input() orange: boolean\` \\- Flag for orange button style. Defaults to \`false\`.
-- \`@Input() plain: boolean\` \\- Flag for plain button style. Defaults to \`false\`.
-- \`@Input() red: boolean\` \\- Flag for red button style. Defaults to \`false\`.
-- \`@Input() green: boolean\` \\- Flag for green button style. Defaults to \`false\`.
-- \`@Input() working: boolean\` \\- Override to show spinner.
-- \`@Input() disabled: boolean\` \\- Override to appear disabled.
-- \`@Input() visible: boolean\` \\- Override to control visibility.
+__Module__ \`TzDatepickerModule\`
+
+__Selector__ \`prx-tz-datepicker\`
+
+----
+
+- \`@Input() date: Date | string\` \\- _(optional)_ Sets initial date of the picker.
+- \`@Input() changed: boolean = false\` \\- _(optional)_ If true, applies the class \`changed\` to the input element.
+- \`@Output() dateChange: EventEmitter<Date>\` \\- _(optional)_ Emitted when date is selected.
 `
       }
     }

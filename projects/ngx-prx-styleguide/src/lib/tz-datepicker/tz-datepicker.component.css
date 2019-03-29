@@ -3,7 +3,7 @@ input {
   height: 40px;
 }
 
-input.changed {
+.changed {
   outline: 5px auto #f09b4c;
 }
 

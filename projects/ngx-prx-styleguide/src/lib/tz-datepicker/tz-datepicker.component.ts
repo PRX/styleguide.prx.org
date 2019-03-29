@@ -15,20 +15,32 @@ const moment = momentNs;
       [date]="this.model.pickerDate" (dateChange)="handleDateChange($event)" [changed]="changed">
     </prx-datepicker>
     <ng-container *ngIf="!supportsTimeInput">
-      <input (change)="handleChange()" [(ngModel)]="model.time" name="time" placeholder="08:00:00" #timestamp="ngModel" prxTzTimestamp="hh:mm:ss">
-      <select (change)="handleChange()" [(ngModel)]="model.meridiem" name="meridiem">
+      <input
+        [ngClass]="{'changed': changed}"
+        (change)="handleChange()" [(ngModel)]="model.time" name="time" placeholder="08:00:00" #timestamp="ngModel" prxTzTimestamp="hh:mm:ss">
+      <select
+        [ngClass]="{'changed': changed}"
+        (change)="handleChange()" [(ngModel)]="model.meridiem" name="meridiem">
         <option name="AM" value="AM">AM</option>
         <option name="PM" value="PM">PM</option>
       </select>
       <p class="error" *ngIf="timestamp.errors">Timestamp must be between 01:00:00 and 12:59:59</p>
     </ng-container>
     <ng-container *ngIf="supportsTimeInput">
-      <input (change)="handleChange()" [(ngModel)]="model.time" name="time" type="time" step="1" prxTzTimestamp="HH:mm:ss" required>
+      <input
+        [ngClass]="{'changed': changed}"
+        (change)="handleChange()"
+        [(ngModel)]="model.time"
+        name="time"
+        type="time"
+        step="1"
+        prxTzTimestamp="HH:mm:ss"
+        required>
     </ng-container>
     <ng-select
       required
       ngDefaultControl name="timezone"
-      [ngClass]="{'invalid': timezoneInvalid }"
+      [ngClass]="{'invalid': timezoneInvalid, 'changed': changed }"
       [items]="this.timezones | async"
       bindLabel="label"
       bindValue="name"
