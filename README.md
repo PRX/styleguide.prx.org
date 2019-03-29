@@ -47,9 +47,10 @@ And add image assets, styles for the base stylesheet, and any components you are
           "options": {
             "assets": [
               {
-                "glob": "*",
-                "input": "node_modules/ngx-prx-styleguide/assets/images",
-                "output": "assets/images/"
+                "glob": "**/*",
+                "input": "node_modules/ngx-prx-styleguide/assets",
+                "ignore": ["styles/*"],
+                "output": "assets"
               }
             ],
             "styles": [
