@@ -3,16 +3,14 @@ import { action } from '@storybook/addon-actions';
 import { centered } from '@storybook/addon-centered/angular';
 import { withKnobs, boolean, date as dateKnob } from '@storybook/addon-knobs';
 
-import { TzDatepickerModule } from './tz-datepicker.module'
+import { TzDatepickerModule } from './tz-datepicker.module';
 
 // Module metadata for stories.
 const storiesModuleMetaData = moduleMetadata({
-  imports: [
-    TzDatepickerModule
-  ],
+  imports: [TzDatepickerModule],
   schemas: [],
   declarations: [],
-  providers: [],
+  providers: []
 });
 
 storiesOf('Forms Controls|Inputs/Timezone Datepicker', module)
@@ -22,9 +20,9 @@ storiesOf('Forms Controls|Inputs/Timezone Datepicker', module)
   .add(
     'Usage Details (Knobs)',
     () => {
-      const date = dateKnob('Date', new Date(Date.UTC(2018, 2, 16, 2, 0, 0, 0)))
-      const changed = boolean('Date Changed', false)
-      const dateChange = action('Date Change')
+      const date = dateKnob('Date', new Date(Date.UTC(2018, 2, 16, 2, 0, 0, 0)));
+      const changed = boolean('Date Changed', false);
+      const dateChange = action('Date Change');
 
       return {
         template: `
@@ -37,11 +35,11 @@ storiesOf('Forms Controls|Inputs/Timezone Datepicker', module)
           changed,
           dateChange
         }
-      }
+      };
     },
     {
       notes: {
-        markdown:`
+        markdown: `
 # Timezone Date Picker
 
 The prx-tz-datepicker combines date, time and timezone pickers for precise user control over date input
