@@ -66,7 +66,7 @@ describe('TzDatepickerComponent', () => {
     expect(newDateModel.tz).toEqual(testTz);
     // 2:00AM UTC === 10PM EST
     expect(newDateModel.time).toEqual('22:00:00');
-    expect(newDateModel.meridiem).toBeNull;
+    expect(newDateModel.meridiem).toBeNull();
   });
 
   it('Initializes the time for browsers with no time support', () => {
