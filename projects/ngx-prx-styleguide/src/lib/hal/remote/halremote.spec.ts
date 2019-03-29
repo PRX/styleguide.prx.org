@@ -28,7 +28,13 @@ describe('HalRemote', () => {
     link = {href: '/foobar'};
     token = new ReplaySubject<string>(1);
     token.next('thetoken');
-    fakeAuth = {token, refreshToken: () => token.next('nexttoken') || token};
+    fakeAuth = {
+      token,
+      refreshToken: () => {
+        token.next('nexttoken');
+        return token;
+      }
+    };
     remote = new HalRemote('http://thehost', httpClient, fakeAuth, 10);
     remote.clear();
   });
