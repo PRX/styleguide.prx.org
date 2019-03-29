@@ -1,5 +1,4 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
-import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { HeroModule } from './hero.module';
 
 // Module metadata for stories.
@@ -13,7 +12,6 @@ const storiesModuleMetaData = moduleMetadata({
 });
 
 storiesOf('Navigation|Hero', module)
-  .addDecorator(withKnobs)
   .addDecorator(storiesModuleMetaData)
   .add(
     'Usage Details',
