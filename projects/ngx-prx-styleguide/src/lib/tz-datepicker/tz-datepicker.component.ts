@@ -20,19 +20,18 @@ const moment = momentNs;
       </prx-datepicker>
       <ng-container *ngIf="!supportsTimeInput">
         <input
-          [ngClass]="{ changed: changed }"
-          (change)="handleChange()"
-          [ngModel]="model.time"
-          (ngModelChange)="model.time = $event; handleChange()"
+          [class.changed]="changed"
+          [(ngModel)]="model.time"
+          (ngModelChange)="handleChange()"
           name="time"
           placeholder="08:00:00"
           #timestamp="ngModel"
           prxTzTimestamp="hh:mm:ss"
         />
         <select
-          [ngClass]="{ changed: changed }"
-          [ngModel]="model.meridiem"
-          (ngModelChange)="model.meridiem = $event; handleChange()"
+          [class.changed]="changed"
+          [(ngModel)]="model.meridiem"
+          (ngModelChange)="handleChange()"
           name="meridiem"
         >
           <option name="AM" value="AM">AM</option>
@@ -42,9 +41,9 @@ const moment = momentNs;
       </ng-container>
       <ng-container *ngIf="supportsTimeInput">
         <input
-          [ngClass]="{ changed: changed }"
-          [ngModel]="model.time"
-          (ngModelChange)="model.time = $event; handleChange()"
+          [class.changed]="changed"
+          [(ngModel)]="model.time"
+          (ngModelChange)="handleChange()"
           name="time"
           type="time"
           step="1"
@@ -56,12 +55,12 @@ const moment = momentNs;
         required
         ngDefaultControl
         name="timezone"
-        [ngClass]="{ invalid: timezoneInvalid, changed: changed }"
+        [class.changed]="changed"
         [items]="this.timezones | async"
         bindLabel="label"
         bindValue="name"
-        [ngModel]="model.tz"
-        (ngModelChange)="model.tz = $event; handleChange()"
+        [(ngModel)]="model.tz"
+        (ngModelChange)="handleChange()"
       >
       </ng-select>
     </ng-container>
@@ -106,7 +105,7 @@ export class TzDatepickerComponent implements OnInit {
       .pipe(
         map(response => {
           moment.tz.load(response);
-          let currDate = moment();
+          const currDate = moment();
           const tzs = moment.tz.names();
           return tzs.map(tz => ({
             label: `${tz.replace('_', ' ')} (GMT ${currDate.tz(tz).format('Z')})`,

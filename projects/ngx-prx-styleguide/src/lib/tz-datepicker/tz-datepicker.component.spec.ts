@@ -79,7 +79,7 @@ describe('TzDatepickerComponent', () => {
 
   it(`Emits dateChanged when valid`, () => {
     const testTimestamp = '12:34:56';
-    const [hr, min, sec] = testTimestamp.split(':').map(el => parseInt(el));
+    const [hr, min, sec] = testTimestamp.split(':').map(el => parseInt(el, 10));
     const input = de.query(By.css('input[type="time"]'));
     input.nativeElement.value = testTimestamp;
     input.nativeElement.dispatchEvent(new Event('input'));
@@ -112,7 +112,7 @@ describe('TzDatepickerComponent', () => {
 
   it(`Emits dateChanged when valid`, () => {
     const testTimestamp = '12:34:56';
-    const [hr, min, sec] = testTimestamp.split(':').map(el => parseInt(el));
+    const [hr, min, sec] = testTimestamp.split(':').map(el => parseInt(el, 10));
     const input = de.query(By.css('input[type="time"]'));
     input.nativeElement.value = testTimestamp;
     input.nativeElement.dispatchEvent(new Event('input'));

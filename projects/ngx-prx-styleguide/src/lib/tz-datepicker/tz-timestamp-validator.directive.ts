@@ -9,6 +9,7 @@ const moment = momentNs;
   providers: [{ provide: NG_VALIDATORS, useExisting: TzTimestampValidatorDirective, multi: true }]
 })
 export class TzTimestampValidatorDirective implements Validator {
+  /* tslint:disable-next-line:no-input-rename */
   @Input('prxTzTimestamp') timestampFormat: string; // 12-hour (hh:mm:ss) or 24-hour (HH:mm:ss)
   validate(control: AbstractControl): ValidationErrors {
     return tzTimestampValidator(this.timestampFormat)(control);
