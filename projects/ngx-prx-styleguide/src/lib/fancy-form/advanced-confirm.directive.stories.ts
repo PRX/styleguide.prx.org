@@ -49,13 +49,7 @@ storiesOf('Forms Controls|Directives/Advanced Confirm', module)
   .add(
     'Usage Details (Knobs)',
     () => {
-      // For some reason, text knob encodes HTML entities. We need to decode them.
-      const decodeHtml = (label: string, value: string) => {
-        const txt = document.createElement('textarea');
-        txt.innerHTML = text(label, value);
-        return txt.value;
-      };
-      const confirmMessage = decodeHtml('Confirmation Message', 'That\'s a risky move');
+      const confirmMessage = text('Confirmation Message', 'That\'s a risky move');
       const onChange = action('Value changed');
 
       return {

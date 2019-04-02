@@ -112,7 +112,7 @@ storiesOf('Forms Controls|Inputs/Date Picker/Examples', module)
     {
       notes: {
         markdown: `
-### Usage
+## Usage
 \`\`\`javascript
 @Component ({
   selector:'open-picker',

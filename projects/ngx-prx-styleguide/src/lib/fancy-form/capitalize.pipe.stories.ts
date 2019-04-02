@@ -47,7 +47,7 @@ __Name__ \`capitalize\`
 
 ----
 
-### Usage
+## Usage
 \`\`\`html
 <span>{{ strValue | capitalize }}</span>
 \`\`\`
