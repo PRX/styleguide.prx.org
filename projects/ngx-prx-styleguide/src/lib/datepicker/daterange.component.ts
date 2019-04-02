@@ -9,13 +9,13 @@ import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@
   selector: 'prx-daterange',
   template: `
     <div class="picker">
-      <prx-datepicker [format]="format" [date]="from" [container]="fromDateEl"
+      <prx-datepicker [format]="format" [date]="from" [maxDate]="to" [container]="fromDateEl"
         [UTC]="UTC" (dateChange)="onFromDateChange($event)"></prx-datepicker>
       <label>From:</label>
       <div #fromDate></div>
     </div>
     <div class="picker">
-      <prx-datepicker [format]="format" [date]="to" [container]="toDateEl"
+      <prx-datepicker [format]="format" [date]="to" [minDate]="from" [container]="toDateEl"
         [UTC]="UTC" (dateChange)="onToDateChange($event)"></prx-datepicker>
       <label>To:</label>
       <div #toDate></div>
