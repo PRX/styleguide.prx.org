@@ -108,7 +108,7 @@ export class DatepickerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let options: any = {
+    let options: Pikaday.PikadayOptions = {
       field: this.input.nativeElement,
       format: this.format,
       theme: 'triangle-theme',
