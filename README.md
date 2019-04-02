@@ -66,9 +66,10 @@ using, to your `angular.json`:
           "options": {
             "assets": [
               {
-                "glob": "*",
-                "input": "node_modules/ngx-prx-styleguide/assets/images",
-                "output": "assets/images/"
+                "glob": "**/*",
+                "input": "node_modules/ngx-prx-styleguide/assets",
+                "ignore": ["styles/*"],
+                "output": "assets"
               }
             ],
             "styles": [

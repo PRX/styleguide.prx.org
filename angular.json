@@ -22,9 +22,10 @@
               "src/favicon.ico",
               "src/assets",
               {
-                "glob": "*",
-                "input": "dist/ngx-prx-styleguide/assets/images",
-                "output": "assets/images/"
+                "glob": "**/*",
+                "input": "projects/ngx-prx-styleguide/src/assets",
+                "ignore": ["styles/*"],
+                "output": "assets"
               }
             ],
             "styles": [
@@ -187,9 +188,10 @@
               "projects/ngx-prx-styleguide-storybook/src/favicon.ico",
               "projects/ngx-prx-styleguide-storybook/src/assets",
               {
-                "glob": "*",
-                "input": "projects/ngx-prx-styleguide/src/assets/images",
-                "output": "assets/images/"
+                "glob": "**/*",
+                "input": "projects/ngx-prx-styleguide/src/assets",
+                "ignore": ["styles/*"],
+                "output": "assets"
               }
             ],
             "styles": [
