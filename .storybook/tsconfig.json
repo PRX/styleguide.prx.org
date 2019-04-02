@@ -1,0 +1,15 @@
+{
+  "extends": "../projects/ngx-prx-styleguide-storybook/tsconfig.app.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "../projects/**/*.spec.ts"
+  ],
+  "include": [
+    "../projects/**/*"
+  ]
+}

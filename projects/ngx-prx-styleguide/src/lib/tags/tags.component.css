@@ -1,6 +1,7 @@
 :host {
   display: block;
   margin-bottom: 1em;
+  text-align: left;
 }
 
 .quick_tags {
@@ -29,12 +30,12 @@
   margin-left: 0.25em;
 }
 
-.ng-select.tags >>> .ng-clear-wrapper,
-.ng-select.tags >>> .ng-arrow-wrapper {
+:host >>> .ng-select.tags .ng-clear-wrapper,
+:host >>> .ng-select.tags .ng-arrow-wrapper {
   display: none;
 }
 
-.ng-select.tags >>> .ng-input > input {
+:host >>> .ng-select.tags .ng-input > input {
   padding: 0;
   line-height: 28px;
 }

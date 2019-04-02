@@ -19,6 +19,7 @@ import { Component } from '@angular/core';
         <li><code>@Input() placeholder: string = ''</code> - placeholder when nothing is selected</li>
         <li><code>@Input() searchable: boolean = false</code> - enable dropdown search field</li>
         <li><code>@Input() single: boolean = false</code> - use single-select mode</li>
+        <li><code>@Input() clearable: boolean = true</code> - allow clearing value(s)</li>
         <li><code>@Output() select: string | string[]</code> - outputs any change to the selected value(s)</li>
       </ul>
       <aside>
