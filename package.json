@@ -30,9 +30,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "npm run build ngx-prx-styleguide && npm run build:lib:scss",
+    "build:lib": "npm run build ngx-prx-styleguide && npm run build:lib:assets",
     "test:lib": "npm run test ngx-prx-styleguide",
-    "build:lib:scss": "scss-bundle -e projects/ngx-prx-styleguide/src/assets/styles/base.scss -d dist/ngx-prx-styleguide/assets/styles/bundle.scss && cp -R projects/ngx-prx-styleguide/src/assets/images dist/ngx-prx-styleguide/assets",
+    "build:lib:assets": "./bin/buildassets.sh",
     "version": "node ./bin/readver.js | ./bin/newver.sh",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook"
