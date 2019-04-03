@@ -1,6 +1,6 @@
 {
   "name": "ngx-prx-styleguide",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "PRX Angular 2 style guide library",
   "keywords": [
     "PRX",
@@ -26,6 +26,7 @@
   "dependencies": {
     "@ng-select/ng-select": "^2.15.3",
     "c3": "^0.4.11",
+    "moment-timezone": "^0.5.23",
     "ngx-tooltip": "0.0.9",
     "pikaday": "^1.5.1"
   }

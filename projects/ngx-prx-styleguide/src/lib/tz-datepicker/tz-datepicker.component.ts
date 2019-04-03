@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import momentNs from 'moment';
-import 'moment-timezone/moment-timezone';
 import { TzDate } from './tzdate';
 import { map, share } from 'rxjs/operators';
 import { TzDataService } from './tz-data.service';
 
-const moment = momentNs;
+import * as momentNs from 'moment-timezone'
+const moment = momentNs
 
 @Component({
   selector: 'prx-tz-datepicker',
