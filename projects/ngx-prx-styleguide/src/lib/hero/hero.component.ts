@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'prx-hero',
-  styleUrls: ['hero.component.css'],
+  styleUrls: ['hero.component.scss'],
   template: `
     <div #refHero class="hero banner" [class.orange]="orange" [class.blue]="blue">
       <section>

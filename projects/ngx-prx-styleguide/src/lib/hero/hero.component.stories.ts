@@ -24,7 +24,7 @@ storiesOf('Navigation|Hero', module)
                 <h1>Edit Campaign</h1>
               </div>
               <div class="hero-info">
-                <h2>Blue Apron</h2>
+                <h2>Why is the queen going to play Fortnight?</h2>
                 <p>Due 3/24 (3 days from now)</p>
               </div>
               <div class="hero-actions">
@@ -39,10 +39,6 @@ storiesOf('Navigation|Hero', module)
         .main {
           height: 150vh;
           padding-top: 73px;
-        }
-        .main >>> section {
-          padding-left: 30px;
-          padding-right: 30px;
         }
         .header {
           position: fixed;
