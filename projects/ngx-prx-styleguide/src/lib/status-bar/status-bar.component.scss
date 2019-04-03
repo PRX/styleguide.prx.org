@@ -1,0 +1,26 @@
+@import './status-bar.variables';
+
+:host {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: $header-height;
+  left: 0;
+  right: 0;
+  height: $status_bar-height;
+
+  box-sizing: border-box;
+
+  background-color: $white;
+
+  border: 1px solid $white-fog;
+
+  font-size: 1rem;
+  line-height: $status_bar-height;
+
+  ::ng-deep {
+    & > * + * {
+      border-left: 1px solid $white-fog;
+    }
+  }
+}

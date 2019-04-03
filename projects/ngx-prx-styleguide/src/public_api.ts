@@ -36,6 +36,8 @@ export { HeaderModule } from './lib/header/header.module';
 
 export { HeroModule } from './lib/hero/hero.module';
 
+export { IconModule } from './lib/icon/icon.module';
+
 export { ImageModule } from './lib/image/image.module';
 
 export { ModalModule } from './lib/modal/modal.module';
@@ -45,6 +47,8 @@ export { SelectModule } from './lib/select/select.module';
 
 export { SpinnerModule } from './lib/spinner/spinner.module';
 
+export { StatusBarModule } from './lib/status-bar/status-bar.module';
+
 export { TabModule } from './lib/tab/tab.module';
 export { TabService } from './lib/tab/tab.service';
 
@@ -52,3 +56,4 @@ export { TagsModule } from './lib/tags/tags.module';
 
 export { ToastrModule } from './lib/toastr/toastr.module';
 export { ToastrService } from './lib/toastr/toastr.service';
+

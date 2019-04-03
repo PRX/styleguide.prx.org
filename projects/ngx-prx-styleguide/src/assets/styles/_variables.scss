@@ -1,27 +1,118 @@
+// Variables
+//
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
-// Converted Variables
+// Color System
+/// Greys
+$white:    #fff !default;
+$grey-100: #f0f0f0 !default;
+$grey-200: #e6e6e6 !default;
+$grey-300: #ddd !default;
+$grey-400: #bebebe !default;
+$grey-500: #a3a3a3 !default;
+$grey-600: #8A8A8A !default; // Merges usage of #939393 and #818181.
+$grey-700: #676767 !default;
+$grey-800: #343434 !default;
+$grey-900: #1a1a1a !default;
+$black:    #000 !default;
 
-$black: #000 !default;
-$grey-darkest: #1a1a1a !default;
-$grey-dark: #343434 !default;
-$grey-dove: #676767 !default;
-$grey: #818181 !default;
-$grey-suva: #939393 !default;
-$grey-silver: #a3a3a3 !default;
-$grey-northernsky: #bebebe !default;
-$grey-light: #ddd !default;
-$white: #fff !default;
-$white-smoke: #f0f0f0 !default;
-$white-fog: #e6e6e6 !default;
-$blue: #0089bd !default;
+$greys: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$greys: map-merge(
+  (
+    "100": $grey-100,
+    "200": $grey-200,
+    "300": $grey-300,
+    "400": $grey-400,
+    "500": $grey-500,
+    "600": $grey-600,
+    "700": $grey-700,
+    "800": $grey-800,
+    "900": $grey-900
+  ),
+  $greys
+);
+
+/// Legacy grey variables. (Deprecated)
+$grey-darkest:     $grey-900;
+$grey-dark:        $grey-800;
+$grey-dove:        $grey-700;
+$grey:             $grey-600;
+$grey-suva:        $grey-600;
+$grey-silver:      $grey-500;
+$grey-northernsky: $grey-400;
+$grey-light:       $grey-300;
+$white-fog:        $grey-200;
+$white-smoke:      $grey-100;
+
+/// Colors.
+$blue:          #0089bd !default;
 $blue-emphasis: #0070a1 !default;
-$blue-muted: #008db1 !default;
-$green: #61A85D !default;
-$orange: #ff9600 !default;
-$red: #ee4d3e !default;
-$red-emphasis: #ff0000 !default;
+$blue-muted:    #008db1 !default;
+$green:         #61A85D !default;
+$orange:        #ff9600 !default;
+$red:           #ee4d3e !default;
+$red-emphasis:  #ff0000 !default;
+
+$colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$colors: map-merge(
+  (
+    "blue":           $blue,
+    "blue-emphasis":  $blue-emphasis,
+    "blue-muted":     $blue-muted,
+    "red":            $red,
+    "red-emphasis":   $red-emphasis,
+    "orange":         $orange,
+    "green":          $green,
+    "white":          $white,
+    "gray":           $gray-600,
+    "gray-dark":      $gray-800
+  ),
+  $colors
+);
+
+/// Theme Colors.
+$primary:   $blue !default;
+$secondary: $gray-600 !default;
+$success:   $green !default;
+$info:      $blue !default;
+$warning:   $orange !default;
+$danger:    $red !default;
+$light:     $gray-100 !default;
+$dark:      $gray-900 !default;
+
+$theme-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+  (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      $light,
+    "dark":       $dark
+  ),
+  $theme-colors
+);
+
+// Set a specific jump point for requesting color jumps.
+$theme-color-interval: 8% !default;
+
+// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold: 150 !default;
+
+// Customize the light and dark text colors for use in our YIQ color contrast function.
+$yiq-text-dark:  $gray-900 !default;
+$yiq-text-light: $white !default;
+
 $padding-base: 10px !default;
 $margin-base: 10px !default;
+
+$header-height: 50px;
 
 // Custom Media Query Variables
 

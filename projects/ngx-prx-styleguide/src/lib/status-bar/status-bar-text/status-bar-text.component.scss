@@ -1,0 +1,22 @@
+@import '../status-bar.variables';
+
+:host {
+   padding: $status_bar-item-padding;
+   white-space: nowrap;
+
+   &.text--bold {
+     font-weight: bold;
+   }
+
+   &.text--italic {
+     font-style: italic;
+   }
+
+   &.text--uppercase {
+     text-transform: uppercase;
+   }
+
+   &.layout--stretch {
+     flex-grow: 1;
+   }
+}
