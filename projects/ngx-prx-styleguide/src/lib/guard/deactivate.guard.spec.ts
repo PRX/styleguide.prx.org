@@ -22,8 +22,8 @@ describe('DeactivateGuard', () => {
   it('decides deactivation from an observable', () => {
     let allow: any = {canDeactivate: () => observableOf(true)};
     let deny: any = {canDeactivate: () => observableOf(false)};
-    let allowObs = <Observable<boolean>> guard.canDeactivate(allow);
-    let denyObs = <Observable<boolean>> guard.canDeactivate(deny);
+    let allowObs = guard.canDeactivate(allow) as Observable<boolean>;
+    let denyObs = guard.canDeactivate(deny) as Observable<boolean>;
     expect(allowObs instanceof Observable).toBeTruthy();
     expect(denyObs instanceof Observable).toBeTruthy();
 

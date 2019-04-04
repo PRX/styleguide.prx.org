@@ -35,12 +35,12 @@ describe('AuthComponent', () => {
 
   it('renders the auth iframe when host and client are set', () => {
     comp.host = 'id.prx.org';
-    comp.ngOnChanges(<any> {host: true, client: true});
+    comp.ngOnChanges({host: true, client: true} as any);
     fix.detectChanges();
     expect(de.query(By.css('iframe'))).toBeNull();
 
     comp.client = 'whatev';
-    comp.ngOnChanges(<any> {host: true, client: true});
+    comp.ngOnChanges({host: true, client: true} as any);
     fix.detectChanges();
     let iframe = de.query(By.css('iframe'));
     expect(iframe).not.toBeNull();
@@ -65,7 +65,7 @@ describe('AuthComponent', () => {
     spyOn(AuthParser, 'parseToken').and.returnValue('the-token');
     comp.host = 'id.prx.org';
     comp.client = 'whatev';
-    comp.ngOnChanges(<any> {host: true, client: true});
+    comp.ngOnChanges({host: true, client: true} as any);
     fix.detectChanges();
     expect(token).toEqual('the-token');
 
@@ -78,7 +78,7 @@ describe('AuthComponent', () => {
     spyOn(AuthParser, 'parseIframeQuery').and.throwError('something went wrong');
     comp.host = 'id.prx.org';
     comp.client = 'whatev';
-    comp.ngOnChanges(<any> {host: true, client: true});
+    comp.ngOnChanges({host: true, client: true} as any);
     fix.detectChanges();
     expect(error.message).toEqual('something went wrong');
   });

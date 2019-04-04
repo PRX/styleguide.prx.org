@@ -11,7 +11,7 @@ class FakeModel extends BaseModel {
   related() { return {}; }
   decode() { for (let k of Object.keys(this.doc)) { this[k] = this.doc[k]; } }
   encode() { return {}; }
-  saveNew(data: {}) { return <any> null; }
+  saveNew(data: {}) { return null as any; }
 }
 
 describe('BaseModel', () => {
@@ -46,14 +46,14 @@ describe('BaseModel', () => {
 
     it('records original values', () => {
       base.SETABLE = ['foo', 'bar'];
-      base.init(null, <any> {foo: 'fooval', hello: 'world'});
+      base.init(null, {foo: 'fooval', hello: 'world'} as any);
       expect(base.original).toEqual({foo: 'fooval', bar: undefined});
     });
 
     it('overlays stored values', () => {
       base.SETABLE = ['someattribute'];
       spyOn(base, 'restore').and.callFake(function() { this.someattribute = 'override'; });
-      base.init(null, <any> {someattribute: 'originalvalue'});
+      base.init(null, {someattribute: 'originalvalue'} as any);
       expect(base.someattribute).toEqual('override');
       expect(base.original['someattribute']).toEqual('originalvalue');
     });
@@ -171,7 +171,7 @@ describe('BaseModel', () => {
     });
 
     it('updates existing docs', () => {
-      base.doc = <any> {update: null};
+      base.doc = {update: null} as any;
       base.changed = () => false;
       spyOn(base.doc, 'update').and.returnValue(observableEmpty());
       base.save();
@@ -182,7 +182,7 @@ describe('BaseModel', () => {
     });
 
     it('deletes destroyed docs', () => {
-      base.doc = <any> {destroy: null};
+      base.doc = {destroy: null} as any;
       spyOn(base.doc, 'destroy').and.returnValue(observableEmpty());
       base.isDestroy = true;
       base.save();
@@ -190,7 +190,7 @@ describe('BaseModel', () => {
     });
 
     it('re-inits after saving', () => {
-      base.doc = <any> {update: null};
+      base.doc = {update: null} as any;
       base.changed = () => true;
       spyOn(base.doc, 'update').and.returnValue(observableOf({foo: 'bar'}));
       spyOn(base, 'unstore').and.stub();
@@ -204,7 +204,7 @@ describe('BaseModel', () => {
     });
 
     it('cascades saving to changed child models', () => {
-      base.doc = <any> {update: null};
+      base.doc = {update: null} as any;
       spyOn(base.doc, 'update').and.returnValue(observableOf({foo: 'bar'}));
       spyOn(base, 'init').and.stub();
 
@@ -235,7 +235,7 @@ describe('BaseModel', () => {
       });
 
       // init related
-      base.init(null, <any> {update: () => observableOf({})});
+      base.init(null, {update: () => observableOf({})} as any);
       expect(base.RELATIONS).toEqual(['foo']);
       expect(base['foo'][0].name).toEqual('original');
 
@@ -275,13 +275,13 @@ describe('BaseModel', () => {
       });
 
       // init related and save
-      base.init(null, <any> {update: () => observableOf({})});
+      base.init(null, {update: () => observableOf({})} as any);
       base.save().subscribe();
       expect(originalSaved).toEqual(true);
     });
 
     it('removes destroyed child models', () => {
-      base.doc = <any> {update: null};
+      base.doc = {update: null} as any;
       spyOn(base.doc, 'update').and.returnValue(observableOf({foo: 'bar'}));
       spyOn(base, 'init').and.stub();
       base.RELATIONS = ['foo'];
@@ -400,7 +400,7 @@ describe('BaseModel', () => {
       expect(base.invalid()).toBeNull();
       base['foo'] = [
         {invalid: () => 'yeah sure'},
-        {invalid: () => <any> null}
+        {invalid: () => null as any}
       ];
       expect(base.invalid('foo')).toEqual('yeah sure');
       expect(base.invalid()).toEqual('yeah sure');

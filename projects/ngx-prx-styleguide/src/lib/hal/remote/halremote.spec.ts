@@ -71,7 +71,7 @@ describe('HalRemote', () => {
 
     it('makes sure the link exists', () => {
       expect(remote.expand(null)).toBeNull();
-      expect(remote.expand(<any> {})).toBeNull();
+      expect(remote.expand({} as any)).toBeNull();
     });
 
     it('interprets templated links', () => {
