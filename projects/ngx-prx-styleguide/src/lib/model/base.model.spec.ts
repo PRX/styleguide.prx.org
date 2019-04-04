@@ -4,6 +4,8 @@ import {of as observableOf, empty as observableEmpty,  Observable ,  Observer } 
 import { BaseModel } from './base.model';
 import { MockHalDoc } from '../hal/mock/mock-haldoc';
 import { HalHttpError } from '../hal/remote/halremote';
+import { HalObservable } from '../hal/doc/halobservable';
+import { HalDoc } from '../hal/doc/haldoc';
 
 class FakeModel extends BaseModel {
   someattribute = 'somevalue';
@@ -27,7 +29,7 @@ describe('BaseModel', () => {
   describe('init', () => {
 
     it('sets the parent-self relationship', () => {
-      jest.spyOn(base, 'decode').and.stub();
+      jest.spyOn(base, 'decode').mockImplementation(() => {});
       const fakeParent = new MockHalDoc({id: 123, foo: 'bar'}, 'model/whatever')
       const fakeSelf = new MockHalDoc({id: 123, foo: 'bar'}, 'model/whatever')
       base.init(fakeParent, fakeSelf);
@@ -38,7 +40,7 @@ describe('BaseModel', () => {
     });
 
     it('only decodes existing documents', () => {
-      jest.spyOn(base, 'decode').and.stub();
+      jest.spyOn(base, 'decode').mockImplementation(() => {})
       base.init();
       expect(base.isNew).toEqual(true);
       expect(base.decode).not.toHaveBeenCalled();
@@ -77,7 +79,7 @@ describe('BaseModel', () => {
 
     it('sets and stores the value', () => {
       base.SETABLE = ['foo'];
-      jest.spyOn(base, 'store').and.stub();
+      jest.spyOn(base, 'store').mockImplementation(() => {})
       base.set('foo', 'bar');
       expect(base.store).toHaveBeenCalled();
     });
@@ -173,7 +175,7 @@ describe('BaseModel', () => {
     it('updates existing docs', () => {
       base.doc = {update: null} as any;
       base.changed = () => false;
-      jest.spyOn(base.doc, 'update').mockReturnValue(observableEmpty());
+      jest.spyOn(base.doc, 'update').mockReturnValue(observableEmpty() as unknown as HalObservable<HalDoc>);
       base.save();
       expect(base.doc.update).not.toHaveBeenCalled();
       base.changed = () => true;
@@ -183,7 +185,7 @@ describe('BaseModel', () => {
 
     it('deletes destroyed docs', () => {
       base.doc = {destroy: null} as any;
-      jest.spyOn(base.doc, 'destroy').mockReturnValue(observableEmpty());
+      jest.spyOn(base.doc, 'destroy').mockReturnValue(observableEmpty() as unknown as HalObservable<HalDoc>);
       base.isDestroy = true;
       base.save();
       expect(base.doc.destroy).toHaveBeenCalled();
@@ -192,8 +194,8 @@ describe('BaseModel', () => {
     it('re-inits after saving', () => {
       base.doc = {update: null} as any;
       base.changed = () => true;
-      jest.spyOn(base.doc, 'update').mockReturnValue(observableOf({foo: 'bar'}));
-      jest.spyOn(base, 'unstore').and.stub();
+      jest.spyOn(base.doc, 'update').mockReturnValue(observableOf({foo: 'bar'}) as unknown as HalObservable<HalDoc>);
+      jest.spyOn(base, 'unstore').mockImplementation(() => {})
       jest.spyOn(base, 'init').mockImplementation((parent: any, doc: any) => {
         expect(doc.foo).toEqual('bar');
       });
@@ -205,8 +207,8 @@ describe('BaseModel', () => {
 
     it('cascades saving to changed child models', () => {
       base.doc = {update: null} as any;
-      jest.spyOn(base.doc, 'update').mockReturnValue(observableOf({foo: 'bar'}));
-      jest.spyOn(base, 'init').and.stub();
+      jest.spyOn(base.doc, 'update').mockReturnValue(observableOf({foo: 'bar'}) as unknown as HalObservable<HalDoc>);
+      jest.spyOn(base, 'init').mockImplementation(() => {})
 
       let firstSaved = false, secondSaved = false;
       base.RELATIONS = ['foo'];
@@ -282,8 +284,8 @@ describe('BaseModel', () => {
 
     it('removes destroyed child models', () => {
       base.doc = {update: null} as any;
-      jest.spyOn(base.doc, 'update').mockReturnValue(observableOf({foo: 'bar'}));
-      jest.spyOn(base, 'init').and.stub();
+      jest.spyOn(base.doc, 'update').mockReturnValue(observableOf({foo: 'bar'}) as unknown as HalObservable<HalDoc>);
+      jest.spyOn(base, 'init').mockImplementation(() => {})
       base.RELATIONS = ['foo'];
       base['foo'] = [{changed: () => true, save: () => observableOf(true), isDestroy: true}];
       base.save().subscribe();
