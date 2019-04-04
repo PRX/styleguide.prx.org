@@ -22,6 +22,10 @@ module.exports = {
           }
         ],
         enforce: 'pre',
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
       }
     ]
   }

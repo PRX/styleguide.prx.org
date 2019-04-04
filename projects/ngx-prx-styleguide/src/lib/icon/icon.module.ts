@@ -1,13 +1,16 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IconChevronComponent } from './icon-chevron/icon-chevron.component';
+import { InlineSVGModule } from 'ng-inline-svg';
 import { IconComponent } from './icon.component';
 
 @NgModule({
-  declarations: [IconChevronComponent, IconComponent],
+  declarations: [IconComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule,
+    InlineSVGModule.forRoot()
   ],
-  exports: [IconChevronComponent, IconComponent]
+  exports: [IconComponent]
 })
 export class IconModule { }

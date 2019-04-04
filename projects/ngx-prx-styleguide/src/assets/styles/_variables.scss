@@ -67,21 +67,21 @@ $colors: map-merge(
     "orange":         $orange,
     "green":          $green,
     "white":          $white,
-    "gray":           $gray-600,
-    "gray-dark":      $gray-800
+    "grey":           $grey-600,
+    "grey-dark":      $grey-800
   ),
   $colors
 );
 
 /// Theme Colors.
 $primary:   $blue !default;
-$secondary: $gray-600 !default;
+$secondary: $grey-600 !default;
 $success:   $green !default;
 $info:      $blue !default;
 $warning:   $orange !default;
 $danger:    $red !default;
-$light:     $gray-100 !default;
-$dark:      $gray-900 !default;
+$light:     $grey-100 !default;
+$dark:      $grey-900 !default;
 
 $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -106,7 +106,7 @@ $theme-color-interval: 8% !default;
 $yiq-contrasted-threshold: 150 !default;
 
 // Customize the light and dark text colors for use in our YIQ color contrast function.
-$yiq-text-dark:  $gray-900 !default;
+$yiq-text-dark:  $grey-900 !default;
 $yiq-text-light: $white !default;
 
 $padding-base: 10px !default;

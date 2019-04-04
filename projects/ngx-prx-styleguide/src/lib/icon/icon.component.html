@@ -1,1 +1,2 @@
-<ng-content></ng-content>
+<div [inlineSVG]="svgFilePath" [removeSVGAttributes]="removedSVGAttributes"></div>
+<ng-content *ngIf="!name"></ng-content>
