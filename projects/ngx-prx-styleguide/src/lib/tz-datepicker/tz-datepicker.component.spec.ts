@@ -46,7 +46,7 @@ describe('TzDatepickerComponent', () => {
 
         component.date = testDate;
         component.changed = false;
-        dateChangeStub = jest.spyOn(component.dateChange, 'emit').and.stub();
+        dateChangeStub = jest.spyOn(component.dateChange, 'emit').mockImplementation(() => {});
 
         fixture.detectChanges();
       });

@@ -58,7 +58,7 @@ describe('ModalComponent', () => {
     fix.detectChanges();
     let close = de.query(By.css('button.close'));
     expect(close).not.toBeNull();
-    jest.spyOn(comp, 'close').and.stub();
+    jest.spyOn(comp, 'close').mockImplementation(() => {});
     close.nativeElement.click();
     expect(comp.close).toHaveBeenCalled();
   });
@@ -73,7 +73,7 @@ describe('ModalComponent', () => {
     expect(buttons[0].nativeElement.innerText).toContain('foo');
     expect(buttons[1].nativeElement.innerText).toContain('bar');
 
-    jest.spyOn(comp, 'close').and.stub();
+    jest.spyOn(comp, 'close').mockImplementation(() => {});
     buttons[0].nativeElement.click();
     buttons[1].nativeElement.click();
     expect(comp.close).toHaveBeenCalledTimes(2);
@@ -96,7 +96,7 @@ describe('ModalComponent', () => {
     comp.shown = true;
     comp.state = {primaryButton: 'Okay', secondaryButton: 'Cancel'};
     fix.detectChanges();
-    jest.spyOn(comp, 'buttonClick').and.stub();
+    jest.spyOn(comp, 'buttonClick').mockImplementation(() => {});
     simulateKey('Escape');
     expect(comp.buttonClick).toHaveBeenCalledWith('Cancel');
   });
@@ -105,7 +105,7 @@ describe('ModalComponent', () => {
     comp.shown = true;
     comp.state = {primaryButton: 'Ok', secondaryButton: 'Cancel'};
     fix.detectChanges();
-    jest.spyOn(comp, 'buttonClick').and.stub();
+    jest.spyOn(comp, 'buttonClick').mockImplementation(() => {});
     simulateKey('Enter');
     expect(comp.buttonClick).toHaveBeenCalledWith('Ok');
   });

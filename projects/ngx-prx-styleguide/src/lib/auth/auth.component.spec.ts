@@ -69,13 +69,13 @@ describe('AuthComponent', () => {
     fix.detectChanges();
     expect(token).toEqual('the-token');
 
-    jest.spyOn(comp, 'generateAuthUrl').and.stub();
+    jest.spyOn(comp, 'generateAuthUrl').mockImplementation(() => {});
     refresh.next(true);
     expect(comp.generateAuthUrl).toHaveBeenCalledTimes(1);
   });
 
   it('catches iframe errors', () => {
-    jest.spyOn(AuthParser, 'parseIframeQuery').and.throwError('something went wrong');
+    jest.spyOn(AuthParser, 'parseIframeQuery').mockImplementation(() => { throw new Error('something went wrong') });
     comp.host = 'id.prx.org';
     comp.client = 'whatev';
     comp.ngOnChanges({host: true, client: true} as any);

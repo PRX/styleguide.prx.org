@@ -18,7 +18,7 @@ describe('BaseStorage', () => {
   });
 
   it('falls back to in-memory storage', () => {
-    jest.spyOn(localStorage, 'setItem').and.throwError('no localstorage');
+    jest.spyOn(localStorage, 'setItem').mockImplementation(() => { throw new Error('no localstorage')});
     BaseStorage.setItem('foo', {id: 'foo'});
     expect(localStorage.length).toEqual(0);
     expect(BaseStorage.getItem('foo')).toEqual({id: 'foo'});

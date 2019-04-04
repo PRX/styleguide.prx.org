@@ -51,7 +51,7 @@ describe('LoginComponent', () => {
 
   it('fails to login', () => {
     let reason: string;
-    jest.spyOn(AuthParser, 'parseIframeQuery').and.throwError('whatev');
+    jest.spyOn(AuthParser, 'parseIframeQuery').mockImplementation(() => { throw new Error('whatev') })
     comp.failure.subscribe((r: string) => reason = r);
     comp.checkLogin();
 
