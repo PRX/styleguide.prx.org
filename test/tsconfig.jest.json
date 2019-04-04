@@ -11,7 +11,7 @@
     ]
   },
   "files": [
-    "../projects/ngx-prx-styleguide/src/test.ts"
+    "../src/polyfills.ts"
   ],
   "include": [
     "../projects/ngx-prx-styleguide/**/*.spec.ts",
