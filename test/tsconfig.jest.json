@@ -1,0 +1,20 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/spec",
+    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "types": [
+      "jest",
+      "jsdom",
+      "node"
+    ]
+  },
+  "files": [
+    "../projects/ngx-prx-styleguide/src/test.ts"
+  ],
+  "include": [
+    "../projects/ngx-prx-styleguide/**/*.spec.ts",
+    "../projects/ngx-prx-styleguide/**/*.d.ts"
+  ]
+}
