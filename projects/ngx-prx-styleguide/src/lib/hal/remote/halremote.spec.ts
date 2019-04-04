@@ -198,7 +198,7 @@ describe('HalRemote', () => {
   describe('retries', () => {
 
     it('retries 401s after getting a new token', () => {
-      spyOn(fakeAuth, 'refreshToken').and.callThrough();
+      jest.spyOn(fakeAuth, 'refreshToken');
       remote.get(link).subscribe();
 
       let httpCount = 0;

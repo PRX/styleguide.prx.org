@@ -25,7 +25,7 @@ describe('DaterangeComponent', () => {
   }));
 
   it('should emit rangeChanged event when from or to date is changed', () => {
-    spyOn(comp.rangeChange, 'emit').and.callThrough();
+    jest.spyOn(comp.rangeChange, 'emit');
     comp.onFromDateChange(new Date());
     expect(comp.rangeChange.emit).toHaveBeenCalledTimes(1);
     comp.onToDateChange(new Date());

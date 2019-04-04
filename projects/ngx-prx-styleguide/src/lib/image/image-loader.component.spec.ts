@@ -25,7 +25,7 @@ describe('ImageLoaderComponent', () => {
 
   const waitFor = (event: any, callback: any) => {
     let originalFn = comp[event];
-    spyOn(comp, event).and.callFake(function() {
+    jest.spyOn(comp, event).mockImplementation(function() {
       originalFn.apply(comp, arguments);
       callback();
     });

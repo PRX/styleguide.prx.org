@@ -41,8 +41,8 @@ describe('LoginComponent', () => {
 
   it('succesfully logs in', () => {
     let loggedIn = false;
-    spyOn(AuthParser, 'parseIframeQuery').and.returnValue('the-query');
-    spyOn(AuthParser, 'parseToken').and.returnValue('the-token');
+    jest.spyOn(AuthParser, 'parseIframeQuery').mockReturnValue('the-query');
+    jest.spyOn(AuthParser, 'parseToken').mockReturnValue('the-token');
     comp.success.subscribe(() => loggedIn = true);
     comp.checkLogin();
     expect(token).toEqual('the-token');
@@ -51,7 +51,7 @@ describe('LoginComponent', () => {
 
   it('fails to login', () => {
     let reason: string;
-    spyOn(AuthParser, 'parseIframeQuery').and.throwError('whatev');
+    jest.spyOn(AuthParser, 'parseIframeQuery').and.throwError('whatev');
     comp.failure.subscribe((r: string) => reason = r);
     comp.checkLogin();
 

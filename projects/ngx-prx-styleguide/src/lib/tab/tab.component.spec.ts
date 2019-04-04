@@ -43,7 +43,7 @@ describe('TabComponent', () => {
     });
 
     currentModel = null;
-    spyOn(TabService.prototype, 'setModel').and.callFake((m: any) => currentModel = m);
+    jest.spyOn(TabService.prototype, 'setModel').mockImplementation((m: any) => currentModel = m);
   }));
 
   it('shows the tabbed content', () => {

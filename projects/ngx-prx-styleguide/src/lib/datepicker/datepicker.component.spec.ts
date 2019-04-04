@@ -34,14 +34,14 @@ describe('Component: DatepickerComponent', () => {
   });
 
   it('emits dateChanged event when date is selected', () => {
-    spyOn(comp.dateChange, 'emit').and.stub();
+    jest.spyOn(comp.dateChange, 'emit').and.stub();
     comp.picker.setDate('02/17/2017');
     fix.detectChanges();
     expect(comp.dateChange.emit).toHaveBeenCalled();
   });
 
   it('emits dateChanged event when date is entered', () => {
-    spyOn(comp.dateChange, 'emit').and.stub();
+    jest.spyOn(comp.dateChange, 'emit').and.stub();
     comp.setWhenValid('02/17/2017');
     fix.detectChanges();
     expect(comp.dateChange.emit).toHaveBeenCalled();

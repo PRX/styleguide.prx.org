@@ -28,7 +28,7 @@ describe('TzDatepickerComponent', () => {
   };
 
   beforeEach(async(() => {
-    spyOn(moment.tz, 'guess').and.callFake(() => testTz);
+    jest.spyOn(moment.tz, 'guess').mockImplementation(() => testTz);
     const tzDataService = jasmine.createSpyObj('TzDataService', ['fetchTzs']);
     fetchTzsSpy = tzDataService.fetchTzs.and.returnValue(of(momentZones));
 
@@ -46,7 +46,7 @@ describe('TzDatepickerComponent', () => {
 
         component.date = testDate;
         component.changed = false;
-        dateChangeStub = spyOn(component.dateChange, 'emit').and.stub();
+        dateChangeStub = jest.spyOn(component.dateChange, 'emit').and.stub();
 
         fixture.detectChanges();
       });
@@ -95,7 +95,7 @@ describe('TzDatepickerComponent', () => {
   });
 
   it('Calls handleChange when time input is modified', () => {
-    const handleChangeSpy = spyOn(component, 'handleChange');
+    const handleChangeSpy = jest.spyOn(component, 'handleChange');
     const input = de.query(By.css('input[type="time"]'));
     input.nativeElement.value = 'a';
     input.triggerEventHandler('ngModelChange', {});

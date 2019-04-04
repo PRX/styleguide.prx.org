@@ -18,7 +18,7 @@ describe('HalDoc', () => {
 
   // disable error logging
   beforeEach(() => {
-    spyOn<any>(HalDoc.prototype, 'error').and.callFake((msg: string) => {
+    jest.spyOn<any>(HalDoc.prototype, 'error').mockImplementation((msg: string) => {
       return observableThrowError(new Error(msg));
     });
   });

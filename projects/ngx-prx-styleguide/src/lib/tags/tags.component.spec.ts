@@ -81,7 +81,7 @@ describe('TagsComponent', () => {
     comp.testOptions = ['hello'];
     fix.detectChanges();
     let qt = de.query(By.css('.quick_tags-tag'));
-    spyOn(comp, 'setTestOutput').and.stub();
+    jest.spyOn(comp, 'setTestOutput').and.stub();
     qt.nativeElement.click();
     expect(comp.setTestOutput).toHaveBeenCalled();
     expect(comp.setTestOutput).toHaveBeenCalledWith(['hello']);

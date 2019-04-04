@@ -18,7 +18,7 @@ describe('BaseStorage', () => {
   });
 
   it('falls back to in-memory storage', () => {
-    spyOn(localStorage, 'setItem').and.throwError('no localstorage');
+    jest.spyOn(localStorage, 'setItem').and.throwError('no localstorage');
     BaseStorage.setItem('foo', {id: 'foo'});
     expect(localStorage.length).toEqual(0);
     expect(BaseStorage.getItem('foo')).toEqual({id: 'foo'});
@@ -30,7 +30,7 @@ describe('BaseStorage', () => {
 
   it('falls back at any time', () => {
     let originalSetItem = localStorage.setItem.bind(localStorage);
-    spyOn(localStorage, 'setItem').and.callFake((key: string, val: any) => {
+    jest.spyOn(localStorage, 'setItem').mockImplementation((key: string, val: any) => {
       if (key === 'foo') {
         originalSetItem('foo', val);
       } else {

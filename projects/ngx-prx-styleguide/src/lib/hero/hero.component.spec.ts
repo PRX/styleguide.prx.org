@@ -42,7 +42,7 @@ describe('HeroComponent', () => {
 
   let fakeScrollY = 0;
   beforeEach(() => {
-    spyOn(HeroComponent.prototype, 'getScrollY').and.callFake(() => fakeScrollY);
+    jest.spyOn(HeroComponent.prototype, 'getScrollY').mockImplementation(() => fakeScrollY);
   });
 
   const triggerScroll = () => {
