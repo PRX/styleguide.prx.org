@@ -1,5 +1,5 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
-import { withKnobs, date, text } from '@storybook/addon-knobs';
+import { withKnobs, date, select, text } from '@storybook/addon-knobs';
 import { Component, ModuleWithProviders } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -33,8 +33,14 @@ storiesOf('Episode List|Episode Card', module)
   .add(
     'Usage Details (Knobs)',
     () => {
-      const dateFormat = text('Date Format', 'M/d');
-      const dateInput = date('Date', new Date());
+      const today = new Date();
+      const defaultDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      // Date knob returns UTC string. Wrap knob funciton to convert to Date.
+      const dateKnob = (name: string, defaultValue: Date) => {
+        const stringTimestamp = date(name, defaultValue);
+        return new Date(stringTimestamp);
+      };
+      const dateInput = dateKnob('From Date', defaultDate);
       const editLink = text('Edit Link', '/story/1234');
       const title = text('Title', 'Very Best Episode');
       const teaser = text('Teaser', 'You don\'t want to miss this');
@@ -43,7 +49,7 @@ storiesOf('Episode List|Episode Card', module)
         template: `
         <prx-episode-card
           [date]="dateInput"
-          [dateFormat]="dateFormat"
+          dateFormat="M/d"
           [editLink]="editLink"
           [title]="title"
           [teaser]="teaser"
@@ -54,8 +60,7 @@ storiesOf('Episode List|Episode Card', module)
         </prx-episode-card>
           `,
         props: {
-          dateFormat,
-          dateInput: new Date(),
+          dateInput,
           editLink,
           title,
           teaser,
