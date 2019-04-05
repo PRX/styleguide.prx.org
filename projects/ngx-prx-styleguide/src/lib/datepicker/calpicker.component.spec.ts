@@ -1,21 +1,16 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
 import { CalpickerComponent } from './calpicker.component';
 import { SimpleDate } from './simpledate';
 
 fdescribe('Component: CalpickerComponent', () => {
   let comp: CalpickerComponent;
   let fix: ComponentFixture<CalpickerComponent>;
-  let de: DebugElement;
-  let el: HTMLElement;
 
   const config = {declarations: [CalpickerComponent]};
   beforeEach(async(() => {
     TestBed.configureTestingModule(config).compileComponents().then(() => {
       fix = TestBed.createComponent(CalpickerComponent);
       comp = fix.componentInstance;
-      de = fix.debugElement;
-      el = de.nativeElement;
       comp.ngAfterViewInit();
     });
   }));
