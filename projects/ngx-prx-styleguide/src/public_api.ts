@@ -14,6 +14,7 @@ export { BaseInvalid, UNLESS_NEW, REQUIRED, LENGTH, IN, FALSEY, TOKENY, URL } fr
 export { BaseStorage } from './lib/model/base.storage';
 
 export { DatepickerModule } from './lib/datepicker/datepicker.module';
+export { SimpleDate } from './lib/datepicker/simpledate';
 export { TzDatepickerModule } from './lib/tz-datepicker/tz-datepicker.module';
 
 export { FooterModule } from './lib/footer/footer.module';
