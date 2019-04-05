@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'prx-episode-card',
   styleUrls: ['./episode-card.component.scss'],
   template: `
-    <div *ngIf="status" class="{{status}} status bar"></div>
+    <div class="{{status}} status bar"></div>
     <div class="story-date">{{date | date: dateFormat}}</div>
     <div class="title">
       <h2>
