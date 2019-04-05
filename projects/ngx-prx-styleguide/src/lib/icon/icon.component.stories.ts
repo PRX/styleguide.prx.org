@@ -4,12 +4,13 @@ import { IconModule } from './icon.module';
 import { withKnobs, select, text } from '@storybook/addon-knobs';
 
 const req = require.context('../../assets/images/icons/', false, /\.svg$/);
-const iconNames = req.keys().map(filename => filename.match(/\/([^\/]+)\.svg$/)[1]);
+const iconNames = req.keys()
+  .map(filename => filename.match(/\/([^\/]+)\.svg$/)[1])
+  .filter(name => name.indexOf('ic_') === -1);
 
 console.log(iconNames);
 
 export const iconColorOptions = {
-  'Color in SVG': null,
   Default: 'default',
   Primary: 'primary',
   Secondary: 'secondary',
@@ -19,6 +20,7 @@ export const iconColorOptions = {
   Danger: 'danger',
   Light: 'light',
   Dark: 'dark',
+  'Color in SVG': null,
 };
 
 // Module metadata for stories.
@@ -62,6 +64,37 @@ storiesOf('Global|Icons', module)
           './icon.component.stories.scss'
         ]
       };
+    },
+    {
+      notes: {
+        markdown:
+`
+# Icon Component
+
+Inline SVG icons are now easy with this component. Load one from the assets directory or use your own inline.
+
+----
+
+__Module__ \`IconsModule\`
+
+__Selector__ \`prx-icon\`
+
+----
+
+- \`@Input() name: string\` \\- _(optional)_ Loads SVG with that file name in \`assets/images/icons\`. Setting this will replace child content with file contents, if it can load.
+- \`@Input() color: string\` \\- _(optional)_ Sets a specific theme color on the icon. Use this to override inherited coloring.
+    - __Color Options__ \\- default, primary, secondary, info, success, warning, danger, light, dark
+- \`@Input() size: string\` \\- _(optional)_ Sets icon to a specific size. Without this set, the icon will fill the parent element. Any valid CSS sizing value can be used, and will be applied to both width and height of the icon.
+
+----
+
+## Usage
+
+\`\`\`html
+<prx-icon [name]="name" [color]="color" [size]="size"></prx-icon>
+\`\`\`
+`
+      }
     }
   )
   .add(
@@ -89,5 +122,56 @@ storiesOf('Global|Icons', module)
           './icon.component.stories.scss'
         ]
       };
+    },
+    {
+      notes: {
+        markdown:
+`
+## Usage
+
+Wrap custom one-off icon SVG's to apply consistent sizing and color themes.
+
+\`\`\`html
+<prx-icon [color]="color" [size]="size">
+  <!-- Your Custom One-off SVG here -->
+</prx-icon>
+\`\`\`
+`
+      }
+    }
+  );
+
+
+storiesOf('Global|Icons/Examples', module)
+  .addDecorator(centered)
+  .addDecorator(storiesModuleMetaData)
+  .add(
+    'Link Hover',
+    () => {
+      return {
+        template: `
+          <a><prx-icon size="1.5em" name="plus" ></prx-icon> Add A Thing</a>
+        `,
+        props: {},
+        styles: [
+          `
+          a { cursor: pointer; }
+          `
+        ]
+      };
+    },
+    {
+      notes: {
+        markdown:
+`
+## Usage
+
+Leave off color attribute to inherit coloring from link and button state changes, such as hover.
+
+\`\`\`html
+<a><prx-icon size="1.5em" name="plus" ></prx-icon> Add A Thing</a>
+\`\`\`
+`
+      }
     }
   );
