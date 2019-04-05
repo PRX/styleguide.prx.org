@@ -60,26 +60,19 @@ export class CalpickerComponent implements AfterViewInit, OnChanges {
 
   onSelect(date: Date) {
     const selected = new SimpleDate(date, true);
-    const dates = new Set(this.dates);
 
     // add or remove selected date
-    let add = true;
-    dates.forEach(d => {
-      if (d.equals(selected)) {
-        dates.delete(d);
-        return add = false;
-      }
-    });
-    if (add) {
-      dates.add(selected);
+    const index = this.dates.findIndex(d => d.equals(selected));
+    if (index > -1) {
+      this.dates.splice(index, 1);
+    } else {
+      this.dates.push(selected);
     }
+    this.dates.sort();
 
-    // change back to array and redraw pikaday
-    this.dates = Array.from(dates).sort();
+    // redraw pikaday and emit changes
     this.picker.config(this.options);
     this.picker.setDate(null);
-
-    // emit changes
     this.datesChange.emit(this.dates);
   }
 
