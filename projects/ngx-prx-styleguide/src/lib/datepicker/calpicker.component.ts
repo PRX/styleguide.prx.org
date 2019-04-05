@@ -1,0 +1,86 @@
+import { Component, AfterViewInit, OnChanges, Input, Output, EventEmitter,
+  ViewChild, ElementRef } from '@angular/core';
+import * as Pikaday from 'pikaday';
+import { SimpleDate } from './simpledate';
+
+/**
+ * Multiple date-picking via a single calendar
+ */
+@Component({
+  selector: 'prx-calpicker',
+  template: '<input type="text" class="hidden" #textinput/><div #container></div>',
+  styleUrls: ['./calpicker.component.css']
+})
+
+export class CalpickerComponent implements AfterViewInit, OnChanges {
+
+  @ViewChild('textinput') textinput: ElementRef;
+  @ViewChild('container') container: ElementRef;
+
+  @Input() dates: SimpleDate[] = [];
+  @Output() datesChange = new EventEmitter<SimpleDate[]>();
+
+  @Input() months = 3;
+  @Input() minDate: SimpleDate;
+  @Input() maxDate: SimpleDate;
+  @Input() defaultDate: SimpleDate;
+
+  private picker: Pikaday;
+
+  get options(): Pikaday.PikadayOptions {
+    return {
+      field: this.textinput.nativeElement,
+      container: this.container.nativeElement,
+      theme: 'container',
+      firstDay: 0,
+      bound: false,
+      keyboardInput: false, // doesn't work with this yet
+      onSelect: (date) => this.onSelect(date),
+      numberOfMonths: this.months,
+      minDate: this.minDate ? this.minDate.toLocaleDate() : null,
+      maxDate: this.maxDate ? this.maxDate.toLocaleDate() : null,
+      defaultDate: this.defaultDate ? this.defaultDate.toLocaleDate() : null,
+      events: this.datesInLocale(),
+    };
+  }
+
+  datesInLocale() {
+    return this.dates.map(d => d.toLocaleDate().toDateString());
+  }
+
+  ngAfterViewInit() {
+    this.picker = new Pikaday(this.options);
+  }
+
+  ngOnChanges() {
+    if (this.picker) {
+      this.picker.config(this.options);
+    }
+  }
+
+  onSelect(date: Date) {
+    const selected = new SimpleDate(date, true);
+    const dates = new Set(this.dates);
+
+    // add or remove selected date
+    let add = true;
+    dates.forEach(d => {
+      if (d.equals(selected)) {
+        dates.delete(d);
+        return add = false;
+      }
+    });
+    if (add) {
+      dates.add(selected);
+    }
+
+    // change back to array and redraw pikaday
+    this.dates = Array.from(dates).sort();
+    this.picker.config(this.options);
+    this.picker.setDate(null);
+
+    // emit changes
+    this.datesChange.emit(this.dates);
+  }
+
+}
