@@ -1,0 +1,62 @@
+@import '../../assets/styles/variables';
+
+:host {
+  display: grid;
+  grid-template-columns: 3px 78px auto min-content;
+  align-items: center;
+  height: 78px;
+  background: $white;
+  padding-right: $padding-base;
+}
+.title {
+  overflow: auto;
+}
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+}
+h2, h3 {
+  padding: 0 $padding-base;
+  line-height: 21px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+h3 {
+  display: flex;
+  font-weight: regular;
+}
+h3 .teaser {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: $margin-base;
+}
+.story-date {
+  flex-basis: 75px;
+  font-size: 2em;
+  justify-self: center;
+}
+.status {
+  background-color: $grey-dark;
+}
+.status.bar {
+  width: 3px;
+  align-self: stretch;
+}
+.status.text {
+  color: $white;
+  padding: 3px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+.status.draft {
+  background-color: $orange;
+}
+.status.scheduled {
+  background-color: $green;
+}
+.status.published {
+  background-color: $blue;
+}

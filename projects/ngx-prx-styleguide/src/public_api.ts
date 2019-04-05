@@ -16,6 +16,8 @@ export { BaseStorage } from './lib/model/base.storage';
 export { DatepickerModule } from './lib/datepicker/datepicker.module';
 export { TzDatepickerModule } from './lib/tz-datepicker/tz-datepicker.module';
 
+export { EpisodeListModule } from './lib/episode-list/episode-list.module';
+
 export { FooterModule } from './lib/footer/footer.module';
 
 export { FancyFormModule } from './lib/fancy-form/fancy-form.module';
