@@ -44,7 +44,7 @@ storiesOf('Episode List|Episode Card', module)
       const editLink = text('Edit Link', '/story/1234');
       const title = text('Title', 'Very Best Episode');
       const teaser = text('Teaser', 'You don\'t want to miss this');
-      const status = text('Status', 'scheduled');
+      const status = select('Status', {None: '', Draft: 'draft', Scheduled: 'scheduled', Published: 'published'}, 'draft');
       return {
         template: `
         <prx-episode-card
