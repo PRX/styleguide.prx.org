@@ -5,12 +5,13 @@ import { withKnobs, select, text } from '@storybook/addon-knobs';
 
 const req = require.context('../../assets/images/icons/', false, /\.svg$/);
 const iconNames = req.keys()
+  // Convert filenames to icon names.
   .map(filename => filename.match(/\/([^\/]+)\.svg$/)[1])
+  // Filter out legacy colorized icons.
   .filter(name => name.indexOf('ic_') === -1);
 
-console.log(iconNames);
-
-export const iconColorOptions = {
+const iconColorOptions = {
+  Inherit: null,
   Default: 'default',
   Primary: 'primary',
   Secondary: 'secondary',
@@ -20,7 +21,6 @@ export const iconColorOptions = {
   Danger: 'danger',
   Light: 'light',
   Dark: 'dark',
-  'Color in SVG': null,
 };
 
 // Module metadata for stories.
@@ -49,6 +49,7 @@ storiesOf('Global|Icons', module)
         template: `
           <div class="main">
             <prx-icon
+              class="foo"
               [color]="color"
               [size]="size"
               [name]="name"
