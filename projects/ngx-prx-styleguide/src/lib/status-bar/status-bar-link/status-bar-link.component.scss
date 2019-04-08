@@ -1,0 +1,43 @@
+@import '../status-bar.variables';
+
+:host {
+  display: flex;
+  align-items: center;
+
+  &[routerLink] {
+    @extend %link;
+
+    cursor: pointer;
+  }
+
+  > :empty {
+    display: none;
+  }
+}
+
+.icon {
+  display: grid;
+  grid-template-columns: 16px;
+  grid-template-rows: 16px;
+  justify-content: center;
+  align-content: center;
+  width: $status_bar-height;
+  height: $status_bar-height;
+}
+
+.text {
+  padding: $status_bar-item-padding;
+
+  white-space: nowrap;
+
+  .icon:not(:empty) + & {
+    padding-left: 0;
+    margin-left: -7px;
+  }
+}
+
+.image {
+  display: grid;
+  grid-template-columns: $status_bar-height;
+  grid-template-rows: $status_bar-height;
+}
