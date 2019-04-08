@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { TzDate } from './tzdate';
 import { map, share } from 'rxjs/operators';
 import { TzDataService } from './tz-data.service';
@@ -70,9 +70,15 @@ export class TzDatepickerComponent implements OnInit {
   model: TzDate;
 
   _date: Date;
+  uninitialized = false;
   @Input()
   set date(value: Date) {
-    this._date = value;
+    if(value && value instanceof Date) {
+      this._date = value 
+    } else {
+      this._date = new Date()
+      this.uninitialized = true
+    }
   }
   get date() {
     return this.model && this.model.finalDate ? this.model.finalDate : this._date;
@@ -81,12 +87,6 @@ export class TzDatepickerComponent implements OnInit {
   @Input() changed: boolean;
 
   supportsTimeInput = false;
-
-  timeInvalid = false;
-  dateInvalid = false;
-  timezoneInvalid = false;
-
-  pickerDateChanged = false;
 
   timezones;
 
@@ -117,6 +117,7 @@ export class TzDatepickerComponent implements OnInit {
       error: err => console.error('Timezone data failed to load: ' + err),
       complete: () => {
         this.model = this.tzDateModelInit();
+        if(this.uninitialized) { this.handleChange() }
       }
     });
   }
@@ -144,9 +145,5 @@ export class TzDatepickerComponent implements OnInit {
     input.setAttribute('value', notADateValue);
 
     return input.value !== notADateValue;
-  }
-
-  get diagnostic() {
-    return JSON.stringify(this.model);
   }
 }

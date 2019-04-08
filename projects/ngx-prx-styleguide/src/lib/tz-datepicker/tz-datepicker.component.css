@@ -14,6 +14,10 @@ ng-select.ng-invalid {
   outline: 5px auto #e32;
 }
 
+ng-select input {
+  padding: 0px;
+}
+
 p.error {
   margin-top: 6px;
   color: #e32;
