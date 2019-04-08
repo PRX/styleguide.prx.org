@@ -173,9 +173,8 @@ describe('BaseModel', () => {
     });
 
     it('updates existing docs', () => {
-      base.doc = {update: null} as any;
+      base.doc = {update: jest.fn(() => observableEmpty())} as any;
       base.changed = () => false;
-      jest.spyOn(base.doc, 'update').mockReturnValue(observableEmpty() as unknown as HalObservable<HalDoc>);
       base.save();
       expect(base.doc.update).not.toHaveBeenCalled();
       base.changed = () => true;
@@ -184,18 +183,17 @@ describe('BaseModel', () => {
     });
 
     it('deletes destroyed docs', () => {
-      base.doc = {destroy: null} as any;
-      jest.spyOn(base.doc, 'destroy').mockReturnValue(observableEmpty() as unknown as HalObservable<HalDoc>);
+      base.doc = {destroy: jest.fn(() => observableEmpty())} as any;
       base.isDestroy = true;
       base.save();
       expect(base.doc.destroy).toHaveBeenCalled();
     });
 
     it('re-inits after saving', () => {
-      base.doc = {update: null} as any;
+      base.doc = {update: jest.fn(() => observableOf({foo: 'bar'}))} as any;
+      base.unstore = jest.fn()
       base.changed = () => true;
-      jest.spyOn(base.doc, 'update').mockReturnValue(observableOf({foo: 'bar'}) as unknown as HalObservable<HalDoc>);
-      jest.spyOn(base, 'unstore').mockImplementation(() => {})
+      //jest.spyOn(base, 'unstore').mockImplementation(() => {})
       jest.spyOn(base, 'init').mockImplementation((parent: any, doc: any) => {
         expect(doc.foo).toEqual('bar');
       });
@@ -206,8 +204,7 @@ describe('BaseModel', () => {
     });
 
     it('cascades saving to changed child models', () => {
-      base.doc = {update: null} as any;
-      jest.spyOn(base.doc, 'update').mockReturnValue(observableOf({foo: 'bar'}) as unknown as HalObservable<HalDoc>);
+      base.doc = {update: jest.fn(() => observableEmpty())} as any;
       jest.spyOn(base, 'init').mockImplementation(() => {})
 
       let firstSaved = false, secondSaved = false;
@@ -283,8 +280,7 @@ describe('BaseModel', () => {
     });
 
     it('removes destroyed child models', () => {
-      base.doc = {update: null} as any;
-      jest.spyOn(base.doc, 'update').mockReturnValue(observableOf({foo: 'bar'}) as unknown as HalObservable<HalDoc>);
+      base.doc = {update: jest.fn(() => observableOf({foo: 'bar'}))} as any;
       jest.spyOn(base, 'init').mockImplementation(() => {})
       base.RELATIONS = ['foo'];
       base['foo'] = [{changed: () => true, save: () => observableOf(true), isDestroy: true}];
