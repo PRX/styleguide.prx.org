@@ -64,4 +64,4 @@ storiesOf('Navigation|Status Bar', module)
         `
       ]
     })
-  )
+  );

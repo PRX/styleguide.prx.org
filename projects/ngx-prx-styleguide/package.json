@@ -27,6 +27,7 @@
     "@ng-select/ng-select": "^2.15.3",
     "c3": "^0.4.11",
     "ngx-tooltip": "0.0.9",
-    "pikaday": "^1.5.1"
+    "pikaday": "^1.5.1",
+    "stickyfilljs": "^2.1.0"
   }
 }

@@ -13,6 +13,7 @@
     "c3",
     "pikaday",
     "@ng-select/ng-select",
-    "ngx-tooltip"
+    "ngx-tooltip",
+    "stickyfilljs"
   ]
 }

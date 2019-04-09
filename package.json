@@ -55,6 +55,7 @@
     "pikaday": "~1.5.1",
     "rxjs": "~6.0.0",
     "scss-bundle": "~2.4.0",
+    "stickyfilljs": "^2.1.0",
     "zone.js": "~0.8.4"
   },
   "devDependencies": {
