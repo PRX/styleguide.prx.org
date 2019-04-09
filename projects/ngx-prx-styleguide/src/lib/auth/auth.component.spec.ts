@@ -66,7 +66,7 @@ describe('AuthComponent', () => {
     comp.host = 'id.prx.org';
     comp.client = 'whatev';
     comp.ngOnChanges({host: true, client: true} as any);
-    fix.detectChanges();
+    comp.checkAuth();
     expect(token).toEqual('the-token');
 
     jest.spyOn(comp, 'generateAuthUrl').mockImplementation(() => {});
@@ -79,7 +79,7 @@ describe('AuthComponent', () => {
     comp.host = 'id.prx.org';
     comp.client = 'whatev';
     comp.ngOnChanges({host: true, client: true} as any);
-    fix.detectChanges();
+    comp.checkAuth();
     expect(error.message).toEqual('something went wrong');
   });
 
