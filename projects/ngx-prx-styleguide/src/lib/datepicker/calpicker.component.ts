@@ -3,6 +3,17 @@ import { Component, AfterViewInit, OnChanges, Input, Output, EventEmitter,
 import * as Pikaday from 'pikaday';
 import { SimpleDate } from './simpledate';
 
+// patch pikaday to show up to 12 months
+// https://github.com/Pikaday/Pikaday/issues/749
+const originalConfig = Pikaday.prototype.config;
+Pikaday.prototype.config = function(options) {
+  const opts = originalConfig.apply(this, [options]);
+  if (opts.numberOfMonths) {
+    opts.numberOfMonths = Math.min(options.numberOfMonths, 12);
+  }
+  return opts;
+};
+
 /**
  * Multiple date-picking via a single calendar
  */
@@ -31,7 +42,7 @@ export class CalpickerComponent implements AfterViewInit, OnChanges {
     return {
       field: this.textinput.nativeElement,
       container: this.container.nativeElement,
-      theme: 'container',
+      theme: 'calpicker',
       firstDay: 0,
       bound: false,
       keyboardInput: false, // doesn't work with this yet
@@ -52,9 +63,14 @@ export class CalpickerComponent implements AfterViewInit, OnChanges {
     this.picker = new Pikaday(this.options);
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: any) {
     if (this.picker) {
-      this.picker.config(this.options);
+      if (changes.defaultDate && !changes.defaultDate.firstChange) {
+        this.picker.destroy();
+        this.picker = new Pikaday(this.options);
+      } else {
+        this.picker.config(this.options);
+      }
     }
   }
 

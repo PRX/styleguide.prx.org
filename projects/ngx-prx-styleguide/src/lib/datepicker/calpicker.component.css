@@ -1,3 +1,8 @@
+:host {
+  position: relative;
+  display: inline-block;
+  z-index: 10;
+}
 input.hidden {
   display: none;
 }
