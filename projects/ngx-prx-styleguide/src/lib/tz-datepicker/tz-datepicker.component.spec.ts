@@ -3,9 +3,8 @@ import { TzDatepickerComponent } from './tz-datepicker.component';
 import { NO_ERRORS_SCHEMA, ViewChild, Component, DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { of } from 'rxjs';
-import moment from 'moment';
-import 'moment-timezone/moment-timezone';
+import { of as observableOf } from 'rxjs';
+import * as moment from 'moment-timezone'
 import { By } from '@angular/platform-browser';
 import { TzDataService } from './tz-data.service';
 
@@ -14,7 +13,6 @@ describe('TzDatepickerComponent', () => {
   let fixture: ComponentFixture<TzDatepickerComponent>;
   let de: DebugElement;
   let dateChangeStub;
-  let fetchTzsSpy;
   const testDate = new Date(Date.UTC(2018, 2, 16, 2, 0, 0, 0));
   const testTz = 'America/New_York';
 
@@ -27,15 +25,15 @@ describe('TzDatepickerComponent', () => {
     version: '2018g'
   };
 
+  TzDataService.prototype.fetchTzs = jest.fn(() => observableOf(momentZones))
+
   beforeEach(async(() => {
     jest.spyOn(moment.tz, 'guess').mockImplementation(() => testTz);
-    const tzDataService = jasmine.createSpyObj('TzDataService', ['fetchTzs']);
-    fetchTzsSpy = tzDataService.fetchTzs.and.returnValue(of(momentZones));
 
     TestBed.configureTestingModule({
       imports: [FormsModule, HttpClientTestingModule],
       declarations: [TzDatepickerComponent],
-      providers: [{ provide: TzDataService, useValue: tzDataService }],
+      providers: [TzDataService],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents()
