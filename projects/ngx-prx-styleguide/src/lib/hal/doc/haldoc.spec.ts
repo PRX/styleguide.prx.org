@@ -1,6 +1,7 @@
 
 import {throwError as observableThrowError, of as observableOf,  Observable } from 'rxjs';
 import { HalDoc } from './haldoc';
+import { patchObservable } from './halobservable';
 
 let mockData = {};
 let mockRemote: any = {
@@ -15,10 +16,11 @@ let mockRemote: any = {
 };
 
 describe('HalDoc', () => {
+  beforeAll(() => patchObservable())
 
   // disable error logging
   beforeEach(() => {
-    jest.spyOn<any>(HalDoc.prototype, 'error').mockImplementation((msg: string) => {
+    jest.spyOn<any, any>(HalDoc.prototype, 'error').mockImplementation((msg: string) => {
       return observableThrowError(new Error(msg));
     });
   });

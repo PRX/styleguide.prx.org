@@ -144,7 +144,7 @@ describe('HalRemote', () => {
       expect(httpCount).toEqual(2);
     });
 
-    it('caches in-flight observables', function(done: DoneFn) {
+    it('caches in-flight observables', done => {
       let httpCount = 0;
       let completed = 0;
       remote.get(link).pipe(map(data => {
