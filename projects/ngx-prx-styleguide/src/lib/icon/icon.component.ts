@@ -11,7 +11,7 @@ export class IconComponent implements OnChanges {
   private _color: string;
   @Input()
   set color(val: string) {
-    this._color = val && val.toLowerCase();
+    this._color = val && val.trim().toLowerCase();
   }
   get color() {
     return this._color;
@@ -36,9 +36,10 @@ export class IconComponent implements OnChanges {
   constructor(@Self() protected ngClass: NgClass) { }
 
   ngOnChanges(): void {
-    this.hostClasses = {
-      ...this.hostClasses,
-      [`color--${this._color}`]: !!this._color
+    this.hostClasses = {}
+
+    if (!!this._color) {
+      this.hostClasses[`color--${this._color}`] = true;
     }
 
     this.updateHostClasses();
@@ -49,17 +50,13 @@ export class IconComponent implements OnChanges {
     this.ngClass.ngDoCheck();
   }
 
-  private getSize(val:string) {
-    
-  }
-
   get removedSVGAttributes() {
     console.log('updating SVG attributes to remove...', this.color);
     return this._color ? ['style', 'fill'] : [];
   }
 
   get svgFilePath() {
-    return `../../assets/images/icons/${this.name}.svg`;
+    return this.name && `../../assets/images/icons/${this.name}.svg`;
   }
 
 }
