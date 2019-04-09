@@ -1,11 +1,7 @@
 import { Directive, ElementRef, OnInit, HostBinding, HostListener, Inject, Input } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import * as Stickyfill from 'stickyfilljs';
-
-let globalStickyOffset: number;
-const stickyOffsets: any = {
-  all: 0
-};
+import { StickyService } from './sticky.service';
 
 @Directive({
   selector: '[prxSticky]'
@@ -17,8 +13,8 @@ export class StickyDirective implements OnInit {
   el: any;
 
   @HostBinding('class.js-stuck') isStuck: boolean = false;
-  @HostBinding('style.position') position: string = 'sticky';
-  @HostBinding('style.top') top: string;
+  @HostBinding('style.position') position: string = this.getStickyProp();
+  @HostBinding('style.top') top: string = '0';
 
   _offset: number = 0;
   @Input('sticky-offset')
@@ -29,10 +25,10 @@ export class StickyDirective implements OnInit {
     return this._offset.toString();
   }
 
-  _group: string = 'global';
+  _group: string;
   @Input('prxSticky')
   set group(val: string) {
-    this._group = val || 'global';
+    this._group = val;
   }
   get group () {
     return this._group;
@@ -40,7 +36,8 @@ export class StickyDirective implements OnInit {
 
   constructor(
     private element: ElementRef,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private sticky: StickyService
   ) {
     this.el = element.nativeElement;
 
@@ -49,18 +46,26 @@ export class StickyDirective implements OnInit {
   }
 
   ngOnInit() {
-    stickyOffsets.all = 0;
-    stickyOffsets[this.group] = 0;
+    // Initialize previous top value for first scroll event.
     this.previousTop = this.el.getBoundingClientRect().top || 0;
-  }
 
-  ngAfterViewInit() {
-    this.updateStickyOffset();
+    // Establish unset group offset.
+    this.sticky.initGroup(this._group);
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.updateStickyOffset();
+    // Only update when sticky is supported.
+    if (this.position !== 'static') {
+      this.updateStickyOffset();
+    }
+  }
+
+  ngOnDestroy() {
+    // Clean up after any stuck elements.
+    if (this.isStuck) {
+      this.unstick();
+    }
   }
 
   updateStickyOffset() {
@@ -68,28 +73,49 @@ export class StickyDirective implements OnInit {
 
     // Set unstuck elements top to global offset.
     if (!this.isStuck) {
-      this.top = `${stickyOffsets.all + stickyOffsets[this.group] + this._offset}px`;
+      this.top = `${this.sticky.getOffset(this.group) + this._offset}px`;
     }
 
     // Check if element is now stuck.
+    // Consider element stuck if it didn't change top position since last scroll.
     if (currentRect.top === this.previousTop && !this.isStuck) {
-      // When stuck...
-      // Keep track of elements height when it was stuck.
-      this.stuckHeight = currentRect.height + this._offset;
-      // Add element height to global sticky offset.
-      stickyOffsets[this.group] += this.stuckHeight;
-      // Add CSS class.
-      this.isStuck = true;
+      this.stick(currentRect);
     }
     else if (currentRect.top !== this.previousTop && this.isStuck) {
-      // When not stuck...
-      // If was stuck, subtract element height from global sticky offset.
-      stickyOffsets[this.group] -= this.stuckHeight;
-      // Remove CSS class
-      this.isStuck = false;
+      this.unstick();
     }
 
     this.previousTop = currentRect.top;
+  }
+
+  private stick(rect: ClientRect) {
+    // When stuck...
+    // Keep track of elements height when it was stuck.
+    this.stuckHeight = rect.height + this._offset;
+    // Add element height to global sticky offset.
+    this.sticky.addOffset(this.stuckHeight, this._group);
+    // Add CSS class.
+    this.isStuck = true;
+  }
+
+  private unstick() {
+    // When not stuck...
+    // If was stuck, subtract stored height from global sticky offset.
+    this.sticky.removeOffset(this.stuckHeight, this._group);
+    // Remove CSS class
+    this.isStuck = false;
+  }
+
+  private getStickyProp() {
+    let stickyProp: string;
+    const prefix = ['', '-o-', '-webkit-', '-moz-', '-ms-'];
+    const test = document.head.style;
+    for (let i = 0; i < prefix.length; i += 1) {
+      test.position = `${prefix[i]}sticky`;
+    }
+    stickyProp = test.position ? test.position : 'static';
+    test.position = '';
+    return stickyProp;
   }
 
 }

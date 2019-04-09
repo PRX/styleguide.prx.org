@@ -1,13 +1,13 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
-import { StickyDirective } from './sticky.directive';
+import { StickyModule } from './sticky.module';
 
 // Module metadata for stories.
 const storiesModuleMetaData = moduleMetadata({
-  imports: [],
-  schemas: [],
-  declarations: [
-    StickyDirective
+  imports: [
+    StickyModule
   ],
+  schemas: [],
+  declarations: [],
   providers: [],
 });
 
@@ -92,6 +92,7 @@ storiesOf('Global|Directives/Sticky', module)
           color: #fff;
           font-weight: bold;
           text-align: center;
+          text-transform: uppercase;
         }
 
         section {
