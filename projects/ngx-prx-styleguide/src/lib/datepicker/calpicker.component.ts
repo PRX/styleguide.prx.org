@@ -8,7 +8,7 @@ import { SimpleDate } from './simpledate';
 const originalConfig = Pikaday.prototype.config;
 Pikaday.prototype.config = function(options) {
   const opts = originalConfig.apply(this, [options]);
-  if (opts.numberOfMonths) {
+  if (options.numberOfMonths) {
     opts.numberOfMonths = Math.min(options.numberOfMonths, 12);
   }
   return opts;
