@@ -31,12 +31,12 @@ describe('FooterComponent', () => {
   }));
 
   it('renders the footer', () => {
-    expect(de.nativeElement.innerText).toContain('About Us');
-    expect(de.nativeElement.innerText).toContain('Radiotopia');
+    expect(de.nativeElement.textContent).toContain('About Us');
+    expect(de.nativeElement.textContent).toContain('Radiotopia');
   });
 
   it('projects inner content', () => {
-    expect(de.nativeElement.innerText).toContain('Some projected content');
+    expect(de.nativeElement.textContent).toContain('Some projected content');
   });
 
 });

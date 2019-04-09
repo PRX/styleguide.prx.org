@@ -48,8 +48,8 @@ describe('ModalComponent', () => {
     comp.shown = true;
     comp.state = {title: 'hello', body: 'world'};
     fix.detectChanges();
-    expect(de.query(By.css('h1')).nativeElement.innerText).toContain('hello');
-    expect(de.query(By.css('section')).nativeElement.innerText).toContain('world');
+    expect(de.query(By.css('h1')).nativeElement.textContent).toContain('hello');
+    expect(de.query(By.css('section')).nativeElement.textContent).toContain('world');
   });
 
   it('shows a close button', () => {
@@ -70,8 +70,8 @@ describe('ModalComponent', () => {
     expect(de.query(By.css('button.close'))).toBeNull();
     let buttons = de.queryAll(By.css('footer button'));
     expect(buttons.length).toEqual(2);
-    expect(buttons[0].nativeElement.innerText).toContain('foo');
-    expect(buttons[1].nativeElement.innerText).toContain('bar');
+    expect(buttons[0].nativeElement.textContent).toContain('foo');
+    expect(buttons[1].nativeElement.textContent).toContain('bar');
 
     jest.spyOn(comp, 'close').mockImplementation(() => {});
     buttons[0].nativeElement.click();

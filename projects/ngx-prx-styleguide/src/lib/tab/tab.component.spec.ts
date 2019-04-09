@@ -49,9 +49,9 @@ describe('TabComponent', () => {
   it('shows the tabbed content', () => {
     let navs = de.queryAll(By.css('nav a'));
     expect(navs.length).toEqual(2);
-    expect(navs[0].nativeElement.innerText).toContain('Foo');
-    expect(navs[1].nativeElement.innerText).toContain('Bar');
-    expect(de.query(By.css('h1')).nativeElement.innerText).toContain('Extra stuff here');
+    expect(navs[0].nativeElement.textContent).toContain('Foo');
+    expect(navs[1].nativeElement.textContent).toContain('Bar');
+    expect(de.query(By.css('h1')).nativeElement.textContent).toContain('Extra stuff here');
   });
 
   it('shows a spinner until the model is bound', () => {
