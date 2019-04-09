@@ -3,10 +3,6 @@
 :host {
   display: flex;
   align-items: center;
-  position: sticky;
-  top: $header-height;
-  left: 0;
-  right: 0;
   height: $status_bar-height;
 
   box-sizing: border-box;
