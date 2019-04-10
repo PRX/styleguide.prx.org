@@ -35,6 +35,7 @@ export class CalpickerComponent implements AfterViewInit, OnChanges {
   @Input() minDate: SimpleDate;
   @Input() maxDate: SimpleDate;
   @Input() defaultDate: SimpleDate;
+  @Input() disabled = false;
 
   private picker: Pikaday;
 
@@ -42,11 +43,11 @@ export class CalpickerComponent implements AfterViewInit, OnChanges {
     return {
       field: this.textinput.nativeElement,
       container: this.container.nativeElement,
-      theme: 'calpicker',
+      theme: this.disabled ? 'calpicker disabled' : 'calpicker',
       firstDay: 0,
       bound: false,
       keyboardInput: false, // doesn't work with this yet
-      onSelect: (date) => this.onSelect(date),
+      onSelect: date => this.disabled ? null : this.onSelect(date),
       numberOfMonths: this.months,
       minDate: this.minDate ? this.minDate.toLocaleDate() : null,
       maxDate: this.maxDate ? this.maxDate.toLocaleDate() : null,
@@ -65,7 +66,8 @@ export class CalpickerComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: any) {
     if (this.picker) {
-      if (changes.defaultDate && !changes.defaultDate.firstChange) {
+      if ((changes.defaultDate && !changes.defaultDate.firstChange) ||
+          (changes.disabled && !changes.disabled.firstChange)) {
         this.picker.destroy();
         this.picker = new Pikaday(this.options);
       } else {

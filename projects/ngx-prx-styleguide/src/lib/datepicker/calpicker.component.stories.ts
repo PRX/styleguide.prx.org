@@ -1,7 +1,7 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
 import { centered } from '@storybook/addon-centered/angular';
-import { withKnobs, number, date } from '@storybook/addon-knobs';
+import { withKnobs, number, date, boolean } from '@storybook/addon-knobs';
 import { DatepickerModule } from './datepicker.module';
 import { SimpleDate } from './simpledate';
 
@@ -43,6 +43,7 @@ const usage = () => {
   const minDateStr = date('Min date', yesterday);
   const maxDateStr = date('Max date', inTwoMonths);
   const defaultDateStr = date('Default date', tomorrow);
+  const disabled = boolean('Disabled', false);
   const dateStr = date('Set selection', tomorrow);
 
   const minDate = new SimpleDate(new Date(minDateStr), true);
@@ -58,11 +59,12 @@ const usage = () => {
         [minDate]="minDate"
         [maxDate]="maxDate"
         [defaultDate]="defaultDate"
+        [disabled]="disabled"
         [dates]="dates"
         (datesChange)="datesChange($event)"
       ></prx-calpicker>
     `,
-    props: {months, minDate, maxDate, defaultDate, dates, datesChange}
+    props: {months, minDate, maxDate, defaultDate, disabled, dates, datesChange}
   };
 };
 

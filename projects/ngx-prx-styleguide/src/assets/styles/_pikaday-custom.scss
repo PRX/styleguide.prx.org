@@ -84,3 +84,12 @@
   top: 8px;
   right: 8px;
 }
+.calpicker.disabled .is-selected .pika-button {
+  color: #666;
+  background: #f5f5f5;
+  box-shadow: none;
+}
+.calpicker.disabled .pika-button:hover {
+  background: #ddd;
+  cursor: not-allowed;
+}
