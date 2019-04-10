@@ -1,6 +1,9 @@
 /**
  * The button colors! The colors!
  */
+:host {
+  position: relative;
+}
 button[disabled] {
   color: #adc8d1;
   background-color: #7FA9B7;
