@@ -19,9 +19,14 @@ storiesOf('Global|Directives/Sticky', module)
       template: `
       <h1 class="header" prxSticky="all">Page Header</h1>
       <div class="main">
-        <aside class="sidebar" prxSticky="sidebar" sticky-offset="16">
-          sidebar
-        </aside>
+        <div>
+          <aside class="sidebar">
+            Static Sidebar
+          </aside>
+          <aside class="sidebar" prxSticky="sidebar" sticky-offset="16">
+             Sticky Sidebar
+          </aside>
+        </div>
         <div class="content">
           <section>
             <h2 class="section_header" prxSticky>Section 1</h2>
@@ -87,6 +92,7 @@ storiesOf('Global|Directives/Sticky', module)
 
         .sidebar {
           height: 30vh;
+          margin-top: 1rem;
           padding: 2rem;
           background: blue;
           color: #fff;
@@ -148,7 +154,7 @@ __Selector__ \`[prxSticky]\`
 
 ----
 
-- \`@Input() prxSelect: string = 'global'\` \\- Group sticky items in groups. Items in the group will stack, sticking to the bottom previously stuck items in the group. Set to \`'all'\` for it to be in all groups.
+- \`@Input() prxSelect: string\` \\- Group sticky items in groups. Items in the group will stack, sticking to the bottom previously stuck items in the group. Set to \`'all'\` for it to be included all groups.
 - \`@Input() sticky-offset: number = 0\` \\- Set space in pixels element should stick from top of window (or other stuck items in the same group.)
 
 ----
@@ -156,13 +162,16 @@ __Selector__ \`[prxSticky]\`
 ## Usage
 
 \`\`\`html
+<!-- All sticky groups will stack with elements in the "all" sticky group. -->
 <h1 class="header" prxSticky="all">Page Header</h1>
 <div class="main">
+  <!-- Only elements assigned to "sidebar" sticky group will stack under this element. -->
   <aside class="sidebar" prxSticky="sidebar" sticky-offset="16">
     sidebar
   </aside>
   <div class="content">
     <section>
+      <!-- Elements not assigned a sticky group will stack with eachother by default. -->
       <h2 class="section_header" prxSticky>Section 1</h2>
       <article>
         <h3 class="article_header" prxSticky>Article 1.1 Title</h3>
@@ -174,6 +183,20 @@ __Selector__ \`[prxSticky]\`
   </div>
 </div>
 \`\`\`
+
+----
+
+## Troubleshoting
+
+### Element I add this directive to doesn't stick.
+
+Make sure the sticky element isn't the only element in the parent. Sticky
+behavior will stop once the element's bottom passes its parent bottom edge.
+
+Another thing to watch out for is if the \`<body>\` (or any other ancestor of
+the element) has set any overflow style to anything other than \`visible\`. See
+[details of sticky positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/position#sticky)
+to read up on why this prohibits "sticky" behavior.
 `
       }
     }
