@@ -1,7 +1,7 @@
 /**
  * The button colors! The colors!
  */
-:host {
+button {
   position: relative;
 }
 button[disabled] {
