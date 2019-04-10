@@ -5,6 +5,8 @@
   color: $link-color;
   text-decoration: none;
 
+  cursor: pointer;
+
   &:hover,
   &:focus {
     color: $link-hover-color;

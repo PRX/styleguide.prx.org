@@ -2,14 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'prx-status-bar',
-  templateUrl: './status-bar.component.html',
+  template: '<ng-content></ng-content>',
   styleUrls: ['./status-bar.component.scss']
 })
-export class StatusBarComponent implements OnInit {
+export class StatusBarComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

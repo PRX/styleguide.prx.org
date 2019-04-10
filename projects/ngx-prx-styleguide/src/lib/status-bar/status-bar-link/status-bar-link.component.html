@@ -1,3 +1,5 @@
-<span class="icon"><ng-content select="prx-icon"></ng-content></span>
-<span class="text"><ng-content></ng-content></span>
-<span class="image"><ng-content select="prx-image"></ng-content></span>
+<span #icon class="icon" *ngIf="showIcon"><ng-content select="prx-icon:not([right])"></ng-content></span>
+<span #image class="image" *ngIf="showImage"><ng-content select="prx-image:not([right])"></ng-content></span>
+<span #text class="text" *ngIf="showText"><ng-content></ng-content></span>
+<span #iconRight class="icon" *ngIf="showIconRight"><ng-content select="prx-icon[right]"></ng-content></span>
+<span #imageRight class="image" *ngIf="showImageRight"><ng-content select="prx-image[right]"></ng-content></span>

@@ -1,18 +1,9 @@
 @import '../status-bar.variables';
 
 :host {
+  @extend %link;
   display: flex;
   align-items: center;
-
-  &[routerLink] {
-    @extend %link;
-
-    cursor: pointer;
-  }
-
-  > :empty {
-    display: none;
-  }
 }
 
 .icon {
