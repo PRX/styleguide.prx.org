@@ -11,9 +11,6 @@ module.exports = {
       tsConfig: '<rootDir>/test/tsconfig.jest.json'
     },
   },
-  moduleNameMapper: {
-    c3: '<rootDir>/test/__mocks__/c3.js',
-  },
   coverageDirectory: './coverage/',
   testPathIgnorePatterns: [
     '<rootDir>/node_modules',
