@@ -54,17 +54,31 @@ const usage = () => {
 
   return {
     template: `
-      <prx-calpicker
-        [months]="months"
-        [minDate]="minDate"
-        [maxDate]="maxDate"
-        [defaultDate]="defaultDate"
-        [disabled]="disabled"
-        [dates]="dates"
-        (datesChange)="datesChange($event)"
-      ></prx-calpicker>
+      <div class="main">
+        <prx-calpicker
+          [months]="months"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          [defaultDate]="defaultDate"
+          [disabled]="disabled"
+          [dates]="dates"
+          (datesChange)="datesChange($event)"
+        ></prx-calpicker>
+      </div>
     `,
-    props: {months, minDate, maxDate, defaultDate, disabled, dates, datesChange}
+    props: {months, minDate, maxDate, defaultDate, disabled, dates, datesChange},
+    styles: [
+      `
+      .main {
+        width: 90vw;
+      }
+      @media screen and (min-width: 768px) {
+        .main {
+          width: 60vw;
+        }
+      }
+      `
+    ]
   };
 };
 

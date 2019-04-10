@@ -58,23 +58,18 @@
 }
 
 .calpicker.pika-single {
-  border: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  border: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.calpicker.pika-single:before,
+.calpicker.pika-single:after {
+  content: none;
+  display: initial;
 }
 .calpicker .pika-lendar {
   float: none;
   width: auto;
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 210px;
-  flex: 1 1 210px;
 }
 .calpicker .pika-title {
   position: inherit;
