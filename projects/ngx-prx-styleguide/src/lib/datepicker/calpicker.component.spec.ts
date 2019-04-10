@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { CalpickerComponent } from './calpicker.component';
 import { SimpleDate } from './simpledate';
 
-fdescribe('Component: CalpickerComponent', () => {
+describe('Component: CalpickerComponent', () => {
   let comp: CalpickerComponent;
   let fix: ComponentFixture<CalpickerComponent>;
 
