@@ -29,7 +29,7 @@ export class ButtonComponent {
   @Input() visible: boolean;
 
   get isWorking() {
-    if (this.working === undefined) {
+    if (this.working === undefined && this.model) {
       return this.model.isSaving;
     } else {
       return this.decode(this.working);
@@ -37,16 +37,20 @@ export class ButtonComponent {
   }
 
   get isDisabled() {
-    if (this.disabled === undefined) {
-      return this.isWorking || this.model.invalid();
+    if (this.isWorking) {
+      return true;
+    } else if (this.disabled === undefined && this.model) {
+      return this.model.invalid();
     } else {
       return this.decode(this.disabled);
     }
   }
 
   get isVisible() {
-    if (this.visible === undefined) {
+    if (this.visible === undefined && this.model) {
       return this.model.changed();
+    } else if (this.visible === undefined) {
+      return true;
     } else {
       return this.decode(this.visible);
     }

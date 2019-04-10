@@ -20,7 +20,7 @@
   },
   "engines": {
     "node": ">= 6.9.0",
-    "npm": ">= 3.0.0"
+    "npm": ">= 6.0.0"
   },
   "scripts": {
     "ng": "ng",
@@ -51,7 +51,7 @@
     "core-js": "~2.4.1",
     "moment-timezone": "^0.5.23",
     "ngx-tooltip": "0.0.9",
-    "pikaday": "~1.5.1",
+    "pikaday": "^1.8.0",
     "rxjs": "~6.0.0",
     "scss-bundle": "~2.4.0",
     "zone.js": "~0.8.4"
@@ -81,7 +81,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/moment-timezone": "^0.5.12",
     "@types/node": "~8.9.4",
-    "@types/pikaday": "0.0.32",
+    "@types/pikaday": "^1.7.4",
     "@types/storybook__addon-actions": "~3.4.2",
     "@types/storybook__addon-knobs": "~4.0.4",
     "babel-loader": "~8.0.5",

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
+import { CalpickerComponent } from './calpicker.component';
 import { DatepickerComponent } from './datepicker.component';
 import { DaterangeComponent } from './daterange.component';
 import { TimepickerComponent } from './timepicker.component';
@@ -12,6 +13,7 @@ import { TimepickerComponent } from './timepicker.component';
     FormsModule
   ],
   declarations: [
+    CalpickerComponent,
     DatepickerComponent,
     DaterangeComponent,
     TimepickerComponent,
@@ -19,6 +21,7 @@ import { TimepickerComponent } from './timepicker.component';
   providers: [
   ],
   exports: [
+    CalpickerComponent,
     DatepickerComponent,
     DaterangeComponent,
     TimepickerComponent,
