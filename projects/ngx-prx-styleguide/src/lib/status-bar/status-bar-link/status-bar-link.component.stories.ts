@@ -136,7 +136,6 @@ storiesOf('Navigation|Status Bar/Status Bar Link/Examples', module)
     () => ({
       template: `
       <div class="main">
-      <div class="main">
         <prx-status-bar>
           <a prx-status-bar-link routerLink="/">
             <prx-status-bar-icon name="chevron-left" aria-label="Return To Home"></prx-status-bar-icon>
@@ -145,7 +144,6 @@ storiesOf('Navigation|Status Bar/Status Bar Link/Examples', module)
           <prx-status-bar-text italic stretch>Honey, your puns are tearing this relationship apart</prx-status-bar-text>
           <a prx-status-bar-link routerLink="/series/12344" alignArt="right"><prx-status-bar-image src="https://placebear.com/40/40" alignAart="right"></prx-status-bar-image>Bearly Bearable</a>
         </prx-status-bar>
-      </div>
       </div>
       `,
       props: {},
@@ -165,13 +163,13 @@ storiesOf('Navigation|Status Bar/Status Bar Link/Examples', module)
 
 \`\`\`html
 <prx-status-bar>
-  <prx-status-bar-text bold uppercase>Welcome</prx-status-bar-text>
-  <prx-status-bar-text italic stretch>Thanks for visiting our site.</prx-status-bar-text>
-  <a prx-status-bar-link alignArt="right" href="https://www.facebook.com/PRXOfficial/" target="_blank">
-    <prx-status-bar-icon name="facebook" aria-label="Our Facebook Page"></prx-status-bar-icon>
+  <a prx-status-bar-link routerLink="/">
+    <prx-status-bar-icon name="chevron-left" aria-label="Return To Home"></prx-status-bar-icon>
   </a>
-  <a prx-status-bar-link alignArt="right" href="https://twitter.com/prx" target="_blank">
-    <prx-status-bar-icon name="twitter" aria-label="Our Twitter Page"></prx-status-bar-icon>
+  <prx-status-bar-text bold uppercase>Episode</prx-status-bar-text>
+  <prx-status-bar-text italic stretch>Honey, your puns are tearing this relationship apart</prx-status-bar-text>
+  <a prx-status-bar-link routerLink="/series/12344" alignArt="right">
+    <prx-status-bar-image src="https://placebear.com/40/40" alignAart="right"></prx-status-bar-image> Bearly Bearable
   </a>
 </prx-status-bar>
 \`\`\`
