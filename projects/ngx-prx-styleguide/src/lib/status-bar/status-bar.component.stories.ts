@@ -74,32 +74,3 @@ _Selector_ \`prx-status-bar\`
       }
     }
   );
-
-storiesOf('Navigation|Status Bar/Examples', module)
-  .addDecorator(centered)
-  .addDecorator(storiesModuleMetaData)
-  .add(
-    'Episode Status Bar',
-    () => ({
-      template: `
-      <div class="main">
-        <prx-status-bar>
-          <a prx-status-bar-link routerLink="/some/place">
-            <prx-icon name="chevron-left"></prx-icon> Back
-          </a>
-          <prx-status-bar-text bold uppercase>Episode</prx-status-bar-text>
-          <prx-status-bar-text italic stretch>Honey, your puns are tearing this relationship apart</prx-status-bar-text>
-          <a prx-status-bar-link routerLink="/series/12344">Bearly Bearable <prx-image src="https://placebear.com/40/40" right></prx-image></a>
-        </prx-status-bar>
-      </div>
-      `,
-      props: {},
-      styles: [
-        `
-        .main {
-          width: 90vw;
-        }
-        `
-      ]
-    })
-  );

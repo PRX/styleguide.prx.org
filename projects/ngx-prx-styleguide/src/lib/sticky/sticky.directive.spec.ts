@@ -42,6 +42,7 @@ import { StickyModule } from './sticky.module';
     .sticky-sidebar {
       grid-area: SIDEBAR;
       height: 100px;
+      margin-top: 20px;
       background: yellow;
     }
     .sticky-element {

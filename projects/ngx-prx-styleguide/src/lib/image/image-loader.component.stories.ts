@@ -58,8 +58,6 @@ storiesOf('Images|Image Loader', module)
         attrs = `[imageDoc]="imageDoc"`;
       }
 
-      console.log('imageDoc::', imageDoc);
-
       return {
         template: `
           <prx-image ${attrs} ></prx-image>

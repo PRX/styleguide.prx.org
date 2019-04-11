@@ -5,18 +5,18 @@
   align-items: center;
   height: $status_bar-height;
 
-  box-sizing: border-box;
+  box-sizing: content-box;
 
   background-color: $white;
 
-  border: 1px solid $white-fog;
+  border: $status_bar-border_size solid $white-fog;
 
   font-size: 1rem;
   line-height: $status_bar-height;
 
   ::ng-deep {
     & > * + * {
-      border-left: 1px solid $white-fog;
+      border-left: $status_bar-item-border_size solid $white-fog;
     }
   }
 }

@@ -1,42 +1,41 @@
-import { text } from '@storybook/addon-knobs';
-import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, ElementRef, ViewChild, ChangeDetectorRef, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'a[prx-status-bar-link]',
   templateUrl: './status-bar-link.component.html',
   styleUrls: ['./status-bar-link.component.scss']
 })
-export class StatusBarLinkComponent implements OnInit {
+export class StatusBarLinkComponent {
 
   showIcon: boolean = true;
-  showIconRight: boolean = true;
   showImage: boolean = true;
-  showImageRight: boolean = true;
   showText: boolean = true;
 
-  constructor(private cdRef:ChangeDetectorRef) { }
+  @HostBinding('class.align-art--right') alignArtRight: boolean = false;
 
   @ViewChild('icon') icon: ElementRef;
   @ViewChild('image') image: ElementRef;
-  @ViewChild('iconRight') iconRight: ElementRef;
-  @ViewChild('imageRight') imageRight: ElementRef;
   @ViewChild('text') text: ElementRef;
 
-  ngOnInit() {
+  @Input()
+  set alignArt(val: string) {
+    this.alignArtRight = val && val.toLowerCase()  === 'right';
   }
+  get alignArt() {
+    return this.alignArtRight ? 'right' : 'left';
+  }
+
+  constructor(private cdRef:ChangeDetectorRef) { }
 
   ngAfterViewInit() {
     this.showIcon = this.isElementProvided(this.icon);
     this.showImage = this.isElementProvided(this.image);
-    this.showIconRight = this.isElementProvided(this.iconRight);
-    this.showImageRight = this.isElementProvided(this.imageRight);
     this.showText = this.isElementProvided(this.text);
     this.cdRef.detectChanges();
   }
 
   isElementProvided(elm: ElementRef) {
-    console.log(elm);
-    return elm.nativeElement && elm.nativeElement.childNodes.length > 0;
+    return elm.nativeElement && Array.from(elm.nativeElement.childNodes).filter((node: Node) => node.nodeName !== '#comment').length > 0;
   }
 
 }
