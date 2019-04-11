@@ -26,7 +26,14 @@ export class IconComponent implements OnChanges {
     return this.width;
   }
 
-  @Input() name: string;
+  private _name: string;
+  @Input()
+  set name(val: string) {
+    this._name = val && val.replace(/\.svg/i, '');
+  }
+  get name() {
+    return this._name;
+  }
 
   @HostBinding('style.width') protected width: string;
   @HostBinding('style.height') protected height: string;
@@ -56,7 +63,7 @@ export class IconComponent implements OnChanges {
   }
 
   get svgFilePath() {
-    return this.name && `../../assets/images/icons/${this.name}.svg`;
+    return this.name && `../../assets/images/icons/${this._name}.svg`;
   }
 
 }

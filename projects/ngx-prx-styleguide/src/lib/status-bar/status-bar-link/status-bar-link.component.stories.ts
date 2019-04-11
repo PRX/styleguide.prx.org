@@ -28,7 +28,7 @@ storiesOf('Navigation|Status Bar/ Status Bar Link', module)
   .add(
     'Usage Details (Knobs)',
     () => {
-      const decoration = select('Show Decorator', ['None', 'Icon', 'Image'], 'Icon');
+      const decoration = select('Show Decorator', ['None', 'Icon', 'Image'], 'None');
       const showIcon = (decoration === 'Icon');
       const showImage = (decoration === 'Image');
       const alignArt = decoration !== 'None' && select('Align Art', {Left: 'left', Right: 'right'}, 'left');

@@ -7,15 +7,15 @@ import { Component, ElementRef, ViewChild, ChangeDetectorRef, HostBinding, Input
 })
 export class StatusBarLinkComponent {
 
-  showIcon: boolean = true;
-  showImage: boolean = true;
-  showText: boolean = true;
+  private showIcon: boolean = true;
+  private showImage: boolean = true;
+  private showText: boolean = true;
 
-  @HostBinding('class.align-art--right') alignArtRight: boolean = false;
+  @HostBinding('class.align-art--right') private alignArtRight: boolean = false;
 
-  @ViewChild('icon') icon: ElementRef;
-  @ViewChild('image') image: ElementRef;
-  @ViewChild('text') text: ElementRef;
+  @ViewChild('icon') private icon: ElementRef;
+  @ViewChild('image') private image: ElementRef;
+  @ViewChild('text') private text: ElementRef;
 
   @Input()
   set alignArt(val: string) {

@@ -5,14 +5,11 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './status-bar-icon.component.html',
   styleUrls: ['./status-bar-icon.component.scss']
 })
-export class StatusBarIconComponent implements OnInit {
+export class StatusBarIconComponent {
 
   @Input() name: string;
   @Input() color: string;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

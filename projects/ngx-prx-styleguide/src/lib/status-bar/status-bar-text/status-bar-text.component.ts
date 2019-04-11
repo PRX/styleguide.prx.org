@@ -9,10 +9,10 @@ export class StatusBarTextComponent implements OnInit {
 
   private classIsUsed = (val: any) => val === '' || !!val;
 
-  @HostBinding('class.text--bold') _isBold: boolean = false;
-  @HostBinding('class.text--italic')_isItalic: boolean = false;
-  @HostBinding('class.text--uppercase')_isUppercase: boolean = false;
-  @HostBinding('class.layout--stretch')_isStretch: boolean = false;
+  @HostBinding('class.text--bold') private _isBold: boolean = false;
+  @HostBinding('class.text--italic') private _isItalic: boolean = false;
+  @HostBinding('class.text--uppercase') private _isUppercase: boolean = false;
+  @HostBinding('class.layout--stretch') private _isStretch: boolean = false;
 
   @Input()
   set bold(val: any) { this._isBold = this.classIsUsed(val); }

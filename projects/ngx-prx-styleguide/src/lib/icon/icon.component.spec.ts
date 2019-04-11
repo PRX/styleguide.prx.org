@@ -90,6 +90,12 @@ describe('IconComponent', () => {
     expect(icon.svgFilePath).toBe('../../assets/images/icons/plus.svg');
   });
 
+  it('should remove ".svg" extension from name', () => {
+    component.name = 'plus.svg';
+    fixture.detectChanges();
+    expect(icon.name).toBe('plus');
+  });
+
   it('should set width and height styles', () => {
     component.size = '20px';
     fixture.detectChanges();
