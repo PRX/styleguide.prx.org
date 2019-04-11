@@ -5,11 +5,14 @@ import * as Pikaday from 'pikaday';
 
 import {DatepickerComponent} from './datepicker.component';
 
+jest.mock('pikaday')
+
 describe('Component: DatepickerComponent', () => {
   let comp: DatepickerComponent;
   let fix: ComponentFixture<DatepickerComponent>;
   let de: DebugElement;
   let el: HTMLElement;
+  let pikadaySetSpy: jest.SpyInstance;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,7 +26,10 @@ describe('Component: DatepickerComponent', () => {
 
       comp.ngAfterViewInit();
     });
+    pikadaySetSpy = jest.spyOn(Pikaday.prototype, 'setDate')
   }));
+
+  afterEach(() => pikadaySetSpy.mockClear())
 
   it('should have a defined component', () => {
     expect(comp).toBeDefined();
@@ -33,7 +39,39 @@ describe('Component: DatepickerComponent', () => {
     expect(comp.picker instanceof Pikaday).toBe(true);
   });
 
-  it('emits dateChanged event when date is selected', () => {
+  it('should update date picker to reflect changes to @Input() date', () => {
+    expect(pikadaySetSpy).not.toBeCalled();
+    comp.date = new Date();
+    comp.date.setHours(0);
+    comp.date.setMinutes(0);
+    comp.date.setSeconds(0);
+    comp.date.setMilliseconds(0);
+    fix.detectChanges();
+    expect(pikadaySetSpy).toBeCalledTimes(1);
+    expect(pikadaySetSpy).toBeCalledWith(comp.date);
+
+    comp.date = new Date(comp.date.valueOf() - 24 * 60 * 60 * 1000);
+    fix.detectChanges();
+    expect(pikadaySetSpy).toBeCalledTimes(2);
+    expect(pikadaySetSpy).toBeCalledWith(comp.date);
+  });
+
+  it('should update date picker in UTC mode to reflect changes to @Input() date', () => {
+    expect(pikadaySetSpy).not.toBeCalled();
+    comp.UTC = true;
+    comp.date = new Date(Date.UTC(2018, 1, 1, 0, 0, 0, 0));
+    fix.detectChanges();
+    expect(pikadaySetSpy).toBeCalledTimes(1);
+    expect(pikadaySetSpy).toBeCalledWith(comp.pickerUTCOffset(comp.date));
+
+    comp.date = new Date(comp.date.valueOf() - 24 * 60 * 60 * 1000);
+    fix.detectChanges();
+    expect(pikadaySetSpy).toBeCalledTimes(2);
+    expect(pikadaySetSpy).toBeCalledWith(comp.pickerUTCOffset(comp.date));
+  });
+
+  // TODO: convert to integration test
+  xit('emits dateChanged event when date is selected', () => {
     jest.spyOn(comp.dateChange, 'emit').mockImplementation(() => {});
     comp.picker.setDate('02/17/2017');
     fix.detectChanges();
@@ -51,16 +89,7 @@ describe('Component: DatepickerComponent', () => {
     const date = new Date('02/01/2018');
     comp.setWhenValid('02/01/2018');
     expect(comp.date.valueOf()).toEqual(date.valueOf());
-    expect((comp.picker.getDate().valueOf())).toEqual(date.valueOf());
-  });
-
-  it('should update date in UTC mode on valid date entry', () => {
-    comp.UTC = true;
-    comp.date = new Date(Date.UTC(2018, 0, 1)); // '01/01/2018'
-    const date = new Date(Date.UTC(2018, 1, 2, 0, 0, 0)); // '02/02/2018'
-    comp.setWhenValid('02/02/2018');
-    expect(comp.date.valueOf()).toEqual(date.valueOf());
-    expect((comp.picker.getDate().valueOf())).toEqual(comp.pickerUTCOffset(date).valueOf());
+    expect(comp.picker.setDate).toBeCalledWith(date)
   });
 
   it('should have CSS class invalid if entry is not valid date', fakeAsync(() => {
@@ -71,33 +100,6 @@ describe('Component: DatepickerComponent', () => {
     fix.detectChanges();
     expect(de.query(By.css('input.invalid'))).not.toBeNull();
   }));
-
-  it('should update date picker to reflect changes to @Input() date', () => {
-    comp.date = new Date();
-    comp.date.setHours(0);
-    comp.date.setMinutes(0);
-    comp.date.setSeconds(0);
-    comp.date.setMilliseconds(0);
-    fix.detectChanges();
-    expect(comp.picker.getDate().valueOf()).toEqual(comp.date.valueOf());
-    comp.date = new Date(comp.date.valueOf() - 24 * 60 * 60 * 1000);
-    fix.detectChanges();
-    expect(comp.picker.getDate().valueOf()).toEqual(comp.date.valueOf());
-  });
-
-  it('should update date picker in UTC mode to reflect changes to @Input() date', () => {
-    comp.date = new Date(Date.UTC(2018, 1, 1));
-    comp.UTC = true;
-    comp.date.setHours(0);
-    comp.date.setMinutes(0);
-    comp.date.setSeconds(0);
-    comp.date.setMilliseconds(0);
-    fix.detectChanges();
-    expect(comp.picker.getDate().valueOf()).toEqual(comp.date.valueOf());
-    comp.date = new Date(comp.date.valueOf() - 24 * 60 * 60 * 1000);
-    fix.detectChanges();
-    expect(comp.picker.getDate().valueOf()).toEqual(comp.date.valueOf());
-  });
 
   it('should preserve time portion of date value', () => {
     comp.date = new Date();
@@ -117,10 +119,10 @@ describe('Component: DatepickerComponent', () => {
   });
 
   it('should support displaying UTC date', () => {
-    comp.date = new Date(Date.UTC(2017, 0, 1, 0, 0, 0));
+    const offsetSpy = jest.spyOn(DatepickerComponent.prototype, 'pickerUTCOffset')
     comp.UTC = true;
-    fix.detectChanges();
-    expect(comp.picker.getDate().getDate()).toEqual(1);
+    comp.date = new Date(Date.UTC(2017, 0, 1, 0, 0, 0));
+    expect(offsetSpy).toHaveBeenCalledWith(comp.date)
   });
 
   it('should support formatting the date', () => {
@@ -128,5 +130,44 @@ describe('Component: DatepickerComponent', () => {
     comp.setDate(new Date(2018, 0, 1, 0, 0, 0));
     fix.detectChanges();
     expect(comp.input.nativeElement.value).toEqual('2018-01-01');
+  });
+
+  describe('mocked pikaday', () => {
+    beforeEach(() => {
+      (Pikaday as jest.Mock).mockImplementation(() => {
+        return {
+          getDate: jest.fn(() => new Date()),
+          setDate: jest.fn()
+        };
+      });
+    })
+    afterEach(() => {
+      (Pikaday.prototype.setDate as jest.Mock).mockClear();
+      (Pikaday.prototype.getDate as jest.Mock).mockClear();
+    })
+
+    it('should update date in UTC mode on valid date entry', () => {
+      const date = new Date(Date.UTC(2018, 1, 2, 0, 0, 0)); // '02/02/2018'
+
+      (Pikaday as jest.Mock).mockImplementation(() => {
+        return {
+          getDate: jest.fn(() => date),
+          setDate: jest.fn()
+        };
+      });
+
+      // Reinstantiate pikaday with new mock
+      comp.ngAfterViewInit()
+      comp.UTC = true;
+      comp.date = new Date(Date.UTC(2018, 0, 1)); // '01/01/2018'
+
+      expect(comp.picker.setDate).toBeCalledTimes(1);
+      expect(comp.picker.setDate).toBeCalledWith(comp.pickerUTCOffset(comp.date));
+      comp.setWhenValid('02/02/2018');
+
+      expect(comp.date.valueOf()).toEqual(date.valueOf());
+      expect(comp.picker.setDate).toBeCalledTimes(2);
+      expect(comp.picker.setDate).toBeCalledWith(comp.pickerUTCOffset(date))
+    });
   });
 });
