@@ -28,10 +28,10 @@ storiesOf('Navigation|Status Bar/ Status Bar Link', module)
   .add(
     'Usage Details (Knobs)',
     () => {
-      const decoration = select('Show Decorator', ['None', 'Icon', 'Image'], 'None');
-      const showIcon = (decoration === 'Icon');
-      const showImage = (decoration === 'Image');
-      const alignArt = decoration !== 'None' && select('Align Art', {Left: 'left', Right: 'right'}, 'left');
+      const art = select('Show Art', ['None', 'Icon', 'Image'], 'None');
+      const showIcon = (art === 'Icon');
+      const showImage = (art === 'Image');
+      const alignArt = art !== 'None' && select('Align Art', {Left: 'left', Right: 'right'}, 'left');
 
       return {
         template: `
