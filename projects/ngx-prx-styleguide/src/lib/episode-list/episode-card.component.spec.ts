@@ -54,16 +54,16 @@ describe('EpisodeCardComponent', () => {
       comp.status = status;
       fix.detectChanges();
     });
-
-    it('renders the episode card', () => {
-      expect(de.query(By.css('.story-date')).nativeElement.innerText).toContain(date.getDate());
-      expect(de.query(By.css('h2')).nativeElement.innerText).toContain(title);
-      expect(de.query(By.css('h3')).nativeElement.innerText).toContain(teaser);
-      expect(de.query(By.css('h3')).nativeElement.innerText).toContain(status);
-    });
-
-    it('projects inner content', () => {
-      expect(de.nativeElement.innerText).toContain('Something usually goes here');
-    });
   }));
+
+  it('renders the episode card', () => {
+    expect(de.query(By.css('.story-date')).nativeElement.textContent).toContain(date.getDate());
+    expect(de.query(By.css('h2')).nativeElement.textContent).toContain(title);
+    expect(de.query(By.css('h3')).nativeElement.textContent).toContain(teaser);
+    expect(de.query(By.css('h3')).nativeElement.textContent).toContain(status);
+  });
+
+  it('projects inner content', () => {
+    expect(de.nativeElement.textContent).toContain('Something usually goes here');
+  });
 });
