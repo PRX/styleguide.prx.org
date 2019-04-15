@@ -4,6 +4,8 @@ import {of as observableOf, empty as observableEmpty,  Observable ,  Observer } 
 import { BaseModel } from './base.model';
 import { MockHalDoc } from '../hal/mock/mock-haldoc';
 import { HalHttpError } from '../hal/remote/halremote';
+import { HalObservable } from '../hal/doc/halobservable';
+import { HalDoc } from '../hal/doc/haldoc';
 
 class FakeModel extends BaseModel {
   someattribute = 'somevalue';
@@ -11,7 +13,7 @@ class FakeModel extends BaseModel {
   related() { return {}; }
   decode() { for (let k of Object.keys(this.doc)) { this[k] = this.doc[k]; } }
   encode() { return {}; }
-  saveNew(data: {}) { return <any> null; }
+  saveNew(data: {}) { return null as any; }
 }
 
 describe('BaseModel', () => {
@@ -27,7 +29,7 @@ describe('BaseModel', () => {
   describe('init', () => {
 
     it('sets the parent-self relationship', () => {
-      spyOn(base, 'decode').and.stub();
+      jest.spyOn(base, 'decode').mockImplementation(() => {});
       const fakeParent = new MockHalDoc({id: 123, foo: 'bar'}, 'model/whatever')
       const fakeSelf = new MockHalDoc({id: 123, foo: 'bar'}, 'model/whatever')
       base.init(fakeParent, fakeSelf);
@@ -38,7 +40,7 @@ describe('BaseModel', () => {
     });
 
     it('only decodes existing documents', () => {
-      spyOn(base, 'decode').and.stub();
+      jest.spyOn(base, 'decode').mockImplementation(() => {})
       base.init();
       expect(base.isNew).toEqual(true);
       expect(base.decode).not.toHaveBeenCalled();
@@ -46,20 +48,20 @@ describe('BaseModel', () => {
 
     it('records original values', () => {
       base.SETABLE = ['foo', 'bar'];
-      base.init(null, <any> {foo: 'fooval', hello: 'world'});
+      base.init(null, {foo: 'fooval', hello: 'world'} as any);
       expect(base.original).toEqual({foo: 'fooval', bar: undefined});
     });
 
     it('overlays stored values', () => {
       base.SETABLE = ['someattribute'];
-      spyOn(base, 'restore').and.callFake(function() { this.someattribute = 'override'; });
-      base.init(null, <any> {someattribute: 'originalvalue'});
+      jest.spyOn(base, 'restore').mockImplementation(function() { this.someattribute = 'override'; });
+      base.init(null, {someattribute: 'originalvalue'} as any);
       expect(base.someattribute).toEqual('override');
       expect(base.original['someattribute']).toEqual('originalvalue');
     });
 
     it('subscribes to related models', () => {
-      spyOn(base, 'related').and.callFake(() => {
+      jest.spyOn(base, 'related').mockImplementation(() => {
         return {foo: observableOf('bar')};
       });
       base.init(null, null, false);
@@ -77,7 +79,7 @@ describe('BaseModel', () => {
 
     it('sets and stores the value', () => {
       base.SETABLE = ['foo'];
-      spyOn(base, 'store').and.stub();
+      jest.spyOn(base, 'store').mockImplementation(() => {})
       base.set('foo', 'bar');
       expect(base.store).toHaveBeenCalled();
     });
@@ -103,7 +105,7 @@ describe('BaseModel', () => {
       let fooCount = 1, barCount = 1;
       const foo = Observable.create((sub: Observer<number>) => sub.next(fooCount++));
       const bar = Observable.create((sub: Observer<number>) => sub.next(barCount++));
-      spyOn(base, 'related').and.callFake(() => ({foo, bar}));
+      jest.spyOn(base, 'related').mockImplementation(() => ({foo, bar}));
       base.init(null, null, false);
     });
 
@@ -140,7 +142,7 @@ describe('BaseModel', () => {
   describe('loadRelated errors', () => {
     beforeEach(() => {
       const baz = Observable.create((sub: Observer<number>) => sub.error(new HalHttpError(404, 'HalHttpError')));
-      spyOn(base, 'related').and.callFake(() => ({baz}));
+      jest.spyOn(base, 'related').mockImplementation(() => ({baz}));
       base.init(null, null, false);
     });
 
@@ -164,16 +166,15 @@ describe('BaseModel', () => {
     });
 
     it('calls to the child class for new docs', () => {
-      spyOn(base, 'saveNew').and.returnValue(observableEmpty());
+      jest.spyOn(base, 'saveNew').mockReturnValue(observableEmpty());
       base.isNew = true;
       base.save();
       expect(base.saveNew).toHaveBeenCalled();
     });
 
     it('updates existing docs', () => {
-      base.doc = <any> {update: null};
+      base.doc = {update: jest.fn(() => observableEmpty())} as any;
       base.changed = () => false;
-      spyOn(base.doc, 'update').and.returnValue(observableEmpty());
       base.save();
       expect(base.doc.update).not.toHaveBeenCalled();
       base.changed = () => true;
@@ -182,19 +183,18 @@ describe('BaseModel', () => {
     });
 
     it('deletes destroyed docs', () => {
-      base.doc = <any> {destroy: null};
-      spyOn(base.doc, 'destroy').and.returnValue(observableEmpty());
+      base.doc = {destroy: jest.fn(() => observableEmpty())} as any;
       base.isDestroy = true;
       base.save();
       expect(base.doc.destroy).toHaveBeenCalled();
     });
 
     it('re-inits after saving', () => {
-      base.doc = <any> {update: null};
+      base.doc = {update: jest.fn(() => observableOf({foo: 'bar'}))} as any;
+      base.unstore = jest.fn()
       base.changed = () => true;
-      spyOn(base.doc, 'update').and.returnValue(observableOf({foo: 'bar'}));
-      spyOn(base, 'unstore').and.stub();
-      spyOn(base, 'init').and.callFake((parent: any, doc: any) => {
+      //jest.spyOn(base, 'unstore').mockImplementation(() => {})
+      jest.spyOn(base, 'init').mockImplementation((parent: any, doc: any) => {
         expect(doc.foo).toEqual('bar');
       });
       base.save().subscribe();
@@ -204,9 +204,8 @@ describe('BaseModel', () => {
     });
 
     it('cascades saving to changed child models', () => {
-      base.doc = <any> {update: null};
-      spyOn(base.doc, 'update').and.returnValue(observableOf({foo: 'bar'}));
-      spyOn(base, 'init').and.stub();
+      base.doc = {update: jest.fn(() => observableEmpty())} as any;
+      jest.spyOn(base, 'init').mockImplementation(() => {})
 
       let firstSaved = false, secondSaved = false;
       base.RELATIONS = ['foo'];
@@ -230,12 +229,12 @@ describe('BaseModel', () => {
         save: () => { originalSaved = true; return observableOf(true); },
         unstore: () => originalUnstore = true
       };
-      spyOn(base, 'related').and.callFake(() => {
+      jest.spyOn(base, 'related').mockImplementation(() => {
         return {foo: Observable.create((sub: Observer<any>) => sub.next([fakeFoo]))};
       });
 
       // init related
-      base.init(null, <any> {update: () => observableOf({})});
+      base.init(null, {update: () => observableOf({})} as any);
       expect(base.RELATIONS).toEqual(['foo']);
       expect(base['foo'][0].name).toEqual('original');
 
@@ -270,20 +269,19 @@ describe('BaseModel', () => {
         swapNew: () => { throw new Error('should not have swapped'); },
         save: () => { originalSaved = true; return observableOf(true); }
       };
-      spyOn(base, 'related').and.callFake(() => {
+      jest.spyOn(base, 'related').mockImplementation(() => {
         return {foo: Observable.create((sub: Observer<any>) => sub.next([fakeFoo]))};
       });
 
       // init related and save
-      base.init(null, <any> {update: () => observableOf({})});
+      base.init(null, {update: () => observableOf({})} as any);
       base.save().subscribe();
       expect(originalSaved).toEqual(true);
     });
 
     it('removes destroyed child models', () => {
-      base.doc = <any> {update: null};
-      spyOn(base.doc, 'update').and.returnValue(observableOf({foo: 'bar'}));
-      spyOn(base, 'init').and.stub();
+      base.doc = {update: jest.fn(() => observableOf({foo: 'bar'}))} as any;
+      jest.spyOn(base, 'init').mockImplementation(() => {})
       base.RELATIONS = ['foo'];
       base['foo'] = [{changed: () => true, save: () => observableOf(true), isDestroy: true}];
       base.save().subscribe();
@@ -400,7 +398,7 @@ describe('BaseModel', () => {
       expect(base.invalid()).toBeNull();
       base['foo'] = [
         {invalid: () => 'yeah sure'},
-        {invalid: () => <any> null}
+        {invalid: () => null as any}
       ];
       expect(base.invalid('foo')).toEqual('yeah sure');
       expect(base.invalid()).toEqual('yeah sure');
@@ -432,7 +430,7 @@ describe('BaseModel', () => {
 
     it('round trips changed model data', () => {
       let theKey = 'some-storage-key';
-      spyOn(base, 'key').and.callFake(() => theKey);
+      jest.spyOn(base, 'key').mockImplementation(() => theKey);
 
       // not persisted
       base.SETABLE = ['someattribute'];
@@ -470,7 +468,7 @@ describe('BaseModel', () => {
     });
 
     it('discards child models and removes new records', () => {
-      spyOn(base, 'related').and.callFake(() => {
+      jest.spyOn(base, 'related').mockImplementation(() => {
         return {foo: observableOf('bar')};
       });
       base['foo'] = [

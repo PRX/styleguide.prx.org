@@ -35,12 +35,12 @@ describe('AuthComponent', () => {
 
   it('renders the auth iframe when host and client are set', () => {
     comp.host = 'id.prx.org';
-    comp.ngOnChanges(<any> {host: true, client: true});
+    comp.ngOnChanges({host: true, client: true} as any);
     fix.detectChanges();
     expect(de.query(By.css('iframe'))).toBeNull();
 
     comp.client = 'whatev';
-    comp.ngOnChanges(<any> {host: true, client: true});
+    comp.ngOnChanges({host: true, client: true} as any);
     fix.detectChanges();
     let iframe = de.query(By.css('iframe'));
     expect(iframe).not.toBeNull();
@@ -48,38 +48,38 @@ describe('AuthComponent', () => {
   });
 
   it('does not parse tokens from blank iframe queries', () => {
-    spyOn(AuthParser, 'parseIframeQuery').and.returnValue(null);
+    jest.spyOn(AuthParser, 'parseIframeQuery').mockReturnValue(null);
     comp.checkAuth();
     expect(token).toBeUndefined();
   });
 
   it('sets tokens from the iframe callback query', () => {
-    spyOn(AuthParser, 'parseIframeQuery').and.returnValue('the-query');
-    spyOn(AuthParser, 'parseToken').and.returnValue('the-token');
+    jest.spyOn(AuthParser, 'parseIframeQuery').mockReturnValue('the-query');
+    jest.spyOn(AuthParser, 'parseToken').mockReturnValue('the-token');
     comp.checkAuth();
     expect(token).toEqual('the-token');
   });
 
   it('refreshes the auth token', () => {
-    spyOn(AuthParser, 'parseIframeQuery').and.returnValue('the-query');
-    spyOn(AuthParser, 'parseToken').and.returnValue('the-token');
+    jest.spyOn(AuthParser, 'parseIframeQuery').mockReturnValue('the-query');
+    jest.spyOn(AuthParser, 'parseToken').mockReturnValue('the-token');
     comp.host = 'id.prx.org';
     comp.client = 'whatev';
-    comp.ngOnChanges(<any> {host: true, client: true});
-    fix.detectChanges();
+    comp.ngOnChanges({host: true, client: true} as any);
+    comp.checkAuth();
     expect(token).toEqual('the-token');
 
-    spyOn(comp, 'generateAuthUrl').and.stub();
+    jest.spyOn(comp, 'generateAuthUrl').mockImplementation(() => {});
     refresh.next(true);
     expect(comp.generateAuthUrl).toHaveBeenCalledTimes(1);
   });
 
   it('catches iframe errors', () => {
-    spyOn(AuthParser, 'parseIframeQuery').and.throwError('something went wrong');
+    jest.spyOn(AuthParser, 'parseIframeQuery').mockImplementation(() => { throw new Error('something went wrong') });
     comp.host = 'id.prx.org';
     comp.client = 'whatev';
-    comp.ngOnChanges(<any> {host: true, client: true});
-    fix.detectChanges();
+    comp.ngOnChanges({host: true, client: true} as any);
+    comp.checkAuth();
     expect(error.message).toEqual('something went wrong');
   });
 

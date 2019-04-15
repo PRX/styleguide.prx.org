@@ -38,18 +38,18 @@ describe('Component: NavUserComponent', () => {
     comp.userinfo = new Userinfo();
     comp.userinfo.name = 'somebody';
     fix.detectChanges();
-    expect(de.query(By.css('.nav-userinfo-menu-account')).nativeElement.innerText).toEqual('somebody');
+    expect(de.query(By.css('.nav-userinfo-menu-account')).nativeElement.textContent).toEqual('somebody');
   });
 
   it('displays the loaded content', () => {
     comp.userinfo = new Userinfo();
     fix.detectChanges();
-    expect(el.innerText).toContain(('IsLoaded').toUpperCase());
+    expect(el.textContent).toContain('IsLoaded');
   });
 
   it('displays loading content', () => {
     fix.detectChanges();
-    expect(el.innerText).toContain('IsLoading');
+    expect(el.textContent).toContain('IsLoading');
   });
 
 });

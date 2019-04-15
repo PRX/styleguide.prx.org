@@ -9,7 +9,7 @@ const mockAuthService = {
   }
 };
 const mockRouter = {
-  goto: <any> null,
+  goto: null as any,
   navigate: (params: any[]) => { mockRouter.goto = params[0]; }
 };
 
@@ -23,7 +23,7 @@ describe('AuthGuard', () => {
   describe('with a token', () => {
 
     it('auth allows users', () => {
-      let guard = new AuthGuard(<any> mockAuthService, <any> mockRouter);
+      let guard = new AuthGuard(mockAuthService as any, mockRouter as any);
       let canActivate: boolean;
       guard.canActivate().subscribe((can: boolean) => { canActivate = can; });
       expect(canActivate).toBeUndefined();
@@ -36,7 +36,7 @@ describe('AuthGuard', () => {
   describe('with a token of AUTHORIZATION_DENIED', () => {
 
     it('auth redirects to permission-denied', () => {
-      let guard = new AuthGuard(<any> mockAuthService, <any> mockRouter);
+      let guard = new AuthGuard(mockAuthService as any, mockRouter as any);
       let canActivate: boolean;
       guard.canActivate().subscribe((can: boolean) => { canActivate = can; });
       expect(canActivate).toBeUndefined();
@@ -50,7 +50,7 @@ describe('AuthGuard', () => {
   describe('without a token', () => {
 
     it('auth disallows users', () => {
-      let guard = new AuthGuard(<any> mockAuthService, <any> mockRouter);
+      let guard = new AuthGuard(mockAuthService as any, mockRouter as any);
       let canActivate: boolean;
       guard.canActivate().subscribe((can: boolean) => { canActivate = can; });
       expect(canActivate).toBeUndefined();

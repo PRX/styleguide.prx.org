@@ -9,18 +9,23 @@ export interface HalObservable<T> extends Observable<T> {
   followList(rel: string, params?: {}): HalObservable<T[]>;
   followItems(rel: string, params?: {}): HalObservable<T[]>;
 }
-Observable.prototype['follow'] = function(rel: string, params: {} = null) {
-  return this.pipe(flatMap((doc: HalDoc) => {
-    return doc.follow(rel, params);
-  }));
-};
-Observable.prototype['followList'] = function(rel: string, params: {} = null) {
-  return this.pipe(flatMap((doc: HalDoc) => {
-    return doc.followList(rel, params);
-  }));
-};
-Observable.prototype['followItems'] = function(rel: string, params: {} = null) {
-  return this.pipe(flatMap((doc: HalDoc) => {
-    return doc.followItems(rel, params);
-  }));
-};
+
+export const patchObservable = () => {
+  Observable.prototype['follow'] = function(rel: string, params: {} = null) {
+    return this.pipe(flatMap((doc: HalDoc) => {
+      return doc.follow(rel, params);
+    }));
+  };
+  Observable.prototype['followList'] = function(rel: string, params: {} = null) {
+    return this.pipe(flatMap((doc: HalDoc) => {
+      return doc.followList(rel, params);
+    }));
+  };
+  Observable.prototype['followItems'] = function(rel: string, params: {} = null) {
+    return this.pipe(flatMap((doc: HalDoc) => {
+      return doc.followItems(rel, params);
+    }));
+  };
+}
+
+patchObservable();

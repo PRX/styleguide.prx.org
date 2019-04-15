@@ -32,11 +32,11 @@ describe('Component: HeaderComponent', () => {
   }));
 
   it('renders a home logo link', () => {
-    expect(de.query(By.css('h1')).nativeElement.innerText).toContain('PRX');
+    expect(de.query(By.css('h1')).nativeElement.textContent).toContain('PRX');
   });
 
   it('includes ng content', () => {
-    expect(de.query(By.css('h4')).nativeElement.innerText).toEqual('Something');
+    expect(de.query(By.css('h4')).nativeElement.textContent).toEqual('Something');
   });
 
 });

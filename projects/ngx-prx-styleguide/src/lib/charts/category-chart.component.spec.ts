@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { CategoryChartComponent } from './category-chart.component';
+import * as C3 from 'c3';
 
 describe('CategoryChartComponent', () => {
   let comp: CategoryChartComponent;
@@ -27,13 +28,20 @@ describe('CategoryChartComponent', () => {
     comp.data = [];
     comp.ngOnChanges();
     expect(comp.chart).toBeUndefined();
-    comp.data = [{value: 9, label: 'foo'}];
+    const value = 9
+    const label = 'foo'
+    comp.data = [{value, label}];
     comp.ngOnChanges();
-    let data = comp.chart.data();
-    let categories = comp.chart.categories();
-    expect(data.length).toEqual(1);
-    expect(data[0].values[0].value).toEqual(9);
-    expect(categories.length).toEqual(1);
-    expect(categories[0]).toEqual('foo');
+
+    expect(C3.generate).toBeCalledWith(expect.objectContaining({
+      axis: expect.objectContaining({
+        x: expect.objectContaining({
+          categories: [label]
+        })
+      }),
+      data: expect.objectContaining({
+        columns: [["amount", value]]
+      })
+    }));
   });
 });

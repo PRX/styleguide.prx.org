@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { IndexedChartComponent } from './indexed-chart.component';
+import * as C3 from 'c3';
 
 describe('IndexedChartComponent', () => {
   let comp: IndexedChartComponent;
@@ -27,10 +28,15 @@ describe('IndexedChartComponent', () => {
     comp.datasets = [];
     comp.ngOnChanges();
     expect(comp.chart).toBeUndefined();
-    comp.datasets = [{data: [9], label: 'foo', color: '#000'}];
+    const value = 9
+    const label = 'foo'
+    comp.datasets = [{data: [value], label, color: '#000'}];
     comp.ngOnChanges();
-    let data = comp.chart.data();
-    expect(data.length).toEqual(1);
-    expect(data[0].id).toEqual('foo');
+
+    expect(C3.generate).toBeCalledWith(expect.objectContaining({
+      data: expect.objectContaining({
+        columns: expect.arrayContaining([[label, value]])
+      })
+    }));
   });
 });

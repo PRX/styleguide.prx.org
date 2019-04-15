@@ -1,8 +1,10 @@
 import { MockHalService } from './mock-hal.service';
+import { patchObservable } from '../doc/halobservable';
 
 describe('MockHalService', () => {
 
   let hal: MockHalService;
+  beforeAll(() => patchObservable())
   beforeEach(() => hal = new MockHalService());
 
   it('makes public requests', () => {
@@ -20,5 +22,4 @@ describe('MockHalService', () => {
       expect(docs[1].id).toEqual(5);
     });
   });
-
 });

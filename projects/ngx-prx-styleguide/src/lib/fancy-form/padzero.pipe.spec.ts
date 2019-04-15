@@ -12,7 +12,7 @@ describe('PadZeroPipe', () => {
   });
 
   it('stringifies non numbers', () => {
-    expect(pipe.transform(<any> 'foobar')).toMatch('NaN');
+    expect(pipe.transform('foobar' as any)).toMatch('NaN');
   });
 
 });

@@ -135,7 +135,7 @@ describe('ButtonComponent', () => {
     });
 
     it('prevents double click resulting in double submit when working', () => {
-      spyOn(comp, 'onClick');
+      jest.spyOn(comp, 'onClick').mockImplementation(() => {});
       comp.model = new MockModel({changed: true});
       comp.working = false;
       fix.detectChanges();
