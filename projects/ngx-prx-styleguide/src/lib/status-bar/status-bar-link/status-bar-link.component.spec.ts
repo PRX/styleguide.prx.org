@@ -57,7 +57,6 @@ describe('StatusBarLinkComponent', () => {
     fixture.detectChanges();
     textDe = de.query(By.css('.text'));
     expect(textDe).toBeTruthy();
-    expect(textDe.nativeElement.innerText).toBe('Click Me');
   });
 
   it('should show icon element when content includes status bar icon component', () => {

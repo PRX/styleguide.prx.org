@@ -1,9 +1,10 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { StatusBarModule } from '../status-bar.module';
+import { APP_BASE_HREF } from '@angular/common';
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { centered } from '@storybook/addon-centered/angular';
-import { boolean, withKnobs, select } from '@storybook/addon-knobs';
+import { withKnobs, select } from '@storybook/addon-knobs';
 import { IconModule } from '../../icon/icon.module';
 import { ImageModule } from '../../image/image.module';
 
@@ -14,11 +15,13 @@ const storiesModuleMetaData = moduleMetadata({
   imports: [
     StatusBarModule,
     IconModule,
-    ImageModule
+    ImageModule,
+    // Uncomment following line to verify routerLinks function. Comment to keep hotreload functional.
+    // routing
   ],
   schemas: [],
   declarations: [],
-  providers: [],
+  providers: [{ provide: APP_BASE_HREF, useValue: "" }],
 });
 
 storiesOf('Navigation|Status Bar/ Status Bar Link', module)

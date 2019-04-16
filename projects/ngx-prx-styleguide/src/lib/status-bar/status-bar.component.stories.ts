@@ -2,25 +2,18 @@ import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { StatusBarModule } from './status-bar.module';
 import { IconModule } from '../icon/icon.module';
 import { ImageModule } from '../image/image.module';
-import { ModuleWithProviders } from '@angular/core';
-import { APP_BASE_HREF } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { centered } from '@storybook/addon-centered/angular';
-
-const routing: ModuleWithProviders = RouterModule.forRoot([]);
 
 // Module metadata for stories.
 const storiesModuleMetaData = moduleMetadata({
   imports: [
     StatusBarModule,
     IconModule,
-    ImageModule,
-    // Uncomment following line to verify routerLinks function. Comment to keep hotreload functional.
-    // routing
+    ImageModule
   ],
   schemas: [],
   declarations: [],
-  providers: [{ provide: APP_BASE_HREF, useValue: "" }],
+  providers: [],
 });
 
 

@@ -1,7 +1,27 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { centered } from '@storybook/addon-centered/angular';
-import { IconModule, iconNames, iconColorOptions } from './icon.module';
+import { IconModule } from './icon.module';
 import { withKnobs, select, text } from '@storybook/addon-knobs';
+
+const req = require.context('../../assets/images/icons/', false, /\.svg$/);
+export const iconNames = req.keys()
+  // Convert filenames to icon names.
+  .map(filename => filename.match(/\/([^\/]+)\.svg$/)[1])
+  // Filter out legacy colorized icons.
+  .filter(name => name.indexOf('ic_') === -1);
+
+export const iconColorOptions = {
+  Inherit: null,
+  Default: 'default',
+  Primary: 'primary',
+  Secondary: 'secondary',
+  Info: 'info',
+  Success: 'success',
+  Warning: 'warning',
+  Danger: 'danger',
+  Light: 'light',
+  Dark: 'dark',
+};
 
 // Module metadata for stories.
 const storiesModuleMetaData = moduleMetadata({

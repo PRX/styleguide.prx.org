@@ -1,7 +1,8 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
-import { StatusBarModule, iconNames, iconColorOptions } from '../status-bar.module';
+import { StatusBarModule } from '../status-bar.module';
 import { centered } from '@storybook/addon-centered/angular';
 import { withKnobs, select } from '@storybook/addon-knobs';
+import { iconNames, iconColorOptions } from '../../icon/icon.component.stories';
 
 // Module metadata for stories.
 const storiesModuleMetaData = moduleMetadata({

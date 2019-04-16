@@ -7,9 +7,9 @@ import { Component, ElementRef, ViewChild, ChangeDetectorRef, HostBinding, Input
 })
 export class StatusBarLinkComponent {
 
-  private showIcon: boolean = true;
-  private showImage: boolean = true;
-  private showText: boolean = true;
+  protected showIcon: boolean = true;
+  protected showImage: boolean = true;
+  protected showText: boolean = true;
 
   @HostBinding('class.align-art--right') private alignArtRight: boolean = false;
 

@@ -1,12 +1,8 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { StatusBarModule } from '../status-bar.module';
-import { ModuleWithProviders } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { centered } from '@storybook/addon-centered/angular';
 import { withKnobs, select } from '@storybook/addon-knobs';
 import { MockHalDoc } from '../../hal/mock/mock-haldoc';
-
-const routing: ModuleWithProviders = RouterModule.forRoot([]);
 
 // Module metadata for stories.
 const storiesModuleMetaData = moduleMetadata({
