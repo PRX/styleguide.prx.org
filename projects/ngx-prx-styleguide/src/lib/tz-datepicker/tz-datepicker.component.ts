@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TzDate } from './tzdate';
-import { map, share } from 'rxjs/operators';
+import { map, share, publishReplay, refCount } from 'rxjs/operators';
 import { TzDataService } from './tz-data.service';
 
 import * as momentNs from 'moment-timezone'
@@ -110,8 +110,13 @@ export class TzDatepickerComponent implements OnInit {
             label: `${tz.replace('_', ' ')} (GMT ${currDate.tz(tz).format('Z')})`,
             name: tz
           }));
-        })
+        }),
+        // TODO: shareReplay is more appropriate and not bugged in 6.4.0
+        // https://github.com/ReactiveX/rxjs/issues/3336
+        publishReplay(1),
+        refCount()
       )
+      
       .pipe(share());
     this.timezones.subscribe({
       error: err => console.error('Timezone data failed to load: ' + err),
