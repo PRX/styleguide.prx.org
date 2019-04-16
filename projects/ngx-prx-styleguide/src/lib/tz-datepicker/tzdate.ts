@@ -1,6 +1,5 @@
-import momentNs from 'moment';
-import 'moment-timezone/moment-timezone';
-const moment = momentNs;
+import * as momentNs from 'moment-timezone'
+const moment = momentNs
 
 export class TzDate {
   constructor(pickerDate: Date, time: string, tz: string, meridiem: string = null) {

@@ -42,7 +42,7 @@ describe('HeroComponent', () => {
 
   let fakeScrollY = 0;
   beforeEach(() => {
-    spyOn(HeroComponent.prototype, 'getScrollY').and.callFake(() => fakeScrollY);
+    jest.spyOn(HeroComponent.prototype, 'getScrollY').mockImplementation(() => fakeScrollY);
   });
 
   const triggerScroll = () => {
@@ -52,7 +52,7 @@ describe('HeroComponent', () => {
   };
 
   it('shows the title content', () => {
-    expect(de.query(By.css('h1')).nativeElement.innerText).toContain('The Title');
+    expect(de.query(By.css('h1')).nativeElement.textContent).toContain('The Title');
   });
 
   // TODO: the spinner isnt there
@@ -61,12 +61,12 @@ describe('HeroComponent', () => {
     // expect(de.query(By.css('prx-spinner'))).not.toBeNull();
     comp.showInfo = true;
     fix.detectChanges();
-    expect(de.query(By.css('h2')).nativeElement.innerText).toContain('The Infos');
+    expect(de.query(By.css('h2')).nativeElement.textContent).toContain('The Infos');
     expect(de.query(By.css('prx-spinner'))).toBeNull();
   });
 
   it('shows the actions', () => {
-    expect(de.query(By.css('h3')).nativeElement.innerText).toContain('The Actions');
+    expect(de.query(By.css('h3')).nativeElement.textContent).toContain('The Actions');
   });
 
   it('affixes when scrolled', () => {

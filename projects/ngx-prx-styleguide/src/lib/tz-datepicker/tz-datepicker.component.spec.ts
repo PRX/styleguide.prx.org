@@ -3,9 +3,8 @@ import { TzDatepickerComponent } from './tz-datepicker.component';
 import { NO_ERRORS_SCHEMA, ViewChild, Component, DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { of } from 'rxjs';
-import moment from 'moment';
-import 'moment-timezone/moment-timezone';
+import { of as observableOf } from 'rxjs';
+import * as moment from 'moment-timezone'
 import { By } from '@angular/platform-browser';
 import { TzDataService } from './tz-data.service';
 
@@ -14,7 +13,6 @@ describe('TzDatepickerComponent', () => {
   let fixture: ComponentFixture<TzDatepickerComponent>;
   let de: DebugElement;
   let dateChangeStub;
-  let fetchTzsSpy;
   const testDate = new Date(Date.UTC(2018, 2, 16, 2, 0, 0, 0));
   const testTz = 'America/New_York';
 
@@ -27,15 +25,15 @@ describe('TzDatepickerComponent', () => {
     version: '2018g'
   };
 
+  TzDataService.prototype.fetchTzs = jest.fn(() => observableOf(momentZones))
+
   beforeEach(async(() => {
-    spyOn(moment.tz, 'guess').and.callFake(() => testTz);
-    const tzDataService = jasmine.createSpyObj('TzDataService', ['fetchTzs']);
-    fetchTzsSpy = tzDataService.fetchTzs.and.returnValue(of(momentZones));
+    jest.spyOn(moment.tz, 'guess').mockImplementation(() => testTz);
 
     TestBed.configureTestingModule({
       imports: [FormsModule, HttpClientTestingModule],
       declarations: [TzDatepickerComponent],
-      providers: [{ provide: TzDataService, useValue: tzDataService }],
+      providers: [TzDataService],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents()
@@ -46,7 +44,7 @@ describe('TzDatepickerComponent', () => {
 
         component.date = testDate;
         component.changed = false;
-        dateChangeStub = spyOn(component.dateChange, 'emit').and.stub();
+        dateChangeStub = jest.spyOn(component.dateChange, 'emit').mockImplementation(() => {});
 
         fixture.detectChanges();
       });
@@ -95,7 +93,7 @@ describe('TzDatepickerComponent', () => {
   });
 
   it('Calls handleChange when time input is modified', () => {
-    const handleChangeSpy = spyOn(component, 'handleChange');
+    const handleChangeSpy = jest.spyOn(component, 'handleChange');
     const input = de.query(By.css('input[type="time"]'));
     input.nativeElement.value = 'a';
     input.triggerEventHandler('ngModelChange', {});

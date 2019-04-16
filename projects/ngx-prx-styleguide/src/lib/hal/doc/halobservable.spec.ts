@@ -7,7 +7,7 @@ import './halobservable';
 describe('HalObservable', () => {
 
   let observe = (thing: any): HalObservable<any> => {
-    return <HalObservable<any>> observableOf(thing);
+    return observableOf(thing) as HalObservable<any>;
   };
   let mockDoc: any = {
     follow: () => observe('followed'),

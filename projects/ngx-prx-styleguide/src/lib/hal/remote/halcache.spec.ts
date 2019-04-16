@@ -54,8 +54,8 @@ describe('HalCache', () => {
   it('expires caches', () => {
     cache.set('foo', observableOf('bar')).subscribe();
     expect(cache.get('foo') instanceof Observable).toBeTruthy();
-    spyOn<any>(cache, 'checkExpired').and.returnValue(true);
-    spyOn(cache, 'del').and.stub();
+    jest.spyOn<any, any>(cache, 'checkExpired').mockReturnValue(true);
+    jest.spyOn(cache, 'del').mockImplementation(() => {});
     expect(cache.get('foo')).toBeNull();
     expect(cache.del).toHaveBeenCalled();
   });

@@ -134,20 +134,20 @@ describe('FancyFieldComponent', () => {
     expect(de.query(By.css('.field'))).not.toBeNull();
     expect(de.query(By.css('h1'))).toBeNull();
     expect(de.query(By.css('h3'))).toBeNull();
-    expect(de.query(By.css('p.hint')).nativeElement.innerText).toEqual('');
+    expect(de.query(By.css('p.hint')).nativeElement.textContent).toEqual('');
   });
 
   it('renders a small label', () => {
     comp.label = 'small label';
     comp.small = true;
     fix.detectChanges();
-    expect(de.query(By.css('h4 label')).nativeElement.innerText).toContain('small label');
+    expect(de.query(By.css('h4 label')).nativeElement.textContent).toContain('small label');
   });
 
   it('renders a large label', () => {
     comp.label = 'large label';
     fix.detectChanges();
-    expect(de.query(By.css('h3 label')).nativeElement.innerText).toContain('large label');
+    expect(de.query(By.css('h3 label')).nativeElement.textContent).toContain('large label');
   });
 
   it('renders a required label', () => {
@@ -162,19 +162,19 @@ describe('FancyFieldComponent', () => {
   it('renders hint content', () => {
     comp.hint = 'the hint content';
     fix.detectChanges();
-    expect(de.query(By.css('p.hint')).nativeElement.innerText).toContain('the hint content');
+    expect(de.query(By.css('p.hint')).nativeElement.textContent).toContain('the hint content');
   });
 
   it('renders the prompt', () => {
     comp.prompt = 'the prompt content';
     fix.detectChanges();
-    expect(de.query(By.css('label.prompt')).nativeElement.innerText).toContain('the prompt content');
+    expect(de.query(By.css('label.prompt')).nativeElement.textContent).toContain('the prompt content');
   });
 
   it('renders arbitrary nested content', () => {
     comp.nested = 'some nested content';
     fix.detectChanges();
-    expect(de.query(By.css('h1')).nativeElement.innerText).toContain('some nested content');
+    expect(de.query(By.css('h1')).nativeElement.textContent).toContain('some nested content');
   });
 
   it('can have a text field', () => {
@@ -241,7 +241,7 @@ describe('FancyFieldComponent', () => {
     isInvalid = 'some message foobar something';
     fix.detectChanges();
     expect(de.query(By.css('.field.invalid'))).not.toBeNull();
-    expect(de.query(By.css('p.error')).nativeElement.innerText).toContain('Some message foobar something');
+    expect(de.query(By.css('p.error')).nativeElement.textContent).toContain('Some message foobar something');
   });
 
   it('explicitly overrides invalid fieldnames', () => {
@@ -253,19 +253,19 @@ describe('FancyFieldComponent', () => {
     comp.invalid = 'somethingelse';
     fix.detectChanges();
     expect(de.query(By.css('.field.invalid-explicit'))).not.toBeNull();
-    expect(de.query(By.css('p.error')).nativeElement.innerText).toContain('Some message foobar something');
+    expect(de.query(By.css('p.error')).nativeElement.textContent).toContain('Some message foobar something');
   });
 
   it('replaces field names with labels for invalid messages', () => {
     comp.name = 'foobar';
     comp.model = {changed: () => false, invalid: () => 'some message foobar something'};
     fix.detectChanges();
-    expect(de.query(By.css('p.error')).nativeElement.innerText).toContain('Some message foobar something');
+    expect(de.query(By.css('p.error')).nativeElement.textContent).toContain('Some message foobar something');
     comp.label = 'New Label';
     fix.detectChanges();
-    expect(de.query(By.css('p.error')).nativeElement.innerText).toContain('Some message New Label something');
+    expect(de.query(By.css('p.error')).nativeElement.textContent).toContain('Some message New Label something');
     comp.invalidlabel = 'Newer Label';
     fix.detectChanges();
-    expect(de.query(By.css('p.error')).nativeElement.innerText).toContain('Some message Newer Label something');
+    expect(de.query(By.css('p.error')).nativeElement.textContent).toContain('Some message Newer Label something');
   });
 });

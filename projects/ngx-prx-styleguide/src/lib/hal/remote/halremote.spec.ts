@@ -71,7 +71,7 @@ describe('HalRemote', () => {
 
     it('makes sure the link exists', () => {
       expect(remote.expand(null)).toBeNull();
-      expect(remote.expand(<any> {})).toBeNull();
+      expect(remote.expand({} as any)).toBeNull();
     });
 
     it('interprets templated links', () => {
@@ -144,7 +144,7 @@ describe('HalRemote', () => {
       expect(httpCount).toEqual(2);
     });
 
-    it('caches in-flight observables', function(done: DoneFn) {
+    it('caches in-flight observables', done => {
       let httpCount = 0;
       let completed = 0;
       remote.get(link).pipe(map(data => {
@@ -198,7 +198,7 @@ describe('HalRemote', () => {
   describe('retries', () => {
 
     it('retries 401s after getting a new token', () => {
-      spyOn(fakeAuth, 'refreshToken').and.callThrough();
+      jest.spyOn(fakeAuth, 'refreshToken');
       remote.get(link).subscribe();
 
       let httpCount = 0;

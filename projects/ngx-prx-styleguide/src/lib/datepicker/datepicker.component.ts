@@ -3,14 +3,9 @@ import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild,
 
 import * as Pikaday from 'pikaday';
 
-import * as momentNs from 'moment';
-
-// Moment doesn't export the type for the moment() function itself, so I need to set one up
-interface MomentConstructor {
-  (inp?: momentNs.MomentInput, format?: momentNs.MomentFormatSpecification, strict?: boolean): momentNs.Moment;
-}
 // This artifice seems to be necessary to appease both Webpack and Rollup https://github.com/ng-packagr/ng-packagr/issues/163
-const moment = momentNs as MomentConstructor;
+import * as momentNs from 'moment-timezone'
+const moment = momentNs
 
 /**
  * TODO: parent project must include (in .angular-cli.json):
@@ -99,11 +94,11 @@ export class DatepickerComponent implements AfterViewInit {
     if (moment(value, this.format, true).isValid() &&
       (!this._date || this.picker.getDate().valueOf() !== this._date.valueOf())) {
       let date = new Date(value);
+      this.setDate(date);
       if (this.UTC) {
-        date = this.pickerUTCOffset(date);
+        date = this.pickerUTCOffset(this.date);
       }
       this.picker.setDate(date);
-      this.setDate(date);
     }
   }
 

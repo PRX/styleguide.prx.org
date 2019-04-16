@@ -28,6 +28,13 @@
   border-radius: 0;
 }
 
+.has-event .pika-button {
+  color: #fff;
+  background: #0089bd;
+  box-shadow: none;
+  border-radius: 0;
+}
+
 .pika-button:hover {
   background: #ff9600;
   border-radius: 0;
@@ -48,4 +55,36 @@
 
 .pika-single.container {
   border: 0;
+}
+
+.calpicker.pika-single {
+  border: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.calpicker.pika-single:before,
+.calpicker.pika-single:after {
+  content: none;
+  display: initial;
+}
+.calpicker .pika-lendar {
+  float: none;
+  width: auto;
+}
+.calpicker .pika-title {
+  position: inherit;
+}
+.calpicker .pika-next {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+.calpicker.disabled .is-selected .pika-button {
+  color: #666;
+  background: #f5f5f5;
+  box-shadow: none;
+}
+.calpicker.disabled .pika-button:hover {
+  background: #ddd;
+  cursor: not-allowed;
 }

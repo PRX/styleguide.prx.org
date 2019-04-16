@@ -40,7 +40,7 @@ describe('ToastrComponent', () => {
     comp.toastMessage = 'something happened';
     comp.status = '';
     fix.detectChanges();
-    expect(de.query(By.css('div.show')).nativeElement.innerText).toContain('something happened');
+    expect(de.query(By.css('div.show')).nativeElement.textContent).toContain('something happened');
   });
 
   it('shows info/success/error status', () => {

@@ -1,8 +1,7 @@
 import { AbstractControl, Validator, NG_VALIDATORS, ValidatorFn, ValidationErrors, FormControl } from '@angular/forms';
 import { Directive, Input } from '@angular/core';
-import * as momentNs from 'moment';
-import 'moment-timezone/moment-timezone';
-const moment = momentNs;
+import * as momentNs from 'moment-timezone'
+const moment = momentNs
 
 @Directive({
   selector: '[prxTzTimestamp]',

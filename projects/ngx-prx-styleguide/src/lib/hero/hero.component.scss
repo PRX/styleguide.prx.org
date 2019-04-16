@@ -1,8 +1,10 @@
+@import '../../assets/styles/variables';
+
 /**
  * Banner text
  */
 .banner {
-  background: #818181 url('../../assets/images/towers.png') repeat;
+  background: $grey url('../../assets/images/towers.png') repeat;
 }
 .banner.orange {
   background-image: url('../../assets/images/tl_orange_radios.png');
@@ -13,26 +15,38 @@
 .banner section {
   min-height: 120px;
 }
-.banner >>> h1 {
+.banner ::ng-deep h1 {
   font-size: 40px;
   font-weight: 400;
   line-height: 40px;
   padding: 40px 0;
-  color: #fff;
+  color: $white;
 }
-.banner >>> h2 {
+.banner ::ng-deep h2 {
   font-size: 25px;
   font-weight: 400;
   line-height: 25px;
   padding: 25px 0;
-  color: #fff;
+  color: $white;
+}
+
+section {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  section {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
 }
 
 /**
  * Toolbar
  */
 .toolbar {
-  background: #fff;
+  background: $white;
 }
 .toolbar section {
   display: flex;
@@ -51,12 +65,12 @@
 .toolbar .actions {
   white-space: nowrap;
 }
-.toolbar >>> h2 {
+.toolbar ::ng-deep h2 {
   font-size: 26px;
-  line-height: 30px;
+  line-height: 1.35em;
   font-weight: 200;
 }
-.toolbar >>> button {
+.toolbar ::ng-deep button {
   display: inline-block;
   margin-left: 10px;
 }
@@ -64,24 +78,24 @@
 /**
  * Tooltip for invalid forms
  */
-.toolbar >>> .invalid-tip {
+.toolbar ::ng-deep .invalid-tip {
   position: absolute;
   top: 100%;
   right: 0;
-  background: #fff;
-  color: #0089bd;
-  border: 1px solid #0089bd;
+  background: $white;
+  color: $blue;
+  border: 1px solid $blue;
   padding: 4px 10px;
   margin-top: 15px;
   display: none;
 }
-.toolbar >>> button:hover .invalid-tip {
+.toolbar ::ng-deep button:hover .invalid-tip {
   display: block;
 }
-.toolbar >>> .invalid-tip h4 {
+.toolbar ::ng-deep .invalid-tip h4 {
   font-weight: 600;
 }
-.toolbar >>> .invalid-tip:after, .toolbar >>> .invalid-tip:before {
+.toolbar ::ng-deep .invalid-tip:after, .toolbar ::ng-deep .invalid-tip:before {
 	bottom: 100%;
 	right: 24px;
 	border: solid transparent;
@@ -91,33 +105,33 @@
 	position: absolute;
 	pointer-events: none;
 }
-.toolbar >>> .invalid-tip:after {
-	border-color: rgba(255, 255, 255, 0);
-	border-bottom-color: #fff;
+.toolbar ::ng-deep .invalid-tip:after {
+	border-color: transparent;
+	border-bottom-color: $white;
 	border-width: 14px;
 	margin-right: -14px;
 }
-.toolbar >>> .invalid-tip:before {
-	border-color: rgba(54, 138, 162, 0);
-	border-bottom-color: #0089bd;
+.toolbar ::ng-deep .invalid-tip:before {
+	border-color: transparent;
+	border-bottom-color: $blue;
 	border-width: 15px;
 	margin-right: -15px;
 }
-.toolbar >>> .invalid-tip.create {
-  color: #61A85D;
-  border-color: #61A85D;
+.toolbar ::ng-deep .invalid-tip.create {
+  color: $green;
+  border-color: $green;
 }
-.toolbar >>> .invalid-tip.create:before {
-  border-color: rgba(97, 168, 93, 0);
-  border-bottom-color: #61A85D;
+.toolbar ::ng-deep .invalid-tip.create:before {
+  border-color: transparent;
+  border-bottom-color: $green;
 }
-.toolbar >>> .invalid-tip.publish {
-  color: #ff9600;
-  border-color: #ff9600;
+.toolbar ::ng-deep .invalid-tip.publish {
+  color: $orange;
+  border-color: $orange;
 }
-.toolbar >>> .invalid-tip.publish:before {
-  border-color: rgba(97, 168, 93, 0);
-  border-bottom-color: #ff9600;
+.toolbar ::ng-deep .invalid-tip.publish:before {
+  border-color: transparent;
+  border-bottom-color: $orange;
 }
 
 /**
@@ -133,13 +147,12 @@
   margin: 0 auto;
   height: 75px;
   z-index: 200;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid $white-fog;
 }
 .spacer.affix {
   height: 75px;
 }
-.toolbar.affix .info >>> h2 {
-  max-height: 30px;
+.toolbar.affix .info ::ng-deep h2 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

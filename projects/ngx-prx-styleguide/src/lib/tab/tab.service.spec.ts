@@ -8,7 +8,7 @@ describe('TabService', () => {
     let currentModel: any = 'nothing';
     tab.model.subscribe(model => currentModel = model);
     expect(currentModel).toEqual('nothing');
-    tab.setModel(<any> 'something');
+    tab.setModel('something' as any);
     expect(currentModel).toEqual('something');
   });
 
@@ -16,7 +16,7 @@ describe('TabService', () => {
     let mod1: any = 'nothing', mod2: any = 'nothing';
     tab.model.subscribe(model => mod1 = model);
 
-    tab.setModel(<any> 'something');
+    tab.setModel('something' as any);
     expect(mod1).toEqual('something');
     expect(mod2).toEqual('nothing');
 
