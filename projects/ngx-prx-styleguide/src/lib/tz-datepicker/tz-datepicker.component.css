@@ -18,3 +18,7 @@ p.error {
   margin-top: 6px;
   color: #e32;
 }
+
+ng-select input {
+  padding: 0px;
+}
