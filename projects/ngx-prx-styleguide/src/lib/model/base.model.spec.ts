@@ -325,6 +325,18 @@ describe('BaseModel', () => {
       expect(base.changed('one')).toBeFalsy();
     });
 
+    it('can compare date fields', () => {
+      const originalDate = new Date();
+      const clonedDate = new Date(originalDate.getTime());
+      const newDate = new Date(originalDate.getTime() - 24 * 60 * 60 * 1000);
+      base.SETABLE = ['one'];
+      base.original = {one: originalDate};
+      base.set('one', clonedDate);
+      expect(base.changed('one')).toBeFalsy();
+      base.set('one', newDate);
+      expect(base.changed('one')).toBeTruthy();
+    });
+
     it('cascades to child relations', () => {
       base.RELATIONS = ['foo'];
       expect(base.changed('foo')).toBeFalsy();
