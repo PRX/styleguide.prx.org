@@ -242,6 +242,8 @@ export abstract class BaseModel {
       } else if (this.original[f] instanceof Array && this[f] instanceof Array) {
         let a1 = this.original[f], a2 = this[f];
         return a1.length !== a2.length || a1.some((val: any, idx: number) => val !== a2[idx]);
+      } else if (this.original[f] instanceof Date && this[f] instanceof Date) {
+        return this.original[f].getTime() !== this[f].getTime();
       } else {
         return this.original[f] !== this[f];
       }
