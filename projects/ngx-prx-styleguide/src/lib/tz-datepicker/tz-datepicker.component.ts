@@ -73,6 +73,9 @@ export class TzDatepickerComponent implements OnInit {
   @Input()
   set date(value: Date) {
     this._date = value;
+    if(this.model) {
+      this.model = this.modelFromDate(value);
+    }
   }
   get date() {
     return this.model && this.model.finalDate ? this.model.finalDate : this._date;
@@ -116,22 +119,20 @@ export class TzDatepickerComponent implements OnInit {
         publishReplay(1),
         refCount()
       )
-      
-      .pipe(share());
     this.timezones.subscribe({
       error: err => console.error('Timezone data failed to load: ' + err),
       complete: () => {
-        this.model = this.tzDateModelInit();
+        this.model = this.modelFromDate(this.date);
       }
     });
   }
 
-  tzDateModelInit() {
-    const userTimezone = moment.tz.guess();
-    const momentDate = moment.tz(this.date, userTimezone);
+  modelFromDate(date) {
+    const timezone = this.model && this.model.tz ? this.model.tz : moment.tz.guess();
+    const momentDate = moment.tz(date, timezone);
     const timeString = this.supportsTimeInput ? momentDate.format('HH:mm:ss') : momentDate.format('hh:mm:ss');
     const meridiem = this.supportsTimeInput ? null : momentDate.format('A');
-    return new TzDate(momentDate.toDate(), timeString, userTimezone, meridiem);
+    return new TzDate(momentDate.toDate(), timeString, timezone, meridiem);
   }
 
   handleChange() {
@@ -149,9 +150,5 @@ export class TzDatepickerComponent implements OnInit {
     input.setAttribute('value', notADateValue);
 
     return input.value !== notADateValue;
-  }
-
-  get diagnostic() {
-    return JSON.stringify(this.model);
   }
 }

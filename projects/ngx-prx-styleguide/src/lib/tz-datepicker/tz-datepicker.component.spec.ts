@@ -59,7 +59,7 @@ describe('TzDatepickerComponent', () => {
   });
 
   it('Initializes the date model correctly', () => {
-    const newDateModel = component.tzDateModelInit();
+    const newDateModel = component.modelFromDate(testDate);
     expect(newDateModel.pickerDate).toEqual(testDate);
     expect(newDateModel.tz).toEqual(testTz);
     // 2:00AM UTC === 10PM EST
@@ -69,7 +69,7 @@ describe('TzDatepickerComponent', () => {
 
   it('Initializes the time for browsers with no time support', () => {
     component.supportsTimeInput = false;
-    const newDateModel = component.tzDateModelInit();
+    const newDateModel = component.modelFromDate(testDate);
     // 2:00AM UTC === 10PM EST
     expect(newDateModel.time).toEqual('10:00:00');
     expect(newDateModel.meridiem).toEqual('PM');
@@ -123,5 +123,17 @@ describe('TzDatepickerComponent', () => {
       .seconds(sec)
       .toDate();
     expect(dateChangeStub).toHaveBeenCalledWith(expectedDate);
+  });
+
+  it(`Updates the model when date is set`, () => {
+    const newTestDate = new Date(testDate.getTime() + 24 * 60 * 60 * 1000)
+    const modelSetSpy = jest.spyOn(component, 'modelFromDate')
+    expect(modelSetSpy).not.toHaveBeenCalled();
+    expect(component.model.finalDate.getTime()).toBe(testDate.getTime());
+    component.date = newTestDate;
+    expect(modelSetSpy).toHaveBeenCalledTimes(1);
+    expect(modelSetSpy).toHaveBeenCalledWith(newTestDate);
+    expect(component.model.finalDate.getTime()).toBe(newTestDate.getTime());
+    expect(dateChangeStub).not.toHaveBeenCalled();
   });
 });
