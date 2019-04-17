@@ -58,7 +58,6 @@ export class IconComponent implements OnChanges {
   }
 
   get removedSVGAttributes() {
-    console.log('updating SVG attributes to remove...', this.color);
     return this._color ? ['style', 'fill'] : [];
   }
 
