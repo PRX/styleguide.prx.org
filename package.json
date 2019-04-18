@@ -31,6 +31,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:lib": "npm run build ngx-prx-styleguide && npm run build:lib:assets",
+    "build:lib:watch": "ng build ngx-prx-styleguide --watch",
+    "postbuild:lib:watch": "node ./bin/buildwatch.js",
     "test:lib": "npm run test ngx-prx-styleguide",
     "build:lib:assets": "./bin/buildassets.sh",
     "version": "node ./bin/readver.js | ./bin/newver.sh",

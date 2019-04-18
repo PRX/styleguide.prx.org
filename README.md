@@ -36,6 +36,8 @@ Run `npm run test` to execute the unit tests via
 Run `npm run build:lib` to build the library. The build artifacts will be stored
 in the `dist/` directory.
 
+You can have Angular's build system monitor for changes and rebuild when they're detected using `npm run build:lib:watch`. Also, if you'd like to use the built library in a Docker container, you can use the post-build watcher: `CONTAINER_NAME=your_name_here npm run postbuild:lib:watch`. This script will watch for the Angular build to complete, bundle in static assets and then attempt to find a running container with a name which matches the provided container name and copy the built files into the `/app/node_modules` directory.
+
 ## Usage
 
 To use this library in an angular-cli project:
