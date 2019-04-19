@@ -15,6 +15,7 @@
     "pikaday",
     "@ng-select/ng-select",
     "ngx-tooltip",
-    "stickyfilljs"
+    "stickyfilljs",
+    "ng-inline-svg"
   ]
 }
