@@ -8,8 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class StatusBarImageComponent {
 
-  protected _src: string;
-  protected _imageDoc: HalDoc;
+  _src: string;
+  _imageDoc: HalDoc;
   @Input()
   set src(val: string|HalDoc) {
     this._src = null;

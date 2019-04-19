@@ -35,8 +35,8 @@ export class IconComponent implements OnChanges {
     return this._name;
   }
 
-  @HostBinding('style.width') protected width: string;
-  @HostBinding('style.height') protected height: string;
+  @HostBinding('style.width') width: string;
+  @HostBinding('style.height') height: string;
 
   private hostClasses: { [name: string]: boolean };
 
