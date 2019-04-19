@@ -1,0 +1,28 @@
+@import '../status-bar.variables';
+
+:host {
+  @extend %link;
+  display: flex;
+  align-items: center;
+
+  &.align-art--right {
+    .image,
+    .icon {
+      order: 2
+    }
+  }
+}
+
+.text {
+  padding: $status_bar-item-padding;
+
+  white-space: nowrap;
+
+  :host:not(.align-art--right) .icon + & {
+    padding-left: 0;
+  }
+
+  :host.align-art--right .icon + & {
+    padding-right: 0;
+  }
+}

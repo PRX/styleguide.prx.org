@@ -50,10 +50,12 @@
     "c3": "~0.4.11",
     "core-js": "~2.4.1",
     "moment-timezone": "^0.5.23",
+    "ng-inline-svg": "^8.3.0",
     "ngx-tooltip": "0.0.9",
     "pikaday": "^1.8.0",
     "rxjs": "~6.0.0",
     "scss-bundle": "~2.4.0",
+    "stickyfilljs": "^2.1.0",
     "zone.js": "~0.8.4"
   },
   "devDependencies": {
@@ -96,6 +98,7 @@
     "protractor": "~5.4.0",
     "sass-loader": "~7.1.0",
     "style-loader": "~0.23.1",
+    "svg-inline-loader": "^0.8.0",
     "to-string-loader": "~1.1.5",
     "ts-node": "~7.0.0",
     "tsickle": "~0.34.0",

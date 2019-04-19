@@ -28,6 +28,7 @@
     "c3": "^0.4.11",
     "moment-timezone": "^0.5.23",
     "ngx-tooltip": "0.0.9",
-    "pikaday": "^1.5.1"
+    "pikaday": "^1.5.1",
+    "stickyfilljs": "^2.1.0"
   }
 }

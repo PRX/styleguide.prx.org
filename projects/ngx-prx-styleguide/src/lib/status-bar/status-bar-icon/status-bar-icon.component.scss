@@ -1,0 +1,11 @@
+@import '../status-bar.variables';
+
+:host {
+  display: grid;
+  grid-template-columns: 16px;
+  grid-template-rows: 16px;
+  justify-content: center;
+  align-content: center;
+  width: $status_bar-height;
+  height: $status_bar-height;
+}

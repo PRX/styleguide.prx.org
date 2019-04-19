@@ -1,0 +1,11 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  height: 20vw;
+
+  & > * + * {
+    margin-left: 1rem
+  }
+}

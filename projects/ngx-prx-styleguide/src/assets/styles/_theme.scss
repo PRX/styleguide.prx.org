@@ -1,0 +1,18 @@
+@import './variables';
+@import './functions';
+
+%link {
+  color: $link-color;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: $link-hover-color;
+  }
+
+  &:active {
+    color: $link-active-color;
+  }
+}
