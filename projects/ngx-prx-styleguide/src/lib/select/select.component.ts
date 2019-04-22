@@ -79,12 +79,12 @@ export class SelectComponent implements OnChanges {
   private filterSelected(val: any | any[], optVals: any[]): any | any[] {
     let valFiltered;
     if (val instanceof Array) {
-      valFiltered = val.filter(val => optVals.includes(val));
+      valFiltered = val.filter(val => optVals.indexOf(val) > -1);
       if(valFiltered.length !== val.length) {
         console.warn(`prx-select: ${JSON.stringify(val)} was filtered to ${JSON.stringify(valFiltered)}`)
       }
     } else {
-      valFiltered = optVals.includes(val) ? val : [];
+      valFiltered = optVals.indexOf(val) > -1 ? val : [];
       if(valFiltered !== val) {
         console.warn(`prx-select: ${JSON.stringify(val)} was filtered to ${JSON.stringify(valFiltered)}`)
       }

@@ -72,7 +72,7 @@ export class TagsComponent implements OnChanges {
   }
 
   isSelected(tag: TagOption) {
-    return this.selected.includes(tag.value);
+    return this.selected.indexOf(tag.value) > -1;
   }
 
   private convertTagToNgOption(tag: TagOption): NgOption {
