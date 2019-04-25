@@ -14,7 +14,6 @@ phases:
       - "echo PRX_BRANCH=$PRX_BRANCH >> .env"
       - "echo PRX_GITHUB_PR=$PRX_GITHUB_PR >> .env"
       - "docker-compose build"
-      - "docker-compose run styleguide ci"
   post_build:
     commands:
       - 'curl -sO "https://raw.githubusercontent.com/PRX/Infrastructure/master/ci/utility/post_build.sh" && chmod +x post_build.sh && bash ./post_build.sh'
