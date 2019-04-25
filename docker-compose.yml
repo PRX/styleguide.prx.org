@@ -1,0 +1,13 @@
+styleguide:
+  build: .
+  volumes:
+    - ./bin:/app/bin
+    - ./src:/app/src
+    - ./projects:/app/projects
+  env_file:
+    - .env
+  ports:
+    - "6006:80"
+  environment:
+    VIRTUAL_HOST: styleguide.prx.docker
+    HOST: http://styleguide.prx.docker

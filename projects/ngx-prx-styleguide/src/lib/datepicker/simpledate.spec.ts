@@ -1,6 +1,13 @@
 import { SimpleDate } from './simpledate';
+import * as tzMock from 'timezone-mock';
 
 describe('SimpleDate', () => {
+  beforeAll(() => {
+    tzMock.register('US/Eastern');
+  })
+  afterAll(() => {
+    tzMock.unregister();
+  });
 
   it('parses date strings', () => {
     expect(new SimpleDate('2019-04-01').toArray()).toEqual([2019, 3, 1]);
