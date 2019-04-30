@@ -29,3 +29,4 @@ FROM nginx:alpine as server
 LABEL maintainer="PRX <sysadmin@prx.org>"
 LABEL org.prx.app="yes"
 COPY --from=builder /app/storybook-static /usr/share/nginx/html
+ENTRYPOINT [ "./bin/application" ]
