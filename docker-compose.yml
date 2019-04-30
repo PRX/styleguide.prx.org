@@ -8,6 +8,7 @@ styleguide:
     - .env
   ports:
     - "6006:80"
+  command: web
   environment:
     VIRTUAL_HOST: styleguide.prx.docker
     HOST: http://styleguide.prx.docker

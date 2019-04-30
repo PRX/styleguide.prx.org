@@ -1,0 +1,26 @@
+#!/bin/ash -e
+
+PROCESS=
+CMD=
+
+ApplicationUsage () {
+  echo "usage: application [ help | COMMAND ]"
+}
+
+ApplicationParseOpts () {
+  PROCESS=$1
+  shift
+}
+
+ApplicationRun () {
+  CMD=
+  if [ "$PROCESS" = "help" ] ; then
+    ApplicationUsage
+    exit
+  fi
+
+  nginx -g "daemon off;"
+}
+
+ApplicationParseOpts $*
+ApplicationRun

@@ -29,3 +29,6 @@ FROM nginx:alpine as server
 LABEL maintainer="PRX <sysadmin@prx.org>"
 LABEL org.prx.app="yes"
 COPY --from=builder /app/storybook-static /usr/share/nginx/html
+ADD ./bin/application /usr/local/bin/
+RUN apk add --no-cache tini
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/application" ]
