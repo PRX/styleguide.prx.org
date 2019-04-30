@@ -1,12 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TzDatepickerComponent } from './tz-datepicker.component';
-import { NO_ERRORS_SCHEMA, ViewChild, Component, DebugElement } from '@angular/core';
+import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of as observableOf } from 'rxjs';
 import * as moment from 'moment-timezone'
 import { By } from '@angular/platform-browser';
 import { TzDataService } from './tz-data.service';
+import * as tzMock from 'timezone-mock';
 
 describe('TzDatepickerComponent', () => {
   let component: TzDatepickerComponent;
@@ -14,12 +15,12 @@ describe('TzDatepickerComponent', () => {
   let de: DebugElement;
   let dateChangeStub;
   const testDate = new Date(Date.UTC(2018, 2, 16, 2, 0, 0, 0));
-  const testTz = 'America/New_York';
+  const testTz = 'US/Eastern';
 
   const momentZones = {
     zones: [
-      'America/Los_Angeles|PST PDT|80 70|0101|1Lzm0 1zb0 Op0',
-      'America/New_York|EST EDT|50 40|0101|1Lz50 1zb0 Op0'
+      'US/Pacific|PST PDT|80 70|0101|1Lzm0 1zb0 Op0',
+      'US/Eastern|EST EDT|50 40|0101|1Lz50 1zb0 Op0'
     ],
     links: [],
     version: '2018g'
@@ -50,17 +51,25 @@ describe('TzDatepickerComponent', () => {
       });
   }));
 
+  beforeAll(() => {
+    tzMock.register(testTz);
+  });
+
+  afterAll(() => {
+    tzMock.unregister();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
   it('Returns the appropriate date', () => {
-    expect(component.date).toEqual(testDate);
+    expect(component.date.getTime()).toEqual(testDate.getTime());
   });
 
   it('Initializes the date model correctly', () => {
     const newDateModel = component.modelFromDate(testDate);
-    expect(newDateModel.pickerDate).toEqual(testDate);
+    expect(newDateModel.pickerDate.getTime()).toEqual(testDate.getTime());
     expect(newDateModel.tz).toEqual(testTz);
     // 2:00AM UTC === 10PM EST
     expect(newDateModel.time).toEqual('22:00:00');

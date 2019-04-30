@@ -33,11 +33,11 @@
     "build:lib": "npm run build ngx-prx-styleguide && npm run build:lib:assets",
     "build:lib:watch": "ng build ngx-prx-styleguide --watch",
     "postbuild:lib:watch": "node ./bin/buildwatch.js",
-    "test:lib": "npm run test ngx-prx-styleguide",
     "build:lib:assets": "./bin/buildassets.sh",
     "version": "node ./bin/readver.js | ./bin/newver.sh",
     "storybook": "start-storybook -p 6006",
-    "build:storybook": "build-storybook"
+    "build:storybook": "build-storybook",
+    "ci": "jest --ci --coverage"
   },
   "dependencies": {
     "@angular/animations": "~7.2.0",
@@ -98,9 +98,9 @@
     "ng-packagr": "~4.7.1",
     "npm": "~6.9.0",
     "protractor": "~5.4.0",
-    "sass-loader": "~7.1.0",
     "style-loader": "~0.23.1",
     "svg-inline-loader": "^0.8.0",
+    "timezone-mock": "^1.0.5",
     "to-string-loader": "~1.1.5",
     "ts-node": "~7.0.0",
     "tsickle": "~0.34.0",
