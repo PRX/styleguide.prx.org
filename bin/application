@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/ash -e
 
 PROCESS=
 CMD=
@@ -17,11 +17,9 @@ ApplicationRun () {
   if [ "$PROCESS" = "help" ] ; then
     ApplicationUsage
     exit
-  else
-    CMD="nginx -g 'daemon off;'"
   fi
 
-  $CMD
+  nginx -g "daemon off;"
 }
 
 ApplicationParseOpts $*
