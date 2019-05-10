@@ -63,7 +63,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button', module)
       const visible = boolean('Visible', true);
       const working = boolean('Working', false);
       const disabled = boolean('Disabled', false);
-      const hasDropdown = boolean('Dropdown', false);
+      const hasDropdown = boolean('Dropdown', true);
       const onClick = action('Button Clicked');
 
       return {

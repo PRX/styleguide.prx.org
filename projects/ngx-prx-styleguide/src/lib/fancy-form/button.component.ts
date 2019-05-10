@@ -12,7 +12,8 @@ import { BaseModel } from '../model/base.model';
       <prx-spinner *ngIf="isWorking"></prx-spinner>
     </button>
     <button *ngIf="dropdown" type="button" class="dropdown-toggle" aria-haspopup="true"
-    [attr.aria-expanded]="dropdownVisible" (click)="onDropdownClick($event)">
+    [class.open]="dropdownVisible" [attr.aria-expanded]="dropdownVisible" (click)="onDropdownClick($event)">
+      <span>Toggle Dropdown</span>
     </button>
     <ng-content *ngIf="dropdownVisible" select="div.dropdown-menu"></ng-content>
     `
