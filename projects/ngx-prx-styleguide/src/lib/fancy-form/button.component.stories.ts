@@ -62,7 +62,8 @@ storiesOf('Forms Controls|Inputs/Fancy Button', module)
       const isColorSelected = (c: string) => c === colorSelect;
       const visible = boolean('Visible', true);
       const working = boolean('Working', false);
-      const disabled = boolean('Diabled', false);
+      const disabled = boolean('Disabled', false);
+      const hasDropdown = boolean('Dropdown', false);
       const onClick = action('Button Clicked');
 
       return {
@@ -75,8 +76,26 @@ storiesOf('Forms Controls|Inputs/Fancy Button', module)
             [visible]="visible"
             [working]="working"
             [disabled]="disabled"
+            [dropdown]="hasDropdown"
             (click)="onClick($event)"
-          >{{ btnText }}</prx-button>
+          >{{ btnText }}
+          <div class="dropdown-menu">
+            <span>Hello</span>
+          </div>
+          </prx-button>
+          <!--
+          <div class="btn-group">
+            <button class="btn btn-secondary btn-lg" type="button">
+              Large split button
+            </button>
+            <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+              ...
+            </div>
+          </div>
+          -->
         `,
         props: {
           btnText,
@@ -84,6 +103,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button', module)
           visible,
           working,
           disabled,
+          hasDropdown,
           onClick
         }
       }

@@ -11,6 +11,10 @@ import { BaseModel } from '../model/base.model';
       <ng-content></ng-content>
       <prx-spinner *ngIf="isWorking"></prx-spinner>
     </button>
+    <button *ngIf="dropdown" type="button" class="dropdown-toggle" aria-haspopup="true"
+    [attr.aria-expanded]="dropdownVisible" (click)="onDropdownClick($event)">
+    </button>
+    <ng-content *ngIf="dropdownVisible" select="div.dropdown-menu"></ng-content>
     `
 })
 
@@ -27,6 +31,9 @@ export class ButtonComponent {
   @Input() working: boolean;
   @Input() disabled: boolean;
   @Input() visible: boolean;
+  @Input() dropdown: boolean;
+
+  dropdownVisible: boolean = false;
 
   get isWorking() {
     if (this.working === undefined && this.model) {
@@ -61,6 +68,11 @@ export class ButtonComponent {
     if (!this.isWorking) {
       this.click.emit(event);
     }
+  }
+
+  onDropdownClick(event: Event) {
+    event.stopPropagation();
+    this.dropdownVisible = !this.dropdownVisible;
   }
 
   private decode(val: any): any {
