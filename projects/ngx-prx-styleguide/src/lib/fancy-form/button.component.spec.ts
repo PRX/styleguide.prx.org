@@ -22,7 +22,7 @@ class MockModel {
   template: `
     <prx-button [dropdown]="dropdown" [model]="model" [working]="working" [disabled]="disabled" [visible]="visible" (click)="onClick()">
     Save
-    <div class="dropdown-menu">
+    <div class="dropdown-menu-items">
       <span>Menu</span>
     </div>
     </prx-button>
@@ -81,11 +81,11 @@ describe('ButtonComponent', () => {
     it('shows and hides a dropdown menu', () => {
       de.query(By.css('button.dropdown-toggle')).nativeElement.click();
       fix.detectChanges();
-      expect(de.query(By.css('div.dropdown-menu span')).nativeElement.textContent).toMatch(/Menu/);
+      expect(de.query(By.css('div.dropdown-menu-items span')).nativeElement.textContent).toMatch(/Menu/);
       expect(de.query(By.css('button.dropdown-toggle')).attributes['aria-expanded']).toBe('true');
       de.query(By.css('button.dropdown-toggle')).nativeElement.click();
       fix.detectChanges();
-      expect(de.query(By.css('div.dropdown-menu'))).toBeNull();
+      expect(de.query(By.css('div.dropdown-menu-items'))).toBeNull();
       expect(de.query(By.css('button.dropdown-toggle')).attributes['aria-expanded']).toBe('false');
     });
   });

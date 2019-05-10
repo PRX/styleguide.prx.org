@@ -86,6 +86,10 @@ button.dropdown-toggle.open::after {
   border-bottom: .3em solid;
 }
 
+div.dropdown-menu {
+  position: absolute;
+}
+
 /*
  * Hide text when spinner is showing
  */
