@@ -62,7 +62,8 @@ storiesOf('Forms Controls|Inputs/Fancy Button', module)
       const isColorSelected = (c: string) => c === colorSelect;
       const visible = boolean('Visible', true);
       const working = boolean('Working', false);
-      const disabled = boolean('Diabled', false);
+      const disabled = boolean('Disabled', false);
+      const hasDropdown = boolean('Dropdown', false);
       const onClick = action('Button Clicked');
 
       return {
@@ -75,8 +76,13 @@ storiesOf('Forms Controls|Inputs/Fancy Button', module)
             [visible]="visible"
             [working]="working"
             [disabled]="disabled"
+            [dropdown]="hasDropdown"
             (click)="onClick($event)"
-          >{{ btnText }}</prx-button>
+          >{{ btnText }}
+          <div class="dropdown-menu-items">
+            <prx-button [plain]="1" [disabled]="0">Sub-menu</prx-button>
+          </div>
+          </prx-button>
         `,
         props: {
           btnText,
@@ -84,6 +90,7 @@ storiesOf('Forms Controls|Inputs/Fancy Button', module)
           visible,
           working,
           disabled,
+          hasDropdown,
           onClick
         }
       }
@@ -108,6 +115,7 @@ __Selector__ \`prx-button\`
 - \`@Input() plain: boolean\` \\- Flag for plain button style. Defaults to \`false\`.
 - \`@Input() red: boolean\` \\- Flag for red button style. Defaults to \`false\`.
 - \`@Input() green: boolean\` \\- Flag for green button style. Defaults to \`false\`.
+- \`@Input() dropdown: boolean\` \\- Flag to indicate whether button has a dropdown. Defaults to \`false\`.
 - \`@Input() working: boolean\` \\- Override to show spinner.
 - \`@Input() disabled: boolean\` \\- Override to appear disabled.
 - \`@Input() visible: boolean\` \\- Override to control visibility.
@@ -241,6 +249,37 @@ storiesOf('Forms Controls|Inputs/Fancy Button/Examples', module)
 ## Usage
 \`\`\`html
 <prx-button [model]="model" disabled=1 >Saved</prx-button>
+\`\`\`
+        `
+      }
+    }
+  )
+  .add(
+    'Dropdown',
+    () => ({
+      template: `
+        <prx-button [model]="model" dropdown=1>
+          Menu
+          <div class="dropdown-menu-items">
+            <prx-button>Sub-menu</prx-button>
+          </div>
+        </prx-button>
+      `,
+      props: {
+        model
+      }
+    }),
+    {
+      notes: {
+        markdown: `
+## Usage
+\`\`\`html
+<prx-button [model]="model" dropdown=1>
+Menu
+<div class="dropdown-menu-items">
+  <prx-button>Sub-menu</prx-button>
+</div>
+</prx-button>
 \`\`\`
         `
       }

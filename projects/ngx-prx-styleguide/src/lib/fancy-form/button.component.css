@@ -47,6 +47,49 @@ button.red:hover, button.red:focus {
   background-color: #ff0000;
 }
 
+button.dropdown-toggle {
+  padding-left: 3px;
+  padding-right: 6px;
+  border-left: 1px solid transparent;
+  margin-left: 1px;
+}
+
+/* Only visible to screen reader */
+button.dropdown-toggle span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  border: 0;
+}
+
+button.dropdown-toggle::after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: .255em;
+  vertical-align: .255em;
+  content: "";
+  border-top: .3em solid;
+  border-right: .3em solid transparent;
+  border-bottom: 0;
+  border-left: .3em solid transparent
+}
+
+button.dropdown-toggle.open::after {
+  border-top: 0;
+  border-bottom: .3em solid;
+}
+
+div.dropdown-menu {
+  position: absolute;
+}
+
 /*
  * Hide text when spinner is showing
  */

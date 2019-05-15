@@ -20,8 +20,11 @@ class MockModel {
 @Component({
   selector: 'test-component',
   template: `
-    <prx-button [model]="model" [working]="working" [disabled]="disabled" [visible]="visible" (click)="onClick()">
-      Save
+    <prx-button [dropdown]="dropdown" [model]="model" [working]="working" [disabled]="disabled" [visible]="visible" (click)="onClick()">
+    Save
+    <div class="dropdown-menu-items">
+      <span>Menu</span>
+    </div>
     </prx-button>
   `
 })
@@ -30,6 +33,7 @@ class TestComponent {
   working: boolean;
   disabled: boolean;
   visible: boolean;
+  dropdown: boolean;
 
   onClick(): void {}
 }
@@ -62,6 +66,28 @@ describe('ButtonComponent', () => {
     expect(de.query(By.css('button')).nativeElement.getAttribute('disabled')).toBeNull();
     expect(de.query(By.css('button.working'))).toBeNull();
     expect(de.query(By.css('prx-spinner'))).toBeNull();
+    expect(de.query(By.css('button.dropdown-toggle'))).toBeNull();
+  });
+
+  describe('dropdown', () => {
+    beforeEach(() => {
+      comp.dropdown = true;
+      fix.detectChanges();
+    });
+    it('displays a dropdown toggle when appropriate', () => {
+      expect(de.query(By.css('button.dropdown-toggle'))).not.toBeNull();
+    });
+
+    it('shows and hides a dropdown menu', () => {
+      de.query(By.css('button.dropdown-toggle')).nativeElement.click();
+      fix.detectChanges();
+      expect(de.query(By.css('div.dropdown-menu-items span')).nativeElement.textContent).toMatch(/Menu/);
+      expect(de.query(By.css('button.dropdown-toggle')).attributes['aria-expanded']).toBe('true');
+      de.query(By.css('button.dropdown-toggle')).nativeElement.click();
+      fix.detectChanges();
+      expect(de.query(By.css('div.dropdown-menu-items'))).toBeNull();
+      expect(de.query(By.css('button.dropdown-toggle')).attributes['aria-expanded']).toBe('false');
+    });
   });
 
   describe('visible', () => {
@@ -147,5 +173,4 @@ describe('ButtonComponent', () => {
     });
 
   });
-
 });
