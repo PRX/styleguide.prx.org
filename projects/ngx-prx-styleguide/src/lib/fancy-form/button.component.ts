@@ -20,6 +20,7 @@ import { BaseModel } from '../model/base.model';
     <div class="dropdown-menu">
       <ng-content *ngIf="dropdownVisible" select="div.dropdown-menu-items"></ng-content>
     </div>
+    <div *ngIf="dropdown && isVisible" class="dropdown-overlay" [class.open]="dropdownVisible" (click)="onDropdownClick($event)"></div>
     `
 })
 
@@ -38,7 +39,7 @@ export class ButtonComponent {
   @Input() visible: boolean;
   @Input() dropdown: boolean;
 
-  dropdownVisible: boolean = false;
+  dropdownVisible = false;
 
   get isWorking() {
     if (this.working === undefined && this.model) {

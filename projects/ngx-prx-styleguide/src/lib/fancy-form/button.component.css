@@ -90,6 +90,19 @@ div.dropdown-menu {
   position: absolute;
 }
 
+.dropdown-overlay {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 996;
+}
+.dropdown-overlay.open {
+  display: block;
+}
+
 /*
  * Hide text when spinner is showing
  */
