@@ -1,7 +1,7 @@
-import { AbstractControl, Validator, NG_VALIDATORS, ValidatorFn, ValidationErrors, FormControl } from '@angular/forms';
+import { AbstractControl, Validator, NG_VALIDATORS, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { Directive, Input } from '@angular/core';
-import * as momentNs from 'moment-timezone'
-const moment = momentNs
+import * as momentNs from 'moment-timezone';
+const moment = momentNs;
 
 @Directive({
   selector: '[prxTzTimestamp]',
@@ -18,6 +18,7 @@ export class TzTimestampValidatorDirective implements Validator {
 export function tzTimestampValidator(timestampFormat: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const timestampValid =
+      !control.value ||
       moment(control.value, timestampFormat, true).isValid() ||
       moment(control.value, timestampFormat.match(/(h|H)+:mm/)[0], true).isValid();
     return timestampValid ? null : { tzTimestamp: true };

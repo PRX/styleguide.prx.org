@@ -7,7 +7,7 @@ input {
   outline: 5px auto #f09b4c;
 }
 
-input.ng-invalid,
+input.ng-dirty.ng-invalid,
 prx-datepicker.invalid,
 ng-select.invalid,
 ng-select.ng-invalid {

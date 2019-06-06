@@ -1,8 +1,8 @@
-import * as momentNs from 'moment-timezone'
-const moment = momentNs
+import * as momentNs from 'moment-timezone';
+const moment = momentNs;
 
 export class TzDate {
-  constructor(pickerDate: Date, time: string, tz: string, meridiem: string = null) {
+  constructor(pickerDate: Date, time: string, tz: string, meridiem?: string) {
     this.tz = tz;
     this.pickerDate = pickerDate;
     this.time = time;
@@ -42,19 +42,23 @@ export class TzDate {
   }
 
   public get isoDateString() {
-    const year = this.pickerDate.getFullYear();
-    const month = this.pickerDate.getMonth() + 1;
-    const monthString = month < 10 ? '0' + month : month;
-    const date = this.pickerDate.getDate();
-    const dateString = date < 10 ? '0' + date : date;
-    return `${year}-${monthString}-${dateString}`;
+    if (this.pickerDate) {
+      const year = this.pickerDate.getFullYear();
+      const month = this.pickerDate.getMonth() + 1;
+      const monthString = month < 10 ? '0' + month : month;
+      const date = this.pickerDate.getDate();
+      const dateString = date < 10 ? '0' + date : date;
+      return `${year}-${monthString}-${dateString}`;
+    }
   }
 
   public get twentyFourHourTime() {
-    if (!this.meridiem) {
-      return this.time;
+    if (this.time) {
+      if (!this.meridiem) {
+        return this.time;
+      }
+      return moment(`${this.time} ${this.meridiem}`, 'hh:mm:ss A').format('HH:mm:ss');
     }
-    return moment(`${this.time} ${this.meridiem}`, 'hh:mm:ss A').format('HH:mm:ss');
   }
 
   public get finalDate() {

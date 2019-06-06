@@ -4,7 +4,7 @@ import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of as observableOf } from 'rxjs';
-import * as moment from 'moment-timezone'
+import * as moment from 'moment-timezone';
 import { By } from '@angular/platform-browser';
 import { TzDataService } from './tz-data.service';
 import * as tzMock from 'timezone-mock';
@@ -135,8 +135,8 @@ describe('TzDatepickerComponent', () => {
   });
 
   it(`Updates the model when date is set`, () => {
-    const newTestDate = new Date(testDate.getTime() + 24 * 60 * 60 * 1000)
-    const modelSetSpy = jest.spyOn(component, 'modelFromDate')
+    const newTestDate = new Date(testDate.getTime() + 24 * 60 * 60 * 1000);
+    const modelSetSpy = jest.spyOn(component, 'modelFromDate');
     expect(modelSetSpy).not.toHaveBeenCalled();
     expect(component.model.finalDate.getTime()).toBe(testDate.getTime());
     component.date = newTestDate;
@@ -144,5 +144,15 @@ describe('TzDatepickerComponent', () => {
     expect(modelSetSpy).toHaveBeenCalledWith(newTestDate);
     expect(component.model.finalDate.getTime()).toBe(newTestDate.getTime());
     expect(dateChangeStub).not.toHaveBeenCalled();
+  });
+
+  it('allows date and time setting to be discarded', () => {
+    jest.spyOn(component, 'modelFromDate');
+    component.date = null;
+    fixture.detectChanges();
+    expect(component.modelFromDate).toHaveBeenCalledWith(null);
+    expect(component.model.pickerDate).toBeNull();
+    expect(component.model.time).toBeNull();
+    expect(component.model.tz).not.toBeNull();
   });
 });
