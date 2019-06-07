@@ -75,7 +75,7 @@ Inline SVG icons are now easy with this component. Load one from the assets dire
 
 ----
 
-__Module__ \`IconsModule\`
+__Module__ \`IconModule\`
 
 __Selector__ \`prx-icon\`
 
