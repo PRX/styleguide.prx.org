@@ -151,8 +151,8 @@ describe('TzDatepickerComponent', () => {
     component.date = null;
     fixture.detectChanges();
     expect(component.modelFromDate).toHaveBeenCalledWith(null);
-    expect(component.model.pickerDate).toBeNull();
-    expect(component.model.time).toBeNull();
-    expect(component.model.tz).not.toBeNull();
+    expect(component.model.pickerDate).toBeUndefined();
+    expect(component.model.time).toBeUndefined();
+    expect(component.model.tz).not.toBeUndefined();
   });
 });
