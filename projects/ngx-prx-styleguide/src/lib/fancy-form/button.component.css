@@ -49,6 +49,10 @@ button.red {
 button.red:hover, button.red:focus {
   background-color: #ff0000;
 }
+button.red[disabled] {
+  background-color: #ec775f;
+  color: #f8ddd8;
+}
 
 button.dropdown-toggle {
   padding-left: 3px;
