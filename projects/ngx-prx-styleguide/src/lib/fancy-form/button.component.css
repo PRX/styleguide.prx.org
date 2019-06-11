@@ -1,10 +1,13 @@
 /**
  * The button colors! The colors!
  */
-:host {
+.wrapper {
   position: relative;
 }
-button {
+.wrapper > .primary {
+  display: flex;
+}
+button.working {
   position: relative;
 }
 button[disabled] {
