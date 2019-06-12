@@ -76,7 +76,7 @@
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
+            "tsConfig": "src/tsconfig.app.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
               "src/styles.css"
@@ -92,8 +92,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "src/tsconfig.app.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -151,7 +150,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/ngx-prx-styleguide/src/test.ts",
-            "tsConfig": "projects/ngx-prx-styleguide/tsconfig.spec.json",
+            "tsConfig": "projects/ngx-prx-styleguide/tsconfig.lib.json",
             "karmaConfig": "projects/ngx-prx-styleguide/karma.conf.js"
           }
         },
@@ -159,8 +158,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-prx-styleguide/tsconfig.lib.json",
-              "projects/ngx-prx-styleguide/tsconfig.spec.json"
+              "projects/ngx-prx-styleguide/tsconfig.lib.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -250,7 +248,7 @@
           "options": {
             "main": "projects/ngx-prx-styleguide-storybook/src/test.ts",
             "polyfills": "projects/ngx-prx-styleguide-storybook/src/polyfills.ts",
-            "tsConfig": "projects/ngx-prx-styleguide-storybook/tsconfig.spec.json",
+            "tsConfig": "projects/ngx-prx-styleguide-storybook/tsconfig.app.json",
             "karmaConfig": "projects/ngx-prx-styleguide-storybook/karma.conf.js",
             "styles": [
               "projects/ngx-prx-styleguide-storybook/src/styles.css"
@@ -266,8 +264,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-prx-styleguide-storybook/tsconfig.app.json",
-              "projects/ngx-prx-styleguide-storybook/tsconfig.spec.json"
+              "projects/ngx-prx-styleguide-storybook/tsconfig.app.json"
             ],
             "exclude": [
               "**/node_modules/**"

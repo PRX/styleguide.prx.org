@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TzDate } from './tzdate';
-import { map, share, publishReplay, refCount } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, publishReplay, refCount } from 'rxjs/operators';
 import { TzDataService } from './tz-data.service';
 
-import * as momentNs from 'moment-timezone'
-const moment = momentNs
+import * as momentNs from 'moment-timezone';
+const moment = momentNs;
 
 @Component({
   selector: 'prx-tz-datepicker',
@@ -17,7 +18,7 @@ const moment = momentNs
         [changed]="changed"
       >
       </prx-datepicker>
-      <ng-container *ngIf="!supportsTimeInput">
+      <ng-container *ngIf="!supportsTimeInput; else supportsTime">
         <input
           [class.changed]="changed"
           [(ngModel)]="model.time"
@@ -26,6 +27,7 @@ const moment = momentNs
           placeholder="08:00:00"
           #timestamp="ngModel"
           prxTzTimestamp="hh:mm:ss"
+          required
         />
         <select
           [class.changed]="changed"
@@ -36,9 +38,16 @@ const moment = momentNs
           <option name="AM" value="AM">AM</option>
           <option name="PM" value="PM">PM</option>
         </select>
-        <p class="error" *ngIf="timestamp.errors">Timestamp must be between 01:00:00 and 12:59:59</p>
+        <p class="error" *ngIf="timestamp.errors">
+          <ng-container *ngIf="timestamp.errors.required; else tzError">
+            Timestamp is required
+          </ng-container>
+          <ng-template #tzError>
+            Timestamp must be between 01:00:00 and 12:59:59
+          </ng-template>
+        </p>
       </ng-container>
-      <ng-container *ngIf="supportsTimeInput">
+      <ng-template #supportsTime>
         <input
           [class.changed]="changed"
           [(ngModel)]="model.time"
@@ -49,13 +58,13 @@ const moment = momentNs
           prxTzTimestamp="HH:mm:ss"
           required
         />
-      </ng-container>
+      </ng-template>
       <ng-select
         required
         ngDefaultControl
         name="timezone"
         [class.changed]="changed"
-        [items]="this.timezones | async"
+        [items]="timezones | async"
         bindLabel="label"
         bindValue="name"
         [(ngModel)]="model.tz"
@@ -73,7 +82,7 @@ export class TzDatepickerComponent implements OnInit {
   @Input()
   set date(value: Date) {
     this._date = value;
-    if(this.model) {
+    if (this.model) { // only set model after init with timezone
       this.model = this.modelFromDate(value);
     }
   }
@@ -85,23 +94,13 @@ export class TzDatepickerComponent implements OnInit {
 
   supportsTimeInput = false;
 
-  timeInvalid = false;
-  dateInvalid = false;
-  timezoneInvalid = false;
+  timezones: Observable<{label: string, name: string}[]>;
 
-  pickerDateChanged = false;
-
-  timezones;
-
-  _pickerDate;
-  isoDateString;
-
-  constructor(private tzDataSvc: TzDataService) {
-    this.supportsTimeInput = this.checkDateInput();
-    this.tzDataSvc = tzDataSvc;
-  }
+  constructor(private tzDataSvc: TzDataService) {}
 
   ngOnInit() {
+    this.supportsTimeInput = this.checkDateInput();
+
     this.timezones = this.tzDataSvc
       .fetchTzs()
       .pipe(
@@ -118,7 +117,7 @@ export class TzDatepickerComponent implements OnInit {
         // https://github.com/ReactiveX/rxjs/issues/3336
         publishReplay(1),
         refCount()
-      )
+      );
     this.timezones.subscribe({
       error: err => console.error('Timezone data failed to load: ' + err),
       complete: () => {
@@ -129,13 +128,22 @@ export class TzDatepickerComponent implements OnInit {
 
   modelFromDate(date) {
     const timezone = this.model && this.model.tz ? this.model.tz : moment.tz.guess();
-    const momentDate = moment.tz(date, timezone);
-    const timeString = this.supportsTimeInput ? momentDate.format('HH:mm:ss') : momentDate.format('hh:mm:ss');
-    const meridiem = this.supportsTimeInput ? null : momentDate.format('A');
-    return new TzDate(momentDate.toDate(), timeString, timezone, meridiem);
+    if (date) {
+      const momentDate = moment.tz(date, timezone);
+      const timeString = this.supportsTimeInput ? momentDate.format('HH:mm:ss') : momentDate.format('hh:mm:ss');
+      const meridiem = this.supportsTimeInput ? null : momentDate.format('A');
+      return new TzDate(momentDate.toDate(), timeString, timezone, meridiem);
+    } else {
+      // no date or time set, only timezone
+      return new TzDate(undefined, undefined, timezone);
+    }
   }
 
   handleChange() {
+    // if date is chosen when time has not been set, initialize the time to 12am (empty string allows user to clear time)
+    if (this.model.pickerDate && !this.model.time && this.model.time !== '') {
+      this.model = this.modelFromDate(this.model.pickerDate);
+    }
     const finalDate = this.model.finalDate;
     if (finalDate && finalDate instanceof Date) {
       this.dateChange.emit(finalDate);

@@ -32,6 +32,11 @@ export class DatepickerComponent implements AfterViewInit {
         const pickerDate = this.UTC ? this.pickerUTCOffset(this._date) : this._date;
         this.picker.setDate(pickerDate);
       }
+    } else if (!value) {
+      this._date = null;
+      if (this.picker) {
+        this.picker.setDate(null);
+      }
     }
   }
   get date() { return this._date; }
@@ -72,7 +77,9 @@ export class DatepickerComponent implements AfterViewInit {
   picker: Pikaday;
 
   dateDefinedAndChanged(value: Date) {
-    return value && (!this._date || this._date.valueOf() !== value.valueOf());
+    return value &&
+      /* !Invalid Date */ !isNaN(value.valueOf()) &&
+      /* changed or not previously set */ (!this._date || this._date.valueOf() !== value.valueOf());
   }
 
   get formattedDate(): string {

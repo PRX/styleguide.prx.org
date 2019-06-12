@@ -5,22 +5,27 @@ import { BaseModel } from '../model/base.model';
   selector: 'prx-button',
   styleUrls: ['button.component.css'],
   template: `
-    <button *ngIf="isVisible" [disabled]="isDisabled" [class.working]="isWorking"
-      [class.orange]="orange" [class.plain]="plain" [class.red]="red" [class.green]="green"
-      (click)="onClick($event)">
-      <ng-content></ng-content>
-      <prx-spinner *ngIf="isWorking"></prx-spinner>
-    </button>
-    <button *ngIf="dropdown && isVisible" type="button" class="dropdown-toggle" aria-haspopup="true"
-      [class.orange]="orange" [class.plain]="plain" [class.red]="red"
-      [class.green]="green" [class.open]="dropdownVisible" [attr.aria-expanded]="dropdownVisible"
-      (click)="onDropdownClick($event)">
-      <span>Toggle Dropdown</span>
-    </button>
+  <div class="wrapper">
+    <div class="primary">
+      <button *ngIf="isVisible" [disabled]="isDisabled" [class.working]="isWorking"
+        [class.orange]="orange" [class.plain]="plain" [class.red]="red" [class.green]="green"
+        (click)="onClick($event)">
+        <ng-content></ng-content>
+        <prx-spinner *ngIf="isWorking"></prx-spinner>
+      </button>
+      <button *ngIf="dropdown && isVisible" type="button" class="dropdown-toggle" aria-haspopup="true"
+        [class.orange]="orange" [class.plain]="plain" [class.red]="red"
+        [class.green]="green" [class.open]="dropdownVisible" [attr.aria-expanded]="dropdownVisible"
+        (click)="onDropdownClick($event)">
+        <span>Toggle Dropdown</span>
+      </button>
+    </div>
     <div class="dropdown-menu">
       <ng-content *ngIf="dropdownVisible" select="div.dropdown-menu-items"></ng-content>
     </div>
-    `
+    <div *ngIf="dropdown && isVisible" class="dropdown-overlay" [class.open]="dropdownVisible" (click)="onDropdownClick($event)"></div>
+  </div>
+  `
 })
 
 export class ButtonComponent {
@@ -38,7 +43,7 @@ export class ButtonComponent {
   @Input() visible: boolean;
   @Input() dropdown: boolean;
 
-  dropdownVisible: boolean = false;
+  dropdownVisible = false;
 
   get isWorking() {
     if (this.working === undefined && this.model) {

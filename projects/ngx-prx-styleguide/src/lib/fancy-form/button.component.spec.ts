@@ -88,6 +88,16 @@ describe('ButtonComponent', () => {
       expect(de.query(By.css('div.dropdown-menu-items'))).toBeNull();
       expect(de.query(By.css('button.dropdown-toggle')).attributes['aria-expanded']).toBe('false');
     });
+
+    it('hides a dropdown menu when click outside dropdown', () => {
+      de.query(By.css('button.dropdown-toggle')).nativeElement.click();
+      fix.detectChanges();
+      expect(de.query(By.css('button.dropdown-toggle')).attributes['aria-expanded']).toBe('true');
+      de.query(By.css('.dropdown-overlay')).nativeElement.click();
+      fix.detectChanges();
+      expect(de.query(By.css('button.dropdown-toggle')).attributes['aria-expanded']).toBe('false');
+      expect(de.query(By.css('div.dropdown-menu-items'))).toBeNull();
+    });
   });
 
   describe('visible', () => {
