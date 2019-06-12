@@ -50,6 +50,8 @@ export { SelectModule } from './lib/select/select.module';
 
 export { SpinnerModule } from './lib/spinner/spinner.module';
 
+export { StickyModule } from './lib/sticky/sticky.module';
+
 export { StatusBarModule } from './lib/status-bar/status-bar.module';
 
 export { TabModule } from './lib/tab/tab.module';
