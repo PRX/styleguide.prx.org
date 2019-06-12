@@ -1,5 +1,5 @@
 import { Directive, ElementRef, OnInit, HostBinding, HostListener, Inject, Input } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT} from '@angular/common';
 import * as Stickyfill from 'stickyfilljs';
 import { StickyService } from './sticky.service';
 
@@ -36,7 +36,7 @@ export class StickyDirective implements OnInit {
 
   constructor(
     private element: ElementRef,
-    @Inject(DOCUMENT) private document: Document,
+    @Inject(DOCUMENT) private document: any,
     private sticky: StickyService
   ) {
     this.el = element.nativeElement;
