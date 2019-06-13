@@ -29,14 +29,12 @@ main {
   display: block;/* IE 11 gives auto/no height to main */
   min-height: 200px;
   background: $white-smoke;
-  padding-top: 50px;
   padding-bottom: $padding-base;
   position: relative;
 }
 @media screen and (min-width: 768px) {
   main {
     min-height: 400px;
-    padding-top: 73px;
   }
 }
 
@@ -52,10 +50,6 @@ article .main > section {
     padding-right: 30px;
     padding-left: 30px;
   }
-}
-
-article .main > section {
-  position: relative;
 }
 
 /* Looks like this should be in a .content container with display: flex but Publish is not using */
