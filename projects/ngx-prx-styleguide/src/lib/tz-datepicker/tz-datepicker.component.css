@@ -1,6 +1,16 @@
-input {
+:host > * {
   margin: 5px 0;
-  height: 40px;
+}
+prx-datepicker {
+  min-height: initial;
+}
+prx-datepicker >>> prx-icon {
+  height: 15px;
+  width: 15px;
+}
+input, select, prx-datepicker >>> input, ng-select >>> input {
+  height: 30px;
+  padding: 3px;
 }
 
 .changed {
@@ -19,10 +29,5 @@ input[required]:invalid {
 }
 
 p.error {
-  margin-top: 6px;
   color: #e32;
-}
-
-ng-select input {
-  padding: 0px;
 }
