@@ -18,26 +18,28 @@ const moment = momentNs;
         [changed]="changed"
       >
       </prx-datepicker>
-      <ng-container *ngIf="!supportsTimeInput; else supportsTime">
-        <input
-          [class.changed]="changed"
-          [(ngModel)]="model.time"
-          (ngModelChange)="handleChange()"
-          name="time"
-          placeholder="08:00:00"
-          #timestamp="ngModel"
-          prxTzTimestamp="hh:mm:ss"
-          required
-        />
-        <select
-          [class.changed]="changed"
-          [(ngModel)]="model.meridiem"
-          (ngModelChange)="handleChange()"
-          name="meridiem"
-        >
-          <option name="AM" value="AM">AM</option>
-          <option name="PM" value="PM">PM</option>
-        </select>
+      <span *ngIf="!supportsTimeInput; else supportsTime">
+        <span>
+          <input
+            [class.changed]="changed"
+            [(ngModel)]="model.time"
+            (ngModelChange)="handleChange()"
+            name="time"
+            placeholder="08:00:00"
+            #timestamp="ngModel"
+            prxTzTimestamp="hh:mm:ss"
+            required
+          />
+          <select
+            [class.changed]="changed"
+            [(ngModel)]="model.meridiem"
+            (ngModelChange)="handleChange()"
+            name="meridiem"
+          >
+            <option name="AM" value="AM">AM</option>
+            <option name="PM" value="PM">PM</option>
+          </select>
+        </span>
         <p class="error" *ngIf="timestamp.errors">
           <ng-container *ngIf="timestamp.errors.required; else tzError">
             Timestamp is required
@@ -46,7 +48,7 @@ const moment = momentNs;
             Timestamp must be between 01:00:00 and 12:59:59
           </ng-template>
         </p>
-      </ng-container>
+      </span>
       <ng-template #supportsTime>
         <input
           [class.changed]="changed"

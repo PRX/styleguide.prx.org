@@ -4,8 +4,8 @@ import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild,
 import * as Pikaday from 'pikaday';
 
 // This artifice seems to be necessary to appease both Webpack and Rollup https://github.com/ng-packagr/ng-packagr/issues/163
-import * as momentNs from 'moment-timezone'
-const moment = momentNs
+import * as momentNs from 'moment-timezone';
+const moment = momentNs;
 
 /**
  * TODO: parent project must include (in .angular-cli.json):
@@ -110,7 +110,7 @@ export class DatepickerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let options: Pikaday.PikadayOptions = {
+    const options: Pikaday.PikadayOptions = {
       field: this.input.nativeElement,
       format: this.format,
       theme: 'triangle-theme',
@@ -170,7 +170,9 @@ export class DatepickerComponent implements AfterViewInit {
     } else {
       newValue = new Date(year, month, date, hour, minute, second, millisecond);
     }
-    this._date = newValue;
-    this.dateChange.emit(newValue);
+    if (!this._date || this._date.valueOf() !== newValue.valueOf()) {
+      this._date = newValue;
+      this.dateChange.emit(newValue);
+    }
   }
 }
