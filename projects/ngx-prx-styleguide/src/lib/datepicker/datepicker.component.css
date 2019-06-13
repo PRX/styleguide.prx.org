@@ -20,7 +20,7 @@ input.invalid {
   outline: 5px auto #e32;
 }
 
-.prx-datepicker-addon i {
+prx-icon {
   height: 20px;
   width: 20px;
   position: absolute;
