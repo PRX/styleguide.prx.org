@@ -2,13 +2,7 @@
  * PRX header component
  */
 :host {
-  --header-height: 50px;
-  --logo-width: 72px;
-
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
+  display: block;
   max-width: 1200px;
   margin: 0 auto;
   z-index: 900;
