@@ -10,7 +10,7 @@ prx-datepicker >>> prx-icon {
 }
 input, select, prx-datepicker >>> input, ng-select >>> input {
   height: 30px;
-  padding: 3px;
+  padding: 3px 6px;
 }
 
 .changed {
