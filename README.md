@@ -105,7 +105,10 @@ npm publish dist/ngx-prx-styleguide
 ```
 
 After the package has been published, push the npm generated commit and tag to
-the repository: `git push --follow-tags`
+the repository: 
+```
+git push --follow-tags
+```
 
 ## License
 
