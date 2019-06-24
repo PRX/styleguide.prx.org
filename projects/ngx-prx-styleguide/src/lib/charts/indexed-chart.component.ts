@@ -12,6 +12,7 @@ import { ChartType } from './models/chart-type.type';
 export class IndexedChartComponent implements OnChanges {
   @Input() type: ChartType = 'line';
   @Input() formatX: string | ((x: number | Date) => string | number);
+  @Input() formatY: (x: number) => string;
   @Input() datasets: IndexedChartModel[];
 
   chart: any;
@@ -50,6 +51,17 @@ export class IndexedChartComponent implements OnChanges {
             type: 'category',
             tick: {
               format: this.formatX
+            }
+          }
+        };
+      }
+
+      if (this.formatY) {
+        config.axis = {
+          ...config.axis,
+          y: {
+            tick: {
+              format: this.formatY
             }
           }
         };
