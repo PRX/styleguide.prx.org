@@ -1,1 +1,1 @@
-export type ChartType = 'line' | 'pie' | 'area' | 'bar';
+export type ChartType = 'line' | 'spline' | 'pie' | 'area' | 'bar';

@@ -49,7 +49,7 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "@ng-select/ng-select": "~2.15.3",
-    "c3": "~0.4.11",
+    "c3": "~0.7.1",
     "core-js": "~2.4.1",
     "moment-timezone": "^0.5.23",
     "ng-inline-svg": "^8.3.0",
