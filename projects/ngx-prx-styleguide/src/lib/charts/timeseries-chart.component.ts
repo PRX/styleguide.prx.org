@@ -56,7 +56,7 @@ export class TimeseriesChartComponent implements OnChanges {
         }
       });
 
-      let config: C3.ChartConfiguration = {
+      const config: C3.ChartConfiguration = {
         data: {
           type: this.type,
           xs: this.xDateKeys,
@@ -76,10 +76,10 @@ export class TimeseriesChartComponent implements OnChanges {
       };
 
       if (this.stacked) {
-        config.data['groups'] = [this.groups];
+        config.data.groups = [this.groups];
       }
 
-      const axis: {x?: any, y?: any} = {};
+      const axis: C3.Axis = {};
       if (this.formatX) {
         axis.x = {
           type: 'timeseries',
@@ -93,12 +93,12 @@ export class TimeseriesChartComponent implements OnChanges {
         axis.x = {
           ...axis.x,
           tick: {
-            ...axis.x['tick'],
+            ...axis.x.tick,
             count: this.maxTicks
           }
         };
         if (this.type === 'bar') {
-          config['bar'] = {
+          config.bar = {
             width: {
               ratio: this.maxTicks / this.datasets[0].data.length
             }
@@ -123,11 +123,11 @@ export class TimeseriesChartComponent implements OnChanges {
       }
 
       if (axis.x || axis.y) {
-        config['axis'] = axis;
+        config.axis = axis;
       }
 
       if (this.type === 'line' || this.type === 'area') {
-        config['point'] = {
+        config.point = {
           show: this.showPoints,
           r: this.pointRadius,
           focus: {

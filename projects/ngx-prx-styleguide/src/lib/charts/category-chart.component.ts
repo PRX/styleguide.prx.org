@@ -28,7 +28,7 @@ export class CategoryChartComponent implements OnChanges {
       this.colors = [this.color];
       this.columnData = [[this.dataLabel, ...this.data.map(d => d.value)]];
 
-      let config = {
+      const config: C3.ChartConfiguration = {
         data: {
           type: 'bar',
           columns: this.columnData
