@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { centered } from '@storybook/addon-centered/angular';
-import { withKnobs, text, boolean, select, color } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, color } from '@storybook/addon-knobs';
 import { ChartsModule } from './charts.module';
 
 // Module metadata for stories.
@@ -21,7 +21,7 @@ storiesOf('Charts|Category Chart', module)
     'Usage Details (Knobs)',
     () => {
       const rotated = boolean('Rotated', true);
-      const barColor= color('Bar Color', '#0089bd');
+      const barColor = color('Bar Color', '#0089bd');
       const dataLabel = text('Data Label', '');
       const data = [
         { value: 5366, label: 'Episode 68: All the Time in the World' },
@@ -47,11 +47,11 @@ storiesOf('Charts|Category Chart', module)
           rotated,
           dataLabel
         }
-      }
+      };
     },
     {
       notes: {
-        markdown:`
+        markdown: `
 # Category Chart
 
 A Category Chart is where data is given categories as labels on the x axis.

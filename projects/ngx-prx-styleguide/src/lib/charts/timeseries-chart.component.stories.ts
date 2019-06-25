@@ -140,7 +140,7 @@ storiesOf('Charts|Time Series Chart', module)
     }),
     {
       notes: {
-        markdown:`
+        markdown: `
 # Bar Chart
 
 A Bar Chart is used to show comparisons among categories along a timeseries.
@@ -174,7 +174,7 @@ chart.
     }),
     {
       notes: {
-        markdown:`
+        markdown: `
 # Stacked Bar Chart
 
 A stacked bar chart is a chart that uses bars to show comparisons between
@@ -209,7 +209,7 @@ bar represent different parts or categories of that whole.
     }),
     {
       notes: {
-        markdown:`
+        markdown: `
 # Stacked Bar Chart
 
 A stacked bar chart is a chart that uses bars to show comparisons between
@@ -249,7 +249,7 @@ bar represent different parts or categories of that whole.
     }),
     {
       notes: {
-        markdown:`
+        markdown: `
 # Line Chart
 
 A Line Chart is often used to visualize a trend in data. Datasets can be

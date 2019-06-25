@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
 import { centered } from '@storybook/addon-centered/angular';
-import { withKnobs, text, boolean, select, color } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import { ChartsModule } from './charts.module';
 import { episodes } from './mock-data/episodes.mock-data';
 
@@ -36,8 +36,9 @@ __Selector__ \`prx-indexed-chart\`
 ----
 
 - \`@Input() datasets: IndexedChartModel[] \` \\- An array of IndexedChartModels, i.e. \`[{ data: number[], label: string, color: string; }]\`.
-- \`@Input() type: ChartType = 'line'\` \\- ChartType can be 'line', 'pie', or 'bar'.
+- \`@Input() type: ChartType = 'line'\` \\- ChartType can be 'line', 'spline', 'pie', or 'bar'.
 - \`@Input() formatX: Function \\- A function to [format the X axis tick value](https://c3js.org/reference.html#axis-x-tick-format).
+- \`@Input() formatY: Function \\- A function to [format the Y axis tick value](https://c3js.org/reference.html#axis-y-tick-format).
 `
     }
   });
@@ -65,11 +66,11 @@ storiesOf('Charts|Indexed Chart', module)
         props: {
           datasets
         }
-      }
+      };
     },
     {
       notes: {
-        markdown:`
+        markdown: `
 # Pie Chart
 
 A Pie Chart is used to represent proportions. The datasets can either be arrays
@@ -104,11 +105,11 @@ arrays with multiple elements, their values will be added together.
         props: {
           datasets
         }
-      }
+      };
     },
     {
       notes: {
-        markdown:`
+        markdown: `
 # Bar Chart
 
 A Bar Chart is used to show comparisons among categories. Order on an indexed
@@ -126,7 +127,7 @@ bar chart will be shown in the order of the arrays given in datasets.
   .add(
     'Line Chart',
     () => {
-      const datasets = episodes.map(({title, color, queries})=> {
+      const datasets = episodes.map(({title, color, queries}) => {
         const mapCumulativeData = (data: any) => {
           let sum = 0;
           return data.map((datum: any) => {
@@ -154,11 +155,11 @@ bar chart will be shown in the order of the arrays given in datasets.
           datasets,
           formatLineX
         }
-      }
+      };
     },
     {
       notes: {
-        markdown:`
+        markdown: `
 # Line Chart
 
 A Line Chart is often used to visualize a trend in data.
@@ -173,6 +174,63 @@ function formatLineX(s: string) {
 
 \`\`\`html
 <prx-indexed-chart type="line" [formatX]="formatLineX" [datasets]="datasets"></prx-indexed-chart>
+\`\`\`
+`
+      }
+    }
+  ).add(
+    'Spline Chart',
+    () => {
+      const datasets = episodes.map(({title, color, queries}) => {
+        const mapCumulativeData = (data: any) => {
+          let sum = 0;
+          return data.map((datum: any) => {
+            return sum += datum[1];
+          });
+        };
+
+        return {
+          label: title,
+          color,
+          data: mapCumulativeData(queries.releaseIndexed.data)
+        };
+      });
+
+      return {
+        template: `
+          <prx-indexed-chart
+            type="spline"
+            [datasets]="datasets"
+          ></prx-indexed-chart>
+        `,
+        props: {
+          datasets
+        }
+      };
+    },
+    {
+      notes: {
+        markdown: `
+# Spline Chart
+
+A Spline Chart is often used to visualize a trend in data.
+
+## Usage
+
+\`\`\`javascript
+function formatX(s: string) {
+  return 'Day ' + s;
+}
+\`\`\`
+
+\`\`\`javascript
+function formatY(s: string) {
+  return Number(value).toLocaleString(undefined, {useGrouping: true});
+}
+\`\`\`
+
+\`\`\`html
+<prx-indexed-chart type="spline" [formatX]="formatX" [formatX]="formatY" [datasets]="datasets"></prx-indexed-chart>
 \`\`\`
 `
       }

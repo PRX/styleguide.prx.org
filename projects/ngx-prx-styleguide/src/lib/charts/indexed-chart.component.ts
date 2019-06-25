@@ -11,7 +11,8 @@ import { ChartType } from './models/chart-type.type';
 
 export class IndexedChartComponent implements OnChanges {
   @Input() type: ChartType = 'line';
-  @Input() formatX: Function;
+  @Input() formatX: string | ((x: number | Date) => string | number);
+  @Input() formatY: (x: number) => string;
   @Input() datasets: IndexedChartModel[];
 
   chart: any;
@@ -30,7 +31,7 @@ export class IndexedChartComponent implements OnChanges {
         this.colors.push(dataset.color);
       });
 
-      let config = {
+      const config: C3.ChartConfiguration = {
         data: {
           type: this.type,
           columns: this.columnData
@@ -45,11 +46,22 @@ export class IndexedChartComponent implements OnChanges {
       };
 
       if (this.formatX) {
-        config['axis'] = {
+        config.axis = {
           x: {
             type: 'category',
             tick: {
               format: this.formatX
+            }
+          }
+        };
+      }
+
+      if (this.formatY) {
+        config.axis = {
+          ...config.axis,
+          y: {
+            tick: {
+              format: this.formatY
             }
           }
         };
