@@ -9,6 +9,9 @@ import { AudioCancelDirective, AudioClassesDirective, AudioDurationComponent,
          AudioInputComponent, AudioPlayerComponent, AudioStateComponent,
          ClickDirective } from './shared';
 import { TemplatedUploadComponent } from './templated';
+import { DurationPipe, FileSizePipe, FileSelectDirective } from './file';
+import { FancyFormModule } from '../fancy-form/fancy-form.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { TemplatedUploadComponent } from './templated';
     FreeUploadComponent,
     IllegalUploadComponent,
     TemplatedUploadComponent,
-    UploadComponent
+    UploadComponent,
+    DurationPipe,
+    FileSizePipe,
+    FileSelectDirective
   ],
   exports: [
     ClickDirective,
@@ -32,8 +38,10 @@ import { TemplatedUploadComponent } from './templated';
     UploadComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
-    DragulaModule
+    DragulaModule,
+    FancyFormModule
   ],
   providers: []
 })

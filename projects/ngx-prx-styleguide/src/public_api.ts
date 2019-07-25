@@ -62,3 +62,5 @@ export { TagsModule } from './lib/tags/tags.module';
 export { ToastrModule } from './lib/toastr/toastr.module';
 export { ToastrService } from './lib/toastr/toastr.service';
 
+
+export { UploadModule } from './lib/upload/upload.module';

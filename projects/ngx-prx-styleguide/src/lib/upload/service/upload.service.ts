@@ -21,7 +21,7 @@ export class UploadService {
   private awsKey: string;
 
   constructor(private mimeTypeService: MimeTypeService,
-    {bucketName, bucketFolder, bucketAccel, signUrl, awsKey}: { bucketName: string, bucketFolder: string, bucketAccel: boolean, signUrl: string, awsKey: string }) {
+    {bucketName, bucketFolder, bucketAccel, signUrl, awsKey}) {
     this.bucketName = bucketName;
     this.bucketFolder = bucketFolder;
     this.bucketAccel = bucketAccel;

@@ -37,6 +37,13 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   getUploads: (rel: string) => Observable<(HalDoc|string)[]>;
   setUploads: (rel: string, uuids?: string[]) => void;
 
+  getContentType() {
+    if(this.template.hasOwnProperty('contentType')) {
+      return this.template['contentType'];
+    }
+    return null;
+  }
+
   constructor(params: {series?: HalDoc, story?: HalDoc, template?: HalDoc, version?: HalDoc}) {
     super();
     this.series = params.series;

@@ -14,6 +14,14 @@ export class AudioVersionTemplateModel extends BaseModel {
     VIDEO_ALT: 'video/x-mpeg'
   };
 
+  static ALL_CONTENT_TYPES = [
+    'audio/mpeg',
+    'audio/mp2',
+    'video/mpeg',
+    'video/x-mpeg'
+  ]
+
+
   public id: number;
   public label: string = null;
   public contentType = AudioVersionTemplateModel.CONTENT_TYPES.MP3;
@@ -30,10 +38,6 @@ export class AudioVersionTemplateModel extends BaseModel {
     lengthMinimum: [VERSION_LENGTH(this)],
     lengthMaximum: [VERSION_LENGTH(this)]
   };
-
-  static get ALL_CONTENT_TYPES(): string[] {
-    return Object.keys(this.CONTENT_TYPES).map(k => this.CONTENT_TYPES[k]);
-  }
 
   constructor(series?: HalDoc, docOrIndex?: HalDoc | number, loadRelated = true) {
     super();

@@ -16,6 +16,10 @@
     "@ng-select/ng-select",
     "ngx-tooltip",
     "stickyfilljs",
-    "ng-inline-svg"
+    "ng-inline-svg",
+    "evaporate",
+    "js-sha256",
+    "spark-md5",
+    "ng2-dragula"
   ]
 }
