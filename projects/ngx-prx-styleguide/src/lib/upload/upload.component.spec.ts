@@ -48,7 +48,8 @@ describe('UploadComponent', () => {
       changed: data.changed || (() => data.changed),
       nonMatchingFiles: () => false,
       status: data.status,
-      statusMessage: data.statusMessage
+      statusMessage: data.statusMessage,
+      getContentType: () => 'audio/mpeg'
     };
   };
 
