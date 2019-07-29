@@ -11,6 +11,7 @@ export { Userinfo, UserinfoService } from './lib/auth/userinfo.service';
 
 export { BaseModel, RelatedMap, ValidatorMap } from './lib/model/base.model';
 export { BaseInvalid, UNLESS_NEW, REQUIRED, LENGTH, IN, FALSEY, TOKENY, URL } from './lib/model/base.invalid';
+export { RELATIONS } from './lib/upload/model/invalid';
 export { BaseStorage } from './lib/model/base.storage';
 
 export { DatepickerModule } from './lib/datepicker/datepicker.module';
@@ -64,3 +65,8 @@ export { ToastrService } from './lib/toastr/toastr.service';
 
 
 export { UploadModule } from './lib/upload/upload.module';
+export { PlayerService } from './lib/audio';
+export { MimeTypeService, UploadService, Upload } from './lib/upload/service';
+export { AudioFileModel, AudioVersionModel, AudioVersionTemplateModel, AudioFileTemplateModel } from './lib/upload/model';
+export { UploadableModel, HasUpload, applyMixins } from './lib/upload/model/upload';
+export { DurationPipe, FileSelectDirective, FileSizePipe } from './lib/upload/file';
