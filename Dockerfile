@@ -24,7 +24,6 @@ FROM mhart/alpine-node:10.15.3 as test
 WORKDIR /app
 COPY --from=builder /app .
 RUN [ "npm", "run-script", "ci" ]
-RUN [ "npm", "run-script", "lint" ]
 
 FROM nginx:alpine as server
 LABEL maintainer="PRX <sysadmin@prx.org>"
