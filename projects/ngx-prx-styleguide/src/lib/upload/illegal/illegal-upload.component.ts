@@ -13,7 +13,7 @@ import { AudioVersionModel, AudioFileModel } from '../model';
       </div>
       <div class="info">
         <span>{{file.filename}}</span>
-        <publish-audio-duration [file]="file"></publish-audio-duration>
+        <prx-audio-duration [file]="file"></prx-audio-duration>
       </div>
       <div class="state">
         <p>Segment not in template - please remove!</p>
@@ -21,7 +21,7 @@ import { AudioVersionModel, AudioFileModel } from '../model';
     </div>
 
     <div class="cancel">
-      <button class="btn-icon icon-cancel" [publishAudioCancel]="file" [version]="version"></button>
+      <button class="btn-icon icon-cancel" [prxAudioCancel]="file" [version]="version"></button>
     </div>
 
   </div>

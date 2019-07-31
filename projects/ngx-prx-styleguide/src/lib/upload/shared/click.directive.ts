@@ -4,7 +4,7 @@ import {Directive, Input, ElementRef, HostListener } from '@angular/core';
   selector: '[prxClick]'
 })
 export class ClickDirective {
-  @Input() publishClick: HTMLElement;
+  @Input() prxClick: HTMLElement;
 
   constructor(private el: ElementRef) {}
 

@@ -5,7 +5,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { By } from '@angular/platform-browser';
 
 @Component({
-  template: '<button [publishAudioClasses]="file"></button>'
+  template: '<button [prxAudioClasses]="file"></button>'
 })
 class MiniComponent {
   file: any;

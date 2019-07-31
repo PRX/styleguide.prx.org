@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, DebugElement, NO_ERRORS_SCHEMA }    from '@angular/core';
+import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { SelectComponent } from './select.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { SelectComponent } from './select.component';
       [selected]="testSelected"
       [options]="testOptions"
       [single]="testSingle"
-      (onSelect)="setTestOutput($event)">
+      (select)="setTestOutput($event)">
     </prx-select>
   `
 })
@@ -71,7 +71,7 @@ describe('SelectComponent', () => {
     expect(comp.testOutput).toEqual(['hello']);
     comp.testOutput = undefined;
     comp.testSingle = true;
-    comp.testSelected = 'hello'
+    comp.testSelected = 'hello';
     fix.detectChanges();
     select.onChange();
     expect(comp.testOutput).toEqual('hello');

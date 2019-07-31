@@ -54,7 +54,7 @@ describe('TemplatedUploadComponent', () => {
     fix.detectChanges();
     expect(el.nativeElement.textContent).toMatch(new RegExp(label));
     expect(el.query(By.css('.icon-cancel'))).toBeNull();
-    expect(el.query(By.css('publish-audio-input'))).not.toBeNull();
+    expect(el.query(By.css('prx-audio-input'))).not.toBeNull();
   });
 
   it('shows template duration requirements', () => {

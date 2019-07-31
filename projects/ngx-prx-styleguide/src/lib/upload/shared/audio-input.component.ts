@@ -8,7 +8,7 @@ import { UUID } from '../service/uuid';
   selector: 'prx-audio-input',
   styleUrls: ['audio-input.component.css'],
   template: `
-    <input type="file" [accept]="acceptWildcard" publishFileSelect [id]="uuid"
+    <input type="file" [accept]="acceptWildcard" prxFileSelect [id]="uuid"
       [attr.multiple]="multiple" (file)="addFile($event)"/>
     <label *ngIf="multiple" class="button" [htmlFor]="uuid">Upload Files</label>
     <label *ngIf="!multiple" class="button" [htmlFor]="uuid">Upload File</label>

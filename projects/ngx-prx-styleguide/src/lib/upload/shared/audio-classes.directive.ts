@@ -6,19 +6,19 @@ import { AudioFileModel } from '../model';
 })
 export class AudioClassesDirective implements DoCheck {
 
-  @Input() publishAudioClasses: AudioFileModel;
+  @Input() prxAudioClasses: AudioFileModel;
 
   @HostBinding('class') stateClasses = '';
 
   ngDoCheck() {
     this.stateClasses = 'audio';
-    if (this.publishAudioClasses.canceled) {
+    if (this.prxAudioClasses.canceled) {
       this.stateClasses += ' canceled';
     }
-    if (this.publishAudioClasses.changed() && !this.publishAudioClasses.invalid()) {
+    if (this.prxAudioClasses.changed() && !this.prxAudioClasses.invalid()) {
       this.stateClasses += ' changed';
     }
-    if (this.publishAudioClasses.isUploading) {
+    if (this.prxAudioClasses.isUploading) {
       this.stateClasses += ' changed';
     }
   }

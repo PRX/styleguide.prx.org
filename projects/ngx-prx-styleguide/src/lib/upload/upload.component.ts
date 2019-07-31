@@ -14,7 +14,7 @@ import { AudioVersionModel } from './model';
       <div class="uploads">
         <ng-container *ngFor="let ft of version.filesAndTemplates">
           <prx-templated-upload *ngIf="ft.tpl" [template]="ft.tpl"
-            [file]="ft.file" [version]="version" publishClick
+            [file]="ft.file" [version]="version" prxClick
             [accept]="version.getContentType()"></prx-templated-upload>
           <prx-illegal-upload *ngIf="!ft.tpl" [file]="ft.file"
             [version]="version"></prx-illegal-upload>
@@ -22,7 +22,7 @@ import { AudioVersionModel } from './model';
       </div>
     </section>
 
-    <section publishClick>
+    <section prxClick>
       <section *ngIf="!version.hasFileTemplates">
         <div class="uploads" [prxFreeReorder]="version">
           <label>
@@ -31,7 +31,7 @@ import { AudioVersionModel } from './model';
             </div>
           </label>
           <prx-free-upload *ngFor="let f of version.files"
-            [file]="f" [version]="version" publishClick>
+            [file]="f" [version]="version" prxClick>
           </prx-free-upload>
         </div>
       </section>

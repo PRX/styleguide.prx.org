@@ -75,13 +75,13 @@
   padding: 6px 10px;
   max-width: calc(100% - 160px);
 }
-.main .info span, .main .info publish-audio-duration {
+.main .info span, .main .info prx-audio-duration {
   margin-right: 6px;
   max-width: 60%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.main .info publish-audio-player {
+.main .info prx-audio-player {
   flex-grow: 1;
 }
