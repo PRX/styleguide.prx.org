@@ -3,7 +3,7 @@ import { HalService, HalObservable, HalDoc } from 'ngx-prx-styleguide';
 import { Env } from '../core.env';
 
 @Component({
-  selector: 'hal-demo',
+  selector: 'app-hal-demo',
   styles: [`
     pre {
       overflow: scroll;

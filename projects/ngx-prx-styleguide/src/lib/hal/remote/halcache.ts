@@ -24,29 +24,29 @@ export class HalCache {
     if (this.inFlight[key]) {
       return this.inFlight[key];
     } else {
-      let item = this.getItem(key);
+      const item = this.getItem(key);
       return item ? observableOf(item) : null;
     }
   }
 
   set(key: string, valObservable: Observable<any>, ttl: number = this.ttl): Observable<any> {
     let gotValue = false;
-    this.inFlight[key] = valObservable.pipe(share(),map(val => {
+    this.inFlight[key] = valObservable.pipe(share(), map(val => {
       gotValue = true;
       this.setItem(key, val, ttl);
       return val;
-    }),finalize(() => {
+    }), finalize(() => {
       if (gotValue) {
         delete this.inFlight[key];
       } else {
         this.delItem(key);
       }
-    }),);
+    }), );
     return this.inFlight[key];
   }
 
   cache(key: string, valObservable: Observable<any>, overrideTTL?: number) {
-    let cachedVal = this.get(key);
+    const cachedVal = this.get(key);
     if (cachedVal) {
       return cachedVal;
     } else {
@@ -63,7 +63,7 @@ export class HalCache {
     this.inFlight = {};
     if (this.storageEnabled) {
       for (let i = 0, len = localStorage.length; i < len; ++i) {
-        let key = localStorage.key(i);
+        const key = localStorage.key(i);
         if (key && key.startsWith(`${this.cacheName}.`)) {
           window.localStorage.removeItem(key);
         }
@@ -77,7 +77,7 @@ export class HalCache {
     let exp: number, val: any;
 
     if (this.storageEnabled) {
-      let raw = window.localStorage.getItem(`${this.cacheName}.${key}`);
+      const raw = window.localStorage.getItem(`${this.cacheName}.${key}`);
       if (raw) {
         [exp, val] = JSON.parse(raw);
       }
@@ -97,9 +97,9 @@ export class HalCache {
 
   private setItem(key: string, val: any, ttl: number): boolean {
     if (ttl > 0) {
-      let exp = new Date().getTime() + (ttl * 1000);
+      const exp = new Date().getTime() + (ttl * 1000);
       if (this.storageEnabled) {
-        let expAndVal = JSON.stringify([exp, val]);
+        const expAndVal = JSON.stringify([exp, val]);
         window.localStorage.setItem(`${this.cacheName}.${key}`, expAndVal);
       } else {
         this.memcache[key] = [exp, val];

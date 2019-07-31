@@ -64,7 +64,7 @@ export class AudioFileTemplateModel extends BaseModel {
   }
 
   encode(): {} {
-    let data = <any> {};
+    const data = <any> {};
     data.position = this.position;
     data.label = this.label;
     data.lengthMinimum = this.lengthMinimum || 0;

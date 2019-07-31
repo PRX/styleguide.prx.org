@@ -83,7 +83,7 @@ export class CheckboxComponent {
         return this.shade(this.color, 0.2);
       } else if (this.focused) {
         return this.shade(this.color, 0.1);
-      } else  {
+      } else {
         return this.color;
       }
     } else {
@@ -93,9 +93,9 @@ export class CheckboxComponent {
 
   private shade(color: string, percent: number): string {
     color = color.replace('#', '');
-    let r = this.shadeHex(color.substring(0, 2), percent);
-    let g = this.shadeHex(color.substring(2, 4), percent);
-    let b = this.shadeHex(color.substring(4, 6), percent);
+    const r = this.shadeHex(color.substring(0, 2), percent);
+    const g = this.shadeHex(color.substring(2, 4), percent);
+    const b = this.shadeHex(color.substring(4, 6), percent);
     return `#${r}${g}${b}`;
   }
 
@@ -104,7 +104,7 @@ export class CheckboxComponent {
     shaded = Math.round(shaded);
     shaded = (shaded > 255) ? 255 : shaded;
     shaded = (shaded < 0) ? 0 : shaded;
-    let shadedHex = shaded.toString(16);
+    const shadedHex = shaded.toString(16);
     return (shadedHex.length === 1) ? `0${shadedHex}` : shadedHex;
   }
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'base-model-demo',
+  selector: 'app-base-model-demo',
   template: `
     <section class="main demo">
       <h1>BaseModel</h1>

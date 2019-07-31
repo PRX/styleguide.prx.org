@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'reset-demo',
+  selector: 'app-reset-demo',
   template: `
     <section class="main demo">
       <h1>CSS reset</h1>
       <p>A style sheet designed to strip initial styles from browsers to help keep designs consistent</p>
-      
+
       <section>
         <ul>
           <li><code>display: block</code> on HTML5 block level elements</li>
@@ -27,15 +27,15 @@ import {Component} from '@angular/core';
             </aside>
           </li>
           <li>
-            <code>text-decoration: line-through</code> on <code>del</code> 
+            <code>text-decoration: line-through</code> on <code>del</code>
             <del>This text has been deleted from the document.</del>
           </li>
           <li>
-            A default <dfn title="dfn example">dotted underline border</dfn> and <abbr title="abbr example">help cursor</abbr> for 
+            A default <dfn title="dfn example">dotted underline border</dfn> and <abbr title="abbr example">help cursor</abbr> for
             <code>abbr</code> and <code>dfn</code> elements with <code>title</code> help text
             <aside>
               <code>
-                &lt;abbr title="help text"&gt;<abbr 
+                &lt;abbr title="help text"&gt;<abbr
                   title="abbr should include title attribute for help text">How to</abbr>&lt;/abbr&gt;
               </code>
             </aside>
@@ -70,7 +70,10 @@ import {Component} from '@angular/core';
             <aside>
               Examples:
               <blockquote>
-                superscript: Everything's comin' up Milhouse!<sup><a href="http://simpsons.wikia.com/wiki/Milhouse_Van_Houten">[src]</a></sup>
+                superscript: Everything's comin' up Milhouse!
+                <sup>
+                  <a href="http://simpsons.wikia.com/wiki/Milhouse_Van_Houten">[src]</a>
+                </sup>
               </blockquote>
               <blockquote>
                 subscript: H<sub>2</sub>O
@@ -78,7 +81,7 @@ import {Component} from '@angular/core';
             </aside>
           </li>
           <li>
-            <code>font-family: monospace, sans-serif</code> for 
+            <code>font-family: monospace, sans-serif</code> for
             <code>code</code>, <code>kbd</code>, <code>pre</code>, and <code>samp</code>
           </li>
           <li>Provide <code>.ie7</code> <code>-ms-interpolation-mode: bicubic</code> <a href="ms-interpolation-mode: bicubic">fix</a></li>

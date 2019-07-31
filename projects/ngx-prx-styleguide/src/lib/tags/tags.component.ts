@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { NgOption } from '@ng-select/ng-select'
+import { NgOption } from '@ng-select/ng-select';
 
 interface TagOption {
   name: string;
@@ -35,7 +35,7 @@ export class TagsComponent implements OnChanges {
   set selected(val: any[]) { this._selected = (val instanceof Array) ? val.slice() : [val]; }
   get selected() { return this._selected; }
 
-  @Output() onChange = new EventEmitter<string[]>();
+  @Output() change = new EventEmitter<string[]>();
 
   constructor() { }
 
@@ -45,7 +45,7 @@ export class TagsComponent implements OnChanges {
     // Convert selected NgOptions to array of values.
     this.selected = this.selectedTags.map(tag => tag.value);
     // Emit current selected tags.
-    this.onChange.emit(this._selected);
+    this.change.emit(this._selected);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -63,8 +63,7 @@ export class TagsComponent implements OnChanges {
         ...this.selectedTags,
         this.convertTagToNgOption(tag)
       ];
-    }
-    else {
+    } else {
       this.selectedTags = this.selectedTags.filter(selected => selected.value !== tag.value);
     }
 
@@ -80,7 +79,7 @@ export class TagsComponent implements OnChanges {
       tag: true,
       name: tag.name,
       value: tag.value
-    }
+    };
   }
 
   private getTagForValue(val: any) {
@@ -91,7 +90,7 @@ export class TagsComponent implements OnChanges {
     return {
       ...acc,
       [tag.value]: tag
-    }
+    };
   }
 
   private convertOptionToTag(opt: any): TagOption {
@@ -100,13 +99,11 @@ export class TagsComponent implements OnChanges {
         name: opt[0],
         value: opt[1]
       };
-    }
-    else if (isPlainObject(opt)) {
+    } else if (isPlainObject(opt)) {
       return {
         ...opt
       };
-    }
-    else {
+    } else {
       return {
         name: opt,
         value: opt

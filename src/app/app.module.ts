@@ -1,11 +1,11 @@
-import { NgModule }      from '@angular/core';
-import { FormsModule }   from '@angular/forms';
-import { HttpClientModule }    from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AuthGuard, DeactivateGuard, UnauthGuard } from 'ngx-prx-styleguide';
 
-import { AppComponent }  from './app.component';
+import { AppComponent } from './app.component';
 import { routing, routingProviders, routingComponents } from './app.routing';
 import { tabDemoRouting, tabDemoComponents } from './tab/tab.routing';
 

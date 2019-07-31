@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { ModalService } from 'ngx-prx-styleguide';
 
 @Component({
-  selector: 'modal-demo',
+  selector: 'app-modal-demo',
   template: `
     <section class="main demo">
       <h1>Modal</h1>
       <p>
-        The Modal Service and Component are for displaying modals within the application. The <code>&lt;prx-modal&gt;</code> 
-        should be included in the application at the top level of the app component as it is in this demo app. 
+        The Modal Service and Component are for displaying modals within the application. The <code>&lt;prx-modal&gt;</code>
+        should be included in the application at the top level of the app component as it is in this demo app.
         ModalService is injected into components that show modals.
       </p>
       <dl>
@@ -24,7 +24,7 @@ import { ModalService } from 'ngx-prx-styleguide';
             calls the callback function when the user clicks the primary button
           </li>
           <li>
-            <code>confirm(title: string, 
+            <code>confirm(title: string,
               message: string, callback: Function, primaryButtonLabel = 'Okay', secondaryButtonLabel = 'Cancel')</code>
             opens a confirmation modal and calls the callback function with true or false depending if the user clicked
             the primary or the secondary button

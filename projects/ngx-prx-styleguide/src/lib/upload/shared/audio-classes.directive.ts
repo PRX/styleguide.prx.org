@@ -2,7 +2,7 @@ import { Directive, Input, HostBinding, DoCheck } from '@angular/core';
 import { AudioFileModel } from '../model';
 
 @Directive({
-  selector: '[publishAudioClasses]'
+  selector: '[prxAudioClasses]'
 })
 export class AudioClassesDirective implements DoCheck {
 

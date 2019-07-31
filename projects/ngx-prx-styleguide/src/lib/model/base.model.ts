@@ -64,7 +64,7 @@ export abstract class BaseModel {
 
     // get remote values, before overlaying localstorage
     this.original = {};
-    for (let f of this.SETABLE) {
+    for (const f of this.SETABLE) {
       this.original[f] = this[f];
     }
     this.restore();
@@ -154,11 +154,11 @@ export abstract class BaseModel {
   }
 
   swapRelated(): Observable<boolean[]> {
-    let relatedSwappers = this.RELATIONS.map(rel => {
-      let models = this.getRelated(rel);
+    const relatedSwappers = this.RELATIONS.map(rel => {
+      const models = this.getRelated(rel);
       if (models.some(m => (m.isNew && m['swapNew']))) {
         return this.loadRelated(rel, true).pipe(map(() => {
-          let newModels = this.getRelated(rel);
+          const newModels = this.getRelated(rel);
           models.forEach((model, idx) => {
             if (model.isNew && model['swapNew'] && newModels[idx]) {
               model['swapNew'](newModels[idx]);
@@ -171,11 +171,11 @@ export abstract class BaseModel {
         return observableOf(false);
       }
     });
-    return observableFrom(relatedSwappers).pipe(concatAll(),toArray(),);
+    return observableFrom(relatedSwappers).pipe(concatAll(), toArray(), );
   }
 
   saveRelated(): Observable<boolean[]> {
-    let relatedSavers: Observable<boolean>[] = this.getRelated().filter(model => {
+    const relatedSavers: Observable<boolean>[] = this.getRelated().filter(model => {
       return model.isNew || model.changed();
     }).map(model => {
       if (model.isNew) {
@@ -185,7 +185,7 @@ export abstract class BaseModel {
       } else {
         model.parent = this.doc;
       }
-      let wasDestroy = model.isDestroy;
+      const wasDestroy = model.isDestroy;
       return model.save().pipe(map(saved => {
         if (saved && wasDestroy) {
           this.removeRelated(model);
@@ -193,7 +193,7 @@ export abstract class BaseModel {
         return saved;
       }));
     });
-    return observableFrom(relatedSavers).pipe(concatAll(),toArray(),);
+    return observableFrom(relatedSavers).pipe(concatAll(), toArray(), );
   }
 
   removeRelated(model: BaseModel) {
@@ -219,7 +219,7 @@ export abstract class BaseModel {
     this.lastStored = null;
     this.isDestroy = false;
     if (!this.doc && this.original) {
-      for (let key of Object.keys(this.original)) {
+      for (const key of Object.keys(this.original)) {
         this[key] = this.original[key];
       }
     }
@@ -240,7 +240,7 @@ export abstract class BaseModel {
       if (this.RELATIONS.indexOf(f) > -1) {
         return this.getRelated(f).some(m => m.changed());
       } else if (this.original[f] instanceof Array && this[f] instanceof Array) {
-        let a1 = this.original[f], a2 = this[f];
+        const a1 = this.original[f], a2 = this[f];
         return a1.length !== a2.length || a1.some((val: any, idx: number) => val !== a2[idx]);
       } else if (this.original[f] instanceof Date && this[f] instanceof Date) {
         return this.original[f].getTime() !== this[f].getTime();
@@ -254,9 +254,9 @@ export abstract class BaseModel {
     if (this.isDestroy) {
       return null; // don't care if it's invalid
     }
-    let fields = this.setableFields(field);
-    let invalids: string[] = [];
-    for (let f of fields) {
+    const fields = this.setableFields(field);
+    const invalids: string[] = [];
+    for (const f of fields) {
       if (f === 'self') {
         invalids.push(this.invalidate('self', this, strict));
       } else if (this.RELATIONS.indexOf(f) > -1) {
@@ -269,15 +269,15 @@ export abstract class BaseModel {
   }
 
   invalidate(field: string, value: any, strict: boolean): string {
-    let validators = this.VALIDATORS[field] || [];
-    for (let validator of validators) {
-      let invalidMsg = validator(field, value, strict, this);
+    const validators = this.VALIDATORS[field] || [];
+    for (const validator of validators) {
+      const invalidMsg = validator(field, value, strict, this);
       if (invalidMsg) {
         return invalidMsg;
       }
     }
     if (this.RELATIONS.indexOf(field) > -1) {
-      let models = <BaseModel[]> value;
+      const models = <BaseModel[]> value;
       return models.map(m => m.invalid(null, strict)).filter(i => i).join(', ') || null;
     }
     return null;
@@ -298,7 +298,7 @@ export abstract class BaseModel {
   store() {
     this.lastStored = new Date();
     if (this.key()) {
-      let changed = {};
+      const changed = {};
       this.SETABLE.filter(f => this.changed(f)).forEach(f => changed[f] = this[f]);
       if (Object.keys(changed).length > 0) {
         changed['lastStored'] = this.lastStored;
@@ -311,9 +311,9 @@ export abstract class BaseModel {
 
   restore() {
     if (this.key()) {
-      let data = BaseStorage.getItem(this.key());
+      const data = BaseStorage.getItem(this.key());
       if (data) {
-        for (let key of Object.keys(data)) {
+        for (const key of Object.keys(data)) {
           if (this.SETABLE.indexOf(key) > -1) {
             this[key] = data[key];
           }
@@ -340,11 +340,11 @@ export abstract class BaseModel {
   }
 
   getRelated(rel?: string): BaseModel[] {
-    let checkRels = rel ? [rel] : this.RELATIONS;
-    let models: BaseModel[] = [];
-    for (let checkRel of checkRels) {
+    const checkRels = rel ? [rel] : this.RELATIONS;
+    const models: BaseModel[] = [];
+    for (const checkRel of checkRels) {
       if (this[checkRel] instanceof Array) {
-        for (let model of this[checkRel]) {
+        for (const model of this[checkRel]) {
           models.push(model);
         }
       } else if (this[checkRel] instanceof BaseModel) {
@@ -355,7 +355,7 @@ export abstract class BaseModel {
   }
 
   createLink(url: string): string {
-    let urlLength = url.length;
+    const urlLength = url.length;
     if (urlLength < 'https://'.length) {
       if (['http://'.slice(0, urlLength), 'https://'.slice(0, urlLength)].indexOf(url) > -1) {
         return url;

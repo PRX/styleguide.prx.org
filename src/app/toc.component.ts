@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'table-of-contents',
+  selector: 'app-table-of-contents',
   template: `
     <section class="main demo">
       <section>

@@ -42,7 +42,7 @@ export class AuthComponent implements OnChanges, OnDestroy {
 
   generateAuthUrl() {
     if (this.host && this.client) {
-      let url = this.authService.url('none');
+      const url = this.authService.url('none');
       this.authUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     } else {
       this.authUrl = null;
@@ -59,15 +59,15 @@ export class AuthComponent implements OnChanges, OnDestroy {
 
     // 1st load has no query, 2nd redirect-load does
     if (query) {
-      let token = AuthParser.parseToken(query);
-      let error = AuthParser.parseError(query);
+      const token = AuthParser.parseToken(query);
+      const error = AuthParser.parseError(query);
       if (error) {
-        if (error == 'invalid_scope') {
+        if (error === 'invalid_scope') {
           // authz error
           // we don't want to use setError because this error is final.
           // i.e. we don't want to prompt another login attempt.
           this.authService.failAuthorization();
-        } else if (error == 'login_required') {
+        } else if (error === 'login_required') {
           // authn error
           // normal first-pass authn error which triggers login form.
           this.authService.setToken(null);

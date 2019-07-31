@@ -4,7 +4,7 @@ import { TabService } from 'ngx-prx-styleguide';
 import { DemoModel } from '../model/demo.model';
 
 @Component({
-  selector: 'tab-content-second-demo',
+  selector: 'app-tab-content-second-demo',
   template: `
     <section class="demo" *ngIf="demo">
       <h1>Second Tab</h1>

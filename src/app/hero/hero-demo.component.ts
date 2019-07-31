@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import { HalService, HalDoc } from 'ngx-prx-styleguide';
 
 @Component({
-  selector: 'hero-demo',
-  template: `    
+  selector: 'app-hero-demo',
+  template: `
     <prx-hero>
       <div class="hero-title">
         <h1>Edit Campaign</h1>

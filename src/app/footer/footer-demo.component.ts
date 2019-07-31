@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'footer-demo',
+  selector: 'app-footer-demo',
   template: `
     <section class="main demo">
       <h1>Footer</h1>

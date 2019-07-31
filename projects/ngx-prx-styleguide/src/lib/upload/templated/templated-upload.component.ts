@@ -6,10 +6,10 @@ import {
 } from '../model';
 
 @Component({
-  selector: 'publish-templated-upload',
+  selector: 'prx-templated-upload',
   styleUrls: ['../shared/audio.css', 'templated-upload.component.css'],
   template: `
-    <div *ngIf="file && !file.isDestroy" [publishAudioClasses]="file">
+    <div *ngIf="file && !file.isDestroy" [prxAudioClasses]="file">
 
       <div class="main">
         <div class="type">
@@ -17,14 +17,14 @@ import {
         </div>
         <div class="info">
           <span>{{file.filename}}</span>
-          <publish-audio-duration [file]="file"></publish-audio-duration>
-          <publish-audio-player [file]="file"></publish-audio-player>
+          <prx-audio-duration [file]="file"></prx-audio-duration>
+          <prx-audio-player [file]="file"></prx-audio-player>
         </div>
-        <publish-audio-state [file]="file"></publish-audio-state>
+        <prx-audio-state [file]="file"></prx-audio-state>
       </div>
 
       <div class="cancel">
-        <button class="btn-icon icon-cancel" [publishAudioCancel]="file" [version]="version"></button>
+        <button class="btn-icon icon-cancel" [prxAudioCancel]="file" [version]="version"></button>
       </div>
 
     </div>
@@ -48,7 +48,7 @@ import {
       </div>
 
       <div class="cancel">
-        <publish-audio-input [version]="version" [accept]="accept"></publish-audio-input>
+        <prx-audio-input [version]="version" [accept]="accept"></prx-audio-input>
       </div>
 
     </div>

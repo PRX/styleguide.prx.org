@@ -3,7 +3,7 @@ import { ModalService } from '../../modal/modal.service';
 import { AudioFileModel, AudioVersionModel } from '../model';
 
 @Directive({
-  selector: '[publishAudioCancel]'
+  selector: '[prxAudioCancel]'
 })
 export class AudioCancelDirective {
 

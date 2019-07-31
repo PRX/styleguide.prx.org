@@ -4,7 +4,7 @@ import { AudioFileModel } from './audio-file.model';
 import { VERSION_TEMPLATED, LENGTH, REQUIRED} from './invalid';
 import { HasUpload, applyMixins } from './upload';
 import { HalDoc } from '../../hal/doc/haldoc';
-import { Upload } from '../service'
+import { Upload } from '../service';
 import { BaseModel } from '../../model/base.model';
 
 export class AudioVersionModel extends BaseModel implements HasUpload {
@@ -57,9 +57,9 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   }
 
   private setLabel() {
-    let docLabel = this.doc ? this.doc['label'] : null;
-    let tplLabel = this.template ? this.template['label'] : null;
-    let label = docLabel || tplLabel || AudioVersionModel.DEFAULT_LABEL;
+    const docLabel = this.doc ? this.doc['label'] : null;
+    const tplLabel = this.template ? this.template['label'] : null;
+    const label = docLabel || tplLabel || AudioVersionModel.DEFAULT_LABEL;
     if (this.doc) {
       this.set('label', label, true); // probably already set to this
     } else {
@@ -87,14 +87,14 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
     const fileSort = (f1, f2) => f1.position - f2.position;
 
     let files = this.getUploads('prx:audio').pipe(map(audios => {
-      let docs = audios.map(docOrUuid => new AudioFileModel(this.template, this.doc, docOrUuid));
+      const docs = audios.map(docOrUuid => new AudioFileModel(this.template, this.doc, docOrUuid));
       this.setUploads('prx:audio', docs.map(d => d.uuid));
       return docs.sort(fileSort);
     }));
 
     // optionally load-and-assign file templates
     if (this.hasFileTemplates) {
-      let tpls = this.template.followItems('prx:audio-file-templates');
+      const tpls = this.template.followItems('prx:audio-file-templates');
       files = observableForkJoin(files, tpls).pipe(map(([models, tdocs]) => {
         this.fileTemplates = tdocs.sort(fileSort);
         return models;
@@ -123,7 +123,7 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   }
 
   encode(): {} {
-    let data = <any> {};
+    const data = <any> {};
     data.label = this.label;
     switch (this.explicit) {
       case 'Explicit':
@@ -172,7 +172,7 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   }
 
   addUpload(upload: Upload, position?: number): AudioFileModel {
-    let audio = new AudioFileModel(this.template, this.doc, upload);
+    const audio = new AudioFileModel(this.template, this.doc, upload);
     if (position) {
       audio.set('position', position);
       this.files = [...this.files]; // trigger change detection
@@ -210,14 +210,14 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
 
   assignPositions() {
     let position = 1;
-    let defaultLabels = this.files.every(f => {
+    const defaultLabels = this.files.every(f => {
       return !f.label || !!f.label.match(/Segment [A-Z]/);
     });
     this.files.forEach(f => {
       if (!f.isDestroy) {
         f.set('position', position++);
         if (defaultLabels) {
-          let segLetter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[(f.position - 1) % 26];
+          const segLetter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[(f.position - 1) % 26];
           f.set('label', `Segment ${segLetter}`);
         }
       }
@@ -227,14 +227,14 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   assignTemplates() {
     if (this.files && this.fileTemplates) {
       this.filesAndTemplates = [];
-      for (let t of this.fileTemplates) {
+      for (const t of this.fileTemplates) {
         this.filesAndTemplates.push({file: null, tpl: t});
       }
 
       // fill templates in reverse order - newest files first
-      let files = this.files.filter(file => !file.isDestroy).reverse();
-      for (let f of files) {
-        let ft = this.filesAndTemplates.find(ftmp => ftmp.tpl && ftmp.tpl['position'] === f.position);
+      const files = this.files.filter(file => !file.isDestroy).reverse();
+      for (const f of files) {
+        const ft = this.filesAndTemplates.find(ftmp => ftmp.tpl && ftmp.tpl['position'] === f.position);
         if (ft && !ft.file) {
           f.setTemplate(ft.tpl);
           ft.file = f;
@@ -247,7 +247,7 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   }
 
   watchUpload(upload: Upload) {
-    for (let file of this.files) {
+    for (const file of this.files) {
       if (file.uuid === upload.uuid) {
         file.watchUpload(upload, false);
       }
@@ -255,7 +255,7 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   }
 
   nonMatchingFiles(): string {
-    let invalid = this.invalid('self', true);
+    const invalid = this.invalid('self', true);
     return (invalid && invalid.match(/non-matching/i)) ? invalid : null;
   }
 

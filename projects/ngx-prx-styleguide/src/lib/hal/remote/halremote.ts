@@ -41,9 +41,9 @@ export class HalRemote {
   }
 
   switchHost(link?: HalLink): HalRemote {
-    let absoluteLink = link && link.href && link.href.match(/^http(s)?:\/\//);
+    const absoluteLink = link && link.href && link.href.match(/^http(s)?:\/\//);
     if (absoluteLink && !link.href.startsWith(this.host)) {
-      let newHost = link.href.match(/^http(s)?:\/\/[^\/]+/)[0];
+      const newHost = link.href.match(/^http(s)?:\/\/[^\/]+/)[0];
       return new HalRemote(newHost, this.http, this.auth);
     } else {
       return this;
@@ -63,7 +63,7 @@ export class HalRemote {
   }
 
   get(link: HalLink, params: {} = null): Observable<{}> {
-    let href = this.expand(link, params);
+    const href = this.expand(link, params);
     if (href && this.isRoot(href)) {
       return this.cache.cache(href, this.httpRequest('get', href), this.rootTTL);
     } else if (href) {
@@ -74,21 +74,21 @@ export class HalRemote {
   }
 
   put(link: HalLink, params: {} = null, data: {}): Observable<{}> {
-    let href = this.expand(link, params);
-    let body = data ? JSON.stringify(data) : null;
+    const href = this.expand(link, params);
+    const body = data ? JSON.stringify(data) : null;
     this.cache.del(href);
     return this.httpRequest('put', href, body);
   }
 
   post(link: HalLink, params: {} = null, data: {}): Observable<{}> {
-    let href = this.expand(link, params);
-    let body = data ? JSON.stringify(data) : null;
+    const href = this.expand(link, params);
+    const body = data ? JSON.stringify(data) : null;
     this.cache.del(href);
     return this.httpRequest('post', href, body);
   }
 
   delete(link: HalLink, params: {} = null): Observable<{}> {
-    let href = this.expand(link, params);
+    const href = this.expand(link, params);
     this.cache.del(href);
     return this.httpRequest('delete', href);
   }
@@ -110,10 +110,10 @@ export class HalRemote {
     // wait for auth token - but not for root api paths!
     let options: Observable<{headers?: HttpHeaders}>;
     if (this.auth && !this.isRoot(href)) {
-      options = this.auth.token.pipe(first(),map(tokenString => {
+      options = this.auth.token.pipe(first(), map(tokenString => {
         headers = headers.append('Authorization', `Bearer ${tokenString}`);
         return {headers};
-      }),);
+      }), );
     } else {
       options = observableOf({headers});
     }
@@ -131,7 +131,7 @@ export class HalRemote {
       } else {
         throw new Error(`Unknown method ${method}`);
       }
-    }),catchError(err => {
+    }), catchError(err => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401 && allowRetry && this.auth) {
           return this.auth.refreshToken().pipe(mergeMap(() => this.httpRequest(method, href, body, false)));
@@ -143,11 +143,11 @@ export class HalRemote {
       } else {
         throw err;
       }
-    }),);
+    }), );
   }
 
   private isRoot(href: string): boolean {
-    let path = href.replace(/^http(s)?:\/\/[^\/]+\/?/, '');
+    const path = href.replace(/^http(s)?:\/\/[^\/]+\/?/, '');
     return path === '' || path === 'api/v1' || path === 'api/v1/';
   }
 

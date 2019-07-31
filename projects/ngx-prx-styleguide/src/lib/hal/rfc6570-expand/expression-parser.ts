@@ -1,17 +1,17 @@
-export type Operator = {
+export interface Operator {
   key: string;
   first: string;
   sep: string;
   named: boolean;
   ifemp: string;
   allow: (s: string) => string;
-};
+}
 
-export type VarSpec = {
+export interface VarSpec {
   varName: string;
   maxLength?: number;
   explode: boolean;
-};
+}
 
 const u = (s: string): string => {
   return encodeURIComponent(s).replace(/[!'()*]/g, (c) => {
@@ -52,7 +52,7 @@ const compileVarSpecPattern = (): RegExp => {
 
 const parseVarSpec = (p: RegExp, s: string): VarSpec => {
   const match = s.match(p);
-  if (!match) throw new Error('invalid varspec');
+  if (!match) { throw new Error('invalid varspec'); }
   const varName = match[1];
   const maxLength = typeof match[2] === 'undefined'
     ? undefined : parseInt(match[2], 10);

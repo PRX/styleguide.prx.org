@@ -7,13 +7,6 @@ import { Component, OnInit, Input, HostBinding } from '@angular/core';
 })
 export class StatusBarTextComponent implements OnInit {
 
-  private classIsUsed = (val: any) => val === '' || !!val;
-
-  @HostBinding('class.text--bold') _isBold: boolean = false;
-  @HostBinding('class.text--italic') _isItalic: boolean = false;
-  @HostBinding('class.text--uppercase') _isUppercase: boolean = false;
-  @HostBinding('class.layout--stretch') _isStretch: boolean = false;
-
   @Input()
   set bold(val: any) { this._isBold = this.classIsUsed(val); }
   get bold() { return this._isBold; }
@@ -31,6 +24,13 @@ export class StatusBarTextComponent implements OnInit {
   get stretch() { return this._isStretch; }
 
   constructor() { }
+
+  @HostBinding('class.text--bold') _isBold = false;
+  @HostBinding('class.text--italic') _isItalic = false;
+  @HostBinding('class.text--uppercase') _isUppercase = false;
+  @HostBinding('class.layout--stretch') _isStretch = false;
+
+  private classIsUsed = (val: any) => val === '' || !!val;
 
   ngOnInit() {
   }

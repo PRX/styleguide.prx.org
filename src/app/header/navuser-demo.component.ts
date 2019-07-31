@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'navuser-demo',
+  selector: 'app-navuser-demo',
   template: `
     <section class="main demo">
       <h2>Nav User</h2>
@@ -11,7 +11,7 @@ import {Component} from '@angular/core';
         is shown when loaded and the <code>prx-spinner</code> is used when loading.
       </p>
       <ul>
-        
+
       </ul>
       <dl>
         <dt>module</dt><dd><code>HeaderModule</code></dd>

@@ -11,8 +11,8 @@ const durationPipe = new DurationPipe();
  */
 export const VERSION_TEMPLATED = (template?: HalDoc): BaseInvalid => {
   return (key: string, version: AudioVersionModel, strict: boolean) => {
-    let undeleted = version.files.filter(f => !f.isDestroy);
-    let count = undeleted.length;
+    const undeleted = version.files.filter(f => !f.isDestroy);
+    const count = undeleted.length;
 
     // wait for processing to complete
     if (strict && version.files.some(f => f.isProcessing)) {
@@ -24,7 +24,7 @@ export const VERSION_TEMPLATED = (template?: HalDoc): BaseInvalid => {
 
       // segment count
       if (template && template.count('prx:audio-file-templates')) {
-        let segments = template.count('prx:audio-file-templates');
+        const segments = template.count('prx:audio-file-templates');
         if (count !== segments) {
           return `you must upload ${segments} segments (got ${count})`;
         }
@@ -33,23 +33,23 @@ export const VERSION_TEMPLATED = (template?: HalDoc): BaseInvalid => {
       }
 
       // min duration
-      let duration = undeleted.map(f => f.duration || 0).reduce((a, b) => a + b);
+      const duration = undeleted.map(f => f.duration || 0).reduce((a, b) => a + b);
       if (template && template['lengthMinimum'] && duration < template['lengthMinimum']) {
-        let min = durationPipe.transform(template['lengthMinimum']);
-        let got = durationPipe.transform(duration);
+        const min = durationPipe.transform(template['lengthMinimum']);
+        const got = durationPipe.transform(duration);
         return `total length must be greater than ${min} - currently ${got}`;
       }
 
       // max duration
       if (template && template['lengthMaximum'] && duration > template['lengthMaximum']) {
-        let max = durationPipe.transform(template['lengthMaximum']);
-        let got = durationPipe.transform(duration);
+        const max = durationPipe.transform(template['lengthMaximum']);
+        const got = durationPipe.transform(duration);
         return `total length must be less than ${max} - currently ${got}`;
       }
 
       // file formats must match
-      let nonMatches = [];
-      let labels = {contenttype: 'content type', channelmode: 'channels'};
+      const nonMatches = [];
+      const labels = {contenttype: 'content type', channelmode: 'channels'};
       ['contenttype', 'layer', 'frequency', 'bitrate', 'channelmode'].forEach(fld => {
         let vals = undeleted.map(f => f[fld]).filter(val => val);
         vals = vals.filter((val, idx) => vals.indexOf(val) === idx);
@@ -87,15 +87,15 @@ export const FILE_TEMPLATED = (versionTemplate?: HalDoc, template?: HalDoc): Bas
 
     // min duration
     if (template && template['lengthMinimum'] && file.duration < template['lengthMinimum']) {
-      let min = durationPipe.transform(template['lengthMinimum']);
-      let got = durationPipe.transform(file.duration);
+      const min = durationPipe.transform(template['lengthMinimum']);
+      const got = durationPipe.transform(file.duration);
       return `length must be greater than ${min} - currently ${got}`;
     }
 
     // max duration
     if (template && template['lengthMaximum'] && file.duration > template['lengthMaximum']) {
-      let max = durationPipe.transform(template['lengthMaximum']);
-      let got = durationPipe.transform(file.duration);
+      const max = durationPipe.transform(template['lengthMaximum']);
+      const got = durationPipe.transform(file.duration);
       return `length must be less than ${max} - currently ${got}`;
     }
 

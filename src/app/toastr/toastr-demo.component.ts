@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-prx-styleguide';
 
 @Component({
-  selector: 'toastr-demo',
+  selector: 'app-toastr-demo',
   template: `
     <section class="main demo">
       <h1>Toastr</h1>
       <p>
-        The Toastr Service and Component are for displaying toast notifications within the application. 
-        The <code>&lt;prx-toastr&gt;</code> should be included in the application at the top level of the app component 
+        The Toastr Service and Component are for displaying toast notifications within the application.
+        The <code>&lt;prx-toastr&gt;</code> should be included in the application at the top level of the app component
         as it is in this demo app. ToastrService is injected into components that show toasts.
       </p>
       <dl>

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { AudioVersionModel, AudioFileModel } from '../model';
 
 @Component({
-  selector: 'publish-illegal-upload',
+  selector: 'prx-illegal-upload',
   styleUrls: ['../shared/audio.css', 'illegal-upload.component.css'],
   template: `
   <div *ngIf="!file.isDestroy" class="audio" [class.canceled]="file.canceled">

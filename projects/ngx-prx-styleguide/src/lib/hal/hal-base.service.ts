@@ -9,7 +9,7 @@ import { HalService } from './hal.service';
 export abstract class HalBaseService {
 
     constructor(private hal: HalService) {
-      let preloadRootDoc = this.root;
+      const preloadRootDoc = this.root;
     }
 
     abstract get host(): string;

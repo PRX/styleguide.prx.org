@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'daterange-demo',
+  selector: 'app-daterange-demo',
   template: `
     <section class="main demo">
       <h1>Date Range</h1>

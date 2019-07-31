@@ -3,7 +3,7 @@ import { AuthService } from 'ngx-prx-styleguide';
 import { Env } from '../core.env';
 
 @Component({
-  selector: 'auth-demo',
+  selector: 'app-auth-demo',
   styles: [`
     .login { width: 400px; }
     .login b { color: #f00; }

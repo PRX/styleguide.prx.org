@@ -46,7 +46,7 @@ export abstract class UploadableModel extends BaseModel {
 
   initUpload(parent?: HalDoc, file?: HalDoc | Upload | string) {
     this.SETABLE = Array.from(new Set(this.SETABLE.concat(this.UPLOAD_SETABLE)));
-    for (let key of Object.keys(this.UPLOAD_VALIDATORS)) {
+    for (const key of Object.keys(this.UPLOAD_VALIDATORS)) {
       this.VALIDATORS[key] = this.UPLOAD_VALIDATORS[key];
     }
 
@@ -101,12 +101,12 @@ export abstract class UploadableModel extends BaseModel {
   }
 
   watchProcess() {
-    let start = new Date().getTime();
+    const start = new Date().getTime();
     this.progress = 0;
     this.processSub = observableInterval(this.UPLOAD_PROCESS_INTERVAL).pipe(
       mergeMap(() => this.doc.reload()),
       map(doc => {
-        let elapsed = new Date().getTime() - start;
+        const elapsed = new Date().getTime() - start;
         this.isProcessTimeout = elapsed > this.UPLOAD_PROCESS_TIMEOUT;
         this.init(this.parent, doc, false);
         this.setState();
@@ -164,7 +164,7 @@ export abstract class UploadableModel extends BaseModel {
   }
 
   encode(): {} {
-    let data = {};
+    const data = {};
     if (this.isNew) {
       data['upload'] = this.enclosureS3;
       data['size'] = this.size; // preserve when saving

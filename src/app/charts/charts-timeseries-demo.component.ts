@@ -3,7 +3,7 @@ import { TimeseriesChartModel, TimeseriesDatumModel } from 'ngx-prx-styleguide';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'charts-timeseries-demo',
+  selector: 'app-charts-timeseries-demo',
   template: `
     <section class="main demo">
       <h1>TimeseriesChart</h1>
@@ -34,7 +34,7 @@ import * as moment from 'moment';
         <li>
           <code>@Input() datasets: TimeseriesChartModel[]</code>
           - an array of TimeseriesChartModel,
-          i.e. 
+          i.e.
           <code>
             [&#123; data: TimeseriesDatumModel[&#123; value: number, date: number &#125;], label: string, color: string; &#125;]
           </code>
@@ -80,7 +80,7 @@ import * as moment from 'moment';
           Doesn't always play well with tick labels on timeseries charts so use sparingly for charts with a lot of datapoints.
         </li>
       </ul>
-      
+
       <aside>
         <h2>Bar Chart</h2>
         <p>
@@ -101,7 +101,7 @@ import * as moment from 'moment';
         <prx-timeseries-chart type="bar" [datasets]="datasets" [formatX]="formatDate">
         </prx-timeseries-chart>
       </aside>
-      
+
       <aside>
         <h2>Stacked Bar Chart</h2>
         <p>
@@ -134,7 +134,7 @@ import * as moment from 'moment';
         <prx-timeseries-chart type="area" stacked="true" [datasets]="datasets" formatX="%m/%d" [showPoints]="showPointsOnStacked">
         </prx-timeseries-chart>
       </aside>
-      
+
       <aside>
         <h2>Line Chart</h2>
         <p>

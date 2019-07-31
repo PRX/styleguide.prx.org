@@ -83,7 +83,7 @@ export class FancyDurationComponent implements DoCheck {
     } else if (type === 'seconds') {
       this.seconds = value;
     }
-    let total = this.hours * 3600 + this.minutes * 60 + this.seconds;
+    const total = this.hours * 3600 + this.minutes * 60 + this.seconds;
     this.model.set(this.name, total || 0);
   }
 

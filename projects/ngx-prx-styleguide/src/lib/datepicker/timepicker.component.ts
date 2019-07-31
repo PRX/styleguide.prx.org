@@ -21,16 +21,16 @@ export class TimepickerComponent implements OnChanges {
   options: string[];
 
   ngOnChanges() {
-    let dayGen = new Date(1970, 0, 1, 0, 0, 0, 0);
+    const dayGen = new Date(1970, 0, 1, 0, 0, 0, 0);
     if (this.UTC) {
       this.timezone = '(GMT)';
     } else {
-      let match = this.date ? this.date.toString().match(/(\([A-Za-z\s].*\))/) : dayGen.toString().match(/(\([A-Za-z\s].*\))/);
+      const match = this.date ? this.date.toString().match(/(\([A-Za-z\s].*\))/) : dayGen.toString().match(/(\([A-Za-z\s].*\))/);
       if (match && match.length > 0) {
         this.timezone = match[1];
       }
     }
-    let day = dayGen.getDate();
+    const day = dayGen.getDate();
     this.options = [];
     while (dayGen.getDate() === day) {
       this.options.push(this.dateToHumanTime(dayGen, false));
@@ -67,7 +67,7 @@ export class TimepickerComponent implements OnChanges {
   }
 
   set(value: string) {
-    let date = this.date ? new Date(this.date.valueOf()) : new Date();
+    const date = this.date ? new Date(this.date.valueOf()) : new Date();
     let hours = +value.split(':')[0];
     if (hours < 12 && value.substr(value.indexOf(':') + 3, 2) === 'pm') {
       hours += 12;

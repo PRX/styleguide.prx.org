@@ -43,7 +43,7 @@ export class NativePlayback implements AudioPlayback {
       });
 
       // some browsers return a promise that can throw errors (can't cast this)
-      let promise = this.el.play();
+      const promise = this.el.play();
       if (promise && promise['catch']) {
         promise['catch'](err => null); // error event already covers this
       }
@@ -66,7 +66,7 @@ export class NativePlayback implements AudioPlayback {
 
   private build(src: File | string): HTMLAudioElement {
     if (typeof(src) === 'string') {
-      let el = document.createElement('audio');
+      const el = document.createElement('audio');
       el.setAttribute('src', src);
       el.addEventListener('playable', () => this.playable = true);
       return el;

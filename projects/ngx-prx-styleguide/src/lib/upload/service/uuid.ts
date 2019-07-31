@@ -17,7 +17,7 @@ export class UUID {
 
   public static UUID(): string {
     if (typeof (window.crypto) !== 'undefined' && typeof (window.crypto.getRandomValues) !== 'undefined') {
-      let buf: Uint16Array = new Uint16Array(8);
+      const buf: Uint16Array = new Uint16Array(8);
       window.crypto.getRandomValues(buf);
       return this.pad4(buf[0]) + this.pad4(buf[1]) + '-' + this.pad4(buf[2]) + '-' + this.pad4(buf[3]) + '-' +
               this.pad4(buf[4]) + '-' + this.pad4(buf[5]) + this.pad4(buf[6]) + this.pad4(buf[7]);

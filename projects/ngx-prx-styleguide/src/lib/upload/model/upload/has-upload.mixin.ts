@@ -29,8 +29,8 @@ export abstract class HasUpload {
     }
 
     // parse the current uuids
-    let uuidMap = this.hasUploadMap ? JSON.parse(this.hasUploadMap) : {};
-    let uuids = <any[]> (uuidMap[rel] || []);
+    const uuidMap = this.hasUploadMap ? JSON.parse(this.hasUploadMap) : {};
+    const uuids = <any[]> (uuidMap[rel] || []);
 
     // concat to stored docs
     if (this.doc && this.doc.has(rel)) {
@@ -50,8 +50,8 @@ export abstract class HasUpload {
     }
 
     // parse current uuids and sort additions
-    let uuidMap = this.hasUploadMap ? JSON.parse(this.hasUploadMap) : {};
-    let ordered = (uuids || []).filter(u => u).sort();
+    const uuidMap = this.hasUploadMap ? JSON.parse(this.hasUploadMap) : {};
+    const ordered = (uuids || []).filter(u => u).sort();
 
     // unset 0-length uuids
     if (ordered && ordered.length) {

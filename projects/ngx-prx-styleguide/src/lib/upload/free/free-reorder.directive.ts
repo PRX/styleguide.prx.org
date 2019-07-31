@@ -5,7 +5,7 @@ import { UUID } from '../service';
 import { AudioVersionModel } from '../model';
 
 @Directive({
-  selector: '[publishFreeReorder]'
+  selector: '[prxFreeReorder]'
 })
 export class FreeReorderDirective extends DragulaDirective implements OnInit, OnDestroy {
 

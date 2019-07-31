@@ -12,7 +12,7 @@ const isset = (val: any): boolean => val !== false && val !== undefined;
 export class FancyFieldComponent {
 
   @Input() model: BaseModel;
-  @Output() onChange = new EventEmitter<any>();
+  @Output() change = new EventEmitter<any>();
 
   // Name of model attribute, and optional explicit changed/invalid bindings
   @Input() name: string;
@@ -85,14 +85,14 @@ export class FancyFieldComponent {
   }
 
   get fieldClasses(): string {
-    let classes = ['field'];
+    const classes = ['field'];
     if (this.small) { classes.push('small'); }
     if (this.inline) { classes.push('inline'); }
     if (!this.model) { return classes.join(' '); }
 
     // explicit changed/invalid inputs get different classes
-    let changed = this.changedFieldName && this.model.changed(this.changedFieldName);
-    let invalid = this.invalidFieldName && this.model.invalid(this.invalidFieldName, this.strict);
+    const changed = this.changedFieldName && this.model.changed(this.changedFieldName);
+    const invalid = this.invalidFieldName && this.model.invalid(this.invalidFieldName, this.strict);
     if (changed) {
       classes.push(this.name ? 'changed' : 'changed-explicit');
     }
@@ -106,7 +106,7 @@ export class FancyFieldComponent {
     if (this.name) {
       this.model.set(this.name, value);
     }
-    this.onChange.emit(value);
+    this.change.emit(value);
   }
 
   get isSelect(): boolean {

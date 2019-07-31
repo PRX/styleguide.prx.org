@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   newIframeUrl() {
-    let url = this.authService.url('login');
+    const url = this.authService.url('login');
     this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     // until the iframe successfully logs in and redirects, we're just going
     // to get errors trying to access the cross-origin frame
     try {
-      let query = AuthParser.parseIframeQuery(this.element);
+      const query = AuthParser.parseIframeQuery(this.element);
       if (query) {
         this.setAuthToken(AuthParser.parseToken(query));
         this.success.emit();

@@ -5,7 +5,7 @@ import { UploadService } from '../service/upload.service';
 import { UUID } from '../service/uuid';
 
 @Component({
-  selector: 'publish-audio-input',
+  selector: 'prx-audio-input',
   styleUrls: ['audio-input.component.css'],
   template: `
     <input type="file" [accept]="acceptWildcard" publishFileSelect [id]="uuid"

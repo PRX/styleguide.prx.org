@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'select-demo',
+  selector: 'app-select-demo',
   template: `
     <section class="main demo">
       <h1>Select</h1>

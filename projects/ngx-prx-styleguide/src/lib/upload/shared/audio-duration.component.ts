@@ -7,7 +7,7 @@ const duration = new DurationPipe();
 const fileSize = new FileSizePipe();
 
 @Component({
-  selector: 'publish-audio-duration',
+  selector: 'prx-audio-duration',
   styleUrls: ['audio-duration.component.css'],
   template: `
     <span *ngIf="hasDuration">({{file.duration | duration}})</span>
@@ -50,9 +50,9 @@ export class AudioDurationComponent {
   }
 
   private infoHtml(): string {
-    let original = this.file.filename;
-    let type = this.file.contenttype || '<i>Unknown</i>';
-    let layer = this.file.layer || '<i>Unknown</i>';
+    const original = this.file.filename;
+    const type = this.file.contenttype || '<i>Unknown</i>';
+    const layer = this.file.layer || '<i>Unknown</i>';
     let frequency = '<i>Unknown</i>';
     if (this.file.frequency) {
       frequency = `${this.file.frequency / 1000} kHz`;
@@ -61,7 +61,7 @@ export class AudioDurationComponent {
     if (this.file.bitrate) {
       bitrate = `${this.file.bitrate / 1000} kb/s`;
     }
-    let channels = this.file.channelmode || '<i>Unknown</i>';
+    const channels = this.file.channelmode || '<i>Unknown</i>';
     return this.infoStyle + `
       <dl>
         <dt>File:</dt><dd>${this.enclosureLink}</dd>
@@ -77,7 +77,7 @@ export class AudioDurationComponent {
   }
 
   private get enclosureLink(): string {
-    let name = this.file.filename, href = this.file.enclosureHref;
+    const name = this.file.filename, href = this.file.enclosureHref;
     if (href) {
       return `<a target="_blank" rel="noopener" href="${href}">${name}</a>`;
     } else {

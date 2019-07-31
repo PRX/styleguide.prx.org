@@ -19,7 +19,7 @@ export class AudioVersionTemplateModel extends BaseModel {
     'audio/mp2',
     'video/mpeg',
     'video/x-mpeg'
-  ]
+  ];
 
 
   public id: number;
@@ -63,8 +63,8 @@ export class AudioVersionTemplateModel extends BaseModel {
     let files: Observable<AudioFileTemplateModel[]>;
     if (this.doc) {
       files = this.doc.followItems('prx:audio-file-templates').pipe(map(ftdocs => {
-        let saved = ftdocs.map(ft => new AudioFileTemplateModel(this.parent, this.doc, ft));
-        let unsaved = this.findUnsavedFiles(saved.length + 1);
+        const saved = ftdocs.map(ft => new AudioFileTemplateModel(this.parent, this.doc, ft));
+        const unsaved = this.findUnsavedFiles(saved.length + 1);
         return saved.concat(unsaved);
       }));
     } else {
@@ -84,7 +84,7 @@ export class AudioVersionTemplateModel extends BaseModel {
   }
 
   encode(): {} {
-    let data = <any> {};
+    const data = <any> {};
     data.label = this.label;
     data.contentType = this.contentType;
     data.lengthMinimum = this.lengthMinimum || 0;
@@ -105,19 +105,19 @@ export class AudioVersionTemplateModel extends BaseModel {
   }
 
   addFile(label?: string, forceOriginal = false): AudioFileTemplateModel {
-    let count = this.fileTemplates.length;
+    const count = this.fileTemplates.length;
     if (!label) {
-      let segLetter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[count % 26];
+      const segLetter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[count % 26];
       label = `Segment ${segLetter}`;
     }
-    let file = new AudioFileTemplateModel(this.parent, this.doc || this.newIndex, count + 1);
+    const file = new AudioFileTemplateModel(this.parent, this.doc || this.newIndex, count + 1);
     file.set('label', label, forceOriginal);
     this.fileTemplates.push(file);
     return file;
   }
 
   findUnsavedFiles(position, found: AudioFileTemplateModel[] = []) {
-    let file = new AudioFileTemplateModel(this.parent, this.doc || this.newIndex, position);
+    const file = new AudioFileTemplateModel(this.parent, this.doc || this.newIndex, position);
     if (file.isStored() && !file.isDestroy) {
       found.push(file);
       return this.findUnsavedFiles(position + 1, found);

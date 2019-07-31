@@ -23,7 +23,7 @@ export class UnauthGuard implements CanActivate {
       } else {
         return true;
       }
-    }),first(),);
+    }), first(), );
   }
 
 }

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { AudioVersionModel, AudioFileModel } from '../model';
 
 @Component({
-  selector: 'publish-free-upload',
+  selector: 'prx-free-upload',
   styleUrls: ['../shared/audio.css', 'free-upload.component.css'],
   template: `
     <div *ngIf="!file.isDestroy" [publishAudioClasses]="file">

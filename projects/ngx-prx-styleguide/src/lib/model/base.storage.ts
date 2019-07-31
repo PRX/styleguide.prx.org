@@ -24,7 +24,7 @@ export abstract class BaseStorage {
   }
 
   static setItem(key: string, data: {}) {
-    let json = JSON.stringify(data);
+    const json = JSON.stringify(data);
     try {
       localStorage.setItem(key, json);
     } catch (e) {

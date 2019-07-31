@@ -61,14 +61,14 @@ export class MockHalDoc extends HalDoc {
   }
 
   update(data: any): HalObservable<MockHalDoc> {
-    for (let key of Object.keys(data)) {
+    for (const key of Object.keys(data)) {
       this[key] = data[key];
     }
     return <HalObservable<MockHalDoc>> observableOf(<MockHalDoc> this);
   }
 
   create(rel: string, params: any = {}, data: any): HalObservable<MockHalDoc> {
-    let doc = this.mock(rel, data); // TODO: params?
+    const doc = this.mock(rel, data); // TODO: params?
     return <HalObservable<MockHalDoc>> observableOf(doc);
   }
 

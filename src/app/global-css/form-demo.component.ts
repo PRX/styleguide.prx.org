@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'form-demo',
+  selector: 'app-form-demo',
   template: `
     <section class="main demo">
       <h1>Forms</h1>
       <p>A style sheet for form element look and feel</p>
-  
+
       <section>
         <h2>Form</h2>
         <ul>
@@ -15,13 +15,13 @@ import {Component} from '@angular/core';
           <li><code>box-lines: multiple</code> to allow items to lay out in multiple rows</li>
           <li><code>flex-flow: row wrap</code> to lay out items left to right with wrapping</li>
           <li>
-            <code>justify-content: flex-start</code>, <code>box-pack: start</code>, and <code>align-content: start</code> 
+            <code>justify-content: flex-start</code>, <code>box-pack: start</code>, and <code>align-content: start</code>
             to pack items at the start
           </li>
           <li><code>align-items: baseline</code> to lay out items such that their baselines align</li>
         </ul>
       </section>
-  
+
       <section>
         <h2>Label</h2>
         <ul>
@@ -35,7 +35,7 @@ import {Component} from '@angular/core';
           <li><code>cursor: pointer</code></li>
         </ul>
       </section>
-  
+
       <section>
         <h2>Input</h2>
         <ul>
@@ -53,7 +53,7 @@ import {Component} from '@angular/core';
           <li>Base <code>padding: @padding-base</code> of 10px</li>
         </ul>
       </section>
-  
+
       <section>
         <h2>Textarea</h2>
         <ul>
@@ -64,7 +64,7 @@ import {Component} from '@angular/core';
           <li><code>font-size: 99%</code> (99% of 14px inherited from <code>body</code>)</li>
         </ul>
       </section>
-  
+
       <section>
         <h2>Select</h2>
         <ul>
@@ -77,7 +77,7 @@ import {Component} from '@angular/core';
           <li><code>font-size: 16px</code></li>
         </ul>
       </section>
-      
+
       <aside>
         Example:
         <form>
@@ -142,7 +142,7 @@ import {Component} from '@angular/core';
           </p>
         </form>
       </aside>
-  
+
       <section>
       <h2>Disabled and Readonly fields</h2>
       <ul>
@@ -151,7 +151,7 @@ import {Component} from '@angular/core';
           to remove where we are otherwise setting a pointer cursor
         </li>
         <li>
-          <code>input type=checkbox</code> and <code>input type=radio</code> with the <code>disabled</code> attribute have 
+          <code>input type=checkbox</code> and <code>input type=radio</code> with the <code>disabled</code> attribute have
           <code>cursor: not-allowed</code> to override the browser's pointer cursor
         </li>
         <li><code>label</code> elements with the <code>disabled=disabled</code> attribute have <code>color: @grey-silver</code></li>
@@ -166,7 +166,7 @@ import {Component} from '@angular/core';
         </li>
       </ul>
       </section>
-      
+
       <aside>
         Example:
         <form>
