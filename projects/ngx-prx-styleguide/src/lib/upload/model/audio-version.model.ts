@@ -38,7 +38,7 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   setUploads: (rel: string, uuids?: string[]) => void;
 
   getContentType() {
-    if(this.template.hasOwnProperty('contentType')) {
+    if (this.template && this.template.hasOwnProperty('contentType')) {
       return this.template['contentType'];
     }
     return null;

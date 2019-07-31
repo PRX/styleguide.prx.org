@@ -1,7 +1,8 @@
 import { Component, Input, ElementRef } from '@angular/core';
 import { AudioVersionModel } from '../model';
-import { PlayerService } from '../../audio';
-import { UUID, UploadService } from '../service';
+import { PlayerService } from '../../audio/player.service';
+import { UploadService } from '../service/upload.service';
+import { UUID } from '../service/uuid';
 
 @Component({
   selector: 'publish-audio-input',

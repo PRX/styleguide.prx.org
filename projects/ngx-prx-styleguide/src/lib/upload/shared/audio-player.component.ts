@@ -1,7 +1,8 @@
 import { Component, Input, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { PlayerService, PlaybackMetadata } from '../../audio';
-import { AudioFileModel } from '../model';
+import { PlayerService } from '../../audio/player.service';
+import { PlaybackMetadata } from '../../audio/playback/playback';
+import { AudioFileModel } from '../model/audio-file.model';
 
 @Component({
   selector: 'publish-audio-player',
