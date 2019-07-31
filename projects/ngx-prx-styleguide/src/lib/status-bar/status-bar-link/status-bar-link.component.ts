@@ -1,7 +1,8 @@
 import { Component, ElementRef, ViewChild, ChangeDetectorRef, HostBinding, Input, AfterViewInit } from '@angular/core';
 
 @Component({
-  selector: 'prx-status-bar-link',
+  // tslint:disable-next-line: component-selector
+  selector: 'a[prx-status-bar-link]',
   templateUrl: './status-bar-link.component.html',
   styleUrls: ['./status-bar-link.component.scss']
 })
