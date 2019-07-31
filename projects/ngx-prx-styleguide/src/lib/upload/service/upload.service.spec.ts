@@ -1,5 +1,5 @@
 import { UploadService, Upload } from './upload.service';
-import {of as observableOf, Observable } from 'rxjs';
+import {of as observableOf } from 'rxjs';
 import { MimeDefinition } from './mime-type.service';
 
 describe('UploadService', () => {
@@ -20,11 +20,12 @@ describe('UploadService', () => {
     };
 
     let uploader: UploadService;
-    
+
     beforeEach(() => {
       jest.spyOn(UploadService.prototype, 'init').mockImplementation(() => observableOf(null));
       jest.spyOn(Upload.prototype, 'upload');
-      uploader = new UploadService(mockMime, specConfig);
+      uploader = new UploadService(mockMime);
+      uploader.createWithConfig(specConfig);
     });
 
     it('should have an empty list of uploads', () => {
