@@ -41,7 +41,7 @@ export class NavUserComponent {
     const names = new Array();
     const thisTld = window.location.hostname.split('.').pop();
     for (const appName in this.userinfo.apps) {
-        if (this.userinfo.apps.hasOwnProperty(appName)) {
+      if (this.userinfo.apps.hasOwnProperty(appName)) {
         const url = this.userinfo.apps[appName];
         const tld = url.split('.').pop();
         if (thisTld === 'org' && tld !== 'org') {
