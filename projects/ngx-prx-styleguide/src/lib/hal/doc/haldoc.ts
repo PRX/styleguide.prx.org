@@ -23,20 +23,20 @@ export class HalDoc {
   }
 
   get profileType() {
-    let profile = this.expand('profile') || '';
-    let match = profile.match(/\/model\/(collection\/)?([^\/]+)/);
+    const profile = this.expand('profile') || '';
+    const match = profile.match(/\/model\/(collection\/)?([^\/]+)/);
     return match ? match.pop() : null;
   }
 
   get profileSubtype() {
-    let profile = this.expand('profile') || '';
-    let match = profile.match(/\/model\/(collection\/)?[^/]+\/(.+)$/);
+    const profile = this.expand('profile') || '';
+    const match = profile.match(/\/model\/(collection\/)?[^/]+\/(.+)$/);
     return match ? match.pop() : null;
   }
 
   asJSON(): {} {
-    let json = {};
-    for (let k of Object.keys(this)) {
+    const json = {};
+    for (const k of Object.keys(this)) {
       if (k !== 'remote') {
         json[k] = this[k];
       }
@@ -49,7 +49,7 @@ export class HalDoc {
   }
 
   reload(): HalObservable<HalDoc> {
-    let link = this['_links'] ? this['_links']['self'] : null;
+    const link = this['_links'] ? this['_links']['self'] : null;
     if (!link) {
       return <HalObservable<HalDoc>> this.error(`Expected reload link at _links.self - got null`);
     } else if (link instanceof Array) {
@@ -63,7 +63,7 @@ export class HalDoc {
   }
 
   update(data: any): HalObservable<HalDoc> {
-    let link = this['_links'] ? this['_links']['self'] : null;
+    const link = this['_links'] ? this['_links']['self'] : null;
     if (!link) {
       return <HalObservable<HalDoc>> this.error(`Expected update link at _links.self - got null`);
     } else if (link instanceof Array) {
@@ -77,7 +77,7 @@ export class HalDoc {
   }
 
   create(rel: string, params: any = {}, data: any): HalObservable<HalDoc> {
-    let link = this['_links'] ? this['_links'][rel] : null;
+    const link = this['_links'] ? this['_links'][rel] : null;
     if (!link) {
       return <HalObservable<HalDoc>> this.error(`Expected create link at _links.${rel} - got null`);
     } else if (link instanceof Array) {
@@ -91,7 +91,7 @@ export class HalDoc {
   }
 
   destroy(): HalObservable<HalDoc> {
-    let link = this['_links'] ? this['_links']['self'] : null;
+    const link = this['_links'] ? this['_links']['self'] : null;
     if (!link) {
       return <HalObservable<HalDoc>> this.error(`Expected destroy link at _links.self - got null`);
     } else if (link instanceof Array) {
@@ -142,7 +142,7 @@ export class HalDoc {
   }
 
   isa(type: string, includeCollections = true): boolean {
-    let profile = this.expand('profile') || '';
+    const profile = this.expand('profile') || '';
     if (profile.match(`model/${type}`)) {
       return true;
     } else if (includeCollections && profile.match(`model/collection/${type}`)) {
@@ -189,7 +189,7 @@ export class HalDoc {
   followItems(rel: string, params: {} = null): HalObservable<HalDoc[]> {
     return <HalObservable<HalDoc[]>> this.follow(rel, params).pipe(mergeMap((doc) => {
       return doc.followList('prx:items').pipe(map((items) => {
-        for (let item of items) {
+        for (const item of items) {
           item['_count'] = doc['count'];
           item['_total'] = doc['total'];
         }
@@ -213,7 +213,7 @@ export class HalDoc {
 
   private linkOne(rel: string, params: {} = null): Observable<HalDoc> {
     if (this['_links'][rel] instanceof Array) {
-      let guessed = this.guessLink(this['_links'][rel], params);
+      const guessed = this.guessLink(this['_links'][rel], params);
       if (guessed) {
         return this.followLink(guessed, params);
       } else {
@@ -236,10 +236,10 @@ export class HalDoc {
 
   private linkList(rel: string, params: {} = null): Observable<HalDoc[]> {
     if (this['_links'][rel] instanceof Array) {
-      let links: HalObservable<HalDoc>[] = this['_links'][rel].map((link: any) => {
+      const links: HalObservable<HalDoc>[] = this['_links'][rel].map((link: any) => {
         return this.followLink(link, params);
       });
-      return observableFrom(links).pipe(concatAll(),toArray(),);
+      return observableFrom(links).pipe(concatAll(), toArray(), );
     } else {
       return this.error(`Expected array at _links.${rel} - got object`);
     }
@@ -259,8 +259,8 @@ export class HalDoc {
   }
 
   private guessLink(links: any[], params: {} = null): any {
-    let lookingForFetch = params && params['id'] !== undefined;
-    for (let link of links) {
+    const lookingForFetch = params && params['id'] !== undefined;
+    for (const link of links) {
       if (lookingForFetch && link.href.match(/\/\{id\}/)) {
         return link;
       } else if (!lookingForFetch && link.href.match(/\{.*page/)) {

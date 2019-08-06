@@ -24,8 +24,8 @@ export class DemoModel extends BaseModel {
     this.init(parent, demo, loadRelated);
   }
 
-  key(): string { return 'demo-model'; };
-  related(): RelatedMap { return {}; };
+  key(): string { return 'demo-model'; }
+  related(): RelatedMap { return {}; }
   decode(): void {
     this.foo = this.doc['foo'];
     this.complete = this.doc['complete'];
@@ -36,7 +36,7 @@ export class DemoModel extends BaseModel {
     this.arrival = this.doc['arrival'];
     this.mustProvide = this.doc['mustProvide'];
     this.duration = this.doc['duration'];
-  };
-  encode(): {} { return {}; };
-  saveNew(data: {}): Observable<HalDoc> { return observableOf(this.doc); };
+  }
+  encode(): {} { return {}; }
+  saveNew(data: {}): Observable<HalDoc> { return observableOf(this.doc); }
 }

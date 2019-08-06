@@ -4,77 +4,8 @@ import { Injectable } from '@angular/core';
 import * as Evaporate from 'evaporate';
 import * as sparkMD5 from 'spark-md5';
 import { sha256 } from 'js-sha256';
-
 import { UUID } from './uuid';
 import { MimeTypeService } from './mime-type.service';
-
-@Injectable()
-export class UploadService {
-
-  public uploads: Upload[] = [];
-
-  private evaporate: Observable<Evaporate>;
-  private bucketName: string;
-  private bucketFolder: string;
-  private bucketAccel: boolean;
-  private signUrl: string;
-  private awsKey: string;
-
-  constructor(private mimeTypeService: MimeTypeService) { }
-
-  createWithConfig(
-    {bucketName, bucketFolder, bucketAccel, signUrl, awsKey}:
-    {bucketName: string, bucketFolder: string, bucketAccel: boolean, signUrl: string, awsKey: string}
-  ) {
-    this.bucketName = bucketName;
-    this.bucketFolder = bucketFolder;
-    this.bucketAccel = bucketAccel;
-    this.signUrl = signUrl;
-    this.awsKey = awsKey;
-    this.evaporate = this.init();
-  }
-
-  init(): Observable<Evaporate> {
-    // until there is a good way to load from env and inject
-    return observableFrom(
-      Evaporate.create({
-        signerUrl: this.signUrl,
-        aws_key: this.awsKey,
-        bucket: this.bucketName,
-        s3Acceleration: this.bucketAccel,
-        onlyRetryForSameFileName: true,
-        logging: false,
-        awsSignatureVersion: '4',
-        computeContentMd5: true,
-        cryptoMd5Method: data => btoa(sparkMD5.ArrayBuffer.hash(data, true)),
-        cryptoHexEncodedHash256: sha256,
-      }).then(evaporate => evaporate)
-    );
-  }
-
-  add(file: File, contentType?: string): Observable<Upload> {
-    return this.evaporate.pipe(map(evaporate => {
-      const ct = contentType || this.mimeTypeService.lookupFileMimetype(file).full();
-      const upload = new Upload(file, ct, evaporate, {bucketFolder: this.bucketFolder, bucketName: this.bucketName});
-      this.uploads.push(upload);
-      return upload;
-    }));
-  }
-
-  find(uuid: string): Upload {
-    for (let upload of this.uploads) {
-      if (upload.uuid === uuid) {
-        return upload;
-      }
-    }
-    return null;
-  }
-
-  validFileType(file: File, allowed: string[]) {
-    const ct = this.mimeTypeService.lookupFileMimetype(file).minor();
-    return allowed.indexOf(ct) > -1;
-  }
-}
 
 export class Upload {
   public uuid: string;
@@ -156,5 +87,73 @@ export class Upload {
     return res
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9\.]+/gi, '_');
+  }
+}
+
+@Injectable()
+export class UploadService {
+
+  public uploads: Upload[] = [];
+
+  private evaporate: Observable<Evaporate>;
+  private bucketName: string;
+  private bucketFolder: string;
+  private bucketAccel: boolean;
+  private signUrl: string;
+  private awsKey: string;
+
+  constructor(private mimeTypeService: MimeTypeService) { }
+
+  createWithConfig(
+    {bucketName, bucketFolder, bucketAccel, signUrl, awsKey}:
+    {bucketName: string, bucketFolder: string, bucketAccel: boolean, signUrl: string, awsKey: string}
+  ) {
+    this.bucketName = bucketName;
+    this.bucketFolder = bucketFolder;
+    this.bucketAccel = bucketAccel;
+    this.signUrl = signUrl;
+    this.awsKey = awsKey;
+    this.evaporate = this.init();
+  }
+
+  init(): Observable<Evaporate> {
+    // until there is a good way to load from env and inject
+    return observableFrom(
+      Evaporate.create({
+        signerUrl: this.signUrl,
+        aws_key: this.awsKey,
+        bucket: this.bucketName,
+        s3Acceleration: this.bucketAccel,
+        onlyRetryForSameFileName: true,
+        logging: false,
+        awsSignatureVersion: '4',
+        computeContentMd5: true,
+        cryptoMd5Method: data => btoa(sparkMD5.ArrayBuffer.hash(data, true)),
+        cryptoHexEncodedHash256: sha256,
+      }).then(evaporate => evaporate)
+    );
+  }
+
+  add(file: File, contentType?: string): Observable<Upload> {
+    return this.evaporate.pipe(map(evaporate => {
+      const ct = contentType || this.mimeTypeService.lookupFileMimetype(file).full();
+      const upload = new Upload(file, ct, evaporate, {bucketFolder: this.bucketFolder, bucketName: this.bucketName});
+      this.uploads.push(upload);
+      return upload;
+    }));
+  }
+
+  find(uuid: string): Upload {
+    for (const upload of this.uploads) {
+      if (upload.uuid === uuid) {
+        return upload;
+      }
+    }
+    return null;
+  }
+
+  validFileType(file: File, allowed: string[]) {
+    const ct = this.mimeTypeService.lookupFileMimetype(file).minor();
+    return allowed.indexOf(ct) > -1;
   }
 }

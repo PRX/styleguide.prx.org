@@ -1,11 +1,11 @@
-
-import {throwError as observableThrowError,  Observable ,  Subscriber } from 'rxjs';
-
+import {throwError as observableThrowError, Observable , Subscriber } from 'rxjs';
 import { PlaybackMetadata, AudioPlayback, UnsupportedFileError } from './playback';
 
 /*
  * Native <audio> playback
  */
+
+let audioObjectUrl = null;
 export class NativePlayback implements AudioPlayback {
 
   private el: HTMLAudioElement;
@@ -16,6 +16,15 @@ export class NativePlayback implements AudioPlayback {
   constructor(src: File | string) {
     this.el = this.build(src);
     this.data = <PlaybackMetadata> {progress: 0};
+  }
+
+  newAudioObjectUrl(audio: File): string {
+    // Browsers will release object URLs automatically when the document is unloaded; however, for optimal
+    // performance and memory usage, if there are safe times when you can explicitly unload them, you should do so.
+    // https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL
+    if (audioObjectUrl) { URL.revokeObjectURL(audioObjectUrl); }
+    audioObjectUrl = URL.createObjectURL(audio);
+    return audioObjectUrl;
   }
 
   play(): Observable<PlaybackMetadata> {
@@ -43,7 +52,7 @@ export class NativePlayback implements AudioPlayback {
       });
 
       // some browsers return a promise that can throw errors (can't cast this)
-      let promise = this.el.play();
+      const promise = this.el.play();
       if (promise && promise['catch']) {
         promise['catch'](err => null); // error event already covers this
       }
@@ -65,14 +74,15 @@ export class NativePlayback implements AudioPlayback {
   }
 
   private build(src: File | string): HTMLAudioElement {
+    const el = document.createElement('audio');
     if (typeof(src) === 'string') {
-      let el = document.createElement('audio');
       el.setAttribute('src', src);
-      el.addEventListener('playable', () => this.playable = true);
-      return el;
     } else {
-      return null;
+      el.setAttribute('src', this.newAudioObjectUrl(src));
     }
+
+    el.addEventListener('playable', () => this.playable = true);
+    return el;
   }
 
 }

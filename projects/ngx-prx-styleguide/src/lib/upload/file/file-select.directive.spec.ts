@@ -3,7 +3,7 @@ import { FileSelectDirective } from './file-select.directive';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 
 @Component({
-  template: '<input publishFileSelect (file)="add($event)" />'
+  template: '<input prxFileSelect (file)="add($event)" />'
 })
 class MiniComponent {
   @Output() changes = new EventEmitter();

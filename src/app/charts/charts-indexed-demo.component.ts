@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IndexedChartModel } from 'ngx-prx-styleguide';
 
 @Component({
-  selector: 'charts-indexed-demo',
+  selector: 'app-charts-indexed-demo',
   template: `
     <section class="main demo">
       <h1>IndexedChart</h1>
@@ -44,7 +44,7 @@ import { IndexedChartModel } from 'ngx-prx-styleguide';
         <prx-indexed-chart type="pie" [datasets]="datasetsPie">
         </prx-indexed-chart>
       </aside>
-      
+
       <aside>
         <h2>Bar Chart</h2>
         <p>
@@ -60,7 +60,7 @@ import { IndexedChartModel } from 'ngx-prx-styleguide';
         <prx-indexed-chart type="bar" [datasets]="datasetsBar">
         </prx-indexed-chart>
       </aside>
-      
+
       <aside>
         <h2>Line Chart</h2>
         <p>
@@ -101,7 +101,7 @@ export class ChartsIndexedDemoComponent {
     return data.map((datum: any) => {
       return datum[1];
     });
-  };
+  }
 
   mapPie() {
     this.datasetsPie = [
@@ -328,7 +328,7 @@ export class ChartsIndexedDemoComponent {
         '2017-05-04T00:00:00Z',
         1428
       ]
-    ]
+    ];
   }
 
   get impressionsEp01(): any[][] {

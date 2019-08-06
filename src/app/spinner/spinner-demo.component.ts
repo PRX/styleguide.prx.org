@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'spinner-demo',
+  selector: 'app-spinner-demo',
   template: `
     <section class="main demo">
       <h1>Spinner</h1>
@@ -10,7 +10,7 @@ import {Component} from '@angular/core';
         a resource has finished loading.
       </p>
       <p>
-        The animation uses <code>position: absolute</code>, so it should be inside a <code>position: relative</code> container. 
+        The animation uses <code>position: absolute</code>, so it should be inside a <code>position: relative</code> container.
       </p>
       <dl>
         <dt>module</dt><dd><code>SpinnerModule</code></dd>

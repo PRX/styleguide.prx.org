@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit, HostBinding, HostListener, Inject, Input } from '@angular/core';
+import { Directive, ElementRef, OnInit, HostBinding, HostListener, Inject, Input, OnDestroy } from '@angular/core';
 import { DOCUMENT} from '@angular/common';
 import * as Stickyfill from 'stickyfilljs';
 import { StickyService } from './sticky.service';
@@ -6,20 +6,20 @@ import { StickyService } from './sticky.service';
 @Directive({
   selector: '[prxSticky]'
 })
-export class StickyDirective implements OnInit {
+export class StickyDirective implements OnInit, OnDestroy {
 
   private previousTop: number;
   stuckHeight: number;
   el: any;
 
-  @HostBinding('class.js-stuck') isStuck: boolean = false;
+  @HostBinding('class.js-stuck') isStuck = false;
   @HostBinding('style.position') position: string = this.getStickyProp();
-  @HostBinding('style.top') top: string = '0';
+  @HostBinding('style.top') top = '0';
 
-  _offset: number = 0;
+  _offset = 0;
   @Input('sticky-offset')
   set offset(val: string) {
-    this._offset = parseInt(val) || 0;
+    this._offset = parseInt(val, 10) || 0;
   }
   get offset() {
     return this._offset.toString();
@@ -80,8 +80,7 @@ export class StickyDirective implements OnInit {
     // Consider element stuck if it didn't change top position since last scroll.
     if (currentRect.top === this.previousTop && !this.isStuck) {
       this.stick(currentRect);
-    }
-    else if (currentRect.top !== this.previousTop && this.isStuck) {
+    } else if (currentRect.top !== this.previousTop && this.isStuck) {
       this.unstick();
     }
 

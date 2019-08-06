@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-app',
+  selector: 'app-demo',
   template: `
     <prx-header>
       <prx-navitem route="/" text="PRX StyleGuide"></prx-navitem>

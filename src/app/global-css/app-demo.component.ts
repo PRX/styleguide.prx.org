@@ -6,11 +6,11 @@ import {Component} from '@angular/core';
     <section class="main demo">
       <h1>App</h1>
       <p>A style sheet designed to give overall app consistent look and feel</p>
-      
+
       <section>
         <ul>
           <li>
-            Imports the Open Sans font from Google in the weights 
+            Imports the Open Sans font from Google in the weights
             <span style="font-weight: 300; font-style: italic">300italic</span>,
             <span style="font-weight: 400; font-style: italic">400italic</span>,
             <span style="font-weight: 700; font-style: italic">700italic</span>,
@@ -27,7 +27,7 @@ import {Component} from '@angular/core';
             </aside>
           </li>
           <li>
-            Link color of <code>@blue</code> and <code>@blue-emphasis</code> on <code>:focus</code>, 
+            Link color of <code>@blue</code> and <code>@blue-emphasis</code> on <code>:focus</code>,
             <code>:hover</code>, and <code>:active</code> with no text-decoration
             <aside>
               Example: <a href="">Hover, Focus, or Click here</a>

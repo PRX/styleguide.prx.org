@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'button-demo',
+  selector: 'app-button-demo',
   template: `
     <section class="main demo">
       <h1>Button</h1>
-      <p>A style sheet for buttons (and some things that act and look like buttons.) PRX buttons have a flat 
+      <p>A style sheet for buttons (and some things that act and look like buttons.) PRX buttons have a flat
         appearance with no border radius, drop shadow, or gradient.</p>
-      
+
       <section>
         <h2>A note on .button:</h2>
         <ul>
@@ -16,7 +16,7 @@ import {Component} from '@angular/core';
           <li>Non buttons with <code>class="button"</code> is otherwise discouraged for accessibility</li>
         </ul>
       </section>
-      
+
       <section>
         <h2>Button, .button, and some support for input type=button|submit|reset</h2>
         <ul>
@@ -41,7 +41,7 @@ import {Component} from '@angular/core';
           <button>Click me</button>
         </aside>
       </section>
-      
+
       <section>
         <h2>Button Link, i.e. <code>&lt;a class="button"&gt;</code></h2>
         <p>Sometimes you need a link that looks like a button, such as for opening external URLs</p>
@@ -55,7 +55,7 @@ import {Component} from '@angular/core';
           <a class="button" href="http://somewhere.else">Maybe Don't Click</a>
         </aside>
       </section>
-      
+
       <section>
         <h2>Link Button, i.e. <code>&lt;button class="btn-link"&gt;</code></h2>
         <p>Sometimes you need a button with click behavior that looks like a link.</p>
@@ -80,7 +80,10 @@ import {Component} from '@angular/core';
         <ul>
           <li>The pager button has a border color <code>@grey-light</code></li>
           <li>The pager button has <code>color: @blue</code> and on <code>:hover color: @blue-emphasis</code></li>
-          <li>When given the class <code>active</code>, the link button has <code>color: @white</code> and <code>background-color: @blue-emphasis</code></li>
+          <li>
+            When given the class <code>active</code>, the link button has <code>color:
+ @white</code> and <code>background-color: @blue-emphasis</code>
+          </li>
           <li>When disabled, the button has <code>color: @grey-silver</code></li>
           <li><code>vertical-align: baseline</code></li>
           <li><code>padding: 4px 8px</code></li>
@@ -96,12 +99,12 @@ import {Component} from '@angular/core';
         </aside>
 
       </section>
-      
+
       <section>
         <h2>Icon Button, i.e. <code>&lt;button class="btn-icon"&gt;</code></h2>
         <p>
-          An Icon Button is a button that shows a font icon. 
-          The content of the <code>::before</code> pseudo element is set to the unicode character of the desired icon 
+          An Icon Button is a button that shows a font icon.
+          The content of the <code>::before</code> pseudo element is set to the unicode character of the desired icon
           by the font icon library CSS.
         </p>
         <ul>
@@ -133,7 +136,7 @@ import {Component} from '@angular/core';
           <button><span class="icon-plus white" aria-hidden="true"></span> New Series</button>
         </aside>
       </section>
-  
+
       <section>
         <h2>Delete Button, i.e. <code>&lt;button class="delete"&gt;</code></h2>
         <ul>
@@ -145,12 +148,12 @@ import {Component} from '@angular/core';
           <button class="delete">Delete</button>
         </aside>
       </section>
-  
+
       <section>
         <h2>Up-Down Toggle Button</h2>
         <p>
           An Up-Down Toggle is a triangle-shaped type of button used as an asc/desc toggle.
-          It appears as a button but is implemented as a "checkbox hack" with an invisible checkbox and a label with borders 
+          It appears as a button but is implemented as a "checkbox hack" with an invisible checkbox and a label with borders
           styled to look like a triangle pointing up or down.
           Up-Down is also a chain of vintage arcade bars, but that is neither here nor there.
         </p>
@@ -166,7 +169,7 @@ import {Component} from '@angular/core';
             border-right of <code>8px solid transparent</code>, border-top of <code>8px solid @blue</code>, and border-bottom of zero.
           </li>
           <li>
-            The label sibling to the checkbox when not checked will point up having a width and height of zero, border-left and 
+            The label sibling to the checkbox when not checked will point up having a width and height of zero, border-left and
             border-right of <code>8px solid transparent</code>, border-bottom of <code>8px solid @blue</code>, and border-top of zero.
           </li>
         </ul>

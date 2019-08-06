@@ -1,17 +1,18 @@
-import { Component, ElementRef, ViewChild, ChangeDetectorRef, HostBinding, Input } from '@angular/core';
+import { Component, ElementRef, ViewChild, ChangeDetectorRef, HostBinding, Input, AfterViewInit } from '@angular/core';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'a[prx-status-bar-link]',
   templateUrl: './status-bar-link.component.html',
   styleUrls: ['./status-bar-link.component.scss']
 })
-export class StatusBarLinkComponent {
+export class StatusBarLinkComponent implements AfterViewInit {
 
-  showIcon: boolean = true;
-  showImage: boolean = true;
-  showText: boolean = true;
+  showIcon = true;
+  showImage = true;
+  showText = true;
 
-  @HostBinding('class.align-art--right') alignArtRight: boolean = false;
+  @HostBinding('class.align-art--right') alignArtRight = false;
 
   @ViewChild('icon') icon: ElementRef;
   @ViewChild('image') image: ElementRef;
@@ -25,7 +26,7 @@ export class StatusBarLinkComponent {
     return this.alignArtRight ? 'right' : 'left';
   }
 
-  constructor(private cdRef:ChangeDetectorRef) { }
+  constructor(private cdRef: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
     this.showIcon = this.isElementProvided(this.icon);

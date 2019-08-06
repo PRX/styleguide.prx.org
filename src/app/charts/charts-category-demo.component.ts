@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CategoryChartModel } from 'ngx-prx-styleguide';
 
 @Component({
-  selector: 'charts-category-demo',
+  selector: 'app-charts-category-demo',
   template: `
     <section class="main demo">
       <h1>CategoryChart</h1>
@@ -31,7 +31,7 @@ import { CategoryChartModel } from 'ngx-prx-styleguide';
           - general label describing to bar amount, displayed in hover with amount, default is <code>'amount'</code>
         </li>
       </ul>
-      
+
       <aside>
         <h2>Bar Chart</h2>
         <p>

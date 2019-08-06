@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 import { AudioVersionModel, AudioFileModel } from '../model';
 
 @Component({
-  selector: 'publish-free-upload',
+  selector: 'prx-free-upload',
   styleUrls: ['../shared/audio.css', 'free-upload.component.css'],
   template: `
-    <div *ngIf="!file.isDestroy" [publishAudioClasses]="file">
+    <div *ngIf="!file.isDestroy" [prxAudioClasses]="file">
 
       <div class="reorder">
         <button class="btn-icon icon-menu drag-handle" aria-label="Reorder"></button>
@@ -18,14 +18,14 @@ import { AudioVersionModel, AudioFileModel } from '../model';
         </div>
         <div class="info">
           <span>{{file.filename}}</span>
-          <publish-audio-duration [file]="file"></publish-audio-duration>
-          <publish-audio-player [file]="file"></publish-audio-player>
+          <prx-audio-duration [file]="file"></prx-audio-duration>
+          <prx-audio-player [file]="file"></prx-audio-player>
         </div>
-        <publish-audio-state [file]="file"></publish-audio-state>
+        <prx-audio-state [file]="file"></prx-audio-state>
       </div>
 
       <div class="cancel">
-        <button class="btn-icon icon-cancel" [publishAudioCancel]="file" [version]="version" aria-label="Remove"></button>
+        <button class="btn-icon icon-cancel" [prxAudioCancel]="file" [version]="version" aria-label="Remove"></button>
       </div>
 
     </div>

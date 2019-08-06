@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { AudioVersionModel, AudioFileModel } from '../model';
 
 @Component({
-  selector: 'publish-illegal-upload',
+  selector: 'prx-illegal-upload',
   styleUrls: ['../shared/audio.css', 'illegal-upload.component.css'],
   template: `
   <div *ngIf="!file.isDestroy" class="audio" [class.canceled]="file.canceled">
@@ -13,7 +13,7 @@ import { AudioVersionModel, AudioFileModel } from '../model';
       </div>
       <div class="info">
         <span>{{file.filename}}</span>
-        <publish-audio-duration [file]="file"></publish-audio-duration>
+        <prx-audio-duration [file]="file"></prx-audio-duration>
       </div>
       <div class="state">
         <p>Segment not in template - please remove!</p>
@@ -21,7 +21,7 @@ import { AudioVersionModel, AudioFileModel } from '../model';
     </div>
 
     <div class="cancel">
-      <button class="btn-icon icon-cancel" [publishAudioCancel]="file" [version]="version"></button>
+      <button class="btn-icon icon-cancel" [prxAudioCancel]="file" [version]="version"></button>
     </div>
 
   </div>

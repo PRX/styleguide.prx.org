@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'navitem-demo',
+  selector: 'app-navitem-demo',
   template: `
     <section class="main demo">
       <h1>Nav Item</h1>
@@ -16,7 +16,7 @@ import {Component} from '@angular/core';
         <li><code>@Input() route: string</code> - a route within the application</li>
         <li><code>@Input() href: string</code> - an external link</li>
         <li><code>@Input() text: string</code> - linked text</li>
-      </ul> 
+      </ul>
       <aside>
         Router Link Usage:
         <pre class="code">

@@ -72,21 +72,21 @@ describe('UploadComponent', () => {
     let fts = [{file: true, tpl: true}, {file: true, tpl: true}];
     comp.version = mockVersion({filesAndTemplates: fts});
     fix.detectChanges();
-    expect(el.queryAll(By.css('publish-templated-upload')).length).toEqual(2);
+    expect(el.queryAll(By.css('prx-templated-upload')).length).toEqual(2);
   });
 
   it('lists extra/illegal templated uploads', () => {
     let fts = [{file: true, tpl: true}, {file: true, tpl: false}];
     comp.version = mockVersion({filesAndTemplates: fts});
     fix.detectChanges();
-    expect(el.queryAll(By.css('publish-templated-upload')).length).toEqual(1);
-    expect(el.queryAll(By.css('publish-illegal-upload')).length).toEqual(1);
+    expect(el.queryAll(By.css('prx-templated-upload')).length).toEqual(1);
+    expect(el.queryAll(By.css('prx-illegal-upload')).length).toEqual(1);
   });
 
   it('lists free uploads', () => {
     comp.version = mockVersion({files: [{}, {}, {}]});
     fix.detectChanges();
-    expect(el.queryAll(By.css('publish-free-upload')).length).toEqual(3);
+    expect(el.queryAll(By.css('prx-free-upload')).length).toEqual(3);
   });
 
   it('shows invalid state and message', () => {

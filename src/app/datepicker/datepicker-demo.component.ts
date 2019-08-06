@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'datepicker-demo',
+  selector: 'app-datepicker-demo',
   template: `
     <section class="main demo">
       <h1>Date Picker</h1>
@@ -88,7 +88,8 @@ import * as moment from 'moment';
           &gt;&lt;/prx-datepicker&gt;
         </pre>
         Examples:
-        <prx-datepicker [date]="thisWeekDay" [minDate]="startOfWeek" [maxDate]="endOfWeek" (dateChange)="onDateChange($event)"></prx-datepicker>
+        <prx-datepicker [date]="thisWeekDay" [minDate]="startOfWeek" [maxDate]="endOfWeek" (dateChange)="onDateChange($event)">
+        </prx-datepicker>
       </aside>
       <aside>
         <p>With UTC dates</p>

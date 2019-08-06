@@ -3,7 +3,7 @@ import { Component, ElementRef, Input, OnInit, OnChanges, ViewChild } from '@ang
 declare const google: any;
 
 @Component({
-  selector: 'geochart-map-demo',
+  selector: 'app-geochart-map-demo',
   template: `
     <div #geo></div>
   `

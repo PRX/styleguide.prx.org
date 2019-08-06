@@ -15,9 +15,8 @@ export class StatusBarImageComponent {
     this._src = null;
     this._imageDoc = null;
     if (val instanceof HalDoc) {
-      this._imageDoc = val
-    }
-    else if (typeof val === 'string') {
+      this._imageDoc = val;
+    } else if (typeof val === 'string') {
       this._src = val;
     }
   }

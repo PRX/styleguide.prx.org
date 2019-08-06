@@ -6,7 +6,7 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { DragulaService } from 'ng2-dragula';
 
 @Component({
-  template: '<div [publishFreeReorder]="version"></div>'
+  template: '<div [prxFreeReorder]="version"></div>'
 })
 class MiniComponent {
   version: any;

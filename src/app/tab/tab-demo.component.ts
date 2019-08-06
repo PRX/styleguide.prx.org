@@ -3,8 +3,8 @@ import { DemoModel } from '../model/demo.model';
 import { HalDoc } from 'ngx-prx-styleguide';
 
 @Component({
-  selector: 'tab-content-demo',
-  template: `    
+  selector: 'app-tab-content-demo',
+  template: `
     <prx-tabs [model]="demo">
       <nav>
         <a routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/tab']">First</a>

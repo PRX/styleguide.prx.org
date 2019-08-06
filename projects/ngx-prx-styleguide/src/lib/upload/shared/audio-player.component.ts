@@ -5,7 +5,7 @@ import { PlaybackMetadata } from '../../audio/playback/playback';
 import { AudioFileModel } from '../model/audio-file.model';
 
 @Component({
-  selector: 'publish-audio-player',
+  selector: 'prx-audio-player',
   styleUrls: ['audio-player.component.css'],
   template: `
     <p *ngIf="error" class="error">{{error}}</p>
@@ -88,7 +88,7 @@ export class AudioPlayerComponent implements OnDestroy {
   }
 
   scrub(dir, ev: MouseEvent) {
-    let pct = Math.max((ev.offsetX - 2) / this.scrubberWidth, 0);
+    const pct = Math.max((ev.offsetX - 2) / this.scrubberWidth, 0);
     if (dir === 'down') {
       this.dragging = true;
     } else if (dir === 'up') {

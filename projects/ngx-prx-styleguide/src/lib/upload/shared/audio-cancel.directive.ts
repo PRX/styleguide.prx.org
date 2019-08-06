@@ -3,20 +3,20 @@ import { ModalService } from '../../modal/modal.service';
 import { AudioFileModel, AudioVersionModel } from '../model';
 
 @Directive({
-  selector: '[publishAudioCancel]'
+  selector: '[prxAudioCancel]'
 })
 export class AudioCancelDirective {
 
   @Input() delay = 1000;
 
-  @Input() publishAudioCancel: AudioFileModel;
+  @Input() prxAudioCancel: AudioFileModel;
 
   @Input() version: AudioVersionModel;
 
   constructor(private modal: ModalService) {}
 
   @HostListener('click') onClick() {
-    if (this.publishAudioCancel.isUploading) {
+    if (this.prxAudioCancel.isUploading) {
       this.cancelAndDestroy();
     } else {
       this.modal.confirm(
@@ -28,11 +28,11 @@ export class AudioCancelDirective {
   }
 
   cancelAndDestroy() {
-    this.publishAudioCancel.canceled = true;
+    this.prxAudioCancel.canceled = true;
     setTimeout(() => {
-      this.publishAudioCancel.destroy();
-      this.version.removeUpload(this.publishAudioCancel);
-      this.publishAudioCancel.canceled = false;
+      this.prxAudioCancel.destroy();
+      this.version.removeUpload(this.prxAudioCancel);
+      this.prxAudioCancel.canceled = false;
     }, this.delay);
   }
 

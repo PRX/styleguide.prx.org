@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'login-demo',
+  selector: 'app-login-demo',
   template: `
     <section class="main demo">
       <h1>Login</h1>

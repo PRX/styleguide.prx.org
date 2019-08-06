@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, DebugElement }    from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { TooltipModule } from "ngx-tooltip";
+import { TooltipModule } from 'ngx-tooltip';
 import { TagsComponent } from './tags.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { TagsComponent } from './tags.component';
     <prx-tags
       [selected]="testSelected"
       [options]="testOptions"
-      (onChange)="setTestOutput($event)">
+      (change)="setTestOutput($event)">
     </prx-tags>
   `
 })

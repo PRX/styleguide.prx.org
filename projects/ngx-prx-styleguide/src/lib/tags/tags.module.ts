@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { TooltipModule } from "ngx-tooltip";
+import { TooltipModule } from 'ngx-tooltip';
 
 import { TagsComponent } from './tags.component';
 

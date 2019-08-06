@@ -5,7 +5,7 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 @Component({
-  template: '<button [publishAudioCancel]="file" [version]="version" [delay]="delay"></button>'
+  template: '<button [prxAudioCancel]="file" [version]="version" [delay]="delay"></button>'
 })
 class MiniComponent {
   file: any;

@@ -4,7 +4,7 @@ import { TabService } from 'ngx-prx-styleguide';
 import { DemoModel } from '../model/demo.model';
 
 @Component({
-  selector: 'tab-content-first-demo',
+  selector: 'app-tab-content-first-demo',
   template: `
     <section class="demo" *ngIf="demo">
       <h1>Tab</h1>
@@ -60,7 +60,7 @@ import { DemoModel } from '../model/demo.model';
           The tabs are typically child routes of the parent route. In this example, the parent route is 'tab', and the
           child routes are '', 'second', and 'third'. The <code>routerLink</code> on the empty route as shown above points
           back to the parent route. The non empty <code>routerLink</code>s can point just to the child since we're already
-          on the relative path or can use an array of the parent base route as the first element and the child route as the second. 
+          on the relative path or can use an array of the parent base route as the first element and the child route as the second.
         </p>
         <pre class="code">
           &#123;
@@ -83,7 +83,7 @@ import { DemoModel } from '../model/demo.model';
           export class TabContentComponent &#123;
             tabSub: Subscription;
             demo: DemoModel;
-          
+
             constructor(tab: TabService) &#123;
               this.tabSub = tab.model.subscribe((d: DemoModel) => &#123;
                 this.demo = d;

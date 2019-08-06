@@ -2,7 +2,7 @@ import { Component, Input, HostBinding, DoCheck } from '@angular/core';
 import { AudioFileModel } from '../model';
 
 @Component({
-  selector: 'publish-audio-state',
+  selector: 'prx-audio-state',
   styleUrls: ['audio-state.component.css'],
   template: `
     <div [ngSwitch]="fileState" class="state">

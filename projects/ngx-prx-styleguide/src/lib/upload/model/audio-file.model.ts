@@ -91,7 +91,7 @@ export class AudioFileModel extends UploadableModel {
   }
 
   encode(): {} {
-    let data = super.encode();
+    const data = super.encode();
     data['label'] = this.label;
     data['duration'] = this.duration;
     data['position'] = this.position;

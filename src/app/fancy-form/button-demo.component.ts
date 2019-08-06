@@ -3,7 +3,7 @@ import { DemoModel } from '../model/demo.model';
 import { HalDoc } from 'ngx-prx-styleguide';
 
 @Component({
-  selector: 'fancy-button-demo',
+  selector: 'app-fancy-button-demo',
   template: `
     <section class="main demo">
       <h1>Fancy Button</h1>

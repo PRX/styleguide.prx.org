@@ -5,11 +5,11 @@ import { UUID } from '../service';
 import { AudioVersionModel } from '../model';
 
 @Directive({
-  selector: '[publishFreeReorder]'
+  selector: '[prxFreeReorder]'
 })
 export class FreeReorderDirective extends DragulaDirective implements OnInit, OnDestroy {
 
-  @Input() publishFreeReorder: AudioVersionModel;
+  @Input() prxFreeReorder: AudioVersionModel;
 
   private dragSub: Subscription;
 
@@ -18,14 +18,14 @@ export class FreeReorderDirective extends DragulaDirective implements OnInit, On
   }
 
   ngOnInit() {
-    this.dragulaModel = this.publishFreeReorder.files;
+    this.dragulaModel = this.prxFreeReorder.files;
     this.myDragula.setOptions(UUID.UUID(), {
       moves: (el: Element, source: Element, handle: Element) => {
         return handle.classList.contains('drag-handle');
       }
     });
     this.dragSub = this.myDragula.dropModel.subscribe(() => {
-      this.publishFreeReorder.reassign();
+      this.prxFreeReorder.reassign();
     });
     super.ngOnInit();
   }

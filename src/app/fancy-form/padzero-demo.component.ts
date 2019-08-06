@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'padzero-demo',
+  selector: 'app-padzero-demo',
   template: `
     <section class="main demo">
       <h1>PadZero</h1>

@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import * as geoData from './geo-data';
 
 @Component({
-  selector: 'geochart-demo',
+  selector: 'app-geochart-demo',
   template: `
     <div class="sidebar">
       <div class="profile">
-  
+
         <div class="info">
           <div class="logo">
             <prx-image [src]="podcastImage"></prx-image>
@@ -15,14 +15,14 @@ import * as geoData from './geo-data';
             <h2>Pet Talks Daily</h2>
           </div>
         </div>
-  
+
         <div class="stats">
           <div class="podstats">
             <div class="podstat">
               <p class="label">Today</p>
               <span class="trend-container trend-left">
                 <span class="trend-up"></span>
-                
+
               </span>
               <b class="value">633K</b>
             </div>
@@ -31,11 +31,11 @@ import * as geoData from './geo-data';
               <b class="value">4706K</b>
               <span class="trend-container">
                 <span class="trend-up"></span>
-                
+
               </span>
             </div>
           </div>
-  
+
           <div class="epstats">
             <p>Most Recent</p>
             <button class="btn-link">How fungi recognize (and infect) plants | Mennat El Ghalid</button>
@@ -60,7 +60,7 @@ import * as geoData from './geo-data';
 
       <div class="menu-bar-container">
         <div class="menu-bar">
-          
+
           <div class="dropdown" [class.open]="regionOpen">
             <div class="overlay" (click)="toggleRegionOpen()"></div>
             <div class="dropdown-button">
@@ -93,9 +93,9 @@ import * as geoData from './geo-data';
               </ul>
             </div>
           </div>
-          
+
           <div class="empty"></div>
-          
+
           <div class="dropdown" [class.open]="dateRangeOpen">
             <div class="overlay" (click)="toggleDateRangeOpen()"></div>
             <div class="dropdown-button">
@@ -181,13 +181,13 @@ import * as geoData from './geo-data';
               </ul>
             </div>
           </div>
-          
+
           <div class="dropdown">
             <div class="overlay"></div>
             <div class="dropdown-button icon">
               <button aria-label="Custom Date Range" class="btn-icon icon-calendar grey-dove"></button>
             </div>
-            
+
           </div>
         </div>
         <div class="summary">

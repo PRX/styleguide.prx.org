@@ -33,20 +33,22 @@ export class NavUserComponent {
   @Input() userinfo: Userinfo;
 
   appLabel(appName: string): string {
-    let n = appName.replace(/^https?:\/\//, '').replace(/\..+/, '');
+    const n = appName.replace(/^https?:\/\//, '').replace(/\..+/, '');
     return 'PRX ' + n.charAt(0).toUpperCase() + n.slice(1);
   }
 
   appNames(): any[] {
-    let names = new Array();
-    let thisTld = window.location.hostname.split('.').pop();
-    for (let appName in this.userinfo.apps) {
-      let url = this.userinfo.apps[appName];
-      let tld = url.split('.').pop();
-      if (thisTld == 'org' && tld != 'org') {
-        continue;
+    const names = new Array();
+    const thisTld = window.location.hostname.split('.').pop();
+    for (const appName in this.userinfo.apps) {
+      if (this.userinfo.apps.hasOwnProperty(appName)) {
+        const url = this.userinfo.apps[appName];
+        const tld = url.split('.').pop();
+        if (thisTld === 'org' && tld !== 'org') {
+          continue;
+        }
+        names.push(appName);
       }
-      names.push(appName);
     }
     return names;
   }

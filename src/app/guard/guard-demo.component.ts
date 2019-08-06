@@ -8,7 +8,7 @@ import { Env } from '../core.env';
       <h1>AuthGuard, DeactivateGuard, and UnauthGuard</h1>
       <p>
         The AuthGuard, DeactivateGuard, and UnauthGuard Services are used in conjunction with the Angular Router to guard
-        protected routes by requiring a login token. 
+        protected routes by requiring a login token.
       </p>
       <aside>
         Usage:

@@ -1,16 +1,16 @@
 import {Directive, Input, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[publishClick]'
+  selector: '[prxClick]'
 })
 export class ClickDirective {
-  @Input() publishClick: HTMLElement;
+  @Input() prxClick: HTMLElement;
 
   constructor(private el: ElementRef) {}
 
   @HostListener('click', ['$event']) click(ev: MouseEvent) {
     if (!this.defaultClickable(ev)) {
-      let fileInput = this.el.nativeElement.querySelector('input[type=file]');
+      const fileInput = this.el.nativeElement.querySelector('input[type=file]');
       if (fileInput) {
         fileInput.click();
       }

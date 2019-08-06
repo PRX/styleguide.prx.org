@@ -30,25 +30,25 @@ export const DEFAULT_MIMETYPES: any = {
   'webp': 'image\/webp'
 };
 
+export class MimeDefinition {
+  constructor(public type: string) { }
+  major() { return this.type.split('/')[0]; }
+  minor() { return this.type.split('/')[1]; }
+  full() { return this.type; }
+}
+
 @Injectable()
 export class MimeTypeService {
 
   private serviceDefault = 'application\/octet-stream';
 
   lookupFileMimetype(file: File, overrideDefault?: string) {
-    let typeDefault = overrideDefault || this.serviceDefault;
+    const typeDefault = overrideDefault || this.serviceDefault;
     let type = file.type;
     if (!type) {
-      let ext = file.name.split('.').pop();
+      const ext = file.name.split('.').pop();
       type = DEFAULT_MIMETYPES[ext];
     }
     return new MimeDefinition(type || typeDefault);
   }
-}
-
-export class MimeDefinition {
-  constructor(public type: string) { }
-  major() { return this.type.split('/')[0]; }
-  minor() { return this.type.split('/')[1]; }
-  full() { return this.type; }
 }

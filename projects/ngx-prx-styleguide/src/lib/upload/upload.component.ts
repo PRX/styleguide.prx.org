@@ -2,7 +2,7 @@ import { Component, Input, HostBinding, OnInit, DoCheck } from '@angular/core';
 import { AudioVersionModel } from './model';
 
 @Component({
-  selector: 'publish-upload',
+  selector: 'prx-upload',
   styleUrls: ['upload.component.css'],
   template: `
     <header>
@@ -13,33 +13,33 @@ import { AudioVersionModel } from './model';
     <section *ngIf="version.hasFileTemplates">
       <div class="uploads">
         <ng-container *ngFor="let ft of version.filesAndTemplates">
-          <publish-templated-upload *ngIf="ft.tpl" [template]="ft.tpl"
-            [file]="ft.file" [version]="version" publishClick
-            [accept]="version.getContentType()"></publish-templated-upload>
-          <publish-illegal-upload *ngIf="!ft.tpl" [file]="ft.file"
-            [version]="version"></publish-illegal-upload>
+          <prx-templated-upload *ngIf="ft.tpl" [template]="ft.tpl"
+            [file]="ft.file" [version]="version" prxClick
+            [accept]="version.getContentType()"></prx-templated-upload>
+          <prx-illegal-upload *ngIf="!ft.tpl" [file]="ft.file"
+            [version]="version"></prx-illegal-upload>
         </ng-container>
       </div>
     </section>
 
-    <section publishClick>
+    <section prxClick>
       <section *ngIf="!version.hasFileTemplates">
-        <div class="uploads" [publishFreeReorder]="version">
+        <div class="uploads" [prxFreeReorder]="version">
           <label>
             <div *ngIf="version.noAudioFiles" class="empty" >
               <h4>Upload a file to get started</h4>
             </div>
           </label>
-          <publish-free-upload *ngFor="let f of version.files"
-            [file]="f" [version]="version" publishClick>
-          </publish-free-upload>
+          <prx-free-upload *ngFor="let f of version.files"
+            [file]="f" [version]="version" prxClick>
+          </prx-free-upload>
         </div>
       </section>
 
       <footer [class.templated]="version.hasFileTemplates">
         <p *ngIf="invalidMessage" class="error">{{invalidMessage | capitalize}}</p>
-        <publish-audio-input *ngIf="!version.hasFileTemplates" multiple=true
-          [version]="version" [accept]="version.getContentType()"></publish-audio-input>
+        <prx-audio-input *ngIf="!version.hasFileTemplates" multiple=true
+          [version]="version" [accept]="version.getContentType()"></prx-audio-input>
       </footer>
     </section>
   `
@@ -88,8 +88,8 @@ export class UploadComponent implements DoCheck {
   }
 
   versionDescription(): string {
-    let label = this.version['label'] || '';
-    let desc = this.DESCRIPTIONS.find(d => d.test.test(label));
+    const label = this.version['label'] || '';
+    const desc = this.DESCRIPTIONS.find(d => d.test.test(label));
     if (desc) {
       return desc.desc;
     }

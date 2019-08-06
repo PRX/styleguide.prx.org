@@ -27,12 +27,12 @@ export class HalService {
   }
 
   private remoteGet(remote: HalRemote, path: string): HalObservable<HalDoc> {
-    let link = HalLink.from(path);
+    const link = HalLink.from(path);
     return <HalObservable<HalDoc>> remote.get(link).pipe(map(obj => new HalDoc(obj, remote)));
   }
 
   private loadRemote(host: string, withAuth: boolean, ttl: number): HalRemote {
-    let key = withAuth ? `${host}.auth` : `${host}.public`;
+    const key = withAuth ? `${host}.auth` : `${host}.public`;
     if (!this.remotes[key]) {
       this.remotes[key] = new HalRemote(host, this.http, withAuth ? this.auth : null, ttl);
     }

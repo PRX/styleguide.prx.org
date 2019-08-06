@@ -43,7 +43,7 @@ export class IconComponent implements OnChanges {
   constructor(@Self() protected ngClass: NgClass) { }
 
   ngOnChanges(): void {
-    this.hostClasses = {}
+    this.hostClasses = {};
 
     if (!!this._color) {
       this.hostClasses[`color--${this._color}`] = true;

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'layout-demo',
+  selector: 'app-layout-demo',
   template: `
     <section class="main demo">
       <h1>CSS layout</h1>
@@ -21,7 +21,7 @@ import {Component} from '@angular/core';
           <li>1060px max-width on the <code>.main section</code> with additional horizontal margin and padding</li>
         </ul>
       </section>
-      
+
       <p>Example layout structure:</p>
       <img src="../../assets/images/layout.svg">
     </section>

@@ -12,9 +12,9 @@ export class AuthParser {
   }
 
   static queryToPairs(query = ''): {} {
-    let data = {};
-    for (let pair of query.split('&')) {
-      let parts = pair.split('=');
+    const data = {};
+    for (const pair of query.split('&')) {
+      const parts = pair.split('=');
       data[parts[0]] = parts[1];
     }
     return data;
