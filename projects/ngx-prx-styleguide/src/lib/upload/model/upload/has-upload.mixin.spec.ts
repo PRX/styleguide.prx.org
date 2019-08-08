@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { HasUpload, applyMixins } from './has-upload.mixin';
+import { HasUpload, createGetUploads, createSetUploads } from './has-upload.mixin';
 import { MockHalService } from '../../../hal/mock/mock-hal.service';
 
 const cms = new MockHalService();
@@ -8,13 +7,16 @@ describe('HasUpload', () => {
 
   class ItHasAnUpload implements HasUpload {
     hasUploadMap: string;
-    getUploads: (rel: string) => Observable<any[]>;
-    setUploads: (rel: string, uuids?: string[]) => void;
+    get getUploads() {
+      return createGetUploads();
+    }
+    get setUploads() {
+      return createSetUploads();
+    }
     // tslint:disable-next-line:no-shadowed-variable
     constructor(public doc, public SETABLE = []) {}
     set(fld, val) { this[fld] = val; }
   }
-  applyMixins(ItHasAnUpload, [HasUpload]);
 
   let doc, has;
   beforeEach(() => {
