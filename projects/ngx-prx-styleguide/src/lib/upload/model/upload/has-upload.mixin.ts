@@ -10,10 +10,8 @@ import { HalDoc } from '../../../hal/doc/haldoc';
  * (3) add these mixin defs near the top of your class def:
  *       // HasUpload (and also in SETABLE)
  *       hasUploadMap: string;
- *       getUploads: (rel: string) => Observable<(HalDoc|string)[]>;
- *       setUploads: (rel: string, uuids?: string[]) => void;
- * (4) apply the mixins after your class:
- *       applyMixins(YourModel, [HasUpload]);
+ *       get getUploads() { return createGetUploads(); }
+ *       get setUploads() { return createSetUploads(); }
  */
 export abstract class HasUpload {
 
@@ -22,8 +20,13 @@ export abstract class HasUpload {
   abstract SETABLE: string[];
   abstract hasUploadMap: string;
   abstract set: (field: string, value: any) => void;
+  abstract getUploads: (rel: string) => Observable<(HalDoc|string)[]>;
+  abstract setUploads: (rel: string, uuids?: string[]) => void;
 
-  getUploads(rel: string): Observable<(HalDoc|string)[]> {
+}
+
+export function createGetUploads() {
+  return function getUploads(rel: string): Observable<(HalDoc|string)[]> {
     if (this.SETABLE.indexOf('hasUploadMap') < 0) {
       this.SETABLE.push('hasUploadMap');
     }
@@ -35,16 +38,18 @@ export abstract class HasUpload {
     // concat to stored docs
     if (this.doc && this.doc.has(rel)) {
       if (this.doc.has(rel, true)) {
-        return this.doc.followList(rel).pipe(map(docs => docs.concat(uuids)));
+        return this.doc.followList(rel).pipe(map((docs: HalDoc[]) => docs.concat(uuids)));
       } else {
-        return this.doc.followItems(rel).pipe(map(docs => docs.concat(uuids)));
+        return this.doc.followItems(rel).pipe(map((docs: HalDoc[]) => docs.concat(uuids)));
       }
     } else {
       return observableOf(uuids);
     }
-  }
+  };
+}
 
-  setUploads(rel: string, uuids?: string[]) {
+export function createSetUploads() {
+  return function setUploads(rel: string, uuids?: string[]) {
     if (this.SETABLE.indexOf('hasUploadMap') < 0) {
       this.SETABLE.push('hasUploadMap');
     }
@@ -66,15 +71,5 @@ export abstract class HasUpload {
     } else {
       this.set('hasUploadMap', undefined);
     }
-  }
-
-}
-
-// mixin magic
-export function applyMixins(derivedCtor: any, baseCtors: any[]) {
-    baseCtors.forEach(baseCtor => {
-        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-            derivedCtor.prototype[name] = baseCtor.prototype[name];
-        });
-    });
+  };
 }

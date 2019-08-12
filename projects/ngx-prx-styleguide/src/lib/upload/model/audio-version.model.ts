@@ -1,8 +1,8 @@
-import {forkJoin as observableForkJoin, Observable } from 'rxjs';
-import {finalize, map} from 'rxjs/operators';
+import { forkJoin as observableForkJoin, Observable } from 'rxjs';
+import { finalize, map } from 'rxjs/operators';
 import { AudioFileModel } from './audio-file.model';
 import { VERSION_TEMPLATED, LENGTH, REQUIRED} from './invalid';
-import { HasUpload, applyMixins } from './upload';
+import { HasUpload, createGetUploads, createSetUploads } from './upload';
 import { HalDoc } from '../../hal/doc/haldoc';
 import { Upload } from '../service';
 import { BaseModel } from '../../model/base.model';
@@ -34,8 +34,12 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
 
   // HasUpload mixin
   hasUploadMap: string;
-  getUploads: (rel: string) => Observable<(HalDoc|string)[]>;
-  setUploads: (rel: string, uuids?: string[]) => void;
+  get getUploads() {
+    return createGetUploads();
+  }
+  get setUploads() {
+    return createSetUploads();
+  }
 
   getContentType() {
     if (this.template && this.template.hasOwnProperty('contentType')) {
@@ -86,7 +90,7 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   related() {
     const fileSort = (f1, f2) => f1.position - f2.position;
 
-    let files = this.getUploads('prx:audio').pipe(map(audios => {
+    let files = this.getUploads('prx:audio').pipe(map((audios: HalDoc[]) => {
       const docs = audios.map(docOrUuid => new AudioFileModel(this.template, this.doc, docOrUuid));
       this.setUploads('prx:audio', docs.map(d => d.uuid));
       return docs.sort(fileSort);
@@ -268,5 +272,3 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   }
 
 }
-
-applyMixins(AudioVersionModel, [HasUpload]);
