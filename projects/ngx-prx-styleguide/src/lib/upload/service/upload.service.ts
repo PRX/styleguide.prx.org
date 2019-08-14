@@ -90,7 +90,7 @@ export class Upload {
   }
 }
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class UploadService {
 
   public uploads: Upload[] = [];

@@ -48,7 +48,7 @@ import {
       </div>
 
       <div class="cancel">
-        <prx-audio-input [version]="version" [accept]="accept"></prx-audio-input>
+        <prx-audio-input [position]="template['position']" [version]="version" [accept]="accept"></prx-audio-input>
       </div>
 
     </div>

@@ -37,7 +37,7 @@ export class MimeDefinition {
   full() { return this.type; }
 }
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class MimeTypeService {
 
   private serviceDefault = 'application\/octet-stream';
