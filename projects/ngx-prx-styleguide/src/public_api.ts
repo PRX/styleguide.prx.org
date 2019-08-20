@@ -47,6 +47,8 @@ export { ImageModule } from './lib/image/image.module';
 export { ModalModule } from './lib/modal/modal.module';
 export { ModalService } from './lib/modal/modal.service';
 
+export { PagingModule } from './lib/paging/paging.module';
+
 export { SelectModule } from './lib/select/select.module';
 
 export { SpinnerModule } from './lib/spinner/spinner.module';
