@@ -1,5 +1,5 @@
 import { storiesOf, moduleMetadata } from '@storybook/angular';
-import { withKnobs, date, select, text } from '@storybook/addon-knobs';
+import { withKnobs, date, select, text, number } from '@storybook/addon-knobs';
 import { Component, ModuleWithProviders } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -43,6 +43,8 @@ storiesOf('Episode List|Episode Card', module)
       const dateInput = dateKnob('From Date', defaultDate);
       const editLink = text('Edit Link', '/story/1234');
       const title = text('Title', 'Very Best Episode');
+      const seasonNumber = number('Season Number', 1);
+      const episodeNumber = number('Episode Number', 5);
       const teaser = text('Teaser', 'You don\'t want to miss this');
       const status = select('Status', {None: '', Draft: 'draft', Scheduled: 'scheduled', Published: 'published'}, 'draft');
       return {
@@ -52,6 +54,8 @@ storiesOf('Episode List|Episode Card', module)
           dateFormat="M/d"
           [editLink]="editLink"
           [title]="title"
+          [seasonNumber]="seasonNumber"
+          [episodeNumber]="episodeNumber"
           [teaser]="teaser"
           [status]="status">
           <div>
@@ -63,6 +67,8 @@ storiesOf('Episode List|Episode Card', module)
           dateInput,
           editLink,
           title,
+          seasonNumber,
+          episodeNumber,
           teaser,
           status
         },
