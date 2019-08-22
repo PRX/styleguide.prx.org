@@ -107,7 +107,9 @@ button.delete {
 button.delete:hover, button.delete:focus {
   background-color: $red-emphasis;
 }
-/* pagination controls */
+/* pagination controls
+  TODO: This global paging CSS is only used in metrics, new paging designs are very different
+  */
 button.pager {
   padding: 4px 8px;
   border: 1px solid $grey-light;

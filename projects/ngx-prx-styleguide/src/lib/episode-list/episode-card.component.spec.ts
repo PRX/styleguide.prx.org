@@ -1,11 +1,13 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement, Component } from '@angular/core';
+import { DebugElement, Component, ViewChild, ElementRef } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { EpisodeCardComponent } from './episode-card.component';
 
 const date = new Date();
 const title = 'Best Episode Ever';
+const seasonNumber = 1;
+const episodeNumber = 5;
 const teaser = 'Our very best episode';
 const status = 'published';
 
@@ -17,6 +19,8 @@ const status = 'published';
     dateFormat="M/d"
     editLink="/story/1234"
     [title]="title"
+    [seasonNumber]="seasonNumber"
+    [episodeNumber]="episodeNumber"
     [teaser]="teaser"
     [status]="status">
   <div>
@@ -28,6 +32,8 @@ const status = 'published';
 class TestComponent {
   date: Date;
   title: string;
+  seasonNumber: number;
+  episodeNumber: number;
   teaser: string;
   status: string;
 }
@@ -50,6 +56,8 @@ describe('EpisodeCardComponent', () => {
 
       comp.date = date;
       comp.title = title;
+      comp.seasonNumber = seasonNumber;
+      comp.episodeNumber = episodeNumber;
       comp.teaser = teaser;
       comp.status = status;
       fix.detectChanges();
@@ -60,10 +68,23 @@ describe('EpisodeCardComponent', () => {
     expect(de.query(By.css('.story-date')).nativeElement.textContent).toContain(date.getDate());
     expect(de.query(By.css('h2')).nativeElement.textContent).toContain(title);
     expect(de.query(By.css('h3')).nativeElement.textContent).toContain(teaser);
-    expect(de.query(By.css('h3')).nativeElement.textContent).toContain(status);
   });
 
   it('projects inner content', () => {
     expect(de.nativeElement.textContent).toContain('Something usually goes here');
+  });
+
+  it('shows the title, otherwise season and episode number or drop date', () => {
+    expect(de.query(By.css('h2')).nativeElement.textContent).toContain(title);
+    comp.title = undefined;
+    fix.detectChanges();
+    expect(de.query(By.css('h2')).nativeElement.textContent).not.toContain(title);
+    expect(de.query(By.css('h2')).nativeElement.textContent).toContain(`S${seasonNumber} E${episodeNumber}`);
+    comp.seasonNumber = undefined;
+    comp.episodeNumber = undefined;
+    fix.detectChanges();
+    expect(de.query(By.css('h2')).nativeElement.textContent).not.toContain(title);
+    expect(de.query(By.css('h2')).nativeElement.textContent).not.toContain(`S${seasonNumber} E${episodeNumber}`);
+    expect(de.query(By.css('h2')).nativeElement.textContent).toContain(date.getFullYear());
   });
 });

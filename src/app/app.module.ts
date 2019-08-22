@@ -9,8 +9,6 @@ import { AppComponent } from './app.component';
 import { routing, routingProviders, routingComponents } from './app.routing';
 import { tabDemoRouting, tabDemoComponents } from './tab/tab.routing';
 
-import { geoDemoComponents } from './geo/index';
-
 import {
   AuthModule,
   ChartsModule,
@@ -23,6 +21,7 @@ import {
   ImageModule,
   ModalModule,
   ModalService,
+  PagingModule,
   SelectModule,
   SpinnerModule,
   TabModule,
@@ -47,6 +46,7 @@ import {
     HeroModule,
     ImageModule,
     ModalModule,
+    PagingModule,
     SelectModule,
     SpinnerModule,
     TabModule,
@@ -55,7 +55,7 @@ import {
     routing,
     tabDemoRouting
   ],
-  declarations: [ AppComponent, routingComponents, tabDemoComponents, geoDemoComponents ],
+  declarations: [ AppComponent, routingComponents, tabDemoComponents ],
   providers:    [ routingProviders,
                   AuthGuard, DeactivateGuard, UnauthGuard,
                   ModalService, TabService, ToastrService ],

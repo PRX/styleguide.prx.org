@@ -1,0 +1,24 @@
+@import '../../assets/styles/variables';
+
+button.paging {
+  border: none;
+  padding: 4px 0;
+  min-width: 25px;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 600;
+  background-color: transparent;
+  color: $link-color;
+  transition: color .3s;
+}
+button.paging:hover, button.paging:focus {
+  color: $link-hover-color;
+}
+button.paging[disabled] {
+  color: $grey-700;
+}
+button.paging.active {
+  cursor: auto;
+  color: $dark;
+  font-weight: 600;
+}
