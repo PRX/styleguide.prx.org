@@ -29,6 +29,13 @@ import { Component } from '@angular/core';
               </li>
             </ul>
           </li>
+          <li><h3>PagingModule</h3>
+            <ul>
+              <li>
+                <a [routerLink]="['paging']">PagingComponent</a> - pages
+              </li>
+            </ul>
+          </li>
           <li><h3>TabModule</h3>
             <ul>
               <li>
@@ -77,7 +84,6 @@ import { Component } from '@angular/core';
               </li>
             </ul>
           </li>
-          <li><a [routerLink]="['geo']">Google Geochart Demo</a></li>
         </ul>
       </section>
       <hr>

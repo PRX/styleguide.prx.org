@@ -22,7 +22,6 @@ import { HeaderDemoComponent } from './header/header-demo.component';
 import { NavItemDemoComponent } from './header/navitem-demo.component';
 import { NavUserDemoComponent } from './header/navuser-demo.component';
 import { HeroDemoComponent } from './hero/hero-demo.component';
-import { GeoChartDemoComponent } from './geo/geochart-demo.component';
 import { GuardDemoComponent } from './guard/guard-demo.component';
 import { GuardedRouteDemoComponent } from './guard/guarded-route-demo.component';
 import { LoginDemoComponent } from './guard/login-demo.component';
@@ -34,6 +33,7 @@ import { LayoutDemoComponent } from './global-css/layout-demo.component';
 import { ResetDemoComponent } from './global-css/reset-demo.component';
 import { ImageLoaderDemoComponent } from './image/image-loader-demo.component';
 import { ModalDemoComponent } from './modal/modal-demo.component';
+import { PagingDemoComponent } from './paging/paging-demo.component';
 import { SelectDemoComponent } from './select/select-demo.component';
 import { SpinnerDemoComponent } from './spinner/spinner-demo.component';
 import { TagsDemoComponent } from './tags-demo/tags-demo.component';
@@ -59,7 +59,6 @@ export const routes: Routes = [
   { path: 'form/padzero',         component: PadZeroDemoComponent },
   { path: 'form/select',          component: SelectDemoComponent },
   { path: 'form/tags',            component: TagsDemoComponent },
-  { path: 'geo',                  component: GeoChartDemoComponent },
   { path: 'guard/guarded',        component: GuardedRouteDemoComponent, canActivate: [AuthGuard], canDeactivate: [DeactivateGuard] },
   { path: 'guard',                component: GuardDemoComponent },
   { path: 'global/app',           component: AppDemoComponent },
@@ -77,6 +76,7 @@ export const routes: Routes = [
   { path: 'login',                component: LoginDemoComponent, canActivate: [UnauthGuard] },
   { path: 'modal',                component: ModalDemoComponent },
   { path: 'model',                component: BaseModelDemoComponent },
+  { path: 'paging',               component: PagingDemoComponent },
   { path: 'toastr',               component: ToastrDemoComponent },
   { path: 'util/spinner',         component: SpinnerDemoComponent }
 ];
@@ -101,7 +101,6 @@ export const routingComponents: any[] = [
   FancyFieldDemoComponent,
   FooterDemoComponent,
   FormDemoComponent,
-  GeoChartDemoComponent,
   GuardDemoComponent,
   GuardedRouteDemoComponent,
   LayoutDemoComponent,
@@ -116,6 +115,7 @@ export const routingComponents: any[] = [
   NavItemDemoComponent,
   NavUserDemoComponent,
   PadZeroDemoComponent,
+  PagingDemoComponent,
   SelectDemoComponent,
   SpinnerDemoComponent,
   TagsDemoComponent,
