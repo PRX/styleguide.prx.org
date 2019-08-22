@@ -3,34 +3,33 @@ import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core
 @Component({
   selector: 'prx-paging',
   template: `
-    <div class="paging-container">
-      <button class="pager"
-        [disabled]="prevDisabled"
-        (click)="!isPageActive(1) && showPage.emit(1)"
-        title="Page 1">|«</button>
-      <button class="pager"
-        [disabled]="prevDisabled"
-        (click)="!isPageActive(1) && showPage.emit(currentPage - 1)"
-        title="Page {{ currentPage > 1 ? currentPage - 1 : 1 }}">«</button>
+    <button class="paging"
+      [disabled]="prevDisabled"
+      (click)="!isPageActive(1) && showPage.emit(1)"
+      title="Page 1">|«</button>
+    <button class="paging"
+      [disabled]="prevDisabled"
+      (click)="!isPageActive(1) && showPage.emit(currentPage - 1)"
+      title="Page {{ currentPage > 1 ? currentPage - 1 : 1 }}">«</button>
 
-      <button
-        *ngFor="let page of pages"
-        class="pager" [class.active]="isPageActive(page)"
-        [disabled]="isPageActive(page)"
-        (click)="!isPageActive(page) && showPage.emit(page)"
-        title="Page {{page}}">{{page}}</button>
-      <button disabled *ngIf="lastPage > showNumPages" class="pager">of {{lastPage}}</button>
+    <button
+      *ngFor="let page of pages"
+      class="paging" [class.active]="isPageActive(page)"
+      [disabled]="isPageActive(page)"
+      (click)="!isPageActive(page) && showPage.emit(page)"
+      title="Page {{page}}">{{page}}</button>
+    <button disabled *ngIf="lastPage > showNumPages" class="paging">of {{lastPage}}</button>
 
-      <button class="pager"
-        [disabled]="nextDisabled"
-        (click)="!isPageActive(totalPages) && showPage.emit(currentPage + 1)"
-        title="Page {{ currentPage + 1 < totalPages ? currentPage + 1 : totalPages }}">»</button>
-      <button class="pager"
-        [disabled]="nextDisabled"
-        (click)="!isPageActive(totalPages) && showPage.emit(totalPages)"
-        title="Page {{ totalPages }}">»|</button>
-    </div>
-  `
+    <button class="paging"
+      [disabled]="nextDisabled"
+      (click)="!isPageActive(totalPages) && showPage.emit(currentPage + 1)"
+      title="Page {{ currentPage + 1 < totalPages ? currentPage + 1 : totalPages }}">»</button>
+    <button class="paging"
+      [disabled]="nextDisabled"
+      (click)="!isPageActive(totalPages) && showPage.emit(totalPages)"
+      title="Page {{ totalPages }}">»|</button>
+  `,
+  styleUrls: ['paging.component.scss']
 })
 export class PagingComponent implements OnChanges {
   @Input() currentPage = 1;
