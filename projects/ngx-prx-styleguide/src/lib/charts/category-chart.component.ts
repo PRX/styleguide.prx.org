@@ -15,7 +15,7 @@ export class CategoryChartComponent implements OnChanges {
   @Input() dataLabel = 'amount';
 
   chart: any;
-  @ViewChild('chart') el: ElementRef;
+  @ViewChild('chart', { static: true }) el: ElementRef;
 
   columnData: any[][];
   colors: string[];

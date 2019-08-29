@@ -25,8 +25,8 @@ Pikaday.prototype.config = function(options) {
 
 export class CalpickerComponent implements AfterViewInit, OnChanges {
 
-  @ViewChild('textinput') textinput: ElementRef;
-  @ViewChild('container') container: ElementRef;
+  @ViewChild('textinput', { static: true }) textinput: ElementRef;
+  @ViewChild('container', { static: true }) container: ElementRef;
 
   @Input() dates: SimpleDate[] = [];
   @Output() datesChange = new EventEmitter<SimpleDate[]>();

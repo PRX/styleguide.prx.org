@@ -72,7 +72,7 @@ export class DatepickerComponent implements AfterViewInit {
   @Input() changed: boolean;
   @Input() UTC = false;
   @Output() dateChange = new EventEmitter<Date>();
-  @ViewChild('datepicker') input: ElementRef;
+  @ViewChild('datepicker', { static: true }) input: ElementRef;
 
   picker: Pikaday;
 

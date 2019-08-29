@@ -30,8 +30,8 @@ export class DaterangeComponent {
   @Input() to: Date;
   @Input() UTC = false;
   @Output() rangeChange = new EventEmitter<{from: Date, to: Date}>();
-  @ViewChild('fromDate') fromDateEl: ElementRef;
-  @ViewChild('toDate') toDateEl: ElementRef;
+  @ViewChild('fromDate', { static: true }) fromDateEl: ElementRef;
+  @ViewChild('toDate', { static: true }) toDateEl: ElementRef;
 
   onFromDateChange(from: Date) {
     this.from = from;

@@ -25,7 +25,7 @@ export class HeroComponent implements OnInit {
   @Input() orange = false;
   @Input() blue = false;
 
-  @ViewChild('refHero') heroEl: ElementRef;
+  @ViewChild('refHero', { static: true }) heroEl: ElementRef;
 
   affixedY: number;
   affixed = false;

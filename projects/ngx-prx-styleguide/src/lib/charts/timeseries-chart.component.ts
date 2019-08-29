@@ -27,7 +27,7 @@ export class TimeseriesChartComponent implements OnChanges {
   @Input() maxTicks: number;
 
   chart: any;
-  @ViewChild('chart') el: ElementRef;
+  @ViewChild('chart', { static: true }) el: ElementRef;
 
   xDateKeys: any;
   xDates: any[][];

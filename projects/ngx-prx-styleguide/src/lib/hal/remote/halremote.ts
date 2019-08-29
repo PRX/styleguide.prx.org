@@ -36,7 +36,7 @@ export class HalRemote {
   ) {
     this.cache = new HalCache(this.host.replace(/\./g, '-'), ttl);
     if (!host.match(/^http/)) {
-      this.host = host.match(/\.org|\.tech/) ? `https://${host}` : `http://${host}`;
+      this.host = host.match(/\.org|\.tech|\.docker/) ? `https://${host}` : `http://${host}`;
     }
   }
 

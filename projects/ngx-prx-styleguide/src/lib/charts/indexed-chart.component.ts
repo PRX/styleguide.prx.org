@@ -16,7 +16,7 @@ export class IndexedChartComponent implements OnChanges {
   @Input() datasets: IndexedChartModel[];
 
   chart: any;
-  @ViewChild('chart') el: ElementRef;
+  @ViewChild('chart', { static: true }) el: ElementRef;
 
   columnData: any[][];
   colors: string[];
