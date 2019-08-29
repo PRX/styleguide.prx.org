@@ -15,7 +15,7 @@ import { HeroComponent } from './hero.component';
 })
 class TestComponent {
   showInfo = false;
-  @ViewChild('hero') hero: ElementRef;
+  @ViewChild('hero', {static: false}) hero: ElementRef;
 }
 
 describe('HeroComponent', () => {

@@ -11,7 +11,7 @@ import { PagingComponent } from './paging.component';
               (pageChange)="pageChange($event)"></prx-paging>`
 })
 class TestComponent {
-  @ViewChild('paging') pager: PagingComponent;
+  @ViewChild('paging', {static: false}) pager: PagingComponent;
   page = 1;
   totalPages = 8;
   pageChange(page: number) {

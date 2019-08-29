@@ -13,7 +13,7 @@ import { FancyDurationComponent } from './fancy-duration.component';
 class TestComponent {
   model: any;
   name: string;
-  @ViewChild('fancy') fancy: FancyDurationComponent;
+  @ViewChild('fancy', {static: false}) fancy: FancyDurationComponent;
 }
 describe('FancyDurationComponent', () => {
   let comp: TestComponent;

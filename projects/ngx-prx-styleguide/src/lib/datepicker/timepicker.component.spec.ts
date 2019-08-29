@@ -9,7 +9,7 @@ import { TimepickerComponent } from './timepicker.component';
   template: `<prx-timepicker #timepicker [date]="date" [UTC]="UTC" (timeChange)="timeChange($event)"></prx-timepicker>`
 })
 class TestComponent {
-  @ViewChild('timepicker') timepicker: TimepickerComponent;
+  @ViewChild('timepicker', {static: false}) timepicker: TimepickerComponent;
   date: Date;
   UTC = false;
   timeChange(date: Date) {

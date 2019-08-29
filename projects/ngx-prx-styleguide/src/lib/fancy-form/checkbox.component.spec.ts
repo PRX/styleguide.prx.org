@@ -10,7 +10,7 @@ import { CheckboxComponent } from './checkbox.component';
     [(checked)]="checked" (change)="onChange($event)"></prx-checkbox>`
 })
 class TestComponent {
-  @ViewChild('check') check: CheckboxComponent;
+  @ViewChild('check', {static: false}) check: CheckboxComponent;
   disabled = false;
   color: string;
   checked = false;
