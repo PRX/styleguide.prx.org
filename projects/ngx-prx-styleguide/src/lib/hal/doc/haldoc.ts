@@ -131,6 +131,12 @@ export class HalDoc {
     }
   }
 
+  facets(): any {
+    if (this['_facets'] !== undefined) {
+      return this['_facets'];
+    }
+  }
+
   has(rel: string, mustBeList = false): boolean {
     if (this['_embedded'] && this['_embedded'][rel]) {
       return mustBeList ? (this['_embedded'][rel] instanceof Array) : true;
@@ -192,6 +198,7 @@ export class HalDoc {
         for (const item of items) {
           item['_count'] = doc['count'];
           item['_total'] = doc['total'];
+          item['_facets'] = doc['facets'];
         }
         return items;
       }));
