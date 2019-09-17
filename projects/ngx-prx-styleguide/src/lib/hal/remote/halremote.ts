@@ -102,24 +102,7 @@ export class HalRemote {
   }
 
   private getResponse(method: string, href: string, body?: string, allowRetry = true): Observable<{}> {
-    let headers = new HttpHeaders({'Accept': 'application/hal+json'});
-    if (body) {
-      headers = headers.append('Content-Type', 'application/hal+json');
-    }
-
-    // wait for auth token - but not for root api paths!
-    let options: Observable<{headers?: HttpHeaders}>;
-    if (this.auth && !this.isRoot(href)) {
-      options = this.auth.token.pipe(first(), map(tokenString => {
-        headers = headers.append('Authorization', `Bearer ${tokenString}`);
-        return {headers};
-      }), );
-    } else {
-      options = observableOf({headers});
-    }
-
-    // make request, and catch http errors
-    return options.pipe(mergeMap(opts => {
+    return this.httpOptions(href, body).pipe(mergeMap(opts => {
       if (method === 'put') {
         return this.http.put(href, body, opts);
       } else if (method === 'post') {
@@ -143,7 +126,29 @@ export class HalRemote {
       } else {
         throw err;
       }
-    }), );
+    }));
+  }
+
+  private httpOptions(href: string, body?: string): Observable<{headers: HttpHeaders}> {
+    return this.authTokenIfNeeded(href).pipe(first(), map(token => {
+      const headers = {};
+      headers['Accept'] = 'application/hal+json';
+      if (body) {
+        headers['Content-Type'] = 'application/hal+json';
+      }
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+      return {headers: new HttpHeaders(headers)};
+    }));
+  }
+
+  private authTokenIfNeeded(href: string): Observable<string> {
+    if (this.auth && !this.isRoot(href)) {
+      return this.auth.token;
+    } else {
+      return observableOf(null);
+    }
   }
 
   private isRoot(href: string): boolean {
