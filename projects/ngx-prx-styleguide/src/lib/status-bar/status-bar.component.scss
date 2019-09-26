@@ -14,6 +14,10 @@
   font-size: 1rem;
   line-height: $status_bar-height;
 
+  &.js-stuck {
+    z-index: $strata-nav - 1;
+  }
+
   ::ng-deep {
     & > * + * {
       border-left: $status_bar-item-border_size solid $white-fog;
