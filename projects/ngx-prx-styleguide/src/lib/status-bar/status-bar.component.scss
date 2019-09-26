@@ -22,5 +22,43 @@
     & > * + * {
       border-left: $status_bar-item-border_size solid $white-fog;
     }
+
+    prx-button {
+      position: relative;
+
+      .invalid-tip {
+        position: absolute;
+        top: calc(100% + 0.75rem);
+        right: 0.5rem;
+
+        padding: 0.5rem 0.75rem;
+
+        background-color: $warning;
+
+        color: $white;
+        white-space: nowrap;
+
+        &:before {
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: 100%;
+          right: 0;
+          width: 0;
+          height: 0;
+          z-index: $strata-background;
+
+          border: 0 solid transparent;
+          border-top-width: 0.5rem;
+          border-right: 0.5rem solid $warning;
+
+          line-height: 0;
+        }
+
+        h3, h4 {
+          font-weight: bold;
+        }
+      }
+    }
   }
 }

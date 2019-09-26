@@ -12,7 +12,7 @@
   right: 0;
   bottom: 0;
   background-color: $black;
-  background-color: transparentize($black, 0.6);
+  background-color: transparentize($color: $black, $amount: 0.6);
 }
 .modal {
   position: fixed;
