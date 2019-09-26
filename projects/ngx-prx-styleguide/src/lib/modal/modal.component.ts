@@ -3,7 +3,7 @@ import { ModalService, ModalState } from './modal.service';
 
 @Component({
   selector: 'prx-modal',
-  styleUrls: ['modal.component.css'],
+  styleUrls: ['modal.component.scss'],
   template: `
     <div *ngIf="shown" class="overlay" (document:keydown)="onKey($event)"></div>
     <div *ngIf="shown" class="modal"
