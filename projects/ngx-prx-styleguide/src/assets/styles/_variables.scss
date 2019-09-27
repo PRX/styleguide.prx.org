@@ -3,6 +3,15 @@
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
+//== Stratas
+$strata-nav: 9999;
+$strata-overlay: $strata-nav + 10;
+$strata-modal: $strata-overlay + 1;
+$strata-background: -1;
+$strata-content: 0;
+$strata-content-above: 1;
+$strata-content-top: 10;
+
 // Color System
 /// Greys
 $white:    #fff !default;

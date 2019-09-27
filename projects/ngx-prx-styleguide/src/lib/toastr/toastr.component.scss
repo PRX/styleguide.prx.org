@@ -1,3 +1,5 @@
+@import '../../assets/styles/theme';
+
 div {
   visibility: hidden;
   position: fixed;
@@ -5,23 +7,23 @@ div {
   margin-left: -125px;
   text-align: center;
   padding: 16px;
-  background-color: #ff9600;
-  color: #fff;
-  z-index: 9999;
+  background-color: $warning;
+  color: $white;
+  z-index: $strata-overlay - 1;
   top: 30px;
   left: 50%;
 }
 
 .info {
-  background-color: #0089bd;
+  background-color: $info;
 }
 
 .success {
-  background-color: #61A85D;
+  background-color: $success;
 }
 
 .error {
-  background-color: #ee4d3e;
+  background-color: $danger;
 }
 
 .show {

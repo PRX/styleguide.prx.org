@@ -3,7 +3,7 @@ import { ToastrService } from './toastr.service';
 
 @Component({
   selector: 'prx-toastr',
-  styleUrls: ['toastr.component.css'],
+  styleUrls: ['toastr.component.scss'],
   template: `
     <div [class]="status" [class.show]="shown" (document:keydown)="onKey($event)">{{toastMessage}}</div>
     `
