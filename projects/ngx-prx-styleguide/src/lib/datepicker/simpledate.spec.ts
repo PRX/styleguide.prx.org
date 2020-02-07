@@ -64,7 +64,7 @@ describe('SimpleDate', () => {
   });
 
   it('converts back to locale dates', () => {
-    const myOffset = new Date().getTimezoneOffset() / 60;
+    const myOffset = new Date(2019, 3, 1).getTimezoneOffset() / 60;
     const date = new SimpleDate('2019-04-01');
 
     const h1 = ('0' + myOffset).substr(-2, 2);
