@@ -15,8 +15,11 @@ import { HalLink, HalLinkError } from '../doc/hallink';
 
 export class HalHttpError extends Error {
   name = 'HalHttpError';
-  constructor(public status: number, msg: string) {
+  constructor(public status: number, msg: string, public body?: {}) {
     super(msg);
+
+    // make instanceof work as expected
+    Object.setPrototypeOf(this, HalHttpError.prototype);
   }
 }
 
@@ -121,7 +124,15 @@ export class HalRemote {
         } else if (err.status === 0) {
           return observableThrowError(new Error(`CORS preflight failed for ${method.toUpperCase()} ${href}`));
         } else {
-          return observableThrowError(new HalHttpError(err.status, `Got ${err.status} from ${method.toUpperCase()} ${href}`));
+          const msg = `Got ${err.status} from ${method.toUpperCase()} ${href}`;
+
+          // attempt to json-decode error body
+          let errBody = err.error;
+          if (typeof(errBody) === 'string') {
+            try { errBody = JSON.parse(errBody); } catch (_err) {}
+          }
+
+          return observableThrowError(new HalHttpError(err.status, msg, errBody));
         }
       } else {
         throw err;

@@ -8,13 +8,13 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 
 
-import { HalRemote } from './halremote';
+import { HalRemote, HalHttpError } from './halremote';
 
 describe('HalRemote', () => {
 
   let mockHttp: HttpTestingController;
   let httpClient: HttpClient;
- 
+
   let remote: HalRemote, link: any, token: ReplaySubject<string>, fakeAuth: any;
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -171,6 +171,19 @@ describe('HalRemote', () => {
         expect(completed).toEqual(3);
         done();
       }, 200);
+    });
+
+    it('returns hal errors', () => {
+      let caught: any;
+      remote.get(link).subscribe(() => {}, err => caught = err);
+
+      const req = mockHttp.expectOne(() => true);
+      req.flush('{"what":"ever"}', {status: 500, statusText: 'bad things'});
+
+      expect(caught instanceof HalHttpError).toEqual(true)
+      expect(caught.status).toEqual(500);
+      expect(caught.message).toMatch('Got 500 from GET http://thehost/foobar');
+      expect(caught.body).toEqual({what: 'ever'});
     });
 
   });
