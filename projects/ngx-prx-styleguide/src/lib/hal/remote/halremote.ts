@@ -19,7 +19,7 @@ export class HalHttpError extends Error {
     super(msg);
 
     // make instanceof work as expected
-    Object.setPrototypeOf(this, HalHttpError.prototype)
+    Object.setPrototypeOf(this, HalHttpError.prototype);
   }
 }
 
