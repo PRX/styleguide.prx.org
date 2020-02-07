@@ -69,6 +69,18 @@ export class DatepickerComponent implements AfterViewInit {
   }
   get maxDate() { return this._maxDate; }
 
+  _invalid: boolean;
+  @Input()
+  set invalid(value: boolean) { this._invalid = value; }
+  get invalid() {
+    if (this._invalid) {
+      return true;
+    } else {
+      return this.input.nativeElement.value.length > 0 &&
+        !moment(this.input.nativeElement.value, this.format, true).isValid();
+    }
+  }
+
   @Input() changed: boolean;
   @Input() UTC = false;
   @Output() dateChange = new EventEmitter<Date>();
@@ -90,11 +102,6 @@ export class DatepickerComponent implements AfterViewInit {
     } else {
       return '';
     }
-  }
-
-  get invalid(): boolean {
-    return this.input.nativeElement.value.length > 0 &&
-      !moment(this.input.nativeElement.value, this.format, true).isValid();
   }
 
   setWhenValid(value: string) {

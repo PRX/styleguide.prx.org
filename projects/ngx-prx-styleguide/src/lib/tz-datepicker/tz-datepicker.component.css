@@ -16,6 +16,9 @@ input, select, prx-datepicker >>> input, ng-select >>> input {
 .changed {
   outline: 5px auto #f09b4c;
 }
+.invalid {
+  outline: 5px auto #e32;
+}
 
 input.ng-dirty.ng-invalid,
 prx-datepicker.invalid,

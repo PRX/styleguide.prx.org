@@ -22,17 +22,20 @@ storiesOf('Forms Controls|Inputs/Timezone Datepicker', module)
     () => {
       const date = dateKnob('Date', new Date(Date.UTC(2018, 2, 16, 2, 0, 0, 0)));
       const changed = boolean('Date Changed', false);
+      const invalid = boolean('Date Invalid', false);
       const dateChange = action('Date Change');
 
       return {
         template: `
           <div class="centered-wrapper">
-            <prx-tz-datepicker (dateChange)="dateChange($event)" [date]="date" [changed]="changed"></prx-tz-datepicker>
+            <prx-tz-datepicker (dateChange)="dateChange($event)" [date]="date"
+              [changed]="changed" [invalid]="invalid"></prx-tz-datepicker>
           </div>
         `,
         props: {
           date,
           changed,
+          invalid,
           dateChange
         }
       };
@@ -54,6 +57,7 @@ __Selector__ \`prx-tz-datepicker\`
 
 - \`@Input() date: Date | string\` \\- _(optional)_ Sets initial date of the picker.
 - \`@Input() changed: boolean = false\` \\- _(optional)_ If true, applies the class \`changed\` to the input element.
+- \`@Input() invalid: boolean = false\` \\- _(optional)_ If true, applies the class \`invalid\` to the input element.
 - \`@Output() dateChange: EventEmitter<Date>\` \\- _(optional)_ Emitted when date is selected.
 `
       }

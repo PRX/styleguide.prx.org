@@ -16,12 +16,14 @@ const moment = momentNs;
         [date]="this.model.pickerDate"
         (dateChange)="this.model.pickerDate = $event; handleChange()"
         [changed]="changed"
+        [invalid]="invalid"
       >
       </prx-datepicker>
       <span *ngIf="!supportsTimeInput; else supportsTime">
         <span>
           <input
             [class.changed]="changed"
+            [class.invalid]="invalid"
             [(ngModel)]="model.time"
             (ngModelChange)="handleChange()"
             name="time"
@@ -32,6 +34,7 @@ const moment = momentNs;
           />
           <select
             [class.changed]="changed"
+            [class.invalid]="invalid"
             [(ngModel)]="model.meridiem"
             (ngModelChange)="handleChange()"
             name="meridiem"
@@ -52,6 +55,7 @@ const moment = momentNs;
       <ng-template #supportsTime>
         <input
           [class.changed]="changed"
+          [class.invalid]="invalid"
           [(ngModel)]="model.time"
           (ngModelChange)="handleChange()"
           name="time"
@@ -66,6 +70,7 @@ const moment = momentNs;
         ngDefaultControl
         name="timezone"
         [class.changed]="changed"
+        [class.invalid]="invalid"
         [items]="timezones | async"
         bindLabel="label"
         bindValue="name"
@@ -93,6 +98,7 @@ export class TzDatepickerComponent implements OnInit {
   }
   @Output() dateChange = new EventEmitter<Date>();
   @Input() changed: boolean;
+  @Input() invalid: boolean;
 
   supportsTimeInput = false;
 

@@ -40,6 +40,7 @@ storiesOf('Forms Controls|Inputs/Date Picker', module)
     'Usage Details (Knobs)',
     () => {
       const changed = boolean('Appear Changed', false);
+      const invalid = boolean('Appear Invalid', false);
       const dateFormat = text('Date Format', 'MM/DD/YYYY');
       const useUTC = boolean('Use UTC', false);
       const today = new Date();
@@ -64,10 +65,12 @@ storiesOf('Forms Controls|Inputs/Date Picker', module)
             (dateChange)="onDateChange($event)"
             [UTC]="useUTC"
             [changed]="changed"
+            [invalid]="invalid"
           ></prx-datepicker>
         `,
         props: {
           changed,
+          invalid,
           dateFormat,
           dataDate,
           onDateChange,
@@ -94,6 +97,7 @@ __Selector__ \`prx-datepicker\`
 - \`@Input() container: ElementRef\` \\- _(optional)_ Element reference for an always open calendar picker.
 - \`@Input() date: Date | string\` \\- _(optional)_ Sets initial date of the picker.
 - \`@Input() changed: boolean = false\` \\- _(optional)_ If true, applies the class \`changed\` to the input element.
+- \`@Input() invalid: boolean = false\` \\- _(optional)_ If true, applies the class \`invalid\` to the input element.
 - \`@Input() UTC: boolean = false\` \\- _(optional)_ Have picker use and return UTC dates.
 - \`@Output() dateChange: EventEmitter<Date>\` \\- _(optional)_ Emitted when date is selected.
 `
@@ -132,4 +136,3 @@ class OpenPickerComponent {
       }
     }
   );
-
