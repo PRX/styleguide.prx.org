@@ -33,6 +33,7 @@ export { HalService } from './lib/hal/hal.service';
 export { HalBaseService } from './lib/hal/hal-base.service';
 export { HalDoc } from './lib/hal/doc/haldoc';
 export { HalObservable } from './lib/hal/doc/halobservable';
+export { HalHttpError } from './lib/hal/remote/halremote';
 export { MockHalService } from './lib/hal/mock/mock-hal.service';
 export { MockHalDoc } from './lib/hal/mock/mock-haldoc';
 
