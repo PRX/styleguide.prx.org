@@ -7,12 +7,14 @@ import { InlineSVGModule } from 'ng-inline-svg';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
-  template: `<prx-icon class="foo" [name]="name" [color]="color" [size]="size"></prx-icon>`
+  template: `
+    <prx-icon class="foo" [name]="name" [color]="color" [size]="size"></prx-icon>
+  `
 })
 class TestComponent {
   color: string;
   name: string;
-  size: string
+  size: string;
 }
 
 describe('IconComponent', () => {
@@ -24,21 +26,18 @@ describe('IconComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestComponent, IconComponent ],
-      imports: [
-        HttpClientModule,
-        InlineSVGModule.forRoot()
-      ]
+      declarations: [TestComponent, IconComponent],
+      imports: [HttpClientModule, InlineSVGModule.forRoot()]
     })
-    .compileComponents()
-    .then(() => {
-      fixture = TestBed.createComponent(TestComponent);
-      component = fixture.componentInstance;
-      de = fixture.debugElement;
-      iconDebug = de.query(By.directive(IconComponent));
-      icon = iconDebug.componentInstance;
-      fixture.detectChanges();
-    });
+      .compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(TestComponent);
+        component = fixture.componentInstance;
+        de = fixture.debugElement;
+        iconDebug = de.query(By.directive(IconComponent));
+        icon = iconDebug.componentInstance;
+        fixture.detectChanges();
+      });
   }));
 
   it('should create', () => {
@@ -102,6 +101,4 @@ describe('IconComponent', () => {
     expect(iconDebug.styles.width).toBe('20px');
     expect(iconDebug.styles.height).toBe('20px');
   });
-
-
 });
