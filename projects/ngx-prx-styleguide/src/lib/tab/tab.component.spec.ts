@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { By }              from '@angular/platform-browser';
-import { Component, DebugElement, ElementRef, ViewChild }    from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { Component, DebugElement } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TabService } from './tab.service';
 import { TabComponent } from './tab.component';
@@ -22,7 +22,6 @@ class TestComponent {
   testModel: any;
 }
 describe('TabComponent', () => {
-
   let comp: TestComponent;
   let fix: ComponentFixture<TestComponent>;
   let de: DebugElement;
@@ -34,20 +33,21 @@ describe('TabComponent', () => {
       declarations: [TestComponent, TabComponent],
       providers: [TabService],
       imports: [RouterTestingModule, SpinnerModule]
-    }).compileComponents().then(() => {
-
-      fix = TestBed.createComponent(TestComponent);
-      comp = fix.componentInstance;
-      de = fix.debugElement;
-      el = de.nativeElement;
-    });
+    })
+      .compileComponents()
+      .then(() => {
+        fix = TestBed.createComponent(TestComponent);
+        comp = fix.componentInstance;
+        de = fix.debugElement;
+        el = de.nativeElement;
+      });
 
     currentModel = null;
-    jest.spyOn(TabService.prototype, 'setModel').mockImplementation((m: any) => currentModel = m);
+    jest.spyOn(TabService.prototype, 'setModel').mockImplementation((m: any) => (currentModel = m));
   }));
 
   it('shows the tabbed content', () => {
-    let navs = de.queryAll(By.css('nav a'));
+    const navs = de.queryAll(By.css('nav a'));
     expect(navs.length).toEqual(2);
     expect(navs[0].nativeElement.textContent).toContain('Foo');
     expect(navs[1].nativeElement.textContent).toContain('Bar');
@@ -71,5 +71,4 @@ describe('TabComponent', () => {
     fix.detectChanges();
     expect(currentModel).toEqual('thing2');
   });
-
 });

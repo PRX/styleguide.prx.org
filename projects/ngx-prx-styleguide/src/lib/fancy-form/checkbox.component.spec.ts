@@ -6,16 +6,25 @@ import { CheckboxComponent } from './checkbox.component';
 
 @Component({
   selector: 'test-component',
-  template: `<prx-checkbox #check [disabled]="disabled" [color]="color"
-    [(checked)]="checked" (change)="onChange($event)"></prx-checkbox>`
+  template: `
+    <prx-checkbox
+      #check
+      [disabled]="disabled"
+      [color]="color"
+      [(checked)]="checked"
+      (change)="onChange($event)"
+    ></prx-checkbox>
+  `
 })
 class TestComponent {
-  @ViewChild('check') check: CheckboxComponent;
+  @ViewChild('check', { static: true }) check: CheckboxComponent;
   disabled = false;
   color: string;
   checked = false;
   onChangeVal: boolean;
-  onChange(val: boolean) { this.onChangeVal = val; }
+  onChange(val: boolean) {
+    this.onChangeVal = val;
+  }
 }
 
 describe('CheckboxComponent', () => {
@@ -28,11 +37,13 @@ describe('CheckboxComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CheckboxComponent, TestComponent],
       imports: [FormsModule]
-    }).compileComponents().then(() => {
-      fix = TestBed.createComponent(TestComponent);
-      comp = fix.componentInstance;
-      de = fix.debugElement;
-    });
+    })
+      .compileComponents()
+      .then(() => {
+        fix = TestBed.createComponent(TestComponent);
+        comp = fix.componentInstance;
+        de = fix.debugElement;
+      });
   }));
 
   it('disables the checkbox', () => {
@@ -75,5 +86,4 @@ describe('CheckboxComponent', () => {
     expect(comp.checked).toEqual(false);
     expect(comp.onChangeVal).toEqual(false);
   });
-
 });

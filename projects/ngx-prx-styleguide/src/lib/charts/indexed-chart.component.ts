@@ -5,10 +5,11 @@ import { ChartType } from './models/chart-type.type';
 
 @Component({
   selector: 'prx-indexed-chart',
-  template: `<div #chart></div>`,
+  template: `
+    <div #chart></div>
+  `,
   styleUrls: ['./chart.css']
 })
-
 export class IndexedChartComponent implements OnChanges {
   @Input() type: ChartType = 'line';
   @Input() formatX: string | ((x: number | Date) => string | number);
@@ -16,7 +17,7 @@ export class IndexedChartComponent implements OnChanges {
   @Input() datasets: IndexedChartModel[];
 
   chart: any;
-  @ViewChild('chart') el: ElementRef;
+  @ViewChild('chart', { static: true }) el: ElementRef;
 
   columnData: any[][];
   colors: string[];
@@ -26,7 +27,7 @@ export class IndexedChartComponent implements OnChanges {
       this.columnData = [];
       this.colors = [];
 
-      this.datasets.forEach((dataset) => {
+      this.datasets.forEach(dataset => {
         this.columnData.push([dataset.label, ...dataset.data]);
         this.colors.push(dataset.color);
       });

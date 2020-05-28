@@ -8,12 +8,14 @@ import { FancyDurationComponent } from './fancy-duration.component';
 
 @Component({
   selector: 'test-component',
-  template: `<prx-fancy-duration #fancy [model]="model" [name]="name"></prx-fancy-duration>`
+  template: `
+    <prx-fancy-duration #fancy [model]="model" [name]="name"></prx-fancy-duration>
+  `
 })
 class TestComponent {
   model: any;
   name: string;
-  @ViewChild('fancy') fancy: FancyDurationComponent;
+  @ViewChild('fancy', { static: true }) fancy: FancyDurationComponent;
 }
 describe('FancyDurationComponent', () => {
   let comp: TestComponent;
@@ -24,17 +26,18 @@ describe('FancyDurationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AdvancedConfirmDirective, PadZeroPipe, FancyDurationComponent, TestComponent],
       imports: [FormsModule],
-      providers: [{provide: ModalService}]
-    }).compileComponents().then(() => {
-
-      fix = TestBed.createComponent(TestComponent);
-      comp = fix.componentInstance;
-      de = fix.debugElement;
-    });
+      providers: [{ provide: ModalService }]
+    })
+      .compileComponents()
+      .then(() => {
+        fix = TestBed.createComponent(TestComponent);
+        comp = fix.componentInstance;
+        de = fix.debugElement;
+      });
   }));
 
   it('parses seconds to HH:MM:SS', () => {
-    comp.model = {foobar: 84716, original: {}};
+    comp.model = { foobar: 84716, original: {} };
     comp.name = 'foobar';
     fix.detectChanges();
     expect(comp.fancy.total).toEqual(84716);
@@ -44,22 +47,34 @@ describe('FancyDurationComponent', () => {
   });
 
   it('detects changes for each subfield', () => {
-    comp.model = {foobar: 84716, original: {foobar: 84716}};
+    comp.model = { foobar: 84716, original: { foobar: 84716 } };
     comp.name = 'foobar';
     fix.detectChanges();
-    expect([comp.fancy.hoursChanged, comp.fancy.minutesChanged, comp.fancy.secondsChanged]).toEqual([false, false, false]);
+    expect([comp.fancy.hoursChanged, comp.fancy.minutesChanged, comp.fancy.secondsChanged]).toEqual([
+      false,
+      false,
+      false
+    ]);
 
     comp.model.foobar = 23 * 60 * 60;
     fix.detectChanges();
-    expect([comp.fancy.hoursChanged, comp.fancy.minutesChanged, comp.fancy.secondsChanged]).toEqual([false, true, true]);
+    expect([comp.fancy.hoursChanged, comp.fancy.minutesChanged, comp.fancy.secondsChanged]).toEqual([
+      false,
+      true,
+      true
+    ]);
 
     comp.model.foobar = 31 * 60 + 56;
     fix.detectChanges();
-    expect([comp.fancy.hoursChanged, comp.fancy.minutesChanged, comp.fancy.secondsChanged]).toEqual([true, false, false]);
+    expect([comp.fancy.hoursChanged, comp.fancy.minutesChanged, comp.fancy.secondsChanged]).toEqual([
+      true,
+      false,
+      false
+    ]);
   });
 
   it('sets from subfields', () => {
-    comp.model = {foobar: 0, original: {}, set: (f: string, v: any) => comp.model[f] = v};
+    comp.model = { foobar: 0, original: {}, set: (f: string, v: any) => (comp.model[f] = v) };
     comp.name = 'foobar';
     fix.detectChanges();
     comp.fancy.set('hours', 1);
@@ -71,5 +86,4 @@ describe('FancyDurationComponent', () => {
     comp.fancy.set('seconds', -2);
     expect(comp.model.foobar).toEqual(7260);
   });
-
 });

@@ -1,5 +1,4 @@
-import { Component, AfterViewInit, OnChanges, Input, Output, EventEmitter,
-  ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, OnChanges, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import * as Pikaday from 'pikaday';
 import { SimpleDate } from './simpledate';
 
@@ -22,11 +21,9 @@ Pikaday.prototype.config = function(options) {
   template: '<input type="text" class="hidden" #textinput/><div #container></div>',
   styleUrls: ['./calpicker.component.css']
 })
-
 export class CalpickerComponent implements AfterViewInit, OnChanges {
-
-  @ViewChild('textinput') textinput: ElementRef;
-  @ViewChild('container') container: ElementRef;
+  @ViewChild('textinput', { static: true }) textinput: ElementRef;
+  @ViewChild('container', { static: true }) container: ElementRef;
 
   @Input() dates: SimpleDate[] = [];
   @Output() datesChange = new EventEmitter<SimpleDate[]>();
@@ -47,12 +44,12 @@ export class CalpickerComponent implements AfterViewInit, OnChanges {
       firstDay: 0,
       bound: false,
       keyboardInput: false, // doesn't work with this yet
-      onSelect: date => this.disabled ? null : this.onSelect(date),
+      onSelect: date => (this.disabled ? null : this.onSelect(date)),
       numberOfMonths: this.months,
       minDate: this.minDate ? this.minDate.toLocaleDate() : null,
       maxDate: this.maxDate ? this.maxDate.toLocaleDate() : null,
       defaultDate: this.defaultDate ? this.defaultDate.toLocaleDate() : null,
-      events: this.datesInLocale(),
+      events: this.datesInLocale()
     };
   }
 
@@ -66,8 +63,10 @@ export class CalpickerComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: any) {
     if (this.picker) {
-      if ((changes.defaultDate && !changes.defaultDate.firstChange) ||
-          (changes.disabled && !changes.disabled.firstChange)) {
+      if (
+        (changes.defaultDate && !changes.defaultDate.firstChange) ||
+        (changes.disabled && !changes.disabled.firstChange)
+      ) {
         this.picker.destroy();
         this.picker = new Pikaday(this.options);
       } else {
@@ -93,5 +92,4 @@ export class CalpickerComponent implements AfterViewInit, OnChanges {
     this.picker.setDate(null);
     this.datesChange.emit(this.dates);
   }
-
 }

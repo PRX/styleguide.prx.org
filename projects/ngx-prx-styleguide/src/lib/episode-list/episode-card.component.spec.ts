@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement, Component, ViewChild, ElementRef } from '@angular/core';
+import { DebugElement, Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { EpisodeCardComponent } from './episode-card.component';
 
@@ -14,19 +14,20 @@ const status = 'published';
 @Component({
   selector: 'prx-test-component',
   template: `
-  <prx-episode-card
-    [date]="date"
-    dateFormat="M/d"
-    editLink="/story/1234"
-    [title]="title"
-    [seasonNumber]="seasonNumber"
-    [episodeNumber]="episodeNumber"
-    [teaser]="teaser"
-    [status]="status">
-  <div>
-    Something usually goes here
-  </div>
-</prx-episode-card>
+    <prx-episode-card
+      [date]="date"
+      dateFormat="M/d"
+      editLink="/story/1234"
+      [title]="title"
+      [seasonNumber]="seasonNumber"
+      [episodeNumber]="episodeNumber"
+      [teaser]="teaser"
+      [status]="status"
+    >
+      <div>
+        Something usually goes here
+      </div>
+    </prx-episode-card>
   `
 })
 class TestComponent {
@@ -48,20 +49,22 @@ describe('EpisodeCardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent, EpisodeCardComponent],
       imports: [RouterTestingModule]
-    }).compileComponents().then(() => {
-      fix = TestBed.createComponent(TestComponent);
-      comp = fix.componentInstance;
-      de = fix.debugElement;
-      el = de.nativeElement;
+    })
+      .compileComponents()
+      .then(() => {
+        fix = TestBed.createComponent(TestComponent);
+        comp = fix.componentInstance;
+        de = fix.debugElement;
+        el = de.nativeElement;
 
-      comp.date = date;
-      comp.title = title;
-      comp.seasonNumber = seasonNumber;
-      comp.episodeNumber = episodeNumber;
-      comp.teaser = teaser;
-      comp.status = status;
-      fix.detectChanges();
-    });
+        comp.date = date;
+        comp.title = title;
+        comp.seasonNumber = seasonNumber;
+        comp.episodeNumber = episodeNumber;
+        comp.teaser = teaser;
+        comp.status = status;
+        fix.detectChanges();
+      });
   }));
 
   it('renders the episode card', () => {

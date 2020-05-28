@@ -1,5 +1,4 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild,
-  ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 import * as Pikaday from 'pikaday';
 
@@ -17,7 +16,6 @@ const moment = momentNs;
   templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.css']
 })
-
 export class DatepickerComponent implements AfterViewInit {
   @Input() format = 'MM/DD/YYYY';
   @Input() container: ElementRef;
@@ -39,7 +37,9 @@ export class DatepickerComponent implements AfterViewInit {
       }
     }
   }
-  get date() { return this._date; }
+  get date() {
+    return this._date;
+  }
 
   _minDate: Date;
   @Input()
@@ -53,7 +53,9 @@ export class DatepickerComponent implements AfterViewInit {
       }
     }
   }
-  get minDate() { return this._minDate; }
+  get minDate() {
+    return this._minDate;
+  }
 
   _maxDate: Date;
   @Input()
@@ -67,36 +69,46 @@ export class DatepickerComponent implements AfterViewInit {
       }
     }
   }
-  get maxDate() { return this._maxDate; }
+  get maxDate() {
+    return this._maxDate;
+  }
 
   _invalid: boolean;
   @Input()
-  set invalid(value: boolean) { this._invalid = value; }
+  set invalid(value: boolean) {
+    this._invalid = value;
+  }
   get invalid() {
     if (this._invalid) {
       return true;
     } else {
-      return this.input.nativeElement.value.length > 0 &&
-        !moment(this.input.nativeElement.value, this.format, true).isValid();
+      return (
+        this.input.nativeElement.value.length > 0 &&
+        !moment(this.input.nativeElement.value, this.format, true).isValid()
+      );
     }
   }
 
   @Input() changed: boolean;
   @Input() UTC = false;
   @Output() dateChange = new EventEmitter<Date>();
-  @ViewChild('datepicker') input: ElementRef;
+  @ViewChild('datepicker', { static: true }) input: ElementRef;
 
   picker: Pikaday;
 
   dateDefinedAndChanged(value: Date) {
-    return value &&
+    return (
+      value &&
       /* !Invalid Date */ !isNaN(value.valueOf()) &&
-      /* changed or not previously set */ (!this._date || this._date.valueOf() !== value.valueOf());
+      /* changed or not previously set */ (!this._date || this._date.valueOf() !== value.valueOf())
+    );
   }
 
   get formattedDate(): string {
     if (this._date && this.UTC) {
-      return moment(this._date.valueOf()).utc().format(this.format);
+      return moment(this._date.valueOf())
+        .utc()
+        .format(this.format);
     } else if (this._date) {
       return moment(this._date.valueOf()).format(this.format);
     } else {
@@ -105,8 +117,10 @@ export class DatepickerComponent implements AfterViewInit {
   }
 
   setWhenValid(value: string) {
-    if (moment(value, this.format, true).isValid() &&
-      (!this._date || this.picker.getDate().valueOf() !== this._date.valueOf())) {
+    if (
+      moment(value, this.format, true).isValid() &&
+      (!this._date || this.picker.getDate().valueOf() !== this._date.valueOf())
+    ) {
       let date = new Date(value);
       this.setDate(date);
       if (this.UTC) {
@@ -157,7 +171,9 @@ export class DatepickerComponent implements AfterViewInit {
 
   setDate(value: Date) {
     let newValue;
-    const year = value.getFullYear(), month = value.getMonth(), date = value.getDate();
+    const year = value.getFullYear(),
+      month = value.getMonth(),
+      date = value.getDate();
     let hour, minute, second, millisecond;
     if (this._date && this.UTC) {
       hour = this._date.getUTCHours();

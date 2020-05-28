@@ -4,14 +4,18 @@ import { Component, DebugElement, ViewChild } from '@angular/core';
 import { PagingComponent } from './paging.component';
 
 @Component({
-  template: `<prx-paging #paging
-              [currentPage]="page"
-              [totalPages]="totalPages"
-              showNumPages="6"
-              (pageChange)="pageChange($event)"></prx-paging>`
+  template: `
+    <prx-paging
+      #paging
+      [currentPage]="page"
+      [totalPages]="totalPages"
+      showNumPages="6"
+      (pageChange)="pageChange($event)"
+    ></prx-paging>
+  `
 })
 class TestComponent {
-  @ViewChild('paging') pager: PagingComponent;
+  @ViewChild('paging', { static: true }) pager: PagingComponent;
   page = 1;
   totalPages = 8;
   pageChange(page: number) {
@@ -27,17 +31,16 @@ describe('PagingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestComponent,
-        PagingComponent
-      ]
-    }).compileComponents().then(() => {
-      fix = TestBed.createComponent(TestComponent);
-      comp = fix.componentInstance;
-      fix.detectChanges();
-      de = fix.debugElement;
-      el = de.nativeElement;
-    });
+      declarations: [TestComponent, PagingComponent]
+    })
+      .compileComponents()
+      .then(() => {
+        fix = TestBed.createComponent(TestComponent);
+        comp = fix.componentInstance;
+        fix.detectChanges();
+        de = fix.debugElement;
+        el = de.nativeElement;
+      });
   }));
 
   it('should disable prev button if on page 1', () => {

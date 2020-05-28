@@ -7,17 +7,18 @@ import { ChartOrder } from './models/chart-order.type';
 
 @Component({
   selector: 'prx-timeseries-chart',
-  template: `<div #chart></div>`,
+  template: `
+    <div #chart></div>
+  `,
   styleUrls: ['./chart.css']
 })
-
 export class TimeseriesChartComponent implements OnChanges {
   @Input() type: ChartType = 'line';
   @Input() order: ChartOrder = null;
   @Input() stacked = false;
   @Input() datasets: TimeseriesChartModel[];
   @Input() formatX: ((x: number | Date) => string) | string;
-  @Input() formatY: ((x: number | Date) => string);
+  @Input() formatY: (x: number | Date) => string;
   @Input() minY: number;
   @Input() strokeWidth = 2.5;
   @Input() showPoints = true;
@@ -27,7 +28,7 @@ export class TimeseriesChartComponent implements OnChanges {
   @Input() maxTicks: number;
 
   chart: any;
-  @ViewChild('chart') el: ElementRef;
+  @ViewChild('chart', { static: true }) el: ElementRef;
 
   xDateKeys: any;
   xDates: any[][];
@@ -45,10 +46,8 @@ export class TimeseriesChartComponent implements OnChanges {
 
       this.datasets.forEach((dataset, index) => {
         this.xDateKeys[dataset.label] = 'x' + index;
-        this.xDates.push([this.xDateKeys[dataset.label],
-          ...(dataset.data.map(datum => datum.date))
-        ]);
-        this.columnData.push([dataset.label, ...(dataset.data.map(datum => datum.value))]);
+        this.xDates.push([this.xDateKeys[dataset.label], ...dataset.data.map(datum => datum.date)]);
+        this.columnData.push([dataset.label, ...dataset.data.map(datum => datum.value)]);
         this.colors.push(dataset.color);
 
         if (this.stacked) {
@@ -60,8 +59,8 @@ export class TimeseriesChartComponent implements OnChanges {
         data: {
           type: this.type,
           xs: this.xDateKeys,
-          columns: [...this.xDates , ...this.columnData],
-          order: <string> this.order
+          columns: [...this.xDates, ...this.columnData],
+          order: <string>this.order
         },
         legend: {
           show: false
@@ -118,7 +117,7 @@ export class TimeseriesChartComponent implements OnChanges {
         axis.y = {
           ...axis.y,
           min: this.minY,
-          padding: {top: 20, bottom: 20}
+          padding: { top: 20, bottom: 20 }
         };
       }
 
@@ -144,7 +143,10 @@ export class TimeseriesChartComponent implements OnChanges {
         // dynamically add style with the equivalence of a deep selector, not sure of a better way
         const collection: HTMLCollection = this.el.nativeElement.getElementsByClassName('c3-line');
         // HTMLCollection is an Array like object but not an Array
-        Array.prototype.forEach.call(collection, (element: HTMLElement) => element.style['stroke-width'] = this.strokeWidth + 'px');
+        Array.prototype.forEach.call(
+          collection,
+          (element: HTMLElement) => (element.style['stroke-width'] = this.strokeWidth + 'px')
+        );
       }
     }
   }
