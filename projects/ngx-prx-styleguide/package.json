@@ -24,11 +24,11 @@
     "@angular/platform-browser": "^8.2.0 || ^9.1.9"
   },
   "dependencies": {
-    "@ng-select/ng-select": "^2.15.3",
+    "@ng-select/ng-select": "^3.7.3",
     "c3": "^0.4.11",
     "moment-timezone": "^0.5.23",
     "ngx-tooltip": "0.0.9",
-    "pikaday": "^1.5.1",
+    "pikaday": "^1.8.0",
     "stickyfilljs": "^2.1.0",
     "ng-inline-svg": "^8.3.0",
     "evaporate": "^2.1.4",
