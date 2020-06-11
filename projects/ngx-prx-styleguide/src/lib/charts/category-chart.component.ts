@@ -4,10 +4,11 @@ import { CategoryChartModel } from './models/category-chart.model';
 
 @Component({
   selector: 'prx-category-chart',
-  template: `<div #chart></div>`,
+  template: `
+    <div #chart></div>
+  `,
   styleUrls: ['./chart.css']
 })
-
 export class CategoryChartComponent implements OnChanges {
   @Input() data: CategoryChartModel[];
   @Input() color = '#0089bd';
@@ -15,7 +16,7 @@ export class CategoryChartComponent implements OnChanges {
   @Input() dataLabel = 'amount';
 
   chart: any;
-  @ViewChild('chart') el: ElementRef;
+  @ViewChild('chart', { static: true }) el: ElementRef;
 
   columnData: any[][];
   colors: string[];

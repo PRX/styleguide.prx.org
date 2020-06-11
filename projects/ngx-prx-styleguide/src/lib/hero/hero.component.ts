@@ -12,20 +12,18 @@ import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
     <div class="hero toolbar" [class.affix]="affixed" (window:scroll)="onScroll()">
       <section>
         <div class="info" #refInfo><ng-content select=".hero-info"></ng-content></div>
-        <prx-spinner *ngIf="refInfo.children.length == 0" inverse=true></prx-spinner>
+        <prx-spinner *ngIf="refInfo.children.length == 0" inverse="true"></prx-spinner>
         <div class="actions" #refActions><ng-content select=".hero-actions"></ng-content></div>
       </section>
     </div>
     <div class="spacer" [class.affix]="affixed"></div>
   `
 })
-
 export class HeroComponent implements OnInit {
-
   @Input() orange = false;
   @Input() blue = false;
 
-  @ViewChild('refHero') heroEl: ElementRef;
+  @ViewChild('refHero', { static: true }) heroEl: ElementRef;
 
   affixedY: number;
   affixed = false;
@@ -35,11 +33,10 @@ export class HeroComponent implements OnInit {
   }
 
   onScroll() {
-    this.affixed = (this.getScrollY() > this.affixedY);
+    this.affixed = this.getScrollY() > this.affixedY;
   }
 
   getScrollY() {
     return window.scrollY;
   }
-
 }

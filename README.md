@@ -22,9 +22,7 @@ in the menu component's stories.
 
 ## Demo App (Deprecated)
 
-Run `npm run demo` for a legacy demo server. Use this as reference when
-converting demo pages to stories. Do not add new demo pages. New compoents or
-examples of existing components should be done as Storybook stories.
+Run `npm run demo` for a legacy demo server. Converted to storybook.
 
 ## Running Unit Tests
 
@@ -39,13 +37,16 @@ in the `dist/` directory.
 You can have Angular's build system monitor for changes and rebuild when they're detected using `npm run build:lib:watch`. Also, if you'd like to use the built library in a Docker container, you can use the post-build watcher: `CONTAINER_NAME=your_name_here npm run postbuild:lib:watch`. This script will watch for the Angular build to complete, bundle in static assets and then attempt to find a running container with a name which matches the provided container name and copy the built files into the `/app/node_modules` directory. To find your container's name, run `docker ps` and look under the `NAMES` columns.
 
 To test an AOT build locally, you must additionally:
-* Run Publish's build on the Docker container `docker exec <container name from previous step> npm run-script build`
-* Update Publish's `docker-compose.yml` to run the command that serves the production build. By convention, this would mean changing `command: start` to `command: serve` or (less destructively) adding a `docker-compose.override.yml` to the root directory with the following content:
+
+- Run Publish's build on the Docker container `docker exec <container name from previous step> npm run-script build`
+- Update Publish's `docker-compose.yml` to run the command that serves the production build. By convention, this would mean changing `command: start` to `command: serve` or (less destructively) adding a `docker-compose.override.yml` to the root directory with the following content:
+
 ```yml
 publish:
   command: serve
 ```
-* Restart the container
+
+- Restart the container
 
 ## Usage
 
@@ -115,6 +116,7 @@ npm publish dist/ngx-prx-styleguide
 
 After the package has been published, push the npm generated commit and tag to
 the repository:
+
 ```
 git push --follow-tags
 ```

@@ -6,30 +6,26 @@ import { DatepickerModule } from './datepicker.module';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 
 // Need a component defined to demo container prop usage.
-@Component ({
-  selector:'open-picker',
+@Component({
+  selector: 'open-picker',
   template: `
     <div class="centered-wrapper">
       <prx-datepicker [container]="calendar"></prx-datepicker>
       <div #calendar></div>
     </div>
   `,
-  styles: [
-    ':host >>> .pika-single.container { border: 1px solid #e6e6e6; border-top: 0; }'
-  ]
+  styles: [':host >>> .pika-single.container { border: 1px solid #e6e6e6; border-top: 0; }']
 })
 class OpenPickerComponent {
-  @ViewChild('calendar') calendar:ElementRef;
+  @ViewChild('calendar', { static: true }) calendar: ElementRef;
 }
 
 // Module metadata for stories.
 const storiesModuleMetaData = moduleMetadata({
-  imports: [
-    DatepickerModule
-  ],
+  imports: [DatepickerModule],
   schemas: [],
   declarations: [],
-  providers: [],
+  providers: []
 });
 
 storiesOf('Forms Controls|Inputs/Date Picker', module)
@@ -50,11 +46,23 @@ storiesOf('Forms Controls|Inputs/Date Picker', module)
       const dateKnob = (name: string, defaultValue: Date) => {
         const stringTimestamp = date(name, defaultValue);
         const d = new Date(stringTimestamp);
-        return useUTC ? new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds())) : d;
+        return useUTC
+          ? new Date(
+              Date.UTC(
+                d.getFullYear(),
+                d.getMonth(),
+                d.getDate(),
+                d.getHours(),
+                d.getMinutes(),
+                d.getSeconds(),
+                d.getMilliseconds()
+              )
+            )
+          : d;
       };
       const dataDate = dateKnob('Initial Date', defaultDate);
       const onDateChange = (newDate: Date) => {
-        action('Date Changed')({date: newDate, string: useUTC ? newDate.toUTCString() : newDate.toString()});
+        action('Date Changed')({ date: newDate, string: useUTC ? newDate.toUTCString() : newDate.toString() });
       };
 
       return {
@@ -76,11 +84,11 @@ storiesOf('Forms Controls|Inputs/Date Picker', module)
           onDateChange,
           useUTC
         }
-      }
+      };
     },
     {
       notes: {
-        markdown:`
+        markdown: `
 # Date Picker
 
 The prx-datepicker is an ng2 wrapper for [Pikaday](https://github.com/dbushell/Pikaday).
@@ -129,7 +137,7 @@ storiesOf('Forms Controls|Inputs/Date Picker/Examples', module)
   ]
 })
 class OpenPickerComponent {
-  @ViewChild('calendar') calendar:ElementRef;
+  @ViewChild('calendar', {static: true}) calendar:ElementRef;
 }
 \`\`\`
         `

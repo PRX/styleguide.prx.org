@@ -1,15 +1,17 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { FormsModule }     from '@angular/forms';
-import { Component, DebugElement, ViewChild }    from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Component, DebugElement, ViewChild } from '@angular/core';
 
 import { TimepickerComponent } from './timepicker.component';
 
 @Component({
   selector: 'test-component',
-  template: `<prx-timepicker #timepicker [date]="date" [UTC]="UTC" (timeChange)="timeChange($event)"></prx-timepicker>`
+  template: `
+    <prx-timepicker #timepicker [date]="date" [UTC]="UTC" (timeChange)="timeChange($event)"></prx-timepicker>
+  `
 })
 class TestComponent {
-  @ViewChild('timepicker') timepicker: TimepickerComponent;
+  @ViewChild('timepicker', { static: true }) timepicker: TimepickerComponent;
   date: Date;
   UTC = false;
   timeChange(date: Date) {
@@ -27,13 +29,14 @@ describe('Component: TimepickerComponent', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
       declarations: [TestComponent, TimepickerComponent]
-    }).compileComponents().then(() => {
-
-      fix = TestBed.createComponent(TestComponent);
-      comp = fix.componentInstance;
-      de = fix.debugElement;
-      el = de.nativeElement;
-    });
+    })
+      .compileComponents()
+      .then(() => {
+        fix = TestBed.createComponent(TestComponent);
+        comp = fix.componentInstance;
+        de = fix.debugElement;
+        el = de.nativeElement;
+      });
   }));
 
   it('should have a defined component', () => {

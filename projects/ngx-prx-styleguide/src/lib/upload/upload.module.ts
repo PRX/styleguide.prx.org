@@ -48,13 +48,7 @@ import { UploadComponent } from './upload.component';
     FileSizePipe,
     FileSelectDirective
   ],
-  imports: [
-    FormsModule,
-    CommonModule,
-    DragulaModule,
-    FancyFormModule
-  ],
+  imports: [FormsModule, CommonModule, DragulaModule, FancyFormModule],
   providers: []
 })
-
-export class UploadModule { }
+export class UploadModule {}

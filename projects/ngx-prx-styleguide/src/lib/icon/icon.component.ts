@@ -1,17 +1,22 @@
-import { Component, Self, OnChanges, SimpleChanges, Input, HostBinding } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { Component, Input, HostBinding, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'prx-icon',
   templateUrl: './icon.component.html',
-  styleUrls: ['./icon.component.scss'],
-  providers: [ NgClass ]
+  styleUrls: ['./icon.component.scss']
 })
-export class IconComponent implements OnChanges {
+export class IconComponent {
   private _color: string;
   @Input()
   set color(val: string) {
-    this._color = val && val.trim().toLowerCase();
+    const color = val && val.trim().toLowerCase();
+    if (this._color) {
+      this.renderer.removeClass(this.el.nativeElement, `color--${this._color}`);
+    }
+    if (color) {
+      this.renderer.addClass(this.el.nativeElement, `color--${color}`);
+    }
+    this._color = color;
   }
   get color() {
     return this._color;
@@ -38,24 +43,7 @@ export class IconComponent implements OnChanges {
   @HostBinding('style.width') width: string;
   @HostBinding('style.height') height: string;
 
-  private hostClasses: { [name: string]: boolean };
-
-  constructor(@Self() protected ngClass: NgClass) { }
-
-  ngOnChanges(): void {
-    this.hostClasses = {};
-
-    if (!!this._color) {
-      this.hostClasses[`color--${this._color}`] = true;
-    }
-
-    this.updateHostClasses();
-  }
-
-  private updateHostClasses(): void {
-    this.ngClass.ngClass = this.hostClasses;
-    this.ngClass.ngDoCheck();
-  }
+  constructor(private renderer: Renderer2, private el: ElementRef) {}
 
   get removedSVGAttributes() {
     return this._color ? ['style', 'fill'] : [];
@@ -64,5 +52,4 @@ export class IconComponent implements OnChanges {
   get svgFilePath() {
     return this.name && `../../assets/images/icons/${this._name}.svg`;
   }
-
 }

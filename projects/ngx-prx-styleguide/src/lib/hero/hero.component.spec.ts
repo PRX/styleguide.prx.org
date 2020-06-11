@@ -1,25 +1,26 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { By }              from '@angular/platform-browser';
-import { Component, DebugElement, ElementRef, ViewChild }    from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { HeroComponent } from './hero.component';
 
 @Component({
   selector: 'test-component',
-  template: `<prx-hero #hero>
-    <h1 class="hero-title">The Title</h1>
-    <h2 class="hero-info" *ngIf="showInfo">The Infos</h2>
-    <h3 class="hero-actions">The Actions</h3>
-  </prx-hero>
-  <div [style.height.px]="1000"></div>`
+  template: `
+    <prx-hero #hero>
+      <h1 class="hero-title">The Title</h1>
+      <h2 class="hero-info" *ngIf="showInfo">The Infos</h2>
+      <h3 class="hero-actions">The Actions</h3>
+    </prx-hero>
+    <div [style.height.px]="1000"></div>
+  `
 })
 class TestComponent {
   showInfo = false;
-  @ViewChild('hero') hero: ElementRef;
+  @ViewChild('hero', { static: true }) hero: ElementRef;
 }
 
 describe('HeroComponent', () => {
-
   let comp: TestComponent;
   let fix: ComponentFixture<TestComponent>;
   let de: DebugElement;
@@ -29,15 +30,16 @@ describe('HeroComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent, HeroComponent],
       imports: [SpinnerModule]
-    }).compileComponents().then(() => {
+    })
+      .compileComponents()
+      .then(() => {
+        fix = TestBed.createComponent(TestComponent);
+        comp = fix.componentInstance;
+        de = fix.debugElement;
+        el = de.nativeElement;
 
-      fix = TestBed.createComponent(TestComponent);
-      comp = fix.componentInstance;
-      de = fix.debugElement;
-      el = de.nativeElement;
-
-      comp.hero['ngOnInit']();
-    });
+        comp.hero['ngOnInit']();
+      });
   }));
 
   let fakeScrollY = 0;
@@ -76,5 +78,4 @@ describe('HeroComponent', () => {
     fix.detectChanges();
     expect(de.query(By.css('.affix'))).not.toBeNull();
   });
-
 });

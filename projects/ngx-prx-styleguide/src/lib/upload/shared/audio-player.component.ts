@@ -8,14 +8,18 @@ import { AudioFileModel } from '../model/audio-file.model';
   selector: 'prx-audio-player',
   styleUrls: ['audio-player.component.css'],
   template: `
-    <p *ngIf="error" class="error">{{error}}</p>
+    <p *ngIf="error" class="error">{{ error }}</p>
 
     <button *ngIf="!playing && !loading" class="play" (click)="play()"></button>
 
-    <div #scrubber *ngIf="playing" class="scrubber"
+    <div
+      #scrubber
+      *ngIf="playing"
+      class="scrubber"
       (mousedown)="scrub('down', $event)"
       (mouseup)="scrub('up', $event)"
-      (mousemove)="scrub('move', $event)">
+      (mousemove)="scrub('move', $event)"
+    >
       <div class="meter" [style.width.%]="progress * 100"></div>
       <div *ngIf="!dragging" class="position" [style.left.%]="progress * 100"></div>
     </div>
@@ -25,9 +29,7 @@ import { AudioFileModel } from '../model/audio-file.model';
     <button *ngIf="loading" class="pause loading" (click)="stop()"></button>
   `
 })
-
 export class AudioPlayerComponent implements OnDestroy {
-
   loading = false;
   playing = false;
   dragging = false;
@@ -37,7 +39,7 @@ export class AudioPlayerComponent implements OnDestroy {
 
   @Input() file: AudioFileModel;
 
-  @ViewChild('scrubber') scrubber;
+  @ViewChild('scrubber', { static: false }) scrubber;
 
   constructor(private player: PlayerService, private ref: ChangeDetectorRef) {}
 
@@ -67,11 +69,9 @@ export class AudioPlayerComponent implements OnDestroy {
       this.error = null;
       this.playing = false;
       this.loading = true;
-      this.sub = this.player.play(this.playable).subscribe(
-        data => this.updateProgress(data),
-        err => this.showError(err),
-        () => this.stop()
-      );
+      this.sub = this.player
+        .play(this.playable)
+        .subscribe(data => this.updateProgress(data), err => this.showError(err), () => this.stop());
     } else {
       this.showError('File is not playable');
     }
@@ -120,5 +120,4 @@ export class AudioPlayerComponent implements OnDestroy {
     this.dragging = false;
     this.error = err.message || `${err}`;
   }
-
 }

@@ -18,17 +18,17 @@
     "url": "https://github.com/PRX/styleguide.prx.org.git"
   },
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^7.2.0",
-    "@angular/core": "^6.0.0-rc.0 || ^7.2.0",
-    "@angular/forms": "^6.0.0-rc.0 || ^7.2.0",
-    "@angular/platform-browser": "^6.0.0-rc.0 || ^7.2.0"
+    "@angular/common": "^8.2.0 || ^9.1.9",
+    "@angular/core": "^8.2.0 || ^9.1.9",
+    "@angular/forms": "^8.2.0 || ^9.1.9",
+    "@angular/platform-browser": "^8.2.0 || ^9.1.9"
   },
   "dependencies": {
-    "@ng-select/ng-select": "^2.15.3",
+    "@ng-select/ng-select": "^3.7.3",
     "c3": "^0.4.11",
     "moment-timezone": "^0.5.23",
     "ngx-tooltip": "0.0.9",
-    "pikaday": "^1.5.1",
+    "pikaday": "^1.8.0",
     "stickyfilljs": "^2.1.0",
     "ng-inline-svg": "^8.3.0",
     "evaporate": "^2.1.4",

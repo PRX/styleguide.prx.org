@@ -7,26 +7,25 @@ import { Component, ElementRef, ViewChild, ChangeDetectorRef, HostBinding, Input
   styleUrls: ['./status-bar-link.component.scss']
 })
 export class StatusBarLinkComponent implements AfterViewInit {
-
   showIcon = true;
   showImage = true;
   showText = true;
 
   @HostBinding('class.align-art--right') alignArtRight = false;
 
-  @ViewChild('icon') icon: ElementRef;
-  @ViewChild('image') image: ElementRef;
-  @ViewChild('text') text: ElementRef;
+  @ViewChild('icon', { static: false }) icon: ElementRef;
+  @ViewChild('image', { static: false }) image: ElementRef;
+  @ViewChild('text', { static: false }) text: ElementRef;
 
   @Input()
   set alignArt(val: string) {
-    this.alignArtRight = val && val.toLowerCase()  === 'right';
+    this.alignArtRight = val && val.toLowerCase() === 'right';
   }
   get alignArt() {
     return this.alignArtRight ? 'right' : 'left';
   }
 
-  constructor(private cdRef: ChangeDetectorRef) { }
+  constructor(private cdRef: ChangeDetectorRef) {}
 
   ngAfterViewInit() {
     this.showIcon = this.isElementProvided(this.icon);
@@ -36,7 +35,9 @@ export class StatusBarLinkComponent implements AfterViewInit {
   }
 
   isElementProvided(elm: ElementRef) {
-    return elm.nativeElement && Array.from(elm.nativeElement.childNodes).filter((node: Node) => node.nodeName !== '#comment').length > 0;
+    return (
+      elm.nativeElement &&
+      Array.from(elm.nativeElement.childNodes).filter((node: Node) => node.nodeName !== '#comment').length > 0
+    );
   }
-
 }
