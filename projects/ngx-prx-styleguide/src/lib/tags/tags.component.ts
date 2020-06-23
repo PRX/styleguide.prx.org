@@ -43,7 +43,7 @@ export class TagsComponent implements OnChanges {
     // Convert new string values from direct input to NgOption.
     this.selectedTags = this.selectedTags.map(tag => isPlainObject(tag) ? tag : this.getTagForValue(tag));
     // Convert selected NgOptions to array of values.
-    this.selected = this.selectedTags.map(tag => tag.value);
+    this.selected = this.selectedTags.map(tag => tag.value || tag.name);
     // Emit current selected tags.
     this.change.emit(this._selected);
   }
