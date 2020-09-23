@@ -1,49 +1,36 @@
+import { of as observableOf, Observable, ReplaySubject } from 'rxjs';
 
-import {of as observableOf,  Observable ,  ReplaySubject } from 'rxjs';
-
-import {delay, map} from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-
-
 import { HalRemote, HalHttpError } from './halremote';
+import { AuthService } from '../../auth/auth.service';
 
 describe('HalRemote', () => {
-
   let mockHttp: HttpTestingController;
   let httpClient: HttpClient;
 
-  let remote: HalRemote, link: any, token: ReplaySubject<string>, fakeAuth: any;
+  let remote: HalRemote, link: any, auth: any;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule
-      ]
+      imports: [HttpClientTestingModule]
     });
     mockHttp = TestBed.get(HttpTestingController);
     httpClient = TestBed.get(HttpClient);
 
-    link = {href: '/foobar'};
-    token = new ReplaySubject<string>(1);
-    token.next('thetoken');
-    fakeAuth = {
-      token,
-      refreshToken: () => {
-        token.next('nexttoken');
-        return token;
-      }
-    };
-    remote = new HalRemote('http://thehost', httpClient, fakeAuth, 10);
+    link = { href: '/foobar' };
+    auth = new AuthService();
+    auth.setToken('thetoken');
+    remote = new HalRemote('http://thehost', httpClient, auth, 10);
     remote.clear();
   });
 
   describe('switchHost', () => {
-
     it('creates a new remote for new hosts in absolute links', () => {
       link.href = 'https://some.where.else/with/a/path.jpg';
-      let newRemote = remote.switchHost(link);
+      const newRemote = remote.switchHost(link);
       expect(newRemote).not.toEqual(remote);
       expect(newRemote.host).toEqual('https://some.where.else');
     });
@@ -60,11 +47,9 @@ describe('HalRemote', () => {
       newRemote = remote.switchHost(link);
       expect(newRemote).toEqual(remote);
     });
-
   });
 
   describe('expand', () => {
-
     it('returns the full url', () => {
       expect(remote.expand(link)).toEqual('http://thehost/foobar');
     });
@@ -77,14 +62,12 @@ describe('HalRemote', () => {
     it('interprets templated links', () => {
       link.href = '/link/{foo}{?bar}';
       link.templated = true;
-      let params = {bar: 'two', foo: 'one', test: 'three'};
+      const params = { bar: 'two', foo: 'one', test: 'three' };
       expect(remote.expand(link, params)).toEqual('http://thehost/link/one?bar=two');
     });
-
   });
 
   describe('get', () => {
-
     afterEach(() => {
       mockHttp.verify();
     });
@@ -92,7 +75,7 @@ describe('HalRemote', () => {
     it('expands templated links', () => {
       link.href = '/{foo}';
       link.templated = true;
-      remote.get(link, {foo: 'somewhere'}).subscribe(() => {});
+      remote.get(link, { foo: 'somewhere' }).subscribe(() => {});
       const req = mockHttp.expectOne(request => {
         return request.url === 'http://thehost/somewhere';
       });
@@ -103,8 +86,10 @@ describe('HalRemote', () => {
     it('sets the correct headers', () => {
       remote.get(link).subscribe(() => {});
       const req = mockHttp.expectOne(request => {
-        return request.headers.get('Accept') === 'application/hal+json' &&
-          request.headers.get('Authorization') === 'Bearer thetoken';
+        return (
+          request.headers.get('Accept') === 'application/hal+json' &&
+          request.headers.get('Authorization') === 'Bearer thetoken'
+        );
       });
       expect(req.request.method).toBe('GET');
       req.flush({});
@@ -121,7 +106,7 @@ describe('HalRemote', () => {
         return request.url.indexOf(link.href) > -1;
       });
       expect(cachedReq.request.method).toBe('GET');
-      cachedReq.flush({count: ++httpCount});
+      cachedReq.flush({ count: ++httpCount });
       expect(httpCount).toEqual(1);
 
       // check that we still have the same data cached
@@ -140,18 +125,23 @@ describe('HalRemote', () => {
         return request.url.indexOf(link.href) > -1;
       });
       expect(clearReq.request.method).toBe('GET');
-      clearReq.flush({count: ++httpCount});
+      clearReq.flush({ count: ++httpCount });
       expect(httpCount).toEqual(2);
     });
 
     it('caches in-flight observables', done => {
       let httpCount = 0;
       let completed = 0;
-      remote.get(link).pipe(map(data => {
-        return observableOf(data).pipe(delay(100));
-      })).subscribe(() => {
-        completed++;
-      });
+      remote
+        .get(link)
+        .pipe(
+          map(data => {
+            return observableOf(data).pipe(delay(100));
+          })
+        )
+        .subscribe(() => {
+          completed++;
+        });
       remote.get(link).subscribe(() => {
         completed++;
       });
@@ -166,7 +156,7 @@ describe('HalRemote', () => {
           return request.url.indexOf(link.href) > -1;
         });
         expect(req.request.method).toBe('GET');
-        req.flush({count: ++httpCount});
+        req.flush({ count: ++httpCount });
         expect(httpCount).toEqual(1);
         expect(completed).toEqual(3);
         done();
@@ -175,56 +165,65 @@ describe('HalRemote', () => {
 
     it('returns hal errors', () => {
       let caught: any;
-      remote.get(link).subscribe(() => {}, err => caught = err);
+      remote.get(link).subscribe(
+        () => {},
+        err => (caught = err)
+      );
 
       const req = mockHttp.expectOne(() => true);
-      req.flush('{"what":"ever"}', {status: 500, statusText: 'bad things'});
+      req.flush('{"what":"ever"}', { status: 500, statusText: 'bad things' });
 
-      expect(caught instanceof HalHttpError).toEqual(true)
+      expect(caught instanceof HalHttpError).toEqual(true);
       expect(caught.status).toEqual(500);
       expect(caught.message).toMatch('Got 500 from GET http://thehost/foobar');
-      expect(caught.body).toEqual({what: 'ever'});
+      expect(caught.body).toEqual({ what: 'ever' });
     });
-
   });
 
   describe('post', () => {
-
     afterEach(() => {
       mockHttp.verify();
     });
 
     it('sets the correct headers', () => {
-      remote.post(link, {}, {hello: 'world'}).subscribe(() => {});
+      remote.post(link, {}, { hello: 'world' }).subscribe(() => {});
       const req = mockHttp.expectOne(request => {
-        return request.body === '{"hello":"world"}' &&
+        return (
+          request.body === '{"hello":"world"}' &&
           request.headers.get('Accept') === 'application/hal+json' &&
           request.headers.get('Authorization') === 'Bearer thetoken' &&
-          request.headers.get('Content-Type') === 'application/hal+json';
+          request.headers.get('Content-Type') === 'application/hal+json'
+        );
       });
       expect(req.request.method).toBe('POST');
       req.flush({});
     });
-
   });
 
   describe('retries', () => {
+    it('retries 401s exactly once after getting a new token', () => {
+      let result: any;
+      remote.get(link).subscribe(r => (result = r));
 
-    it('retries 401s after getting a new token', () => {
-      jest.spyOn(fakeAuth, 'refreshToken');
-      remote.get(link).subscribe();
+      let refreshCount = 0;
+      auth.refresh.subscribe(() => refreshCount++);
 
-      let httpCount = 0;
-      const req = mockHttp.expectOne(request => request.headers.get('Authorization') === 'Bearer thetoken');
-      expect(req.request.method).toBe('GET');
-      req.flush({data: 'Unauthorized'}, {status: 401, statusText: 'Unauthorized'});
+      // 401 should trigger a refresh
+      mockHttp
+        .expectOne(req => req.headers.get('Authorization') === 'Bearer thetoken')
+        .flush({ data: 'Unauthorized' }, { status: 401, statusText: 'Unauthorized' });
+      expect(refreshCount).toEqual(1);
 
-      expect(fakeAuth.refreshToken).toHaveBeenCalledTimes(1);
-      token.subscribe(tkn => {
-        expect(tkn).toEqual('nexttoken');
-      });
+      // new token should trigger the request again - this time return 200
+      auth.setToken('nexttoken');
+      mockHttp
+        .expectOne(req => req.headers.get('Authorization') === 'Bearer nexttoken')
+        .flush({ something: 'response' });
+      expect(result).toEqual({ something: 'response' });
+
+      // yet another token should _not_ trigger this request again
+      auth.setToken('yetanothertoken');
+      mockHttp.expectNone(() => true);
     });
-
   });
-
 });
