@@ -1,12 +1,7 @@
+import { of as observableOf, throwError as observableThrowError, Observable } from 'rxjs';
 
-import {of as observableOf, throwError as observableThrowError,  Observable } from 'rxjs';
-
-import {map, first, mergeMap, catchError} from 'rxjs/operators';
+import { map, first, mergeMap, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-
-
-
-
 
 import { expand } from '../rfc6570-expand/expand';
 import { AuthService } from '../../auth/auth.service';
@@ -27,16 +22,10 @@ export class HalHttpError extends Error {
  * Http layer for HAL requests
  */
 export class HalRemote {
-
   cache: HalCache;
   rootTTL = 300;
 
-  constructor(
-    public host: string,
-    private http: HttpClient,
-    private auth?: AuthService,
-    private ttl?: number
-  ) {
+  constructor(public host: string, private http: HttpClient, private auth?: AuthService, private ttl?: number) {
     this.cache = new HalCache(this.host.replace(/\./g, '-'), ttl);
     if (!host.match(/^http/)) {
       this.host = host.match(/\.org|\.tech/) ? `https://${host}` : `http://${host}`;
@@ -105,53 +94,61 @@ export class HalRemote {
   }
 
   private getResponse(method: string, href: string, body?: string, allowRetry = true): Observable<{}> {
-    return this.httpOptions(href, body).pipe(mergeMap(opts => {
-      if (method === 'put') {
-        return this.http.put(href, body, opts);
-      } else if (method === 'post') {
-        return this.http.post(href, body, opts);
-      } else if (method === 'get') {
-        return this.http.get(href, opts);
-      } else if (method === 'delete') {
-        return this.http.delete(href, opts);
-      } else {
-        throw new Error(`Unknown method ${method}`);
-      }
-    }), catchError(err => {
-      if (err instanceof HttpErrorResponse) {
-        if (err.status === 401 && allowRetry && this.auth) {
-          return this.auth.refreshToken().pipe(mergeMap(() => this.httpRequest(method, href, body, false)));
-        } else if (err.status === 0) {
-          return observableThrowError(new Error(`CORS preflight failed for ${method.toUpperCase()} ${href}`));
+    return this.httpOptions(href, body).pipe(
+      mergeMap(opts => {
+        if (method === 'put') {
+          return this.http.put(href, body, opts);
+        } else if (method === 'post') {
+          return this.http.post(href, body, opts);
+        } else if (method === 'get') {
+          return this.http.get(href, opts);
+        } else if (method === 'delete') {
+          return this.http.delete(href, opts);
         } else {
-          const msg = `Got ${err.status} from ${method.toUpperCase()} ${href}`;
-
-          // attempt to json-decode error body
-          let errBody = err.error;
-          if (typeof(errBody) === 'string') {
-            try { errBody = JSON.parse(errBody); } catch (_err) {}
-          }
-
-          return observableThrowError(new HalHttpError(err.status, msg, errBody));
+          throw new Error(`Unknown method ${method}`);
         }
-      } else {
-        throw err;
-      }
-    }));
+      }),
+      catchError(err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401 && allowRetry && this.auth) {
+            return this.auth.refreshToken().pipe(mergeMap(() => this.httpRequest(method, href, body, false)));
+          } else if (err.status === 0) {
+            return observableThrowError(new Error(`CORS preflight failed for ${method.toUpperCase()} ${href}`));
+          } else {
+            const msg = `Got ${err.status} from ${method.toUpperCase()} ${href}`;
+
+            // attempt to json-decode error body
+            let errBody = err.error;
+            if (typeof errBody === 'string') {
+              try {
+                errBody = JSON.parse(errBody);
+              } catch (_err) {}
+            }
+
+            return observableThrowError(new HalHttpError(err.status, msg, errBody));
+          }
+        } else {
+          throw err;
+        }
+      })
+    );
   }
 
-  private httpOptions(href: string, body?: string): Observable<{headers: HttpHeaders}> {
-    return this.authTokenIfNeeded(href).pipe(first(), map(token => {
-      const headers = {};
-      headers['Accept'] = 'application/hal+json';
-      if (body) {
-        headers['Content-Type'] = 'application/hal+json';
-      }
-      if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
-      }
-      return {headers: new HttpHeaders(headers)};
-    }));
+  private httpOptions(href: string, body?: string): Observable<{ headers: HttpHeaders }> {
+    return this.authTokenIfNeeded(href).pipe(
+      first(),
+      map(token => {
+        const headers = {};
+        headers['Accept'] = 'application/hal+json';
+        if (body) {
+          headers['Content-Type'] = 'application/hal+json';
+        }
+        if (token) {
+          headers['Authorization'] = `Bearer ${token}`;
+        }
+        return { headers: new HttpHeaders(headers) };
+      })
+    );
   }
 
   private authTokenIfNeeded(href: string): Observable<string> {
@@ -166,5 +163,4 @@ export class HalRemote {
     const path = href.replace(/^http(s)?:\/\/[^\/]+\/?/, '');
     return path === '' || path === 'api/v1' || path === 'api/v1/';
   }
-
 }
