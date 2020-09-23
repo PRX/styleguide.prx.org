@@ -111,7 +111,10 @@ export class HalRemote {
       catchError(err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401 && allowRetry && this.auth) {
-            return this.auth.refreshToken().pipe(mergeMap(() => this.httpRequest(method, href, body, false)));
+            return this.auth.refreshToken().pipe(
+              first(),
+              mergeMap(() => this.httpRequest(method, href, body, false))
+            );
           } else if (err.status === 0) {
             return observableThrowError(new Error(`CORS preflight failed for ${method.toUpperCase()} ${href}`));
           } else {

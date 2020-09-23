@@ -6,12 +6,13 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { HalRemote, HalHttpError } from './halremote';
+import { AuthService } from '../../auth/auth.service';
 
 describe('HalRemote', () => {
   let mockHttp: HttpTestingController;
   let httpClient: HttpClient;
 
-  let remote: HalRemote, link: any, token: ReplaySubject<string>, fakeAuth: any;
+  let remote: HalRemote, link: any, auth: any;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule]
@@ -20,16 +21,9 @@ describe('HalRemote', () => {
     httpClient = TestBed.get(HttpClient);
 
     link = { href: '/foobar' };
-    token = new ReplaySubject<string>(1);
-    token.next('thetoken');
-    fakeAuth = {
-      token,
-      refreshToken: () => {
-        token.next('nexttoken');
-        return token;
-      }
-    };
-    remote = new HalRemote('http://thehost', httpClient, fakeAuth, 10);
+    auth = new AuthService();
+    auth.setToken('thetoken');
+    remote = new HalRemote('http://thehost', httpClient, auth, 10);
     remote.clear();
   });
 
@@ -207,19 +201,29 @@ describe('HalRemote', () => {
   });
 
   describe('retries', () => {
-    it('retries 401s after getting a new token', () => {
-      jest.spyOn(fakeAuth, 'refreshToken');
-      remote.get(link).subscribe();
+    it('retries 401s exactly once after getting a new token', () => {
+      let result: any;
+      remote.get(link).subscribe(r => (result = r));
 
-      const httpCount = 0;
-      const req = mockHttp.expectOne(request => request.headers.get('Authorization') === 'Bearer thetoken');
-      expect(req.request.method).toBe('GET');
-      req.flush({ data: 'Unauthorized' }, { status: 401, statusText: 'Unauthorized' });
+      let refreshCount = 0;
+      auth.refresh.subscribe(() => refreshCount++);
 
-      expect(fakeAuth.refreshToken).toHaveBeenCalledTimes(1);
-      token.subscribe(tkn => {
-        expect(tkn).toEqual('nexttoken');
-      });
+      // 401 should trigger a refresh
+      mockHttp
+        .expectOne(req => req.headers.get('Authorization') === 'Bearer thetoken')
+        .flush({ data: 'Unauthorized' }, { status: 401, statusText: 'Unauthorized' });
+      expect(refreshCount).toEqual(1);
+
+      // new token should trigger the request again - this time return 200
+      auth.setToken('nexttoken');
+      mockHttp
+        .expectOne(req => req.headers.get('Authorization') === 'Bearer nexttoken')
+        .flush({ something: 'response' });
+      expect(result).toEqual({ something: 'response' });
+
+      // yet another token should _not_ trigger this request again
+      auth.setToken('yetanothertoken');
+      mockHttp.expectNone(() => true);
     });
   });
 });
