@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/ngx-prx-styleguide-demo",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -36,6 +37,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -145,7 +152,12 @@
             "tsConfig": "projects/ngx-prx-styleguide/tsconfig.lib.json",
             "project": "projects/ngx-prx-styleguide/ng-package.json"
           }
-        },
+        ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-prx-styleguide/tsconfig.lib.prod.json"
+            }
+          }
+},
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -177,6 +189,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/ngx-prx-styleguide-storybook",
             "index": "projects/ngx-prx-styleguide-storybook/src/index.html",
             "main": "projects/ngx-prx-styleguide-storybook/src/main.ts",
@@ -221,6 +234,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
