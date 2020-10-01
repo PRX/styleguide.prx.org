@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StatusBarTextComponent } from './status-bar-text/status-bar-text.component';
-import { StatusBarComponent } from './status-bar.component';
-import { StatusBarLinkComponent } from './status-bar-link/status-bar-link.component';
-import { StatusBarIconComponent } from './status-bar-icon/status-bar-icon.component';
-import { StatusBarImageComponent } from './status-bar-image/status-bar-image.component';
+import * as moduleExports from './';
 import { IconModule } from '../icon/icon.module';
 import { ImageModule } from '../image/image.module';
 
 @NgModule({
-  declarations: [StatusBarTextComponent, StatusBarComponent, StatusBarLinkComponent, StatusBarIconComponent, StatusBarImageComponent],
-  imports: [
-    CommonModule,
-    IconModule,
-    ImageModule
+  declarations: [
+    moduleExports.StatusBarTextComponent,
+    moduleExports.StatusBarComponent,
+    moduleExports.StatusBarLinkComponent,
+    moduleExports.StatusBarIconComponent,
+    moduleExports.StatusBarImageComponent
   ],
-  exports: [StatusBarTextComponent, StatusBarComponent, StatusBarLinkComponent, StatusBarIconComponent, StatusBarImageComponent]
+  imports: [CommonModule, IconModule, ImageModule],
+  exports: [
+    moduleExports.StatusBarTextComponent,
+    moduleExports.StatusBarComponent,
+    moduleExports.StatusBarLinkComponent,
+    moduleExports.StatusBarIconComponent,
+    moduleExports.StatusBarImageComponent
+  ]
 })
-export class StatusBarModule { }
+export class StatusBarModule {}

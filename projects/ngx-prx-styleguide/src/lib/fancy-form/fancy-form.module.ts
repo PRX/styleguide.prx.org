@@ -7,42 +7,28 @@ import { ModalModule } from '../modal/modal.module';
 import { SelectModule } from '../select/select.module';
 import { SpinnerModule } from '../spinner/spinner.module';
 
-import { AdvancedConfirmDirective } from './advanced-confirm.directive';
-import { ButtonComponent } from './button.component';
-import { CapitalizePipe } from './capitalize.pipe';
-import { CheckboxComponent } from './checkbox.component';
-import { FancyDurationComponent } from './fancy-duration.component';
-import { FancyFieldComponent } from './fancy-field.component';
-import { PadZeroPipe } from './padzero.pipe';
+import * as moduleExports from './';
 
 @NgModule({
   declarations: [
-    AdvancedConfirmDirective,
-    ButtonComponent,
-    CapitalizePipe,
-    CheckboxComponent,
-    FancyDurationComponent,
-    FancyFieldComponent,
-    PadZeroPipe
+    moduleExports.AdvancedConfirmDirective,
+    moduleExports.ButtonComponent,
+    moduleExports.CapitalizePipe,
+    moduleExports.CheckboxComponent,
+    moduleExports.FancyDurationComponent,
+    moduleExports.FancyFieldComponent,
+    moduleExports.PadZeroPipe
   ],
   exports: [
-    AdvancedConfirmDirective,
-    ButtonComponent,
-    CapitalizePipe,
-    CheckboxComponent,
-    FancyDurationComponent,
-    FancyFieldComponent,
-    PadZeroPipe
+    moduleExports.AdvancedConfirmDirective,
+    moduleExports.ButtonComponent,
+    moduleExports.CapitalizePipe,
+    moduleExports.CheckboxComponent,
+    moduleExports.FancyDurationComponent,
+    moduleExports.FancyFieldComponent,
+    moduleExports.PadZeroPipe
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    ModalModule,
-    SelectModule,
-    SpinnerModule
-  ],
+  imports: [CommonModule, FormsModule, RouterModule, ModalModule, SelectModule, SpinnerModule],
   providers: []
 })
-
-export class FancyFormModule { }
+export class FancyFormModule {}
