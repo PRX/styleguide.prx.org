@@ -55,7 +55,6 @@
     "moment-timezone": "^0.5.23",
     "ng-inline-svg": "^8.3.0",
     "ng2-dragula": "^1.5.0",
-    "ngx-tooltip": "0.0.9",
     "pikaday": "^1.8.0",
     "rxjs": "~6.5.5",
     "scss-bundle": "~2.4.0",
