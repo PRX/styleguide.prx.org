@@ -6,8 +6,8 @@ import { HalService } from '../hal/hal.service';
 import { MockHalService } from '../hal/mock/mock-hal.service';
 import { By } from '@angular/platform-browser';
 
-@Pipe({name: 'capitalize'})
-class DurationStubPipe implements PipeTransform {
+@Pipe({ name: 'capitalize' })
+class CapitilizeStubPipe implements PipeTransform {
   transform(val: any): any {
     return `${val}`;
   }
@@ -15,27 +15,21 @@ class DurationStubPipe implements PipeTransform {
 
 let mockHal: MockHalService;
 describe('UploadComponent', () => {
-
-  let fix: ComponentFixture<UploadComponent>,
-      el: DebugElement,
-      comp: any;
+  let fix: ComponentFixture<UploadComponent>, el: DebugElement, comp: any;
 
   beforeEach(async(() => {
-
     TestBed.configureTestingModule({
       imports: [FormsModule],
-      providers: [
-        {provide: HalService, useValue: mockHal}
-      ],
-      declarations: [UploadComponent, DurationStubPipe],
+      providers: [{ provide: HalService, useValue: mockHal }],
+      declarations: [UploadComponent, CapitilizeStubPipe],
       schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents()
-    .then(() => {
-      fix = TestBed.createComponent(UploadComponent);
-      el = fix.debugElement;
-      comp = el.componentInstance;
-    });
+      .compileComponents()
+      .then(() => {
+        fix = TestBed.createComponent(UploadComponent);
+        el = fix.debugElement;
+        comp = el.componentInstance;
+      });
   }));
 
   const mockVersion = (data: any = {}): any => {
@@ -55,36 +49,44 @@ describe('UploadComponent', () => {
 
   // fixture, fixture.debugElement, fixture.debugElement.componentInstance
   it('renders a default description', () => {
-    comp.version = mockVersion({label: 'My Label'});
+    comp.version = mockVersion({ label: 'My Label' });
     fix.detectChanges();
     expect(el.query(By.css('header strong')).nativeElement.textContent.trim()).toBe('My Label');
-    expect(el.query(By.css('header span')).nativeElement.textContent.trim()).toBe(comp.DESCRIPTIONS[comp.DESCRIPTIONS.length - 1].desc);
+    expect(el.query(By.css('header span')).nativeElement.textContent.trim()).toBe(
+      comp.DESCRIPTIONS[comp.DESCRIPTIONS.length - 1].desc
+    );
   });
 
   it('bases descriptions on the version label', () => {
-    comp.version = mockVersion({label: 'Some Promos or Something'});
+    comp.version = mockVersion({ label: 'Some Promos or Something' });
     expect(comp.versionDescription()).toMatch(/promotional version/i);
-    comp.version = mockVersion({label: 'Video episode for my podcast'});
+    comp.version = mockVersion({ label: 'Video episode for my podcast' });
     expect(comp.versionDescription()).toMatch(/the video file/i);
   });
 
   it('lists templated uploads', () => {
-    let fts = [{file: true, tpl: true}, {file: true, tpl: true}];
-    comp.version = mockVersion({filesAndTemplates: fts});
+    let fts = [
+      { file: true, tpl: true },
+      { file: true, tpl: true }
+    ];
+    comp.version = mockVersion({ filesAndTemplates: fts });
     fix.detectChanges();
     expect(el.queryAll(By.css('prx-templated-upload')).length).toEqual(2);
   });
 
   it('lists extra/illegal templated uploads', () => {
-    let fts = [{file: true, tpl: true}, {file: true, tpl: false}];
-    comp.version = mockVersion({filesAndTemplates: fts});
+    let fts = [
+      { file: true, tpl: true },
+      { file: true, tpl: false }
+    ];
+    comp.version = mockVersion({ filesAndTemplates: fts });
     fix.detectChanges();
     expect(el.queryAll(By.css('prx-templated-upload')).length).toEqual(1);
     expect(el.queryAll(By.css('prx-illegal-upload')).length).toEqual(1);
   });
 
   it('lists free uploads', () => {
-    comp.version = mockVersion({files: [{}, {}, {}]});
+    comp.version = mockVersion({ files: [{}, {}, {}] });
     fix.detectChanges();
     expect(el.queryAll(By.css('prx-free-upload')).length).toEqual(3);
   });
@@ -92,7 +94,7 @@ describe('UploadComponent', () => {
   it('shows invalid state and message', () => {
     comp.version = mockVersion({
       changed: () => true,
-      invalid: (fld) => fld === 'self' && 'Something something something'
+      invalid: fld => fld === 'self' && 'Something something something'
     });
     fix.detectChanges();
     expect(el.nativeElement.className).toContain('invalid');
@@ -104,7 +106,7 @@ describe('UploadComponent', () => {
     let invalid = 'Local invalid';
     comp.version = mockVersion({
       changed: () => isChanged,
-      invalid: (fld) => fld === 'self' && invalid,
+      invalid: fld => fld === 'self' && invalid,
       status: 'invalid',
       statusMessage: 'Remote invalid'
     });
