@@ -3,38 +3,35 @@ import { AudioInputComponent } from './audio-input.component';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { DebugElement } from '@angular/core';
-import { UploadService } from '../service';
+import { UploadService } from '../service/upload.service';
 import { PlayerService } from '../../audio';
 import { By } from '@angular/platform-browser';
 
 describe('AudioInputComponent', () => {
-
-  let fix: ComponentFixture<AudioInputComponent>,
-      el: DebugElement,
-      comp: any;
+  let fix: ComponentFixture<AudioInputComponent>, el: DebugElement, comp: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        {provide: UploadService, useValue: {add: () => observableOf(null)}},
-        {provide: PlayerService, useValue: {checkFile: () => observableOf({})}}
+        { provide: UploadService, useValue: { add: () => observableOf(null) } },
+        { provide: PlayerService, useValue: { checkFile: () => observableOf({}) } }
       ],
       declarations: [AudioInputComponent],
       schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents()
-    .then(() => {
-      fix = TestBed.createComponent(AudioInputComponent);
-      el = fix.debugElement;
-      comp = el.componentInstance;
-    });
+      .compileComponents()
+      .then(() => {
+        fix = TestBed.createComponent(AudioInputComponent);
+        el = fix.debugElement;
+        comp = el.componentInstance;
+      });
   }));
 
   const makeVersion = () => {
     let version = {
       file: null,
       addUpload: () => {
-        version.file = {set: (k, v) => version.file[k] = v};
+        version.file = { set: (k, v) => (version.file[k] = v) };
         return version.file;
       }
     };
@@ -47,30 +44,30 @@ describe('AudioInputComponent', () => {
       comp.version = makeVersion();
       durationSpy = jest.spyOn(comp.player, 'checkFile');
     }
-    let data = {format: 'fm', duration: milliseconds, bitrate: 'br', frequency: 'fr'};
+    let data = { format: 'fm', duration: milliseconds, bitrate: 'br', frequency: 'fr' };
     durationSpy.mockImplementation(() => observableOf(data));
-    comp.addFile(<any> 'some-file');
+    comp.addFile(<any>'some-file');
     return comp.version.file.duration;
   };
 
   it('checks uploaded files', () => {
-    jest.spyOn(comp.player, 'checkFile').mockImplementation(() => ({subscribe: () => null}));
-    comp.addFile(<any> 'some-file');
+    jest.spyOn(comp.player, 'checkFile').mockImplementation(() => ({ subscribe: () => null }));
+    comp.addFile(<any>'some-file');
     expect(comp.player.checkFile).toHaveBeenCalledWith('some-file');
   });
 
   it('uploads files', () => {
     comp.version = makeVersion();
     jest.spyOn(comp.uploadService, 'add');
-    comp.addFile(<any> 'some-file');
+    comp.addFile(<any>'some-file');
     expect(comp.uploadService.add).toHaveBeenCalledWith('some-file');
   });
 
   it('sets audio file fields', () => {
     comp.version = makeVersion();
-    let data = {format: 'fm', duration: 5501, bitrate: 'br', frequency: 'fr'};
+    let data = { format: 'fm', duration: 5501, bitrate: 'br', frequency: 'fr' };
     jest.spyOn(comp.player, 'checkFile').mockImplementation(() => observableOf(data));
-    comp.addFile(<any> 'some-file');
+    comp.addFile(<any>'some-file');
     expect(comp.version.file.format).toEqual('fm');
     expect(comp.version.file.duration).toEqual(6);
     expect(comp.version.file.bitrate).toEqual('br');
