@@ -21,7 +21,7 @@ describe('FreeReorderDirective', () => {
       providers: [
         {
           provide: DragulaService,
-          useValue: { find: () => null, add: () => null, createGroup: () => null, dropModel: dropped }
+          useValue: { find: () => null, add: () => null, createGroup: () => null, dropModel: () => dropped }
         }
       ],
       declarations: [MiniComponent, FreeReorderDirective],
