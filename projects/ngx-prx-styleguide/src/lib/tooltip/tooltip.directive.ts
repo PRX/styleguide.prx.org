@@ -10,7 +10,7 @@ import {
 import { TooltipContentComponent } from './tooltip-content.component';
 
 @Directive({
-  selector: '[tooltip]'
+  selector: '[prxTooltip]'
 })
 export class TooltipDirective {
   private tooltip: ComponentRef<TooltipContentComponent>;
@@ -18,7 +18,7 @@ export class TooltipDirective {
 
   constructor(private viewContainerRef: ViewContainerRef, private resolver: ComponentFactoryResolver) {}
 
-  @Input('tooltip')
+  @Input('prxTooltip')
   content: string;
 
   @Input()
