@@ -13,35 +13,33 @@ class MiniComponent {
 }
 
 describe('FreeReorderDirective', () => {
-
-  let fix: ComponentFixture<MiniComponent>,
-      el: DebugElement,
-      comp: any;
+  let fix: ComponentFixture<MiniComponent>, el: DebugElement, comp: any;
   let dropped = new Subject<any>();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [{
-        provide: DragulaService,
-        useValue: { find: () => null, add: () => null, setOptions: () => null, dropModel: dropped }
-      }],
+      providers: [
+        {
+          provide: DragulaService,
+          useValue: { find: () => null, add: () => null, createGroup: () => null, dropModel: dropped }
+        }
+      ],
       declarations: [MiniComponent, FreeReorderDirective],
       schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents()
-    .then(() => {
-      fix = TestBed.createComponent(MiniComponent);
-      el = fix.debugElement;
-      comp = el.componentInstance;
-    });
+      .compileComponents()
+      .then(() => {
+        fix = TestBed.createComponent(MiniComponent);
+        el = fix.debugElement;
+        comp = el.componentInstance;
+      });
   }));
 
   it('triggers reordering', () => {
     let reassigned = false;
-    comp.version = {reassign: () => reassigned = true};
+    comp.version = { reassign: () => (reassigned = true) };
     fix.detectChanges();
     dropped.next({});
     expect(reassigned).toEqual(true);
   });
-
 });
