@@ -1,7 +1,7 @@
 import { Component, Input, AfterViewInit, ElementRef, ChangeDetectorRef } from '@angular/core';
 
 @Component({
-  selector: 'tooltip-content',
+  selector: 'prx-tooltip-content',
   template: `
     <div
       class="tooltip {{ placement }}"
