@@ -68,7 +68,7 @@ describe('TagsComponent', () => {
     fix.detectChanges();
     const selected = de.query(By.css('.quick_tags-tag.selected'));
     expect(selected).not.toBeNull();
-    expect(selected.nativeNode.textContent).toBe('hello');
+    expect(selected.nativeNode.textContent).toContain('hello');
   });
 
   it('should toggle selected quick tag value on click', () => {
