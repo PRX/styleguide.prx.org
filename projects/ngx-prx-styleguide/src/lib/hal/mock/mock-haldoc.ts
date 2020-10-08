@@ -124,7 +124,7 @@ export class MockHalDoc extends HalDoc {
   }
 
   follow(rel: string, params: {} = null): HalObservable<MockHalDoc> {
-    return new Observable((obs: Observer<any>) => {
+    return Observable.create((obs: Observer<any>) => {
       if (this.ERRORS[rel]) {
         obs.error(this.ERRORS[rel]);
       } else if (this.MOCKS[rel] && this.MOCKS[rel] instanceof Array) {
@@ -139,7 +139,7 @@ export class MockHalDoc extends HalDoc {
   }
 
   followList(rel: string, params: {} = null): HalObservable<MockHalDoc[]> {
-    return new Observable((obs: Observer<any>) => {
+    return Observable.create((obs: Observer<any>) => {
       if (this.ERRORS[rel]) {
         obs.error(this.ERRORS[rel]);
       } else if (this.MOCKS[rel] && this.MOCKS[rel] instanceof Array) {
