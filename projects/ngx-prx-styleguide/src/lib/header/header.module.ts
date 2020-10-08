@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import * as moduleExports from './';
+import { HeaderComponent } from './header.component';
+import { NavItemComponent } from './navitem.component';
+import { NavUserComponent } from './navuser.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [moduleExports.HeaderComponent, moduleExports.NavItemComponent, moduleExports.NavUserComponent],
-  exports: [moduleExports.HeaderComponent, moduleExports.NavItemComponent, moduleExports.NavUserComponent]
+  declarations: [HeaderComponent, NavItemComponent, NavUserComponent],
+  providers: [],
+  exports: [HeaderComponent, NavItemComponent, NavUserComponent]
 })
 export class HeaderModule {}

@@ -1,12 +1,11 @@
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { UploadableModel } from './upload';
 import { REQUIRED, LENGTH, FILE_TEMPLATED } from './invalid';
 import { HalDoc } from '../../hal/doc/haldoc';
-import { Upload } from '../service';
+import { Upload } from '../service/upload.service';
 
 export class AudioFileModel extends UploadableModel {
-
   public id: number;
   public label: string;
   public position: number;
@@ -81,9 +80,13 @@ export class AudioFileModel extends UploadableModel {
     this.duration = this.doc['duration'];
     this.position = this.doc['position'];
     this.bitrate = this.doc['bitRate'];
-    if (this.bitrate) { this.bitrate = this.bitrate * 1000; }
+    if (this.bitrate) {
+      this.bitrate = this.bitrate * 1000;
+    }
     this.frequency = parseFloat(this.doc['frequency']) || undefined;
-    if (this.frequency) { this.frequency = this.frequency * 1000; }
+    if (this.frequency) {
+      this.frequency = this.frequency * 1000;
+    }
     this.channelmode = this.doc['channelMode'];
     this.contenttype = this.doc['contentType'];
     this.layer = this.doc['layer'];
@@ -99,11 +102,12 @@ export class AudioFileModel extends UploadableModel {
   }
 
   saveNew(data: {}): Observable<HalDoc> {
-    return this.parent.create('prx:audio', {}, data).pipe(map(doc => {
-      this.setState();
-      this.watchProcess();
-      return doc;
-    }));
+    return this.parent.create('prx:audio', {}, data).pipe(
+      map(doc => {
+        this.setState();
+        this.watchProcess();
+        return doc;
+      })
+    );
   }
-
 }

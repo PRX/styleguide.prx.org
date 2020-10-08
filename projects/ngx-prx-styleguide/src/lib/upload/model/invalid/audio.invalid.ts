@@ -2,7 +2,7 @@ import { AudioFileModel } from '../audio-file.model';
 import { AudioVersionModel } from '../audio-version.model';
 import { BaseInvalid } from '../../../model/base.invalid';
 import { HalDoc } from '../../../hal/doc/haldoc';
-import { DurationPipe } from '../../file';
+import { DurationPipe } from '../../file/duration.pipe';
 
 const durationPipe = new DurationPipe();
 
@@ -21,7 +21,6 @@ export const VERSION_TEMPLATED = (template?: HalDoc): BaseInvalid => {
 
     // prevent publishing unless strict checks pass
     if (strict) {
-
       // segment count
       if (template && template.count('prx:audio-file-templates')) {
         const segments = template.count('prx:audio-file-templates');
@@ -49,7 +48,7 @@ export const VERSION_TEMPLATED = (template?: HalDoc): BaseInvalid => {
 
       // file formats must match
       const nonMatches = [];
-      const labels = {contenttype: 'content type', channelmode: 'channels'};
+      const labels = { contenttype: 'content type', channelmode: 'channels' };
       ['contenttype', 'layer', 'frequency', 'bitrate', 'channelmode'].forEach(fld => {
         let vals = undeleted.map(f => f[fld]).filter(val => val);
         vals = vals.filter((val, idx) => vals.indexOf(val) === idx);
@@ -60,7 +59,6 @@ export const VERSION_TEMPLATED = (template?: HalDoc): BaseInvalid => {
       if (nonMatches.length) {
         return `Non-matching audio files (${nonMatches.join(' / ')})`;
       }
-
     }
 
     return null;
@@ -72,13 +70,19 @@ export const VERSION_TEMPLATED = (template?: HalDoc): BaseInvalid => {
  */
 export const FILE_TEMPLATED = (versionTemplate?: HalDoc, template?: HalDoc): BaseInvalid => {
   return (key: string, file: AudioFileModel) => {
-
     // loosely match content type
     if (versionTemplate && versionTemplate['contentType']) {
       // also allows 'mpeg': some files dont have metadata to be aurora validated and are tripped up from our native audio validation
-      if (versionTemplate['contentType'] === 'audio/mpeg' && file.format && !(file.format === 'mp3' || file.format === 'mpeg')) {
+      if (
+        versionTemplate['contentType'] === 'audio/mpeg' &&
+        file.format &&
+        !(file.format === 'mp3' || file.format === 'mpeg')
+      ) {
         return 'not an mp3 file';
-      } else if (versionTemplate['contentType'].match(/audio/) && (file.duration === null || file.duration === undefined)) {
+      } else if (
+        versionTemplate['contentType'].match(/audio/) &&
+        (file.duration === null || file.duration === undefined)
+      ) {
         return 'not an audio file';
       } else if (versionTemplate['contentType'].match(/video/)) {
         // just bypass for now
