@@ -103,7 +103,7 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
     // optionally load-and-assign file templates
     if (this.hasFileTemplates) {
       const tpls = this.template.followItems('prx:audio-file-templates');
-      files = observableForkJoin(files, tpls).pipe(
+      files = observableForkJoin([files, tpls]).pipe(
         map(([models, tdocs]) => {
           this.fileTemplates = tdocs.sort(fileSort);
           return models;

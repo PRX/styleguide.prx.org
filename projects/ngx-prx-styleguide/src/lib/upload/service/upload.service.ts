@@ -25,7 +25,7 @@ export class Upload {
     public file: File,
     public contentType: string,
     private evaporate: Evaporate,
-    {bucketFolder, bucketName}: {bucketFolder: string, bucketName: string}
+    { bucketFolder, bucketName }: { bucketFolder: string; bucketName: string }
   ) {
     this.bucketFolder = bucketFolder;
     this.bucketName = bucketName;
@@ -62,14 +62,18 @@ export class Upload {
       }
     };
 
-    const progressObservable: Observable<number> = Observable.create((sub: Subscriber<number>) => {
+    const progressObservable: Observable<number> = new Observable((sub: Subscriber<number>) => {
       sub.next(0);
       uploadOptions['progress'] = (pct: number) => sub.next(pct);
-      uploadOptions['complete'] = () => { sub.next(1.0); this.complete = true; sub.complete(); };
-      uploadOptions['error']    = (msg: string) => sub.error(msg);
+      uploadOptions['complete'] = () => {
+        sub.next(1.0);
+        this.complete = true;
+        sub.complete();
+      };
+      uploadOptions['error'] = (msg: string) => sub.error(msg);
       this.evaporate.add(uploadOptions).catch(err => {
         if (err.indexOf('User aborted') === -1) {
-          throw(err);
+          throw err;
         }
       });
     });
@@ -84,15 +88,12 @@ export class Upload {
     let res = this.name;
     res = res.normalize ? res.normalize('NFD') : res;
 
-    return res
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9\.]+/gi, '_');
+    return res.replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9\.]+/gi, '_');
   }
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class UploadService {
-
   public uploads: Upload[] = [];
 
   private evaporate: Observable<Evaporate>;
@@ -102,12 +103,21 @@ export class UploadService {
   private signUrl: string;
   private awsKey: string;
 
-  constructor(private mimeTypeService: MimeTypeService) { }
+  constructor(private mimeTypeService: MimeTypeService) {}
 
-  createWithConfig(
-    {bucketName, bucketFolder, bucketAccel, signUrl, awsKey}:
-    {bucketName: string, bucketFolder: string, bucketAccel: boolean, signUrl: string, awsKey: string}
-  ) {
+  createWithConfig({
+    bucketName,
+    bucketFolder,
+    bucketAccel,
+    signUrl,
+    awsKey
+  }: {
+    bucketName: string;
+    bucketFolder: string;
+    bucketAccel: boolean;
+    signUrl: string;
+    awsKey: string;
+  }) {
     this.bucketName = bucketName;
     this.bucketFolder = bucketFolder;
     this.bucketAccel = bucketAccel;
@@ -129,18 +139,23 @@ export class UploadService {
         awsSignatureVersion: '4',
         computeContentMd5: true,
         cryptoMd5Method: data => btoa(sparkMD5.ArrayBuffer.hash(data, true)),
-        cryptoHexEncodedHash256: sha256,
+        cryptoHexEncodedHash256: sha256
       }).then(evaporate => evaporate)
     );
   }
 
   add(file: File, contentType?: string): Observable<Upload> {
-    return this.evaporate.pipe(map(evaporate => {
-      const ct = contentType || this.mimeTypeService.lookupFileMimetype(file).full();
-      const upload = new Upload(file, ct, evaporate, {bucketFolder: this.bucketFolder, bucketName: this.bucketName});
-      this.uploads.push(upload);
-      return upload;
-    }));
+    return this.evaporate.pipe(
+      map(evaporate => {
+        const ct = contentType || this.mimeTypeService.lookupFileMimetype(file).full();
+        const upload = new Upload(file, ct, evaporate, {
+          bucketFolder: this.bucketFolder,
+          bucketName: this.bucketName
+        });
+        this.uploads.push(upload);
+        return upload;
+      })
+    );
   }
 
   find(uuid: string): Upload {
