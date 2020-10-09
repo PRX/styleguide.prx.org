@@ -1,6 +1,6 @@
 {
   "name": "ngx-prx-styleguide",
-  "version": "3.0.3",
+  "version": "4.0.0",
   "description": "PRX Angular style guide library",
   "keywords": [
     "PRX",
@@ -26,12 +26,12 @@
     "ng": "ng",
     "start": "npm run storybook",
     "demo": "npm run build:lib && ng serve ngx-prx-styleguide-demo",
-    "build": "ng build",
+    "build": "ng build --prod=true",
     "test": "jest",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:lib": "npm run build ngx-prx-styleguide && npm run build:lib:assets",
-    "build:lib:watch": "ng build ngx-prx-styleguide --watch",
+    "build:lib:watch": "ng build ngx-prx-styleguide --prod=true --watch",
     "postbuild:lib:watch": "node ./bin/buildwatch.js",
     "build:lib:assets": "./bin/buildassets.sh",
     "version": "node ./bin/readver.js | ./bin/newver.sh",
