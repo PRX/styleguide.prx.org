@@ -34,15 +34,7 @@ import { PadZeroPipe } from './padzero.pipe';
     FancyFieldComponent,
     PadZeroPipe
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    ModalModule,
-    SelectModule,
-    SpinnerModule
-  ],
+  imports: [CommonModule, FormsModule, RouterModule, ModalModule, SelectModule, SpinnerModule],
   providers: []
 })
-
-export class FancyFormModule { }
+export class FancyFormModule {}

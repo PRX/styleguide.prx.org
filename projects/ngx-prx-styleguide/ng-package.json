@@ -5,8 +5,16 @@
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
       "c3": "C3",
+      "evaporate": "evaporate",
+      "js-sha256": "jsSha256",
       "pikaday": "Pikaday",
-      "moment": "Moment"
+      "moment": "Moment",
+      "moment-timezone": "momentNs",
+      "ng2-dragula": "ng2Dragula",
+      "ng-inline-svg": "ngInlineSvg",
+      "@ng-select/ng-select": "ngSelect",
+      "spark-md5": "sparkMd5",
+      "stickyfilljs": "stickyfilljs"
     }
   },
   "whitelistedNonPeerDependencies": [
@@ -14,7 +22,6 @@
     "moment-timezone",
     "pikaday",
     "@ng-select/ng-select",
-    "ngx-tooltip",
     "stickyfilljs",
     "ng-inline-svg",
     "evaporate",

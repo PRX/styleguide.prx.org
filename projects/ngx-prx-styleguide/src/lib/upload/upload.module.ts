@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { DragulaModule } from 'ng2-dragula/ng2-dragula';
+import { DragulaModule } from 'ng2-dragula';
 
 import { FreeReorderDirective } from './free/free-reorder.directive';
 import { FreeUploadComponent } from './free/free-upload.component';

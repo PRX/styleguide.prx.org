@@ -5,28 +5,25 @@ import { Component, DebugElement } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { TooltipModule } from 'ngx-tooltip';
+import { TooltipModule } from '../tooltip/tooltip.module';
 import { TagsComponent } from './tags.component';
 
 @Component({
   selector: 'test-component',
   template: `
-    <prx-tags
-      [selected]="testSelected"
-      [options]="testOptions"
-      (change)="setTestOutput($event)">
-    </prx-tags>
+    <prx-tags [selected]="testSelected" [options]="testOptions" (change)="setTestOutput($event)"> </prx-tags>
   `
 })
 class TestComponent {
   testSelected: any = [];
   testOptions: any[] = [];
   testOutput: any = undefined;
-  setTestOutput(val: any) { this.testOutput = val; }
+  setTestOutput(val: any) {
+    this.testOutput = val;
+  }
 }
 
 describe('TagsComponent', () => {
-
   let comp: TestComponent;
   let fix: ComponentFixture<TestComponent>;
   let de: DebugElement;
@@ -35,20 +32,17 @@ describe('TagsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        CommonModule,
-        FormsModule,
-        NgSelectModule,
-        TooltipModule
-      ],
+      imports: [CommonModule, FormsModule, NgSelectModule, TooltipModule],
       declarations: [TestComponent, TagsComponent]
-    }).compileComponents().then(() => {
-      fix = TestBed.createComponent(TestComponent);
-      comp = fix.componentInstance;
-      de = fix.debugElement;
-      el = de.nativeElement;
-      tags = de.query(By.directive(TagsComponent)).componentInstance;
-    });
+    })
+      .compileComponents()
+      .then(() => {
+        fix = TestBed.createComponent(TestComponent);
+        comp = fix.componentInstance;
+        de = fix.debugElement;
+        el = de.nativeElement;
+        tags = de.query(By.directive(TagsComponent)).componentInstance;
+      });
   }));
 
   it('defaults to no quick tags', () => {
@@ -74,7 +68,7 @@ describe('TagsComponent', () => {
     fix.detectChanges();
     const selected = de.query(By.css('.quick_tags-tag.selected'));
     expect(selected).not.toBeNull();
-    expect(selected.nativeNode.textContent).toBe('hello');
+    expect(selected.nativeNode.textContent).toContain('hello');
   });
 
   it('should toggle selected quick tag value on click', () => {
@@ -96,9 +90,9 @@ describe('TagsComponent', () => {
     comp.testOptions = ['hello', 'there', 'world'];
     fix.detectChanges();
     expect(tags.quickTags).toEqual([
-      {name: 'hello', value: 'hello'},
-      {name: 'there', value: 'there'},
-      {name: 'world', value: 'world'}
+      { name: 'hello', value: 'hello' },
+      { name: 'there', value: 'there' },
+      { name: 'world', value: 'world' }
     ]);
   });
 
@@ -106,19 +100,19 @@ describe('TagsComponent', () => {
     comp.testOptions = [['hello', 'hi'], 'there', ['world', 'earth']];
     fix.detectChanges();
     expect(tags.quickTags).toEqual([
-      {name: 'hello', value: 'hi'},
-      {name: 'there', value: 'there'},
-      {name: 'world', value: 'earth'}
+      { name: 'hello', value: 'hi' },
+      { name: 'there', value: 'there' },
+      { name: 'world', value: 'earth' }
     ]);
   });
 
   it('preserves object options', () => {
-    comp.testOptions = [{name: 'foo', value: 'bar', tooltip: 'tooltip'}, 'there', ['world', 'earth']];
+    comp.testOptions = [{ name: 'foo', value: 'bar', tooltip: 'tooltip' }, 'there', ['world', 'earth']];
     fix.detectChanges();
     expect(tags.quickTags).toEqual([
-      {name: 'foo', value: 'bar', tooltip: 'tooltip'},
-      {name: 'there', value: 'there'},
-      {name: 'world', value: 'earth'}
+      { name: 'foo', value: 'bar', tooltip: 'tooltip' },
+      { name: 'there', value: 'there' },
+      { name: 'world', value: 'earth' }
     ]);
   });
 });

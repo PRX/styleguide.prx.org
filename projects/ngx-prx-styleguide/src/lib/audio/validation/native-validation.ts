@@ -1,8 +1,7 @@
-import { Observable ,  Subscriber } from 'rxjs';
+import { Observable, Subscriber } from 'rxjs';
 import { ValidationMetadata, AudioValidation } from './validation';
 
 export class NativeValidation implements AudioValidation {
-
   private fileName: string;
   private fileSrc: string;
   private element: HTMLAudioElement;
@@ -10,7 +9,7 @@ export class NativeValidation implements AudioValidation {
   private sub: Subscriber<ValidationMetadata>;
 
   constructor(src: File | string) {
-    this.data = <ValidationMetadata> {};
+    this.data = <ValidationMetadata>{};
     if (src instanceof File) {
       this.fileName = src.name;
       this.fileSrc = URL.createObjectURL(src);
@@ -25,7 +24,7 @@ export class NativeValidation implements AudioValidation {
   }
 
   validate(): Observable<ValidationMetadata> {
-    return Observable.create(sub => {
+    return new Observable(sub => {
       this.element = document.createElement('audio');
       this.element.addEventListener('canplaythrough', event => {
         this.data.duration = (event.currentTarget['duration'] || 0) * 1000;
@@ -54,5 +53,4 @@ export class NativeValidation implements AudioValidation {
       this.element = null;
     }
   }
-
 }

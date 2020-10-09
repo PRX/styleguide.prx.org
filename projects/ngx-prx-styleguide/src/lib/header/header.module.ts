@@ -7,21 +7,9 @@ import { NavItemComponent } from './navitem.component';
 import { NavUserComponent } from './navuser.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
-  declarations: [
-    HeaderComponent,
-    NavItemComponent,
-    NavUserComponent,
-  ],
-  providers: [
-  ],
-  exports: [
-    HeaderComponent,
-    NavItemComponent,
-    NavUserComponent,
-  ],
+  imports: [CommonModule, RouterModule],
+  declarations: [HeaderComponent, NavItemComponent, NavUserComponent],
+  providers: [],
+  exports: [HeaderComponent, NavItemComponent, NavUserComponent]
 })
-export class HeaderModule { }
+export class HeaderModule {}

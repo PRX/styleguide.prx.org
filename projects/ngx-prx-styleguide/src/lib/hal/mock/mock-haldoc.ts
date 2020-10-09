@@ -1,5 +1,4 @@
-
-import {of as observableOf,  Observable ,  Observer } from 'rxjs';
+import { of as observableOf, Observable, Observer } from 'rxjs';
 
 import { HalDoc } from '../doc/haldoc';
 import { HalObservable } from '../doc/halobservable';
@@ -8,7 +7,6 @@ import { HalObservable } from '../doc/halobservable';
  * Mock version of a haldoc
  */
 export class MockHalDoc extends HalDoc {
-
   MOCKS = {};
   ERRORS = {};
   profile: string;
@@ -16,44 +14,54 @@ export class MockHalDoc extends HalDoc {
   static guessProfile(relString?: string, isCollection = false): string {
     if (relString && relString.match(/prx:/)) {
       if (isCollection) {
-        if (relString === 'prx:stories') { relString = 'prx:story'; }
-        if (relString === 'prx:images') { relString = 'prx:image'; }
-        if (relString === 'prx:accounts') { relString = 'prx:account'; }
-        if (relString === 'prx:audio-versions') { relString = 'prx:audio-version'; }
+        if (relString === 'prx:stories') {
+          relString = 'prx:story';
+        }
+        if (relString === 'prx:images') {
+          relString = 'prx:image';
+        }
+        if (relString === 'prx:accounts') {
+          relString = 'prx:account';
+        }
+        if (relString === 'prx:audio-versions') {
+          relString = 'prx:audio-version';
+        }
         return 'collection/' + relString.split(':')[1];
       } else {
-        return 'model/' + relString.split (':')[1];
+        return 'model/' + relString.split(':')[1];
       }
     }
     return null;
   }
 
   constructor(data: any = {}, profile?: string) {
-    super(data, <any> {
-      expand: (link: any) => link ? link.href : null
+    super(data, <any>{
+      expand: (link: any) => (link ? link.href : null)
     });
     this.profile = profile;
   }
 
   mock(rel: string, data: {}): MockHalDoc {
-    return this.MOCKS[rel] = new MockHalDoc(data, MockHalDoc.guessProfile(rel));
+    return (this.MOCKS[rel] = new MockHalDoc(data, MockHalDoc.guessProfile(rel)));
   }
 
   mockList(rel: string, datas: {}[]): MockHalDoc[] {
-    return this.MOCKS[rel] = datas.map(data => {
+    return (this.MOCKS[rel] = datas.map(data => {
       return new MockHalDoc(data, MockHalDoc.guessProfile(rel, true));
-    });
+    }));
   }
 
   mockItems(rel: string, datas: {}[]): MockHalDoc[] {
-    return this.mock(rel, {total: datas.length}).mockList('prx:items', datas).map(doc => {
-      doc.profile = MockHalDoc.guessProfile(rel, true);
-      return doc;
-    });
+    return this.mock(rel, { total: datas.length })
+      .mockList('prx:items', datas)
+      .map(doc => {
+        doc.profile = MockHalDoc.guessProfile(rel, true);
+        return doc;
+      });
   }
 
   mockError(rel: string, msg: string | Error) {
-    if (typeof(msg) === 'string') {
+    if (typeof msg === 'string') {
       this.ERRORS[rel] = new Error(msg);
     } else {
       this.ERRORS[rel] = msg;
@@ -64,17 +72,17 @@ export class MockHalDoc extends HalDoc {
     for (const key of Object.keys(data)) {
       this[key] = data[key];
     }
-    return <HalObservable<MockHalDoc>> observableOf(<MockHalDoc> this);
+    return <HalObservable<MockHalDoc>>observableOf(<MockHalDoc>this);
   }
 
   create(rel: string, params: any = {}, data: any): HalObservable<MockHalDoc> {
     const doc = this.mock(rel, data); // TODO: params?
-    return <HalObservable<MockHalDoc>> observableOf(doc);
+    return <HalObservable<MockHalDoc>>observableOf(doc);
   }
 
   destroy(): HalObservable<MockHalDoc> {
     this['_destroyed'] = true; // TODO: something better
-    return <HalObservable<MockHalDoc>> observableOf(<MockHalDoc> this);
+    return <HalObservable<MockHalDoc>>observableOf(<MockHalDoc>this);
   }
 
   count(rel?: string): number {
@@ -97,9 +105,9 @@ export class MockHalDoc extends HalDoc {
 
   has(rel: string, mustBeList = false): boolean {
     if (this.MOCKS[rel]) {
-      return mustBeList ? (this.MOCKS[rel] instanceof Array) : true;
+      return mustBeList ? this.MOCKS[rel] instanceof Array : true;
     } else if (this['_links'] && this['_links'][rel]) {
-      return mustBeList ? (this['_links'][rel] instanceof Array) : true;
+      return mustBeList ? this['_links'][rel] instanceof Array : true;
     } else {
       return false;
     }
@@ -166,5 +174,4 @@ export class MockHalDoc extends HalDoc {
 
     return this.remote.expand(link, params);
   }
-
 }

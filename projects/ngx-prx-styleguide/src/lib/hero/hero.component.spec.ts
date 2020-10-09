@@ -48,8 +48,8 @@ describe('HeroComponent', () => {
   });
 
   const triggerScroll = () => {
-    let e = document.createEvent('UIEvents');
-    e.initUIEvent('scroll', true, true, window, 1);
+    const e = document.createEvent('UIEvents');
+    e.initEvent('scroll', true, true);
     window.dispatchEvent(e);
   };
 

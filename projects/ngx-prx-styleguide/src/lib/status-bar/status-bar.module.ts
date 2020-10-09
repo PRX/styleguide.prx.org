@@ -9,12 +9,20 @@ import { IconModule } from '../icon/icon.module';
 import { ImageModule } from '../image/image.module';
 
 @NgModule({
-  declarations: [StatusBarTextComponent, StatusBarComponent, StatusBarLinkComponent, StatusBarIconComponent, StatusBarImageComponent],
-  imports: [
-    CommonModule,
-    IconModule,
-    ImageModule
+  declarations: [
+    StatusBarTextComponent,
+    StatusBarComponent,
+    StatusBarLinkComponent,
+    StatusBarIconComponent,
+    StatusBarImageComponent
   ],
-  exports: [StatusBarTextComponent, StatusBarComponent, StatusBarLinkComponent, StatusBarIconComponent, StatusBarImageComponent]
+  imports: [CommonModule, IconModule, ImageModule],
+  exports: [
+    StatusBarTextComponent,
+    StatusBarComponent,
+    StatusBarLinkComponent,
+    StatusBarIconComponent,
+    StatusBarImageComponent
+  ]
 })
-export class StatusBarModule { }
+export class StatusBarModule {}

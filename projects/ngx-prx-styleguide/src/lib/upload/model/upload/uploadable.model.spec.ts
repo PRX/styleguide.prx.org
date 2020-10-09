@@ -2,31 +2,40 @@ import { of as observableOf, EMPTY as observableEmpty, throwError as observableT
 import { ConnectableObservable } from 'rxjs';
 import { Subscriber } from 'rxjs';
 import { UploadableModel } from './uploadable.model';
-import { Upload } from '../../service';
+import { Upload } from '../../service/upload.service';
 import { MockHalService } from '../../../hal/mock/mock-hal.service';
 
 const cms = new MockHalService();
 
 class TestUploadableModel extends UploadableModel {
   SETABLE = ['foobar'];
-  VALIDATORS = {foobar: <any[]> []};
-  stateComplete(status) { return status === 'complete'; }
-  stateError(status) { return status === 'errored' ? 'the error message' : null; }
-  key() { return 'foo'; }
-  related() { return {}; }
-  saveNew() { return observableOf(null); }
+  VALIDATORS = { foobar: <any[]>[] };
+  stateComplete(status) {
+    return status === 'complete';
+  }
+  stateError(status) {
+    return status === 'errored' ? 'the error message' : null;
+  }
+  key() {
+    return 'foo';
+  }
+  related() {
+    return {};
+  }
+  saveNew() {
+    return observableOf(null);
+  }
 }
 
 describe('UploadableModel', () => {
-
   let model: TestUploadableModel;
   let upload: Upload;
   beforeEach(() => {
     window.localStorage.clear();
     model = new TestUploadableModel();
     jest.spyOn(Upload.prototype, 'upload').mockImplementation(jest.fn());
-    upload = new Upload(<any> {name: 'name.mp3', size: 99}, null, null, { bucketFolder: 'foo', bucketName: 'bar' });
-    upload['progress'] = <ConnectableObservable<number>> observableOf(0.12);
+    upload = new Upload(<any>{ name: 'name.mp3', size: 99 }, null, null, { bucketFolder: 'foo', bucketName: 'bar' });
+    upload['progress'] = <ConnectableObservable<number>>observableOf(0.12);
   });
 
   describe('initUpload', () => {
@@ -44,7 +53,7 @@ describe('UploadableModel', () => {
     });
 
     it('sets the uuid for uploads', () => {
-      model.initUpload(null, <any> {});
+      model.initUpload(null, <any>{});
       expect(model.uuid).toBeNull();
       model.initUpload(null, '9876');
       expect(model.uuid).toEqual('9876');
@@ -57,8 +66,8 @@ describe('UploadableModel', () => {
       jest.spyOn(model, 'init').mockImplementation(jest.fn());
       jest.spyOn(model, 'setState').mockImplementation(jest.fn());
       jest.spyOn(model, 'watchProcess').mockImplementation(jest.fn());
-      let doc = cms.mock('prx:anything', {id: 1234});
-      model.initUpload(<any> 'anything', doc);
+      let doc = cms.mock('prx:anything', { id: 1234 });
+      model.initUpload(<any>'anything', doc);
       expect(model.init).toHaveBeenCalledWith('anything', doc);
       expect(model.setState).toHaveBeenCalled();
       expect(model.watchProcess).not.toHaveBeenCalled();
@@ -68,9 +77,9 @@ describe('UploadableModel', () => {
       jest.spyOn(model, 'init').mockImplementation(jest.fn());
       jest.spyOn(model, 'setState').mockImplementation(jest.fn());
       jest.spyOn(model, 'watchProcess').mockImplementation(jest.fn());
-      let doc = cms.mock('prx:anything', {id: 1234});
+      let doc = cms.mock('prx:anything', { id: 1234 });
       model.isProcessing = true;
-      model.initUpload(<any> 'anything', doc);
+      model.initUpload(<any>'anything', doc);
       expect(model.init).toHaveBeenCalledWith('anything', doc);
       expect(model.setState).toHaveBeenCalled();
       expect(model.watchProcess).toHaveBeenCalled();
@@ -96,7 +105,7 @@ describe('UploadableModel', () => {
 
   describe('watchUpload', () => {
     it('starts an upload from the beginning', () => {
-      model.watchUpload(<any> {progress: observableEmpty});
+      model.watchUpload(<any>{ progress: observableEmpty });
       expect(model.progress).toEqual(0);
       expect(model.isUploading).toEqual(true);
       expect(model.isUploadError).toBeNull();
@@ -104,7 +113,11 @@ describe('UploadableModel', () => {
 
     it('watches for progress', () => {
       let progress: Subscriber<number>;
-      model.watchUpload(<any> {progress: Observable.create((obs: any) => { progress = obs; })});
+      model.watchUpload(<any>{
+        progress: Observable.create((obs: any) => {
+          progress = obs;
+        })
+      });
       expect(model.progress).toEqual(0);
       progress.next(0.41);
       expect(model.progress).toEqual(0.41);
@@ -112,7 +125,7 @@ describe('UploadableModel', () => {
 
     it('catches upload errors', () => {
       jest.spyOn(console, 'error').mockImplementation(jest.fn());
-      model.watchUpload(<any> {progress: observableThrowError('woh now')});
+      model.watchUpload(<any>{ progress: observableThrowError('woh now') });
       expect(model.progress).toEqual(0);
       expect(model.isUploading).toEqual(true);
       expect(model.isUploadError).toEqual('woh now');
@@ -155,14 +168,17 @@ describe('UploadableModel', () => {
     let doc: any, status: string;
     beforeEach(() => {
       status = 'whatev';
-      let reload = () => { doc['status'] = status; return observableOf(doc); };
-      doc = cms.mock('doc', {reload: reload});
+      let reload = () => {
+        doc['status'] = status;
+        return observableOf(doc);
+      };
+      doc = cms.mock('doc', { reload: reload });
       model.UPLOAD_PROCESS_INTERVAL = 1;
     });
 
     it('waits for completion', function(done) {
       status = 'complete';
-      model.initUpload(<any> 'anything', doc);
+      model.initUpload(<any>'anything', doc);
       expect(model.isCompleted).toEqual(false);
       setTimeout(() => {
         expect(model.isCompleted).toEqual(true);
@@ -171,10 +187,10 @@ describe('UploadableModel', () => {
     });
 
     it('times out', function(done) {
-      model.initUpload(<any> 'anything', doc);
+      model.initUpload(<any>'anything', doc);
       expect(model.isProcessTimeout).toBeFalsy();
       let theFuture = new Date('2099-01-01');
-      jest.spyOn(<any> window, 'Date').mockImplementation(() => theFuture);
+      jest.spyOn(<any>window, 'Date').mockImplementation(() => theFuture);
       setTimeout(() => {
         expect(model.isProcessTimeout).toEqual(true);
         done();
@@ -194,10 +210,10 @@ describe('UploadableModel', () => {
   });
 
   it('retries processing', () => {
-    let doc = cms.mock('prx:anything', {id: 1234, status: 'uploaded'});
-    jest.spyOn(<any> doc, 'update').mockImplementation(() => ({subscribe: (fn) => fn()}));
+    let doc = cms.mock('prx:anything', { id: 1234, status: 'uploaded' });
+    jest.spyOn(<any>doc, 'update').mockImplementation(() => ({ subscribe: fn => fn() }));
     jest.spyOn(model, 'watchProcess').mockImplementation(jest.fn());
-    model.initUpload(<any> 'anything', doc);
+    model.initUpload(<any>'anything', doc);
     model.retryProcessing();
     expect(doc.update).toHaveBeenCalled();
     expect(model.watchProcess).toHaveBeenCalled();
@@ -207,7 +223,7 @@ describe('UploadableModel', () => {
     model.doc = cms.mock('anything', {
       filename: 'hello',
       size: 999,
-      _links: { enclosure: {href: '/some/link/here'} }
+      _links: { enclosure: { href: '/some/link/here' } }
     });
     model.decode();
     expect(model.filename).toEqual('hello');
@@ -241,5 +257,4 @@ describe('UploadableModel', () => {
     expect(model.unsubscribe).toHaveBeenCalled();
     expect(upload.cancel).toHaveBeenCalled();
   });
-
 });

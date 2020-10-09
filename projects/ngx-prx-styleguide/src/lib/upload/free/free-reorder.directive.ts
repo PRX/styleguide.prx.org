@@ -1,14 +1,13 @@
 import { Directive, Input, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DragulaService, DragulaDirective } from 'ng2-dragula/ng2-dragula';
-import { UUID } from '../service';
+import { DragulaService, DragulaDirective } from 'ng2-dragula';
+import { UUID } from '../service/uuid';
 import { AudioVersionModel } from '../model';
 
 @Directive({
   selector: '[prxFreeReorder]'
 })
 export class FreeReorderDirective extends DragulaDirective implements OnInit, OnDestroy {
-
   @Input() prxFreeReorder: AudioVersionModel;
 
   private dragSub: Subscription;
@@ -19,15 +18,16 @@ export class FreeReorderDirective extends DragulaDirective implements OnInit, On
 
   ngOnInit() {
     this.dragulaModel = this.prxFreeReorder.files;
-    this.myDragula.setOptions(UUID.UUID(), {
+    const groupName = UUID.UUID();
+    this.myDragula.createGroup(groupName, {
       moves: (el: Element, source: Element, handle: Element) => {
         return handle.classList.contains('drag-handle');
       }
     });
-    this.dragSub = this.myDragula.dropModel.subscribe(() => {
+    this.dragSub = this.myDragula.dropModel(groupName).subscribe(() => {
       this.prxFreeReorder.reassign();
     });
-    super.ngOnInit();
+    // super.ngOnInit();
   }
 
   ngOnDestroy() {
@@ -35,5 +35,4 @@ export class FreeReorderDirective extends DragulaDirective implements OnInit, On
       this.dragSub.unsubscribe();
     }
   }
-
 }

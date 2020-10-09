@@ -1,4 +1,4 @@
-import {throwError as observableThrowError, Observable , Subscriber } from 'rxjs';
+import { throwError as observableThrowError, Observable, Subscriber } from 'rxjs';
 import { PlaybackMetadata, AudioPlayback, UnsupportedFileError } from './playback';
 
 /*
@@ -7,7 +7,6 @@ import { PlaybackMetadata, AudioPlayback, UnsupportedFileError } from './playbac
 
 let audioObjectUrl = null;
 export class NativePlayback implements AudioPlayback {
-
   private el: HTMLAudioElement;
   private data: PlaybackMetadata;
   private sub: Subscriber<PlaybackMetadata>;
@@ -15,14 +14,16 @@ export class NativePlayback implements AudioPlayback {
 
   constructor(src: File | string) {
     this.el = this.build(src);
-    this.data = <PlaybackMetadata> {progress: 0};
+    this.data = <PlaybackMetadata>{ progress: 0 };
   }
 
   newAudioObjectUrl(audio: File): string {
     // Browsers will release object URLs automatically when the document is unloaded; however, for optimal
     // performance and memory usage, if there are safe times when you can explicitly unload them, you should do so.
     // https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL
-    if (audioObjectUrl) { URL.revokeObjectURL(audioObjectUrl); }
+    if (audioObjectUrl) {
+      URL.revokeObjectURL(audioObjectUrl);
+    }
     audioObjectUrl = URL.createObjectURL(audio);
     return audioObjectUrl;
   }
@@ -31,7 +32,7 @@ export class NativePlayback implements AudioPlayback {
     if (!this.el) {
       return observableThrowError(new UnsupportedFileError('Only remote playback supported'));
     }
-    return Observable.create(sub => {
+    return new Observable(sub => {
       this.sub = sub;
 
       this.el.addEventListener('durationchange', () => {
@@ -75,14 +76,13 @@ export class NativePlayback implements AudioPlayback {
 
   private build(src: File | string): HTMLAudioElement {
     const el = document.createElement('audio');
-    if (typeof(src) === 'string') {
+    if (typeof src === 'string') {
       el.setAttribute('src', src);
     } else {
       el.setAttribute('src', this.newAudioObjectUrl(src));
     }
 
-    el.addEventListener('playable', () => this.playable = true);
+    el.addEventListener('playable', () => (this.playable = true));
     return el;
   }
-
 }

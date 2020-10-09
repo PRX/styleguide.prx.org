@@ -13,9 +13,9 @@ export class StatusBarLinkComponent implements AfterViewInit {
 
   @HostBinding('class.align-art--right') alignArtRight = false;
 
-  @ViewChild('icon', { static: false }) icon: ElementRef;
-  @ViewChild('image', { static: false }) image: ElementRef;
-  @ViewChild('text', { static: false }) text: ElementRef;
+  @ViewChild('icon') icon: ElementRef;
+  @ViewChild('image') image: ElementRef;
+  @ViewChild('text') text: ElementRef;
 
   @Input()
   set alignArt(val: string) {

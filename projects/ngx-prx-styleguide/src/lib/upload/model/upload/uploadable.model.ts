@@ -1,12 +1,11 @@
-import {interval as observableInterval, Subscription } from 'rxjs';
-import {takeWhile, map, mergeMap} from 'rxjs/operators';
+import { interval as observableInterval, Subscription } from 'rxjs';
+import { takeWhile, map, mergeMap } from 'rxjs/operators';
 import { FALSEY } from '../invalid';
 import { BaseModel } from '../../../model/base.model';
 import { HalDoc } from '../../../hal/doc/haldoc';
-import { Upload } from '../../service';
+import { Upload } from '../../service/upload.service';
 
 export abstract class UploadableModel extends BaseModel {
-
   public filename: string;
   public size: number;
   public status: string;
@@ -25,11 +24,20 @@ export abstract class UploadableModel extends BaseModel {
   public progress: number;
   public uuid: string;
 
-  UPLOAD_SETABLE = ['filename', 'size', 'status', 'enclosureHref',
-    'enclosureS3', 'uuid', 'isUploading', 'isUploadError', 'isDestroy'];
+  UPLOAD_SETABLE = [
+    'filename',
+    'size',
+    'status',
+    'enclosureHref',
+    'enclosureS3',
+    'uuid',
+    'isUploading',
+    'isUploadError',
+    'isDestroy'
+  ];
 
   UPLOAD_VALIDATORS = {
-    isUploading:   [FALSEY('Wait for upload to complete')],
+    isUploading: [FALSEY('Wait for upload to complete')],
     isUploadError: [FALSEY('Resolve upload errors first')]
   };
 
@@ -85,9 +93,18 @@ export abstract class UploadableModel extends BaseModel {
       this.set('isUploadError', null);
     }
     this.uploadSub = upload.progress.subscribe(
-      (pct: number) => { this.progress = pct; },
-      (err: string) => { console.error(err); this.set('isUploadError', err); },
-      () => { setTimeout(() => { this.completeUpload(); }, 500); }
+      (pct: number) => {
+        this.progress = pct;
+      },
+      (err: string) => {
+        console.error(err);
+        this.set('isUploadError', err);
+      },
+      () => {
+        setTimeout(() => {
+          this.completeUpload();
+        }, 500);
+      }
     );
   }
 
@@ -103,18 +120,20 @@ export abstract class UploadableModel extends BaseModel {
   watchProcess() {
     const start = new Date().getTime();
     this.progress = 0;
-    this.processSub = observableInterval(this.UPLOAD_PROCESS_INTERVAL).pipe(
-      mergeMap(() => this.doc.reload()),
-      map(doc => {
-        const elapsed = new Date().getTime() - start;
-        this.isProcessTimeout = elapsed > this.UPLOAD_PROCESS_TIMEOUT;
-        this.init(this.parent, doc, false);
-        this.setState();
-        return Math.min(elapsed / this.UPLOAD_PROCESS_ESTIMATE, 0.9);
-      }),
-      takeWhile(() => this.isProcessing), )
+    this.processSub = observableInterval(this.UPLOAD_PROCESS_INTERVAL)
+      .pipe(
+        mergeMap(() => this.doc.reload()),
+        map(doc => {
+          const elapsed = new Date().getTime() - start;
+          this.isProcessTimeout = elapsed > this.UPLOAD_PROCESS_TIMEOUT;
+          this.init(this.parent, doc, false);
+          this.setState();
+          return Math.min(elapsed / this.UPLOAD_PROCESS_ESTIMATE, 0.9);
+        }),
+        takeWhile(() => this.isProcessing)
+      )
       .subscribe(
-        pct => this.progress = pct,
+        pct => (this.progress = pct),
         err => console.error('err', err)
       );
   }
@@ -184,5 +203,4 @@ export abstract class UploadableModel extends BaseModel {
       this.unstore();
     }
   }
-
 }

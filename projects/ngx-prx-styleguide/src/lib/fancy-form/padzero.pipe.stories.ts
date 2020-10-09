@@ -5,12 +5,10 @@ import { FancyFormModule } from './fancy-form.module';
 
 // Module metadata for stories.
 const componentMetaData = moduleMetadata({
-  imports: [
-    FancyFormModule
-  ],
+  imports: [FancyFormModule],
   schemas: [],
   declarations: [],
-  providers: [],
+  providers: []
 });
 
 storiesOf('Forms Controls|Pipes/PadZero', module)
@@ -31,11 +29,11 @@ storiesOf('Forms Controls|Pipes/PadZero', module)
           intNumber,
           intPadLength
         }
-      }
+      };
     },
     {
       notes: {
-        markdown:`
+        markdown: `
 # PadZero
 
 The Pad Zero Pipe is a pipe that transforms values to be left zero padded to the given length.
@@ -50,7 +48,7 @@ __Name__ \`padzero\`
 
 ## Usage
 \`\`\`html
-<span>{{ intNumber | capitalize:intPadLength }}</span>
+<span>{{ intNumber | padzero:intPadLength }}</span>
 \`\`\`
 `
       }

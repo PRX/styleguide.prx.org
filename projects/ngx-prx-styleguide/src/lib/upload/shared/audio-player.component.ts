@@ -39,7 +39,7 @@ export class AudioPlayerComponent implements OnDestroy {
 
   @Input() file: AudioFileModel;
 
-  @ViewChild('scrubber', { static: false }) scrubber;
+  @ViewChild('scrubber') scrubber;
 
   constructor(private player: PlayerService, private ref: ChangeDetectorRef) {}
 
