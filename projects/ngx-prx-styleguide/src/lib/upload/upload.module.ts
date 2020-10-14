@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { DragulaModule } from 'ng2-dragula';
+import { DragulaModule, DragulaService } from 'ng2-dragula';
 
 import { FreeReorderDirective } from './free/free-reorder.directive';
 import { FreeUploadComponent } from './free/free-upload.component';
@@ -49,6 +49,7 @@ import { UploadComponent } from './upload.component';
     FileSelectDirective
   ],
   imports: [FormsModule, CommonModule, DragulaModule, FancyFormModule],
-  providers: []
+  // provided by DragulaModule as well but Publish stand alone story with free-reorder uploader throws No provider for DragulaService error
+  providers: [DragulaService]
 })
 export class UploadModule {}
