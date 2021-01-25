@@ -118,6 +118,7 @@ export class UploadService {
     signUrl: string;
     awsKey: string;
   }) {
+    this.awsUrl = awsUrl;
     this.bucketName = bucketName;
     this.bucketFolder = bucketFolder;
     this.signUrl = signUrl;
