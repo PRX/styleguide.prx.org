@@ -11,12 +11,11 @@ AUTH_CLIENT_ID=XrGAyTW8NEpgNd48osQP3lHySrTIf4UpqmTyNcpC
 # AUTH_CLIENT_ID=labJFTe1vsEaTtc7QbAYGGGjOKMlS87u7Jrh2ibc
 
 # aws uploading
-BUCKET_NAME=prx-up
-BUCKET_FOLDER=dev
-SIGN_URL=your-signing-url
-AWS_KEY=your-aws-key
-AWS_URL=your-cloudfront-url
-USE_CLOUDFRONT=true
+UPLOAD_S3_ENDPOINT_URL=your-cloudfront-url
+UPLOAD_BUCKET_NAME=prx-up
+UPLOAD_BUCKET_FOLDER=dev
+UPLOAD_SIGNING_SERVICE_URL=your-signing-url
+UPLOAD_SIGNING_SERVICE_KEY_ID=aws-key-used-by-signing-service
 
 # dev server
 PORT=6006
