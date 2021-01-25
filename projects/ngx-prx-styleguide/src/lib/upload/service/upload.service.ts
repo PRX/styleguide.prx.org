@@ -97,30 +97,29 @@ export class UploadService {
   public uploads: Upload[] = [];
 
   private evaporate: Observable<Evaporate>;
+  private awsUrl: string;
   private bucketName: string;
   private bucketFolder: string;
-  private bucketAccel: boolean;
   private signUrl: string;
   private awsKey: string;
 
   constructor(private mimeTypeService: MimeTypeService) {}
 
   createWithConfig({
+    awsUrl,
     bucketName,
     bucketFolder,
-    bucketAccel,
     signUrl,
     awsKey
   }: {
+    awsUrl: string;
     bucketName: string;
     bucketFolder: string;
-    bucketAccel: boolean;
     signUrl: string;
     awsKey: string;
   }) {
     this.bucketName = bucketName;
     this.bucketFolder = bucketFolder;
-    this.bucketAccel = bucketAccel;
     this.signUrl = signUrl;
     this.awsKey = awsKey;
     this.evaporate = this.init();
@@ -130,10 +129,11 @@ export class UploadService {
     // until there is a good way to load from env and inject
     return observableFrom(
       Evaporate.create({
+        aws_url: this.awsUrl,
+        cloudfront: true, // Must be set when using custom aws_url
         signerUrl: this.signUrl,
         aws_key: this.awsKey,
         bucket: this.bucketName,
-        s3Acceleration: this.bucketAccel,
         onlyRetryForSameFileName: true,
         logging: false,
         awsSignatureVersion: '4',
