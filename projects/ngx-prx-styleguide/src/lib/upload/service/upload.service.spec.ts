@@ -4,9 +4,9 @@ import { MimeDefinition } from './mime-type.service';
 
 describe('UploadService', () => {
   const specConfig = {
+    awsUrl: 'url://',
     bucketName: 'baz',
     bucketFolder: 'asd',
-    bucketAccel: false,
     signUrl: 'foo',
     awsKey: 'bar'
   }
