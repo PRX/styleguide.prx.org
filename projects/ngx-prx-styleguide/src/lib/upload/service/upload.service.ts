@@ -20,20 +20,30 @@ export class Upload {
 
   private bucketFolder: string;
   private bucketName: string;
+  private publicAccessHost: string;
 
   constructor(
     public file: File,
     public contentType: string,
     private evaporate: Evaporate,
-    { bucketFolder, bucketName }: { bucketFolder: string; bucketName: string }
+    {
+      bucketFolder,
+      bucketName,
+      publicAccessHost
+    }: {
+      bucketFolder: string;
+      bucketName: string;
+      publicAccessHost: string;
+    }
   ) {
     this.bucketFolder = bucketFolder;
     this.bucketName = bucketName;
+    this.publicAccessHost = publicAccessHost;
     this.uuid = UUID.UUID();
     this.name = file.name;
     this.size = file.size;
     this.path = [this.bucketFolder, this.uuid, this.sanitizedName()].join('/');
-    this.url = '//s3.amazonaws.com/' + this.bucketName + '/' + this.path;
+    this.url = this.publicAccessHost ? `https://${this.publicAccessHost}/${this.path}` : `//s3.amazonaws.com/${this.bucketName}/${this.path}`;
     this.s3url = 's3://' + this.bucketName + '/' + this.path;
     this.upload();
   }
@@ -102,6 +112,7 @@ export class UploadService {
   private bucketFolder: string;
   private signUrl: string;
   private awsKey: string;
+  private publicAccessHost: string;
 
   constructor(private mimeTypeService: MimeTypeService) {}
 
@@ -110,19 +121,22 @@ export class UploadService {
     bucketName,
     bucketFolder,
     signUrl,
-    awsKey
+    awsKey,
+    publicAccessHost
   }: {
     awsUrl: string;
     bucketName: string;
     bucketFolder: string;
     signUrl: string;
     awsKey: string;
+    publicAccessHost: string;
   }) {
     this.awsUrl = awsUrl;
     this.bucketName = bucketName;
     this.bucketFolder = bucketFolder;
     this.signUrl = signUrl;
     this.awsKey = awsKey;
+    this.publicAccessHost = publicAccessHost;
     this.evaporate = this.init();
   }
 
@@ -151,7 +165,8 @@ export class UploadService {
         const ct = contentType || this.mimeTypeService.lookupFileMimetype(file).full();
         const upload = new Upload(file, ct, evaporate, {
           bucketFolder: this.bucketFolder,
-          bucketName: this.bucketName
+          bucketName: this.bucketName,
+          publicAccessHost: this.publicAccessHost
         });
         this.uploads.push(upload);
         return upload;

@@ -8,7 +8,8 @@ describe('UploadService', () => {
     bucketName: 'baz',
     bucketFolder: 'asd',
     signUrl: 'foo',
-    awsKey: 'bar'
+    awsKey: 'bar',
+    publicAccessHost: 'public.example'
   }
 
   describe('Service', () => {
@@ -39,7 +40,7 @@ describe('UploadService', () => {
         expect(upload.name).toEqual('foo.bar');
         expect(upload.size).toEqual(99);
         expect(upload.path).toEqual(`${specConfig.bucketFolder}/${upload.uuid}/foo.bar`);
-        expect(upload.url).toMatch(/^\/\/s3\.amazonaws\.com/);
+        expect(upload.url).toMatch(/^https:\/\/public\.example/);
         expect(upload.s3url).toMatch(/^s3:\/\//);
         expect(upload.contentType).toEqual('foo/bar');
         expect(uploader.uploads.length).toEqual(1);
