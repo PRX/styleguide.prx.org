@@ -82,7 +82,7 @@ describe('UploadService', () => {
             resolve('my-upload-id');
           }),
         },
-        { bucketFolder: specConfig.bucketFolder, bucketName: specConfig.bucketName } );
+        { bucketFolder: specConfig.bucketFolder, bucketName: specConfig.bucketName, publicAccessHost: specConfig.publicAccessHost } );
     });
 
     it('cancels in-progress uploads', () => {
