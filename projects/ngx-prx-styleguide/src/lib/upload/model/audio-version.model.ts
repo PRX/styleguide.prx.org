@@ -118,7 +118,7 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   decode() {
     this.id = this.doc['id'];
     this.label = this.doc['label'];
-    this.explicit = this.doc['explicit'];
+    this.explicit = this.doc['explicit'] || null;
     this.status = this.doc['status'];
     this.statusMessage = this.doc['statusMessage'];
   }
