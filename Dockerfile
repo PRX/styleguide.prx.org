@@ -14,8 +14,8 @@ RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
 ADD ./package.json ./
-ADD ./package-lock.json ./
-RUN npm install
+ADD ./yarn.lock ./
+RUN yarn install
 
 ADD . ./
 RUN npm run build:storybook
