@@ -43,7 +43,9 @@ export class Upload {
     this.name = file.name;
     this.size = file.size;
     this.path = [this.bucketFolder, this.uuid, this.sanitizedName()].join('/');
-    this.url = this.publicAccessHost ? `https://${this.publicAccessHost}/${this.path}` : `//s3.amazonaws.com/${this.bucketName}/${this.path}`;
+    this.url = this.publicAccessHost
+      ? `https://${this.publicAccessHost}/${this.path}`
+      : `//s3.amazonaws.com/${this.bucketName}/${this.path}`;
     this.s3url = 's3://' + this.bucketName + '/' + this.path;
     this.upload();
   }
