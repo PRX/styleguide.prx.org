@@ -7,6 +7,21 @@ import { sha256 } from 'js-sha256';
 import { UUID } from './uuid';
 import { MimeTypeService } from './mime-type.service';
 
+export interface UploadConfig {
+  bucketName: string;
+  bucketFolder: string;
+  publicAccessHost?: string;
+}
+
+export interface UploadServiceConfig {
+  awsUrl: string;
+  bucketName: string;
+  bucketFolder: string;
+  signUrl: string;
+  awsKey: string;
+  publicAccessHost?: string;
+}
+
 export class Upload {
   public uuid: string;
   public name: string;
@@ -20,20 +35,19 @@ export class Upload {
 
   private bucketFolder: string;
   private bucketName: string;
+  private publicAccessHost: string;
 
-  constructor(
-    public file: File,
-    public contentType: string,
-    private evaporate: Evaporate,
-    { bucketFolder, bucketName }: { bucketFolder: string; bucketName: string }
-  ) {
-    this.bucketFolder = bucketFolder;
-    this.bucketName = bucketName;
+  constructor(public file: File, public contentType: string, private evaporate: Evaporate, cfg: UploadConfig) {
+    this.bucketFolder = cfg.bucketFolder;
+    this.bucketName = cfg.bucketName;
+    this.publicAccessHost = cfg.publicAccessHost;
     this.uuid = UUID.UUID();
     this.name = file.name;
     this.size = file.size;
     this.path = [this.bucketFolder, this.uuid, this.sanitizedName()].join('/');
-    this.url = '//s3.amazonaws.com/' + this.bucketName + '/' + this.path;
+    this.url = this.publicAccessHost
+      ? `https://${this.publicAccessHost}/${this.path}`
+      : `//s3.amazonaws.com/${this.bucketName}/${this.path}`;
     this.s3url = 's3://' + this.bucketName + '/' + this.path;
     this.upload();
   }
@@ -102,27 +116,17 @@ export class UploadService {
   private bucketFolder: string;
   private signUrl: string;
   private awsKey: string;
+  private publicAccessHost: string;
 
   constructor(private mimeTypeService: MimeTypeService) {}
 
-  createWithConfig({
-    awsUrl,
-    bucketName,
-    bucketFolder,
-    signUrl,
-    awsKey
-  }: {
-    awsUrl: string;
-    bucketName: string;
-    bucketFolder: string;
-    signUrl: string;
-    awsKey: string;
-  }) {
-    this.awsUrl = awsUrl;
-    this.bucketName = bucketName;
-    this.bucketFolder = bucketFolder;
-    this.signUrl = signUrl;
-    this.awsKey = awsKey;
+  createWithConfig(cfg: UploadServiceConfig) {
+    this.awsUrl = cfg.awsUrl;
+    this.bucketName = cfg.bucketName;
+    this.bucketFolder = cfg.bucketFolder;
+    this.signUrl = cfg.signUrl;
+    this.awsKey = cfg.awsKey;
+    this.publicAccessHost = cfg.publicAccessHost;
     this.evaporate = this.init();
   }
 
@@ -151,7 +155,8 @@ export class UploadService {
         const ct = contentType || this.mimeTypeService.lookupFileMimetype(file).full();
         const upload = new Upload(file, ct, evaporate, {
           bucketFolder: this.bucketFolder,
-          bucketName: this.bucketName
+          bucketName: this.bucketName,
+          publicAccessHost: this.publicAccessHost
         });
         this.uploads.push(upload);
         return upload;

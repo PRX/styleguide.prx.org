@@ -34,7 +34,7 @@ describe('UploadableModel', () => {
     window.localStorage.clear();
     model = new TestUploadableModel();
     jest.spyOn(Upload.prototype, 'upload').mockImplementation(jest.fn());
-    upload = new Upload(<any>{ name: 'name.mp3', size: 99 }, null, null, { bucketFolder: 'foo', bucketName: 'bar' });
+    upload = new Upload(<any>{ name: 'name.mp3', size: 99 }, null, null, { bucketFolder: 'foo', bucketName: 'bar', publicAccessHost: 'baz' });
     upload['progress'] = <ConnectableObservable<number>>observableOf(0.12);
   });
 
