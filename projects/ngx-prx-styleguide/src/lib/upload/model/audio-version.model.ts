@@ -12,7 +12,7 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
 
   public id: number;
   public label: string;
-  public explicit = '';
+  public explicit: string;
   public status: string;
   public statusMessage: string;
 
@@ -118,17 +118,7 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   decode() {
     this.id = this.doc['id'];
     this.label = this.doc['label'];
-    switch (this.doc['explicit']) {
-      case 'yes':
-        this.explicit = 'Explicit';
-        break;
-      case 'clean':
-        this.explicit = 'Clean';
-        break;
-      default:
-        this.explicit = '';
-        break;
-    }
+    this.explicit = this.doc['explicit'] || null;
     this.status = this.doc['status'];
     this.statusMessage = this.doc['statusMessage'];
   }
@@ -136,17 +126,7 @@ export class AudioVersionModel extends BaseModel implements HasUpload {
   encode(): {} {
     const data = <any>{};
     data.label = this.label;
-    switch (this.explicit) {
-      case 'Explicit':
-        data.explicit = 'yes';
-        break;
-      case 'Clean':
-        data.explicit = 'clean';
-        break;
-      default:
-        data.explicit = '';
-        break;
-    }
+    data.explicit = this.explicit || null;
     if (this.isNew && this.template) {
       data.set_audio_version_template_uri = this.template.expand('self');
     }
