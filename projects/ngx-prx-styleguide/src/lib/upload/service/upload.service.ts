@@ -68,9 +68,6 @@ export class Upload {
       file: this.file,
       name: this.path,
       contentType: this.contentType,
-      xAmzHeadersAtInitiate: {
-        'x-amz-acl': 'public-read'
-      },
       notSignedHeadersAtInitiate: {
         'Content-Disposition': 'attachment; filename=' + this.sanitizedName()
       }
