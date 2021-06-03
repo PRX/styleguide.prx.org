@@ -5,11 +5,12 @@
 @import 'forms';
 @import 'icons';
 @import 'modal';
+@import 'nav';
 @import 'pikaday-custom.scss';
 
 body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.5rem;
   font-size: 14px;
-  color: $grey-dove;
+  color: $grey-700;
 }

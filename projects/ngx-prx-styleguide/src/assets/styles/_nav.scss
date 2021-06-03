@@ -1,0 +1,20 @@
+prx-tabs {
+  .main {
+    .subnav nav {
+      a {
+        &.active {
+          background: $blue;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        &[disabled],
+        &[disabled]:hover {
+          color: $grey-700;
+        }
+      }
+    }
+  }
+}
