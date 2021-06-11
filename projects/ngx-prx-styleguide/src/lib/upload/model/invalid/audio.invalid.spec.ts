@@ -59,6 +59,13 @@ describe('AudioInvalid', () => {
       expect(invalid('', {files: [{bitrate: 123}, {bitrate: 123}]}, true)).toBeNull();
     });
 
+    it('strictly checks for total file size < 250mb', () => {
+      const invalid = VERSION_TEMPLATED();
+      expect(invalid('', {files: []}, false)).toBeNull();
+      expect(invalid('', {files: [{size: 249 * 1024 * 1024}]}, true)).toBeNull();
+      expect(invalid('', {files: [{}, {size: 251 * 1024 * 1024}]}, true)).toMatch('must be less than 250 MB');
+    });
+
   });
 
   describe('FILE_TEMPLATED', () => {
