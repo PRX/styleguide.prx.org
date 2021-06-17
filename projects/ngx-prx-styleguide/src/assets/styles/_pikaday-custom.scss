@@ -1,34 +1,37 @@
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-
 .pika-single {
-  color: #000;
-  border-color: #e6e6e6;
+  color: $black;
+  border-color: $grey-200;
   font-family: 'Open Sans', sans-serif;
 }
 
-.pika-button {
-  color: #000;
-  background: #f0f0f0;
+td .pika-button {
+  color: $black;
+  background: $grey-100;
   border-radius: 0;
+  opacity: 1;
 }
 
-.is-today .pika-button {
+.is-today .pika-button.pika-day {
   color: $blue;
+  opacity: 1;
+}
+
+.is-disabled .pika-button.pika-day {
+  font-style: italic;
+  color: $black;
+  background: $grey-300;
+  opacity: 1;
 }
 
 .is-selected .pika-button {
-  color: #fff;
+  color: $white;
   background: $blue;
   box-shadow: none;
   border-radius: 0;
 }
 
 .has-event .pika-button {
-  color: #fff;
+  color: $white;
   background: $blue;
   box-shadow: none;
   border-radius: 0;
@@ -48,10 +51,31 @@
 }
 
 .pika-table thead abbr {
+  color: $black;
   text-transform: uppercase;
   text-decoration: none;
   border-bottom: none;
   cursor: default;
+}
+
+.pika-title {
+
+  .pika-next.is-disabled {
+    transform: rotate(180deg);
+  }
+
+  .pika-prev.is-disabled,
+  .pika-next.is-disabled {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAyMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwKSI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIzMCIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE0IDZMNSAxNUwxNCAyNFY2WiIgZmlsbD0iIzAwNzJBMyIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwIj4KPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjMwIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=);
+    opacity: 1;
+
+    &:hover {
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      opacity: .8;
+    }
+  }
 }
 
 .pika-single.container {
@@ -86,12 +110,12 @@
 }
 
 .calpicker.disabled .is-selected .pika-button {
-  color: #666;
-  background: #f5f5f5;
+  color: $grey-700;
+  background: $grey-200;
   box-shadow: none;
 }
 
 .calpicker.disabled .pika-button:hover {
-  background: #ddd;
+  background: $grey-300;
   cursor: not-allowed;
 }
