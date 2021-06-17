@@ -16,6 +16,11 @@ td .pika-button {
   opacity: 1;
 }
 
+.is-today.is-selected .pika-button.pika-day {
+  background: $blue;
+  color: $white;
+}
+
 .is-disabled .pika-button.pika-day {
   font-style: italic;
   color: $black;
@@ -60,12 +65,12 @@ td .pika-button {
 
 .pika-title {
 
-  .pika-next.is-disabled {
+  .pika-next {
     transform: rotate(180deg);
   }
 
-  .pika-prev.is-disabled,
-  .pika-next.is-disabled {
+  .pika-prev,
+  .pika-next {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAyMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwKSI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIzMCIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE0IDZMNSAxNUwxNCAyNFY2WiIgZmlsbD0iIzAwNzJBMyIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwIj4KPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjMwIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=);
     opacity: 1;
 
@@ -74,6 +79,14 @@ td .pika-button {
       border: none;
       background-color: transparent;
       opacity: .8;
+    }
+
+    &.is-disabled {
+      opacity: 0;
+
+      &:hover {
+        opacity: 0;
+      }
     }
   }
 }

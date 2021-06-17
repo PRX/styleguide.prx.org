@@ -138,7 +138,8 @@ input {
   -webkit-flex-basis: 215px;
 }
 
-::placeholder {
+::placeholder,
+ng-select.ng-select .ng-select-container .ng-value-container .ng-placeholder {
   color: $grey-700;
 }
 
