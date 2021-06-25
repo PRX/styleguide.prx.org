@@ -63,7 +63,7 @@ export const VERSION_TEMPLATED = (template?: HalDoc): BaseInvalid => {
       // max total file size (250mb)
       const totalSize = undeleted.reduce((acc, f) => acc + (f.size || 0), 0);
       if (totalSize > (250 * 1024 * 1024)) {
-        return 'Total audio file size must be less than 250 MB';
+        return 'Total audio file size must be less than 250 MiB';
       }
     }
 
