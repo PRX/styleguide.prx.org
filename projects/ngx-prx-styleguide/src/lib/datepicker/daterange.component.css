@@ -1,21 +1,25 @@
 :host {
   display: flex;
 }
+
 .picker {
   position: relative;
   text-align: center;
 }
+
 .picker:first-child {
   margin-right: 20px;
 }
-.picker > label {
-  color: #939393;
+
+.picker>label {
+  color: $grey-700;
   cursor: default;
   position: absolute;
   line-height: 20px;
   top: 10px;
   left: calc(5% + 8px);
 }
+
 prx-datepicker {
   width: 90%;
   margin-bottom: 5px;

@@ -1,56 +1,94 @@
-
-// Converted Variables
-
-
-// Custom Media Query Variables
-
-
 .pika-single {
-  color: #000;
-  border-color: #e6e6e6;
+  color: $black;
+  border-color: $grey-200;
   font-family: 'Open Sans', sans-serif;
 }
 
-.pika-button {
-  color: #000;
-  background: #f0f0f0;
+td .pika-button {
+  color: $black;
+  background: $grey-100;
   border-radius: 0;
+  opacity: 1;
 }
 
-.is-today .pika-button {
-  color: #0089bd;
+.is-today .pika-button.pika-day {
+  color: $blue;
+  opacity: 1;
+}
+
+.is-today.is-selected .pika-button.pika-day {
+  background: $blue;
+  color: $white;
+}
+
+.is-disabled .pika-button.pika-day {
+  font-style: italic;
+  color: $black;
+  background: $grey-300;
+  opacity: 1;
 }
 
 .is-selected .pika-button {
-  color: #fff;
-  background: #0089bd;
+  color: $white;
+  background: $blue;
   box-shadow: none;
   border-radius: 0;
 }
 
 .has-event .pika-button {
-  color: #fff;
-  background: #0089bd;
+  color: $white;
+  background: $blue;
   box-shadow: none;
   border-radius: 0;
 }
 
 .pika-button:hover {
-  background: #ff9600;
+  background: $orange;
   border-radius: 0;
 }
 
 .pika-label {
   text-transform: uppercase;
 }
+
 .pika-select-month {
   text-transform: uppercase;
 }
+
 .pika-table thead abbr {
+  color: $black;
   text-transform: uppercase;
   text-decoration: none;
   border-bottom: none;
   cursor: default;
+}
+
+.pika-title {
+
+  .pika-next {
+    transform: rotate(180deg);
+  }
+
+  .pika-prev,
+  .pika-next {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAyMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwKSI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIzMCIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE0IDZMNSAxNUwxNCAyNFY2WiIgZmlsbD0iIzAwNzJBMyIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwIj4KPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjMwIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=);
+    opacity: 1;
+
+    &:hover {
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      opacity: .8;
+    }
+
+    &.is-disabled {
+      opacity: 0;
+
+      &:hover {
+        opacity: 0;
+      }
+    }
+  }
 }
 
 .pika-single.container {
@@ -62,29 +100,35 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+
 .calpicker.pika-single:before,
 .calpicker.pika-single:after {
   content: none;
   display: initial;
 }
+
 .calpicker .pika-lendar {
   float: none;
   width: auto;
 }
+
 .calpicker .pika-title {
   position: inherit;
 }
+
 .calpicker .pika-next {
   position: absolute;
   top: 8px;
   right: 8px;
 }
+
 .calpicker.disabled .is-selected .pika-button {
-  color: #666;
-  background: #f5f5f5;
+  color: $grey-700;
+  background: $grey-200;
   box-shadow: none;
 }
+
 .calpicker.disabled .pika-button:hover {
-  background: #ddd;
+  background: $grey-300;
   cursor: not-allowed;
 }

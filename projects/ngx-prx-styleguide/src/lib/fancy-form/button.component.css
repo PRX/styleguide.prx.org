@@ -4,54 +4,75 @@
 .wrapper {
   position: relative;
 }
-.wrapper > .primary {
+
+.wrapper>.primary {
   display: flex;
 }
+
 button.working {
   position: relative;
 }
+
 button[disabled] {
   color: #adc8d1;
   background-color: #7FA9B7;
   cursor: default;
 }
+
 button.plain {
-  background-color: #bbb;
+  background-color: #595959;
 }
-button.plain:hover, button.plain:focus {
+
+button.plain:hover,
+button.plain:focus {
   background-color: #999;
 }
+
 button.plain[disabled] {
   color: #eee;
   background-color: #ccc;
 }
+
 button.orange {
   background-color: #ff9600;
+  color: black;
 }
-button.orange:hover, button.orange:focus {
+
+button.orange:hover,
+button.orange:focus {
   background-color: #ec8200;
 }
+
 button.orange[disabled] {
   color: #fce4cf;
   background-color: #f9c596;
 }
+
 button.green {
-  background-color: #61A85D;
+  background-color: #478443;
+  ;
 }
-button.green:hover, button.green:focus {
+
+button.green:hover,
+button.green:focus {
   background-color: #52B84C;
 }
+
 button.green[disabled] {
   background-color: #87c390;
   color: #BCDBC0;
 }
+
 button.red {
   color: #fff;
-  background-color: #ee4d3e;
+  background-color: #EB0000;
 }
-button.red:hover, button.red:focus {
+
+button.red:hover,
+button.red:focus {
   background-color: #ff0000;
 }
+
 button.red[disabled] {
   background-color: #ec775f;
   color: #f8ddd8;
@@ -71,7 +92,7 @@ button.dropdown-toggle span {
   height: 1px;
   padding: 0;
   overflow: hidden;
-  clip: rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   -webkit-clip-path: inset(50%);
   clip-path: inset(50%);
@@ -101,7 +122,7 @@ div.dropdown-menu {
   position: absolute;
   right: 0;
   z-index: 997;
-  box-shadow: 0 5px 15px -5px rgba(0,0,0,.5);
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, .5);
 }
 
 .dropdown-overlay {
@@ -113,6 +134,7 @@ div.dropdown-menu {
   height: 100%;
   z-index: 996;
 }
+
 .dropdown-overlay.open {
   display: block;
 }
@@ -120,6 +142,6 @@ div.dropdown-menu {
 /*
  * Hide text when spinner is showing
  */
-button.working >>> * {
+button.working>>>* {
   color: rgba(0, 0, 0, 0);
 }
