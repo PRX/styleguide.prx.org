@@ -15,6 +15,7 @@ export class FancyFieldComponent {
   @Output() change = new EventEmitter<any>();
 
   // Name of model attribute, and optional explicit changed/invalid bindings
+  @Input() id: string;
   @Input() name: string;
   @Input() changed: string;
   @Input() invalid: string;
@@ -82,6 +83,10 @@ export class FancyFieldComponent {
         return msg;
       }
     }
+  }
+
+  get fieldId(): string {
+    return this.id || this.name;
   }
 
   get fieldClasses(): string {

@@ -1,10 +1,9 @@
 <div [class]="fieldClasses">
-
   <h3 *ngIf="label && !small">
-    <label [attr.for]="name" [attr.required]="required">{{label}}</label>
+    <label [attr.for]="fieldId" [attr.required]="required">{{ label }}</label>
   </h3>
   <h4 *ngIf="label && small">
-    <label [attr.for]="name" [attr.required]="required">{{label}}</label>
+    <label [attr.for]="fieldId" [attr.required]="required">{{ label }}</label>
   </h4>
 
   <p class="hint"><ng-content select=".fancy-hint"></ng-content></p>
@@ -14,33 +13,70 @@
   </div>
 
   <ng-container *ngIf="model">
-    <input *ngIf="type == 'textinput'" [id]="name" type="text"
-      [ngModel]="model[name]" (ngModelChange)="doOnChange($event)"
-      [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model"/>
-    <input *ngIf="type == 'number'" [id]="name" type="number"
-      [ngModel]="model[name]" (ngModelChange)="doOnChange($event)"
-      [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model"/>
-    <fieldset *ngIf="type == 'checkbox'" >
-      <input [id]="name" type="checkbox"
-        [ngModel]="model[name]" (ngModelChange)="doOnChange($event)"
-        [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model"/>
-      <label class="prompt" [for]="name">{{prompt}}</label>
+    <input
+      *ngIf="type == 'textinput'"
+      [id]="fieldId"
+      type="text"
+      [ngModel]="model[name]"
+      (ngModelChange)="doOnChange($event)"
+      [prxAdvancedConfirm]="advancedConfirm"
+      [prxName]="name"
+      [prxModel]="model"
+    />
+    <input
+      *ngIf="type == 'number'"
+      [id]="fieldId"
+      type="number"
+      [ngModel]="model[name]"
+      (ngModelChange)="doOnChange($event)"
+      [prxAdvancedConfirm]="advancedConfirm"
+      [prxName]="name"
+      [prxModel]="model"
+    />
+    <fieldset *ngIf="type == 'checkbox'">
+      <input
+        [id]="fieldId"
+        type="checkbox"
+        [ngModel]="model[name]"
+        (ngModelChange)="doOnChange($event)"
+        [prxAdvancedConfirm]="advancedConfirm"
+        [prxName]="name"
+        [prxModel]="model"
+      />
+      <label class="prompt" [for]="fieldId">{{ prompt }}</label>
     </fieldset>
-    <textarea *ngIf="type == 'textarea'" [id]="name"
-      [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model"
-      [(ngModel)]="model[name]" (ngModelChange)="doOnChange($event)"></textarea>
-    <prx-select *ngIf="isSelect" [single]="isSingleSelect" [id]="name" [clearable]="!required"
-      [selected]="model[name]" [options]="select" (select)="doOnChange($event)"
-      [searchable]="searchable" [prxAdvancedConfirm]="advancedConfirm" [prxName]="name" [prxModel]="model" prxEvent="change">
+    <textarea
+      *ngIf="type == 'textarea'"
+      [id]="fieldId"
+      [prxAdvancedConfirm]="advancedConfirm"
+      [prxName]="name"
+      [prxModel]="model"
+      [(ngModel)]="model[name]"
+      (ngModelChange)="doOnChange($event)"
+    ></textarea>
+    <prx-select
+      *ngIf="isSelect"
+      [single]="isSingleSelect"
+      [id]="fieldId"
+      [clearable]="!required"
+      [selected]="model[name]"
+      [options]="select"
+      (select)="doOnChange($event)"
+      [searchable]="searchable"
+      [prxAdvancedConfirm]="advancedConfirm"
+      [prxName]="name"
+      [prxModel]="model"
+      prxEvent="change"
+    >
     </prx-select>
   </ng-container>
 
   <ng-container *ngIf="!model">
-    <input *ngIf="type == 'textinput'" [id]="name" type="text" disabled=true/>
-    <input *ngIf="type == 'checkbox'" [id]="name" type="checkbox" disabled=true/>
-    <textarea *ngIf="type == 'textarea'" [id]="name" disabled=true></textarea>
-    <prx-select *ngIf="isSelect" [id]="name" disabled=true></prx-select>
+    <input *ngIf="type == 'textinput'" [id]="fieldId" type="text" disabled="true" />
+    <input *ngIf="type == 'checkbox'" [id]="fieldId" type="checkbox" disabled="true" />
+    <textarea *ngIf="type == 'textarea'" [id]="fieldId" disabled="true"></textarea>
+    <prx-select *ngIf="isSelect" [id]="fieldId" disabled="true"></prx-select>
   </ng-container>
 
-  <p *ngIf="formattedInvalid" class="error">{{formattedInvalid | capitalize}}</p>
+  <p *ngIf="formattedInvalid" class="error">{{ formattedInvalid | capitalize }}</p>
 </div>
