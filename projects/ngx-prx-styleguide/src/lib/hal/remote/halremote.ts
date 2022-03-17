@@ -46,11 +46,11 @@ export class HalRemote {
     if (!link || !link.href) {
       return null;
     } else if (link.templated) {
-      return expand(this.host + link.href, params || {});
+      return expand(this.addHost(link.href), params || {});
     } else if (link.href.match(/^http(s)?:\/\//)) {
       return link.href;
     } else {
-      return this.host + link.href;
+      return this.addHost(link.href);
     }
   }
 
@@ -87,6 +87,14 @@ export class HalRemote {
 
   clear() {
     this.cache.clear();
+  }
+
+  private addHost(href: string): string {
+    if (href && href.match(/^http(s)?:\/\//)) {
+      return href;
+    } else {
+      return this.host + href;
+    }
   }
 
   private httpRequest(method: string, href: string, body?: string, allowRetry = true): Observable<{}> {
