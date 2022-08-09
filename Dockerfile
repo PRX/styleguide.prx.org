@@ -29,6 +29,7 @@ RUN [ "npm", "run-script", "lint" ]
 FROM nginx:alpine as server
 LABEL maintainer="PRX <sysadmin@prx.org>"
 LABEL org.prx.app="yes"
+LABEL org.prx.spire.publish.ecr="WEB_SERVER"
 COPY --from=builder /app/storybook-static /usr/share/nginx/html
 ADD ./bin/application /usr/local/bin/
 RUN apk add --no-cache tini
