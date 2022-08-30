@@ -130,4 +130,3 @@ This library is available as open source under the terms of the
 
 Completing a Contributor License Agreement (CLA) is required for PRs to be
 accepted.
-
