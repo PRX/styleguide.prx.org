@@ -23,7 +23,8 @@ export class ImageLoaderComponent implements OnChanges {
       this.reset();
     } else if (changes.imageDoc) {
       this.reset();
-      if (this.imageDoc && this.imageDoc.has('prx:image') && this.imageDoc['_embedded']['prx:image'] !== null) {
+      const hasNull = this.imageDoc && this.imageDoc['_embedded'] && this.imageDoc['_embedded'] === null;
+      if (this.imageDoc && this.imageDoc.has('prx:image') && !hasNull) {
         this.imageDoc.follow('prx:image').subscribe(
           img => (this.docSrc = img.expand('enclosure')),
           err => {
