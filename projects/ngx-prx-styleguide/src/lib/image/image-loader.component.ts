@@ -4,12 +4,11 @@ import { HalDoc } from '../hal/doc/haldoc';
 @Component({
   selector: 'prx-image',
   template: `
-    <img *ngIf="src" [src]="src" (load)="onLoad()" (error)="onError()"/>
-    <img *ngIf="docSrc" [src]="docSrc" (load)="onLoad()" (error)="onError()"/>
+    <img *ngIf="src" [src]="src" (load)="onLoad()" (error)="onError()" />
+    <img *ngIf="docSrc" [src]="docSrc" (load)="onLoad()" (error)="onError()" />
   `,
   styleUrls: ['./image-loader.component.css']
 })
-
 export class ImageLoaderComponent implements OnChanges {
   @Input() public src: string;
   @Input() public imageDoc: HalDoc;
@@ -24,10 +23,18 @@ export class ImageLoaderComponent implements OnChanges {
       this.reset();
     } else if (changes.imageDoc) {
       this.reset();
-      if (this.imageDoc && this.imageDoc.has('prx:image')) {
+      const hasNull = this.imageDoc && this.imageDoc['_embedded'] && this.imageDoc['_embedded'] === null;
+      if (this.imageDoc && this.imageDoc.has('prx:image') && !hasNull) {
         this.imageDoc.follow('prx:image').subscribe(
-          img => this.docSrc = img.expand('enclosure'),
-          err => this.isError = true,
+          img => (this.docSrc = img.expand('enclosure')),
+          err => {
+            // bit hacky, but catch 404s
+            if (err.message && err.message.match(/got 404 from/i)) {
+              this.isPlaceholder = true;
+            } else {
+              this.isError = true;
+            }
+          }
         );
       } else if (this.imageDoc) {
         this.isPlaceholder = true;
@@ -49,5 +56,4 @@ export class ImageLoaderComponent implements OnChanges {
     this.isError = false;
     this.docSrc = null;
   }
-
 }
