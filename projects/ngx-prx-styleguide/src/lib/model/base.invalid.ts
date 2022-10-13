@@ -25,9 +25,9 @@ export const REQUIRED = (beVeryStrict = false): BaseInvalid => {
 
 export const LENGTH = (minLength: number, maxLength?: number): BaseInvalid => {
   return (key: string, value: any) => {
-    if (minLength && value && (value.length < minLength)) {
+    if (minLength && value && value.length < minLength) {
       return `${key} is too short`;
-    } else if (maxLength && value && (value.length > maxLength)) {
+    } else if (maxLength && value && value.length > maxLength) {
       return `${key} is too long`;
     } else {
       return null;
@@ -62,7 +62,7 @@ export const TOKENY = (msg?: string): BaseInvalid => {
 };
 
 // basic url matching ... not entirely accurate, but hopefully good enough
-const urlPattern = /^(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?$/;
+const urlPattern = /^(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,!@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?$/;
 export const URL = (msg?: string): BaseInvalid => {
   return (key: string, value: any) => {
     if (value && !value.match(urlPattern)) {
