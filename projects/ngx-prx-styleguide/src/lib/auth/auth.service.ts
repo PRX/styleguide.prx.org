@@ -1,12 +1,9 @@
-
-import {skip} from 'rxjs/operators';
+import { skip } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable ,  ReplaySubject } from 'rxjs';
-
+import { Observable, ReplaySubject } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-
   static AUTHORIZATION_DENIED = 'AUTHORIZATION_DENIED';
 
   authHost: string;
@@ -26,7 +23,7 @@ export class AuthService {
       url = url.match(/\.org|\.tech/) ? `https://${url}` : `http://${url}`;
     }
     const nonce = this.getNonce();
-    return `${url}&nonce=${nonce}&response_type=token&scope=apps&prompt=${prompt}`;
+    return `${url}&nonce=${nonce}&response_type=token&prompt=${prompt}`;
   }
 
   setToken(authToken: string) {
@@ -52,7 +49,9 @@ export class AuthService {
   }
 
   parseToken(tokStr: string) {
-    if (tokStr === AuthService.AUTHORIZATION_DENIED) { return false; }
+    if (tokStr === AuthService.AUTHORIZATION_DENIED) {
+      return false;
+    }
 
     // https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript
     let base64decoded = tokStr.replace(/-/g, '+').replace(/_/g, '/');
@@ -86,5 +85,4 @@ export class AuthService {
   private randomInt(low: number, high: number): number {
     return Math.floor(Math.random() * (high - low + 1) + low);
   }
-
 }

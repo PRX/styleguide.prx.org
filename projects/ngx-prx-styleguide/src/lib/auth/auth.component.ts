@@ -8,22 +8,18 @@ import { AuthParser } from './auth-parser';
 @Component({
   selector: 'prx-auth',
   styles: ['iframe { display: none; }'],
-  template: `<iframe *ngIf="authUrl" [src]="authUrl" (load)="checkAuth()"></iframe>`
+  template: `
+    <iframe *ngIf="authUrl" [src]="authUrl" (load)="checkAuth()"></iframe>
+  `
 })
-
 export class AuthComponent implements OnChanges, OnDestroy {
-
   @Input() host: string;
   @Input() client: string;
 
   authUrl: SafeResourceUrl;
   private sub: Subscription;
 
-  constructor(
-    private element: ElementRef,
-    private authService: AuthService,
-    private sanitizer: DomSanitizer
-  ) {
+  constructor(private element: ElementRef, private authService: AuthService, private sanitizer: DomSanitizer) {
     this.sub = authService.refresh.subscribe(() => this.generateAuthUrl());
   }
 
@@ -77,9 +73,14 @@ export class AuthComponent implements OnChanges, OnDestroy {
         }
       }
       if (token) {
-        this.authService.setToken(token);
+        const decoded = AuthParser.decodeToken(token);
+        if (decoded && Object.keys(decoded['aur']).length === 0) {
+          // token has no resources - this has replaced invalid scope
+          this.authService.failAuthorization();
+        } else {
+          this.authService.setToken(token);
+        }
       }
     }
   }
-
 }
