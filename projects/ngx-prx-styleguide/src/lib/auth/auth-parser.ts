@@ -1,7 +1,6 @@
 import { ElementRef } from '@angular/core';
 
 export class AuthParser {
-
   static parseIframeQuery(el: ElementRef) {
     const iframe = el.nativeElement.getElementsByTagName('iframe')[0];
     return this.parseQuery(iframe.contentDocument.location.hash);
@@ -28,4 +27,11 @@ export class AuthParser {
     return AuthParser.queryToPairs(query)['error'];
   }
 
+  static decodeToken(token = ''): object {
+    try {
+      return JSON.parse(window.atob(token.split('.')[1]));
+    } catch (e) {
+      return null;
+    }
+  }
 }
