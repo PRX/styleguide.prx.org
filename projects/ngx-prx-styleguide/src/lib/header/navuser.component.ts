@@ -29,8 +29,7 @@ export class NavUserComponent {
   @Input() userinfo: Userinfo;
 
   appLabel(appName: string): string {
-    const n = appName.replace(/^https?:\/\//, '').replace(/\..+/, '');
-    return 'PRX ' + n.charAt(0).toUpperCase() + n.slice(1);
+    return appName;
   }
 
   appNames(): any[] {
